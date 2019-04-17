@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"bufio"
@@ -16,10 +16,17 @@ import (
 	prose "gopkg.in/jdkato/prose.v2"
 )
 
+const (
+	unicodeSmallA   = 97
+	unicodeSmallZ   = 122
+	unicodeCapitalA = 65
+	unicodeCapitalZ = 90
+)
+
 var adjectives []string
 
 func init() {
-	file, err := os.Open("cmd/entityscrape-cli/adjectives.txt")
+	file, err := os.Open("internal/entityscrape-cli/adjectives.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -36,7 +43,8 @@ func init() {
 	}
 }
 
-func Associate(entity, url string, aliases []string) {
+// Make makes
+func Make(entity, url string, aliases []string) {
 	c := colly.NewCollector(
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 	)
@@ -65,7 +73,7 @@ func Associate(entity, url string, aliases []string) {
 		fmt.Println("Visiting", r.URL.String())
 	})
 
-	c.Visit(url)
+	// c.Visit(url)
 }
 
 func weighting(text string, entity []string) (weighting map[string]float64, err error) {

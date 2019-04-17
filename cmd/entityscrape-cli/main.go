@@ -2,8 +2,10 @@ package main
 
 import "os"
 
+//go:generate go run scripts/includeadjectives.go
+
 func main() {
-	if err := RootCmd.Execute(); err != nil {
+	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
 	}
 }
