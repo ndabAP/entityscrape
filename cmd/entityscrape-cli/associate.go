@@ -16,17 +16,10 @@ import (
 	prose "gopkg.in/jdkato/prose.v2"
 )
 
-const (
-	unicodeSmallA   = 97
-	unicodeSmallZ   = 122
-	unicodeCapitalA = 65
-	unicodeCapitalZ = 90
-)
-
 var adjectives []string
 
 func init() {
-	file, err := os.Open("adjectives.txt")
+	file, err := os.Open("cmd/entityscrape-cli/adjectives.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,7 +36,7 @@ func init() {
 	}
 }
 
-func main() {
+func Associate(entity, url string, aliases []string) {
 	c := colly.NewCollector(
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 	)
@@ -53,25 +46,16 @@ func main() {
 		RandomDelay: 10 * time.Second,
 	})
 
-	// On every a element which has href attribute call callback
-	// c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-	// 	link := e.Attr("href")
-	// 	// Print link
-	// 	fmt.Printf("Link found: %q -> %s\n", e.Text, link)
-	// 	// Visit link found on page
-	// 	// Only those links are visited which are in AllowedDomains
-	// 	c.Visit(e.Request.AbsoluteURL(link))
-	// })
-
 	c.OnHTML(".article-wrapper", func(e *colly.HTMLElement) {
 		p := e.ChildText("p")
 
-		weighting, err := associate(p, []string{"Trump", "Donald Trump", "D. Trump", "D. J. Trump", "Donald John Trump"})
+		aliases = append([]string{entity}, aliases...)
+		weighting, err := weighting(p, aliases)
 		if err != nil {
 			log.Fatal(err)
 		}
 		weightingAdjectives := keepAdjectives(weighting)
-		err = insert(weightingAdjectives, "Donald John Trump", "adjective")
+		err = insert(weightingAdjectives, entity, "adjective")
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -81,10 +65,10 @@ func main() {
 		fmt.Println("Visiting", r.URL.String())
 	})
 
-	c.Visit("https://eu.usatoday.com/story/opinion/2019/04/16/trump-show-features-acting-officials-key-posts-editorial-debate/3486558002/")
+	c.Visit(url)
 }
 
-func associate(text string, entity []string) (weighting map[string]float64, err error) {
+func weighting(text string, entity []string) (weighting map[string]float64, err error) {
 	weighting, err = assocentity.Make(text, entity, func(text string) ([]string, error) {
 		tokenizedText, err := tokenizer(text)
 		if err != nil {
