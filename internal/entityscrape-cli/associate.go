@@ -1,15 +1,7 @@
 package cli
 
 import (
-	"context"
-	"log"
-	"time"
-
-	"github.com/gocolly/colly"
-	"github.com/mongodb/mongo-go-driver/mongo"
 	"github.com/ndabAP/assocentity/v2"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	prose "gopkg.in/jdkato/prose.v2"
 )
 
@@ -19,37 +11,6 @@ const (
 	unicodeCapitalA = 65
 	unicodeCapitalZ = 90
 )
-
-// Make makes
-func Make(entity, url string, aliases []string) {
-	c := colly.NewCollector(
-		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
-	)
-
-	c.OnHTML(".article-wrapper", func(e *colly.HTMLElement) {
-		p := e.ChildText("p")
-
-		aliases = append([]string{entity}, aliases...)
-		weighting, err := weighting(p, aliases)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		weightingAdjectives := keepAdjectives(weighting)
-		log.Println(len(weightingAdjectives), "adjectives found")
-
-		err = insert(weightingAdjectives, entity, "adjective")
-		if err != nil {
-			log.Fatal(err)
-		}
-	})
-
-	c.OnRequest(func(r *colly.Request) {
-		log.Println("Visiting", r.URL.String())
-	})
-
-	c.Visit(url)
-}
 
 func weighting(text string, entity []string) (weighting map[string]float64, err error) {
 	weighting, err = assocentity.Make(text, entity, func(text string) ([]string, error) {
@@ -107,30 +68,6 @@ func keepAdjectives(weighting map[string]float64) map[string]float64 {
 	}
 
 	return weighting
-}
-
-func insert(weighting map[string]float64, entity, wordType string) error {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
-
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
-	defer cancel()
-	err = client.Connect(ctx)
-	if err != nil {
-		return err
-	}
-
-	collection := client.Database("entityScrape").Collection("weighting")
-	var documents []interface{}
-	for word, weight := range weighting {
-		documents = append(documents, bson.M{"entity": entity, "word": word, "weight": weight, "type": wordType})
-	}
-
-	_, err = collection.InsertMany(context.Background(), documents)
-	if err != nil {
-		return err
-	}
-
-	return nil
 }
 
 func isInSlice(el string, slice []string) bool {
