@@ -15,6 +15,10 @@ func Make(entity, url string, aliases []string) error {
 			colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 		)
 
+		c.OnHTML("body", func(e *colly.HTMLElement) {
+			log.Println("body", e.Text)
+		})
+
 		c.OnHTML(".article-wrapper", func(e *colly.HTMLElement) {
 			p := e.ChildText("p")
 
@@ -38,7 +42,7 @@ func Make(entity, url string, aliases []string) error {
 		})
 
 		c.OnResponse(func(r *colly.Response) {
-			log.Println("headers", r.Headers)
+			log.Println("status", r.StatusCode)
 		})
 
 		c.OnError(func(r *colly.Response, err error) {
