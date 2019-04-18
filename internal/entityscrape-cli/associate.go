@@ -1,11 +1,8 @@
 package cli
 
 import (
-	"bufio"
 	"context"
-	"fmt"
 	"log"
-	"os"
 	"time"
 
 	"github.com/gocolly/colly"
@@ -23,36 +20,11 @@ const (
 	unicodeCapitalZ = 90
 )
 
-var adjectives []string
-
-func init() {
-	file, err := os.Open("internal/entityscrape-cli/adjectives.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		adjectives = append(adjectives, scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-}
-
 // Make makes
 func Make(entity, url string, aliases []string) {
 	c := colly.NewCollector(
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 	)
-
-	c.Limit(&colly.LimitRule{
-		Parallelism: 1,
-		RandomDelay: 10 * time.Second,
-	})
 
 	c.OnHTML(".article-wrapper", func(e *colly.HTMLElement) {
 		p := e.ChildText("p")
@@ -62,7 +34,10 @@ func Make(entity, url string, aliases []string) {
 		if err != nil {
 			log.Fatal(err)
 		}
+
 		weightingAdjectives := keepAdjectives(weighting)
+		log.Println(len(weightingAdjectives), "adjectives found")
+
 		err = insert(weightingAdjectives, entity, "adjective")
 		if err != nil {
 			log.Fatal(err)
@@ -70,10 +45,10 @@ func Make(entity, url string, aliases []string) {
 	})
 
 	c.OnRequest(func(r *colly.Request) {
-		fmt.Println("Visiting", r.URL.String())
+		log.Println("Visiting", r.URL.String())
 	})
 
-	// c.Visit(url)
+	c.Visit(url)
 }
 
 func weighting(text string, entity []string) (weighting map[string]float64, err error) {

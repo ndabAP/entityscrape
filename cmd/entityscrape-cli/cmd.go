@@ -17,6 +17,7 @@ var rootCmd = &cobra.Command{
 		return nil
 	},
 }
+
 var aliases []string
 
 func init() {

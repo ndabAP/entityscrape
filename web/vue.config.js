@@ -3,6 +3,18 @@ const lessOptions = {
 }
 
 module.exports = {
+  outputDir: '../website',
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000/api',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
+  },
   transpileDependencies: [
     /[/\\]node_modules[/\\]veui[/\\]/,
     /[/\\]node_modules[/\\]vue-awesome[/\\]/,
