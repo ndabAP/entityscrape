@@ -31,16 +31,22 @@ func Make(entity, url string, aliases []string) error {
 			if err != nil {
 				errorc <- err
 			}
-
-			errorc <- nil
 		})
 
 		c.OnRequest(func(r *colly.Request) {
-			log.Println("Visiting", r.URL.String())
+			log.Println("visiting", r.URL.String())
+		})
+
+		c.OnResponse(func(r *colly.Response) {
+			log.Println("headers", r.Headers)
 		})
 
 		c.OnError(func(r *colly.Response, err error) {
 			errorc <- err
+		})
+
+		c.OnScraped(func(r *colly.Response) {
+			errorc <- nil
 		})
 
 		c.Visit(url)
