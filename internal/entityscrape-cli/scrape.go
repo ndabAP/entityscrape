@@ -7,7 +7,7 @@ import (
 )
 
 // Make makes
-func Make(entity, url string, aliases []string) {
+func Make(entity, url string, aliases []string) error {
 	c := colly.NewCollector(
 		colly.UserAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"),
 	)
@@ -26,7 +26,7 @@ func Make(entity, url string, aliases []string) {
 
 		err = insert(weightingAdjectives, entity, "adjective")
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 	})
 

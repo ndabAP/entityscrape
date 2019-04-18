@@ -12,7 +12,10 @@ var rootCmd = &cobra.Command{
 		entity := args[0]
 		url := args[1]
 
-		cli.Make(entity, url, aliases)
+		err := cli.Make(entity, url, aliases)
+		if err != nil {
+			return err
+		}
 
 		return nil
 	},

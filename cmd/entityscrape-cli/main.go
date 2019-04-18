@@ -1,7 +1,7 @@
 package main
 
 import (
-	"os"
+	"log"
 
 	"github.com/joho/godotenv"
 )
@@ -10,6 +10,6 @@ func main() {
 	godotenv.Load()
 
 	if err := rootCmd.Execute(); err != nil {
-		os.Exit(1)
+		log.Fatal(err)
 	}
 }
