@@ -2,7 +2,6 @@ package cli
 
 import (
 	"context"
-	"log"
 	"os"
 	"time"
 
@@ -11,14 +10,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func insert(weighting map[string]float64, entity, wordType string) {
+func insert(weighting map[string]float64, entity, wordType string) error {
 	client, err := mongo.NewClient(options.Client().ApplyURI(os.Getenv("MONGODB_CONNECTION_STRING")))
 
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 	err = client.Connect(ctx)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	collection := client.Database("entityScrape").Collection("weighting")
@@ -29,6 +28,8 @@ func insert(weighting map[string]float64, entity, wordType string) {
 
 	_, err = collection.InsertMany(context.Background(), documents)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+
+	return nil
 }

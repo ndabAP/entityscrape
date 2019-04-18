@@ -24,11 +24,18 @@ func Make(entity, url string, aliases []string) {
 		weightingAdjectives := keepAdjectives(weighting)
 		log.Println(len(weightingAdjectives), "adjectives found")
 
-		insert(weightingAdjectives, entity, "adjective")
+		err = insert(weightingAdjectives, entity, "adjective")
+		if err != nil {
+			log.Fatal(err)
+		}
 	})
 
 	c.OnRequest(func(r *colly.Request) {
 		log.Println("Visiting", r.URL.String())
+	})
+
+	c.OnError(func(r *colly.Response, err error) {
+		log.Println("Request URL:", r.Request.URL, "failed with response:", r, "\nError:", err)
 	})
 
 	c.Visit(url)
