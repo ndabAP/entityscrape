@@ -20,6 +20,8 @@ func Make(entity, url string, aliases []string) error {
 		})
 
 		c.OnHTML(".article-wrapper", func(e *colly.HTMLElement) {
+			log.Println(".article-wrapper", e.Text)
+
 			p := e.ChildText("p")
 
 			aliases = append([]string{entity}, aliases...)
