@@ -21,6 +21,9 @@ module.exports = {
     /[/\\]node_modules[/\\]resize-detector[/\\]/
   ],
   chainWebpack: config => {
+    config.module.rule('eslint').use('eslint-loader').options({
+      fix: true
+    })
     config.module
       .rule('veui')
       .test(/\.vue$/)
