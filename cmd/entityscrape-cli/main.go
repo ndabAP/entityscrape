@@ -3,13 +3,12 @@ package main
 import (
 	"log"
 
-	"github.com/joho/godotenv"
+	cli "github.com/ndabAP/entityscrape/internal/entityscrape-cli"
 )
 
 func main() {
-	godotenv.Load()
-
-	if err := rootCmd.Execute(); err != nil {
+	err := cli.Do()
+	if err != nil {
 		log.Fatal(err)
 	}
 }

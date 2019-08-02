@@ -8,17 +8,22 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func main() {
-	godotenv.Load()
+var (
+	port = os.Getenv("PORT")
+)
 
-	port := os.Getenv("PORT")
+func init() {
+	godotenv.Load()
+}
+
+func main() {
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		log.Fatal("port must be set")
 	}
 
 	fs := http.FileServer(http.Dir("./website"))
 	http.Handle("/", fs)
 
-	log.Println("Listening...")
 	http.ListenAndServe(":"+port, nil)
+	log.Println("Listening...")
 }

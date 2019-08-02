@@ -7,4 +7,4 @@ build_srv:
 	go build -o bin/entityscrape-srv cmd/entityscrape-srv/main.go
 
 build_cli:
-	go build -o bin/entityscrape-cli cmd/entityscrape-cli/*.go
+	go build -o bin/entityscrape-cli cmd/entityscrape-cli/main.go
