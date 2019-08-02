@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -38,5 +39,10 @@ func InsertMany(docs []interface{}) error {
 		return err
 	}
 
+	return nil
+}
+
+// FindOne finds one
+func FindOne(filter bson.D) error {
 	return nil
 }

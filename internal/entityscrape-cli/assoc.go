@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -35,8 +34,6 @@ func assoc(text string, entities []string) (map[string]float64, error) {
 	if err = dj.Join(nlp); err != nil {
 		return map[string]float64{}, err
 	}
-
-	fmt.Println(dj.Tokens())
 
 	// Assoc calculates the average distances
 	assocentities, err := assocentity.Assoc(dj, nlp, entities)
