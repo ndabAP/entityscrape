@@ -1,7 +1,9 @@
 package cli
 
 import (
+	"log"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 	"github.com/ndabAP/assocentity/v3"
@@ -22,7 +24,11 @@ func init() {
 	credentialsFile = os.Getenv("GOOGLE_NLP_SERVICE_ACCOUNT_FILE_LOCATION")
 }
 
-func assoc(text string, entities []string) (map[string]float64, error) {
+// AssocEntities represents associated entities
+type AssocEntities struct{}
+
+// AssocEntities returns associated entities
+func (ae AssocEntities) AssocEntities(text string, entities []string, logger *log.Logger) (map[string]float64, error) {
 	// Create a NLP instance
 	nlp, err := tokenize.NewNLP(credentialsFile, text, entities, false)
 	if err != nil {
@@ -35,11 +41,13 @@ func assoc(text string, entities []string) (map[string]float64, error) {
 		return map[string]float64{}, err
 	}
 
+	log.Printf("getting associations for entities: %s", strings.Join(entities, ", "))
+
 	// Assoc calculates the average distances
-	assocentities, err := assocentity.Assoc(dj, nlp, entities)
+	assocEntities, err := assocentity.Assoc(dj, nlp, entities)
 	if err != nil {
 		return map[string]float64{}, err
 	}
 
-	return assocentities, err
+	return assocEntities, err
 }

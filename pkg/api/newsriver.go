@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -39,7 +40,7 @@ func init() {
 }
 
 // Get gets
-func Get(entity string) (News, error) {
+func Get(entity string, logger *log.Logger) (News, error) {
 	u, err := url.Parse(rootURL)
 	if err != nil {
 		return News{}, err
@@ -61,6 +62,8 @@ func Get(entity string) (News, error) {
 	}
 
 	req.Header.Set(requestParams.authorization, apiKey)
+
+	log.Printf("requesting news api with url: %s", u.String())
 
 	client := &http.Client{}
 	res, err := client.Do(req)
