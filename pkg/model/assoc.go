@@ -1,8 +1,9 @@
 package model
 
-// Accoc is a word
-type Accoc struct {
-	Distance float64
-	Entity   string
-	Word     string
+// Assoc is a word
+type Assoc struct {
+	Distances []float64
+	PoS       int
+	Entity    string
+	Word      string
 }

@@ -34,7 +34,9 @@ type News []struct {
 }
 
 func init() {
-	godotenv.Load()
+	if err := godotenv.Load(); err != nil {
+		log.Fatal(err)
+	}
 
 	apiKey = os.Getenv("NEWSRIVER_API_KEY")
 }

@@ -4,22 +4,27 @@ import (
 	"log"
 	"math"
 
+	"github.com/ndabAP/assocentity/v6/tokenize"
 	"github.com/ndabAP/entityscrape/pkg/api"
-	db "github.com/ndabAP/entityscrape/pkg/db/assoc"
+	assocDB "github.com/ndabAP/entityscrape/pkg/db/assoc"
+	newsDB "github.com/ndabAP/entityscrape/pkg/db/news"
 	models "github.com/ndabAP/entityscrape/pkg/model"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
 // AssocEntitieser returns associated entities
 type AssocEntitieser interface {
-	AssocEntities(string, []string, *log.Logger) (map[string]float64, error)
+	AssocEntities(string, []string, *log.Logger) (map[tokenize.Token]float64, error)
 }
 
 var (
-	entities = []string{"Angela Merkel", "Barack Obama"}
-	aliases  = [][]string{
-		{"Angela Dorothea Merkel", "Merkel", "A. Merkel", "Angela M."},
-		{"Barack Hussein Obama II", "B. Obama", "Obama"},
+	entities = []string{
+		"Angela Merkel",
+		// "Barack Obama",
+	}
+	aliases = [][]string{
+		{"Angela Dorothea Merkel", "Merkel"},
+		// {"Barack Hussein Obama II", "Obama"},
 	}
 )
 
@@ -36,7 +41,21 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 		logger.Printf("found %d news", len(news))
 
 		for _, n := range news {
-			assocEntities, err := ae.AssocEntities(n.Text, aliases[idx], logger)
+			if ok, err := newsDB.Exists(n.ID); ok {
+				if err != mongo.ErrNoDocuments && err != nil {
+					return err
+				}
+
+				logger.Printf("news with id %s already exists, skipping", n.ID)
+
+				continue
+			} else {
+				if err := newsDB.InsertOne(models.News{ID: n.ID}); err != nil {
+					return err
+				}
+			}
+
+			assocEntities, err := ae.AssocEntities(n.Text, append(aliases[idx], entity), logger)
 			if err != nil {
 				return err
 			}
@@ -44,13 +63,14 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 			logger.Printf("found %d associations", len(assocEntities))
 
 			for word, dist := range assocEntities {
-				if a, err := db.FindOne(word, entity); a == nil {
+				if a, err := assocDB.FindOne(word.Token, entity); a == nil {
 					if err != mongo.ErrNoDocuments && err != nil {
 						return err
 					}
 
-					if err := db.InsertOne(models.Accoc{
-						Word:     word,
+					if err := assocDB.InsertOne(models.Assoc{
+						Word:     word.Token,
+						PoS:      word.PoS,
 						Distance: dist,
 						Entity:   entity,
 					}); err != nil {
@@ -58,7 +78,7 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 					}
 				} else {
 					dist := avg([]float64{a.Distance, dist})
-					if err := db.UpdateOne(word, entity, dist); err != nil {
+					if err := assocDB.UpdateOne(word.Token, entity, dist); err != nil {
 						return err
 					}
 				}

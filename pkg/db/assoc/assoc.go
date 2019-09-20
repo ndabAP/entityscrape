@@ -40,13 +40,14 @@ func init() {
 }
 
 // InsertMany inserts many documents at once
-func InsertMany(accocs []model.Accoc) error {
+func InsertMany(assocs []model.Assoc) error {
 	var docs []interface{}
-	for _, accoc := range accocs {
+	for _, assoc := range assocs {
 		doc := bson.M{
-			"distance": accoc.Distance,
-			"entity":   accoc.Entity,
-			"word":     accoc.Word,
+			"distance": assoc.Distance,
+			"pos":      assoc.PoS,
+			"entity":   assoc.Entity,
+			"word":     assoc.Word,
 		}
 
 		docs = append(docs, doc)
@@ -61,11 +62,12 @@ func InsertMany(accocs []model.Accoc) error {
 }
 
 // InsertOne inserts one
-func InsertOne(accoc model.Accoc) error {
+func InsertOne(assoc model.Assoc) error {
 	doc := bson.M{
-		"distance": accoc.Distance,
-		"entity":   accoc.Entity,
-		"word":     accoc.Word,
+		"distance": assoc.Distance,
+		"pos":      assoc.PoS,
+		"entity":   assoc.Entity,
+		"word":     assoc.Word,
 	}
 
 	if _, err := collection.InsertOne(context.Background(), doc); err != nil {
@@ -76,10 +78,10 @@ func InsertOne(accoc model.Accoc) error {
 }
 
 // FindOne finds one
-func FindOne(word, entity string) (*model.Accoc, error) {
+func FindOne(word, entity string) (*model.Assoc, error) {
 	filter := bson.D{{Key: "word", Value: word}, {Key: "entitiy", Value: entity}}
 
-	var w *model.Accoc
+	var w *model.Assoc
 	err := collection.FindOne(context.TODO(), filter).Decode(w)
 	if err != nil {
 		return w, err
