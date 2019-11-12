@@ -40,7 +40,7 @@ func (ae AssocEntities) AssocEntities(text string, entities []string, logger *lo
 	// Allow any part of speech
 	psd := tokenize.NewPoSDetermer(tokenize.ANY)
 
-	log.Printf("getting associations for entities: %s", strings.Join(entities, ", "))
+	log.Printf("getting associations for aliases: %s", strings.Join(entities, ", "))
 
 	assocEntities, err := assocentity.Do(nlp, psd, entities)
 	if err != nil {

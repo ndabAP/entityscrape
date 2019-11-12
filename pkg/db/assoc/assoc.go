@@ -64,9 +64,10 @@ func InsertMany(assocs []model.Assoc) error {
 // InsertOne inserts one
 func InsertOne(assoc model.Assoc) error {
 	doc := bson.M{
+		"date":     assoc.Date,
 		"distance": assoc.Distance,
-		"pos":      assoc.PoS,
 		"entity":   assoc.Entity,
+		"pos":      assoc.PoS,
 		"word":     assoc.Word,
 	}
 

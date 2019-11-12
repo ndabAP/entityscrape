@@ -42,7 +42,8 @@ func init() {
 // InsertOne inserts one
 func InsertOne(news model.News) error {
 	doc := bson.M{
-		"id": news.ID,
+		"_id":    news.ID,
+		"entity": news.Entity,
 	}
 
 	if _, err := collection.InsertOne(context.Background(), doc); err != nil {
@@ -53,14 +54,13 @@ func InsertOne(news model.News) error {
 }
 
 // Exists checks if exists
-func Exists(id string) (bool, error) {
-	filter := bson.D{{Key: "id", Value: id}}
+func Exists(id, entity string) (bool, error) {
+	filter := bson.D{{Key: "_id", Value: id}, {Key: "entity", Value: entity}}
 
-	var n *model.News
-	err := collection.FindOne(context.TODO(), filter).Decode(n)
+	count, err := collection.CountDocuments(context.TODO(), filter)
 	if err != nil {
 		return false, err
 	}
 
-	return n != nil, nil
+	return count != 0, nil
 }

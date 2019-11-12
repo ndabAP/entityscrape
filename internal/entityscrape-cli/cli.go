@@ -20,11 +20,11 @@ type AssocEntitieser interface {
 var (
 	entities = []string{
 		"Angela Merkel",
-		// "Barack Obama",
+		"Donald Trump",
 	}
 	aliases = [][]string{
 		{"Angela Dorothea Merkel", "Merkel"},
-		// {"Barack Hussein Obama II", "Obama"},
+		{"Trump"},
 	}
 )
 
@@ -41,16 +41,16 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 		logger.Printf("found %d news", len(news))
 
 		for _, n := range news {
-			if ok, err := newsDB.Exists(n.ID); ok {
+			if ok, err := newsDB.Exists(n.ID, entity); ok {
 				if err != mongo.ErrNoDocuments && err != nil {
 					return err
 				}
 
-				logger.Printf("news with id %s already exists, skipping", n.ID)
+				logger.Printf("news with id %s and entity %s already exists, skipping", n.ID, entity)
 
 				continue
 			} else {
-				if err := newsDB.InsertOne(models.News{ID: n.ID}); err != nil {
+				if err := newsDB.InsertOne(models.News{ID: n.ID, Entity: entity}); err != nil {
 					return err
 				}
 			}
@@ -63,24 +63,14 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 			logger.Printf("found %d associations", len(assocEntities))
 
 			for word, dist := range assocEntities {
-				if a, err := assocDB.FindOne(word.Token, entity); a == nil {
-					if err != mongo.ErrNoDocuments && err != nil {
-						return err
-					}
-
-					if err := assocDB.InsertOne(models.Assoc{
-						Word:     word.Token,
-						PoS:      word.PoS,
-						Distance: dist,
-						Entity:   entity,
-					}); err != nil {
-						return err
-					}
-				} else {
-					dist := avg([]float64{a.Distance, dist})
-					if err := assocDB.UpdateOne(word.Token, entity, dist); err != nil {
-						return err
-					}
+				if err := assocDB.InsertOne(models.Assoc{
+					Date:     models.DateFormat,
+					Distance: dist,
+					Entity:   entity,
+					PoS:      word.PoS,
+					Word:     word.Token,
+				}); err != nil {
+					return err
 				}
 			}
 		}

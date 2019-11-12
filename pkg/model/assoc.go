@@ -1,9 +1,17 @@
 package model
 
-// Assoc is a word
+import (
+	"time"
+)
+
+// Assoc represets assoc
 type Assoc struct {
-	Distances []float64
-	PoS       int
-	Entity    string
-	Word      string
+	Date     string
+	Distance float64
+	PoS      int
+	Entity   string
+	Word     string
 }
+
+// DateFormat represents default date format
+const DateFormat = time.RFC3339

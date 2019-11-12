@@ -2,5 +2,6 @@ package model
 
 // News is news
 type News struct {
-	ID string
+	ID     string
+	Entity string
 }
