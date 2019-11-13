@@ -3,6 +3,7 @@ package cli
 import (
 	"log"
 	"math"
+	"time"
 
 	"github.com/ndabAP/assocentity/v6/tokenize"
 	"github.com/ndabAP/entityscrape/pkg/api"
@@ -64,7 +65,7 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 
 			for word, dist := range assocEntities {
 				if err := assocDB.InsertOne(models.Assoc{
-					Date:     models.DateFormat,
+					Date:     time.Now().UTC().Format(models.DateFormat),
 					Distance: dist,
 					Entity:   entity,
 					PoS:      word.PoS,
