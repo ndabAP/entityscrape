@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	srv "github.com/ndabAP/entityscrape/internal/entityscrape-srv"
 )
 
 var (
@@ -23,7 +24,8 @@ func main() {
 
 	fs := http.FileServer(http.Dir("./website"))
 	http.Handle("/", fs)
+	http.HandleFunc("/api/entities", srv.Get)
 
+	log.Printf("starting server on port %s", port)
 	http.ListenAndServe(":"+port, nil)
-	log.Println("Listening...")
 }

@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/ndabAP/assocentity/v6/tokenize"
 	"github.com/ndabAP/entityscrape/pkg/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -101,4 +102,55 @@ func UpdateOne(word, entity string, dist float64) error {
 	}
 
 	return nil
+}
+
+// Element is element
+type Element struct {
+	Count    float64 `json:"count"`
+	Distance float64 `json:"distance"`
+	Word     string  `json:"word"`
+}
+
+// Aggregate aggregates
+func Aggregate(entity string) ([]Element, error) {
+	pipeline := []bson.M{
+		bson.M{"$match": bson.M{
+			"entity": entity,
+			"pos":    tokenize.ADJ,
+		}},
+		bson.M{"$group": bson.M{
+			"_id":      "$word",
+			"count":    bson.M{"$sum": 1},
+			"distance": bson.M{"$push": "$distance"},
+		}},
+		bson.M{"$sort": bson.M{"count": -1}},
+		bson.M{"$limit": 10},
+		bson.M{"$project": bson.M{
+			"_id":      0,
+			"word":     "$_id",
+			"count":    "$count",
+			"distance": bson.M{"$avg": "$distance"},
+		}},
+		bson.M{"$sort": bson.M{"distance": 1}},
+	}
+
+	var cur *mongo.Cursor
+	ctx := context.Background()
+
+	cur, err := collection.Aggregate(ctx, pipeline)
+	if err != nil {
+		return nil, err
+	}
+
+	var aggregation []Element
+	for cur.Next(ctx) {
+		elem := &Element{}
+		cur.Decode(elem)
+
+		aggregation = append(aggregation, *elem)
+	}
+
+	cur.Close(ctx)
+
+	return aggregation, nil
 }

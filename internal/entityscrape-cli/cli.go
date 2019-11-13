@@ -3,6 +3,7 @@ package cli
 import (
 	"log"
 	"math"
+	"strings"
 	"time"
 
 	"github.com/ndabAP/assocentity/v6/tokenize"
@@ -56,6 +57,12 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 				}
 			}
 
+			if strings.TrimSpace(n.Text) == "" {
+				logger.Printf("empty text, skipping")
+
+				continue
+			}
+
 			assocEntities, err := ae.AssocEntities(n.Text, append(aliases[idx], entity), logger)
 			if err != nil {
 				return err
@@ -74,7 +81,11 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 					return err
 				}
 			}
+
+			time.Sleep(time.Second * 10)
 		}
+
+		time.Sleep(time.Second * 5)
 	}
 
 	return nil

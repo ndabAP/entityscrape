@@ -1,7 +1,3 @@
-const lessOptions = {
-  javascriptEnabled: true
-}
-
 module.exports = {
   outputDir: '../website',
   devServer: {
@@ -15,11 +11,13 @@ module.exports = {
       }
     }
   },
+
   transpileDependencies: [
     /[/\\]node_modules[/\\]veui[/\\]/,
     /[/\\]node_modules[/\\]vue-awesome[/\\]/,
     /[/\\]node_modules[/\\]resize-detector[/\\]/
   ],
+
   chainWebpack: config => {
     config.module.rule('eslint').use('eslint-loader').options({
       fix: true
@@ -52,7 +50,9 @@ module.exports = {
         .rule('less')
         .oneOf(type)
         .use('less-loader')
-        .tap(options => Object.assign({}, options, lessOptions))
+        .tap(options => Object.assign({}, options, {
+          javascriptEnabled: true
+        }))
     })
   }
 }

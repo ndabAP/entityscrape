@@ -3,8 +3,13 @@
     <veui-grid-container>
       <h1>Entity scrape</h1>
         <veui-grid-row>
-          <veui-grid-column :span="24">
-              <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
+          <veui-grid-column :span="12">
+            <h2>Donald Trump</h2>
+            <v-chart :options="trump"/>
+          </veui-grid-column>
+          <veui-grid-column :span="12">
+            <h2>Angela Merkel</h2>
+            <v-chart :options="merkel"/>
           </veui-grid-column>
         </veui-grid-row>
       </veui-grid-container>
@@ -12,108 +17,100 @@
 </template>
 
 <script>
-import VueApexCharts from 'vue-apexcharts'
 import { GridContainer, GridRow, GridColumn } from 'veui'
+import axios from 'axios'
 
 export default {
   components: {
     'veui-grid-container': GridContainer,
     'veui-grid-row': GridRow,
-    'veui-grid-column': GridColumn,
-    'apexchart': VueApexCharts
+    'veui-grid-column': GridColumn
+  },
+
+  async mounted () {
+    let { data: trump } = await axios.get('/api/entities?entity=Donald%20Trump')
+
+    this.trump.visualMap.min = Math.min(...trump.map(({ count }) => count))
+    this.trump.visualMap.max = Math.max(...trump.map(({ count }) => count))
+    trump = trump.map(({ count, word, distance }) => ([count, distance, word])).reverse()
+
+    this.trump.dataset.source = [...this.trump.dataset.source, ...trump]
+
+    let { data: merkel } = await axios.get('/api/entities?entity=Angela%20Merkel')
+
+    this.merkel.visualMap.min = Math.min(...merkel.map(({ count }) => count))
+    this.merkel.visualMap.max = Math.max(...merkel.map(({ count }) => count))
+    merkel = merkel.map(({ count, word, distance }) => ([count, distance, word])).reverse()
+
+    this.merkel.dataset.source = [...this.merkel.dataset.source, ...merkel]
   },
 
   data: () => ({
-    chartOptions: {
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          columnWidth: '50%'
+    trump: {
+      dataset: {
+        source: [
+          ['count', 'distance', 'word']
+        ]
+      },
+
+      xAxis: { name: 'Distance' },
+      yAxis: { type: 'category' },
+
+      visualMap: {
+        orient: 'horizontal',
+        left: 'center',
+        dimension: 0,
+        min: 10,
+        max: 100,
+        text: ['High count', 'Low count'],
+        inRange: {
+          color: ['#D7DA8B', '#E15457']
         }
       },
-      chart: {
-        toolbar: {
-          show: false
-        },
-        id: 'vuechart-example'
-      },
-      xaxis: {
-        categories: ['stupid', 'ass', 'nice', 'great', 'complicated', 'okay', 'big', 'small']
-      }
+
+      series: [{
+        type: 'bar',
+        encode: {
+          x: 1,
+          y: 2
+        }
+      }]
     },
-    series: [{
-      name: 'series-1',
-      data: [30, 40, 35, 50, 49, 60, 70, 91]
-    }],
-    entities: [
-      {
-        entity: 'Donald John Trump',
-        adjectives: [
-          {
-            adjective: 'cool',
-            weight: 5
-          },
-          {
-            adjective: 'nice',
-            weight: 2
-          },
-          {
-            adjective: 'sweet',
-            weight: 9
-          }
+
+    merkel: {
+      dataset: {
+        source: [
+          ['count', 'distance', 'word']
         ]
       },
-      {
-        entity: 'Barack Hussein Obama II',
-        adjectives: [
-          {
-            adjective: 'great',
-            weight: 2
-          },
-          {
-            adjective: 'special',
-            weight: 3
-          },
-          {
-            adjective: 'dancing',
-            weight: 7
-          }
-        ]
-      }
-    ]
+
+      xAxis: { name: 'Distance' },
+      yAxis: { type: 'category' },
+
+      visualMap: {
+        orient: 'horizontal',
+        left: 'center',
+        dimension: 0,
+        min: 10,
+        max: 100,
+        text: ['High count', 'Low count'],
+        inRange: {
+          color: ['#D7DA8B', '#E15457']
+        }
+      },
+
+      series: [{
+        type: 'bar',
+        encode: {
+          x: 1,
+          y: 2
+        }
+      }]
+    }
   })
-
-  // mounted () {
-  //   let chart = eCharts.init(document.getElementById('cloud'))
-  //   chart.setOption({
-  //     series: [{
-  //       type: 'wordCloud',
-  //       shape: 'circle',
-  //       data: [{
-  //         name: 'Farrah Abraham',
-  //         value: 366,
-  //         // Style of single text
-  //         textStyle: {
-  //           normal: {},
-  //           emphasis: {}
-  //         }
-  //       }]
-  //     shape: function (theta) {
-  //       var max = 1052
-  //       var leng = [466, 465, 462, 460, 458, 456, 454, 454, 452, 451, 450, 449, 449, 448, 448, 448, 447, 447, 447, 447, 447, 447, 448, 448, 449, 451, 451, 452, 453, 454, 456, 457, 459, 460, 462, 464, 465, 467, 469, 471, 473, 475, 477, 480, 483, 486, 488, 492, 496, 498, 502, 506, 510, 514, 518, 524, 528, 535, 542, 549, 558, 566, 575, 584, 594, 605, 615, 625, 635, 647, 656, 665, 675, 684, 693, 701, 709, 717, 723, 730, 736, 742, 747, 752, 758, 763, 767, 772, 776, 780, 783, 786, 789, 791, 793, 794, 795, 796, 797, 797, 797, 798, 798, 797, 797, 797, 796, 796, 795, 796, 795, 794, 794, 793, 793, 793, 792, 791, 791, 791, 790, 790, 791, 790, 790, 790, 790, 790, 791, 792, 792, 793, 795, 798, 800, 803, 806, 809, 812, 816, 818, 822, 825, 827, 829, 830, 832, 833, 834, 834, 836, 836, 837, 837, 838, 839, 840, 841, 842, 843, 844, 845, 847, 848, 850, 851, 852, 854, 856, 857, 859, 860, 861, 862, 864, 865, 867, 868, 868, 869, 871, 872, 872, 874, 874, 875, 876, 876, 877, 877, 878, 878, 877, 878, 878, 878, 878, 879, 879, 880, 881, 882, 883, 884, 886, 889, 890, 892, 895, 767, 758, 753, 749, 746, 744, 742, 740, 739, 737, 735, 734, 732, 729, 726, 720, 717, 715, 709, 700, 690, 679, 672, 667, 665, 662, 662, 661, 661, 660, 660, 660, 661, 661, 662, 663, 663, 665, 665, 667, 667, 669, 670, 672, 674, 674, 677, 678, 680, 680, 682, 682, 684, 683, 683, 682, 679, 674, 669, 584, 581, 581, 582, 583, 583, 584, 584, 585, 584, 585, 584, 584, 583, 586, 589, 588, 583, 578, 573, 568, 563, 563, 566, 569, 570, 569, 566, 561, 554, 549, 546, 545, 548, 552, 555, 558, 561, 564, 567, 569, 571, 573, 575, 577, 577, 578, 578, 578, 577, 576, 575, 573, 572, 570, 567, 564, 561, 556, 549, 542, 527, 522, 519, 514, 512, 508, 505, 503, 499, 496, 492, 489, 485, 481, 477, 473, 470, 466, 463, 460, 456, 453, 452, 449, 447, 445, 443, 442, 440, 438, 437, 436, 434, 433, 432, 432, 431, 430, 429, 429, 428, 428, 428, 428, 427, 427, 427, 427, 427, 427, 427, 428, 428, 428, 428, 429, 428, 429, 429, 429, 429, 429, 429, 429, 428, 428, 428, 427, 427, 426, 425, 423, 421, 420, 418, 416, 414, 415, 422, 429, 439, 448, 457, 728, 778, 812, 976, 981, 987, 993, 999, 1005, 1011, 1018, 1024, 1031, 1038, 1046, 1052, 1028, 1004, 983, 961, 939, 920, 899, 879, 862, 845, 826, 810, 794, 779, 763, 749, 734, 722, 708, 695, 683, 670, 659, 648, 638, 626, 616, 606, 596, 587, 579, 570, 561, 552, 545, 536, 528, 521, 514, 508, 500, 494, 487, 480, 474, 468, 463, 458, 451, 447, 441, 436, 432, 427, 423, 418, 413, 409, 404, 400, 396, 392, 388, 388, 429, 458, 474, 490, 503, 514, 523, 533, 541, 548, 554, 559, 564, 569, 573, 577, 581, 556, 535, 520, 511, 502, 497, 489, 485, 481, 477, 473, 471, 468]
-
-  //       return leng[(theta / (2 * Math.PI)) * leng.length | 0] / max
-  //     }
-  //     }]
-  //   })
-  // }
 }
 </script>
 
 <style lang="less">
 @import "~veui-theme-one/common.less";
-
-li {
-  display:inline;
-}
 </style>

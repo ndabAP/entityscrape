@@ -1,10 +1,14 @@
 import Vue from 'vue'
+import ECharts from 'vue-echarts'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/visualMap'
+import 'echarts-gl'
+
 import App from './App.vue'
 import router from './router'
 import './registerServiceWorker'
-import VueApexCharts from 'vue-apexcharts'
 
-Vue.use(VueApexCharts)
+Vue.component('v-chart', ECharts)
 
 Vue.config.productionTip = false
 
