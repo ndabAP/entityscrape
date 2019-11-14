@@ -2,7 +2,6 @@ package cli
 
 import (
 	"log"
-	"math"
 	"strings"
 	"time"
 
@@ -23,10 +22,14 @@ var (
 	entities = []string{
 		"Angela Merkel",
 		"Donald Trump",
+		"Xi Jinping",
+		"Elon Musk",
 	}
 	aliases = [][]string{
 		{"Angela Dorothea Merkel", "Merkel"},
 		{"Trump"},
+		{"Jinping"},
+		{"Elon Reeve Musk", "Musk"},
 	}
 )
 
@@ -43,7 +46,7 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 		logger.Printf("found %d news", len(news))
 
 		for _, n := range news {
-			if ok, err := newsDB.Exists(n.ID, entity); ok {
+			if ok, err := newsDB.Exists(n.ID, entity, true); ok {
 				if err != mongo.ErrNoDocuments && err != nil {
 					return err
 				}
@@ -52,8 +55,14 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 
 				continue
 			} else {
-				if err := newsDB.InsertOne(models.News{ID: n.ID, Entity: entity}); err != nil {
-					return err
+				if ok, err := newsDB.Exists(n.ID, entity, false); !ok {
+					if err != mongo.ErrNoDocuments && err != nil {
+						return err
+					}
+
+					if err := newsDB.InsertOne(models.News{ID: n.ID, Entity: entity, Associations: false}); err != nil {
+						return err
+					}
 				}
 			}
 
@@ -67,6 +76,12 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 			if err != nil {
 				return err
 			}
+
+			newsDB.ReplaceOne(models.News{
+				Associations: len(assocEntities) != 0,
+				Entity:       entity,
+				ID:           n.ID,
+			})
 
 			logger.Printf("found %d associations", len(assocEntities))
 
@@ -89,19 +104,4 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 	}
 
 	return nil
-}
-
-// Returns the average of a float slice
-func avg(xs []float64) float64 {
-	total := 0.0
-	for _, v := range xs {
-		total += v
-	}
-
-	return round(total / float64(len(xs)))
-}
-
-// Rounds to nearest 0.5
-func round(x float64) float64 {
-	return math.Round(x/0.5) * 0.5
 }

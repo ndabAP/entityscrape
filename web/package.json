@@ -9,12 +9,15 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.1.0",
     "echarts": "^4.4.0",
     "echarts-gl": "^1.1.1",
+    "plotly.js-dist": "^1.51.1",
     "register-service-worker": "^1.6.2",
     "veui": "^1.0.0-alpha.33",
     "veui-theme-one": "^1.0.0-alpha.33",
-    "vue": "^2.6.6",
+    "vue": "^2.6.10",
     "vue-echarts": "^4.0.4",
     "vue-router": "^3.1.3"
   },

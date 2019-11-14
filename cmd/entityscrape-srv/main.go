@@ -24,7 +24,8 @@ func main() {
 
 	fs := http.FileServer(http.Dir("./website"))
 	http.Handle("/", fs)
-	http.HandleFunc("/api/entities", srv.Get)
+	http.HandleFunc("/api/entities", srv.Entities)
+	http.HandleFunc("/api/news", srv.News)
 
 	log.Printf("starting server on port %s", port)
 	http.ListenAndServe(":"+port, nil)

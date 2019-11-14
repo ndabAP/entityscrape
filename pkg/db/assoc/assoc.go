@@ -131,7 +131,7 @@ func Aggregate(entity string) ([]Element, error) {
 			"count":    "$count",
 			"distance": bson.M{"$avg": "$distance"},
 		}},
-		bson.M{"$sort": bson.M{"distance": 1}},
+		bson.M{"$sort": bson.M{"count": 1}},
 	}
 
 	var cur *mongo.Cursor

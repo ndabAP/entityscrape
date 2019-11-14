@@ -42,8 +42,9 @@ func init() {
 // InsertOne inserts one
 func InsertOne(news model.News) error {
 	doc := bson.M{
-		"_id":    news.ID,
-		"entity": news.Entity,
+		"_id":          news.ID,
+		"entity":       news.Entity,
+		"associations": news.Associations,
 	}
 
 	if _, err := collection.InsertOne(context.Background(), doc); err != nil {
@@ -53,9 +54,25 @@ func InsertOne(news model.News) error {
 	return nil
 }
 
+// ReplaceOne replaces one
+func ReplaceOne(news model.News) error {
+	filter := bson.D{{Key: "_id", Value: news.ID}}
+	doc := bson.M{
+		"_id":          news.ID,
+		"entity":       news.Entity,
+		"associations": news.Associations,
+	}
+
+	if _, err := collection.ReplaceOne(context.Background(), filter, doc); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // Exists checks if exists
-func Exists(id, entity string) (bool, error) {
-	filter := bson.D{{Key: "_id", Value: id}, {Key: "entity", Value: entity}}
+func Exists(id, entity string, associations bool) (bool, error) {
+	filter := bson.D{{Key: "_id", Value: id}, {Key: "entity", Value: entity}, {Key: "associations", Value: associations}}
 
 	count, err := collection.CountDocuments(context.TODO(), filter)
 	if err != nil {
@@ -63,4 +80,16 @@ func Exists(id, entity string) (bool, error) {
 	}
 
 	return count != 0, nil
+}
+
+// Count counts
+func Count(entity string) (int64, error) {
+	filter := bson.D{{Key: "entity", Value: entity}}
+
+	count, err := collection.CountDocuments(context.TODO(), filter)
+	if err != nil {
+		return 0, err
+	}
+
+	return count, nil
 }
