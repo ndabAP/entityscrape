@@ -6,12 +6,13 @@ import (
 	"strings"
 
 	"github.com/joho/godotenv"
-	"github.com/ndabAP/assocentity/v6"
-	"github.com/ndabAP/assocentity/v6/tokenize"
+	"github.com/ndabAP/assocentity/v7"
+	"github.com/ndabAP/assocentity/v7/tokenize"
 )
 
 const (
-	sep = " "
+	sep  = " "
+	lang = "en"
 )
 
 var (
@@ -32,7 +33,7 @@ type AssocEntities struct{}
 // AssocEntities returns associated entities
 func (ae AssocEntities) AssocEntities(text string, entities []string, logger *log.Logger) (map[tokenize.Token]float64, error) {
 	// Create a NLP instance
-	nlp, err := tokenize.NewNLP(credentialsFile, text, entities)
+	nlp, err := tokenize.NewNLP(credentialsFile, text, entities, lang)
 	if err != nil {
 		return map[tokenize.Token]float64{}, err
 	}

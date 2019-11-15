@@ -19,30 +19,7 @@ module.exports = {
   ],
 
   chainWebpack: config => {
-    config.module.rule('eslint').use('eslint-loader').options({
-      fix: true
-    })
-    config.module
-      .rule('veui')
-      .test(/\.vue$/)
-      .pre()
-      .use('veui-loader')
-      .loader('veui-loader')
-      .tap(() => {
-        return {
-          modules: [
-            {
-              package: 'veui-theme-one',
-              fileName: '{module}.less'
-            },
-            {
-              package: 'veui-theme-one',
-              fileName: '{module}.js',
-              transform: false
-            }
-          ]
-        }
-      })
+    config.module.rule('eslint').use('eslint-loader').options({ fix: true })
 
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type => {

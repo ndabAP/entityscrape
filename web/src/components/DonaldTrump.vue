@@ -79,7 +79,3 @@ export default {
   })
 }
 </script>
-
-<style lang="less">
-@import "~veui-theme-one/common.less";
-</style>

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ndabAP/assocentity/v6/tokenize"
+	"github.com/ndabAP/assocentity/v7/tokenize"
 	"github.com/ndabAP/entityscrape/pkg/api"
 	assocDB "github.com/ndabAP/entityscrape/pkg/db/assoc"
 	newsDB "github.com/ndabAP/entityscrape/pkg/db/news"
@@ -73,6 +73,7 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 			}
 
 			assocEntities, err := ae.AssocEntities(n.Text, append(aliases[idx], entity), logger)
+			// if errors.Is(err,
 			if err != nil {
 				return err
 			}

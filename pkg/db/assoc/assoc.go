@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/ndabAP/assocentity/v6/tokenize"
+	"github.com/ndabAP/assocentity/v7/tokenize"
 	"github.com/ndabAP/entityscrape/pkg/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
