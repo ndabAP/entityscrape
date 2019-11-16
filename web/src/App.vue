@@ -5,10 +5,10 @@
 
       <p>
         The bar charts represent the distance between word types (default: adjectives) in news articles
-        and persons. For  example, given the sentences "I'm Donald Trump, the current president.", the
-        distance between "current" and "Donald Trump" would be 3. Because "the" and "," are in between.
-        The cumulated word occurrences are visualized through the color scale. Bars are ordered by
-        occurrences as well.
+        and persons. For  example, given the sentence: "I'm Donald Trump, the American president.", the
+        distance between the adjective "American" and "Donald Trump" would equal three. Because "the" and "," 
+        are in between. The cumulated word occurrences are visualized through a color scale. Bars are 
+        ordered by occurrences as well.
       </p>
 
       <b-row>
