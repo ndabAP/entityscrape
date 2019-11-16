@@ -73,7 +73,6 @@ func Do(ae AssocEntitieser, logger *log.Logger) error {
 			}
 
 			assocEntities, err := ae.AssocEntities(n.Text, append(aliases[idx], entity), logger)
-			// if errors.Is(err,
 			if err != nil {
 				return err
 			}
