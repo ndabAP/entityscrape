@@ -111,12 +111,29 @@ type Element struct {
 	Word     string  `json:"word"`
 }
 
+var poSs = map[string]int{
+	"adj":   tokenize.ADJ,
+	"adp":   tokenize.ADP,
+	"adv":   tokenize.ADV,
+	"affix": tokenize.AFFIX,
+	"any":   tokenize.ANY,
+	"conj":  tokenize.CONJ,
+	"det":   tokenize.DET,
+	"noun":  tokenize.NOUN,
+	"num":   tokenize.NUM,
+	"pron":  tokenize.PRON,
+	"prt":   tokenize.PRT,
+	"punct": tokenize.PUNCT,
+	"verb":  tokenize.VERB,
+	"x":     tokenize.X,
+}
+
 // Aggregate aggregates
-func Aggregate(entity string) ([]Element, error) {
+func Aggregate(entity, poS string) ([]Element, error) {
 	pipeline := []bson.M{
 		bson.M{"$match": bson.M{
 			"entity": entity,
-			"pos":    tokenize.ADJ,
+			"pos":    poSs[poS],
 		}},
 		bson.M{"$group": bson.M{
 			"_id":      "$word",

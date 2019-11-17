@@ -11,27 +11,27 @@
         ordered by occurrences as well.
       </p>
 
-      <b-row>
+      <b-row class="mb-4">
         <b-col>
           <h2>Donald Trump</h2>
-          <donald-trump />
+          <entity-get entity="Donald Trump" />
         </b-col>
 
         <b-col>
           <h2>Angela Merkel</h2>
-          <angela-merkel />
+           <entity-get entity="Angela Merkel" />
         </b-col>
       </b-row>
 
-      <b-row>
+      <b-row class="mb-4">
         <b-col>
           <h2>Xi Jinping</h2>
-          <xi-jinping />
+           <entity-get entity="Xi Jinping" />
         </b-col>
 
         <b-col>
           <h2>Elon Musk</h2>
-          <elon-musk />
+           <entity-get entity="Elon Musk" />
         </b-col>
       </b-row>
 
@@ -41,17 +41,11 @@
 </template>
 
 <script>
-import AngelaMerkel from './components/AngelaMerkel'
-import DonaldTrump from './components/DonaldTrump'
-import XiJinping from './components/XiJinping'
-import ElonMusk from './components/ElonMusk'
+import EntityGet from './components/EntityGet'
 
 export default {
   components: {
-    AngelaMerkel,
-    DonaldTrump,
-    XiJinping,
-    ElonMusk
+    EntityGet
   }
 }
 </script>
