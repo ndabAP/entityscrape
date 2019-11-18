@@ -23,14 +23,14 @@ var (
 		"Angela Merkel",
 		"Elon Musk",
 		"Donald Trump",
-		"Wladimir Putin",
+		"Vladimir Putin",
 		"Xi Jinping",
 	}
 	aliases = [][]string{
 		{"Angela Dorothea Merkel", "Merkel"},
 		{"Elon Reeve Musk", "Musk"},
 		{"Trump"},
-		{"Wladimir Wladimirowitsch Putin", "Putin"},
+		{"Vladimir Vladimirovich Putin", "Putin"},
 		{"Jinping"},
 	}
 )
