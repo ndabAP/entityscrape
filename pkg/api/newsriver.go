@@ -14,7 +14,8 @@ import (
 )
 
 var (
-	apiKey string
+	apiKey   string
+	apiLimit string
 )
 
 const (
@@ -39,6 +40,7 @@ func init() {
 	}
 
 	apiKey = os.Getenv("NEWSRIVER_API_KEY")
+	apiLimit = os.Getenv("NEWSRIVER_API_LIMIT")
 }
 
 // Get gets
@@ -54,7 +56,7 @@ func Get(entity string, logger *log.Logger) (News, error) {
 	q.Set(requestParams.query, query)
 	q.Set(requestParams.sortBy, "discoverDate")
 	q.Set(requestParams.sortOrder, "DESC")
-	q.Set(requestParams.limit, "10")
+	q.Set(requestParams.limit, apiLimit)
 
 	u.RawQuery = q.Encode()
 

@@ -11,7 +11,6 @@ import (
 )
 
 const (
-	sep  = " "
 	lang = "en"
 )
 
