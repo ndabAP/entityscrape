@@ -21,15 +21,17 @@ type AssocEntitieser interface {
 var (
 	entities = []string{
 		"Angela Merkel",
-		"Donald Trump",
-		"Xi Jinping",
 		"Elon Musk",
+		"Donald Trump",
+		"Wladimir Putin",
+		"Xi Jinping",
 	}
 	aliases = [][]string{
 		{"Angela Dorothea Merkel", "Merkel"},
-		{"Trump"},
-		{"Jinping"},
 		{"Elon Reeve Musk", "Musk"},
+		{"Trump"},
+		{"Wladimir Wladimirowitsch Putin", "Putin"},
+		{"Jinping"},
 	}
 )
 

@@ -171,3 +171,15 @@ func Aggregate(entity, poS string) ([]Element, error) {
 
 	return aggregation, nil
 }
+
+// Associations associations
+func Associations(entity string) (int64, error) {
+	filter := bson.D{{Key: "entity", Value: entity}}
+
+	count, err := collection.CountDocuments(context.TODO(), filter)
+	if err != nil {
+		return 0, err
+	}
+
+	return count, nil
+}

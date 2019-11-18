@@ -26,6 +26,8 @@ func main() {
 	http.Handle("/", fs)
 	http.HandleFunc("/api/entities", srv.Entities)
 	http.HandleFunc("/api/news", srv.News)
+	http.HandleFunc("/api/list", srv.List)
+	http.HandleFunc("/api/associations", srv.Associations)
 
 	log.Printf("starting server on port %s", port)
 	http.ListenAndServe(":"+port, nil)

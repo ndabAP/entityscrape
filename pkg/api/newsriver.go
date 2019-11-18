@@ -54,7 +54,7 @@ func Get(entity string, logger *log.Logger) (News, error) {
 	q.Set(requestParams.query, query)
 	q.Set(requestParams.sortBy, "discoverDate")
 	q.Set(requestParams.sortOrder, "DESC")
-	q.Set(requestParams.limit, "100")
+	q.Set(requestParams.limit, "10")
 
 	u.RawQuery = q.Encode()
 
