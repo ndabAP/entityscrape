@@ -82,7 +82,8 @@ export default {
       margin: {
         b: 0,
         t: 0,
-        pad: 5
+        r: 0,
+        pad: 4
       },
 
       xaxis: {
@@ -112,13 +113,13 @@ export default {
   methods: {
     async getEntity () {
       return new Promise(async resolve => {
-        let { data: chart } = await axios.get(`/api/entities?entity=${this.uri}&part-of-speech=${this.partOfSpeech}`)
+        let { data: entity } = await axios.get(`/api/entities?entity=${this.uri}&part-of-speech=${this.partOfSpeech}`)
         this.chart.x = []
         this.chart.y = []
         this.chart.text = []
         this.chart.marker.color = []
 
-        chart.map(({ count, distance, word }) => {
+        entity.map(({ count, distance, word }) => {
           this.chart.x.push(Math.round(distance))
           this.chart.y.push(word)
           this.chart.text.push(Math.round(distance))

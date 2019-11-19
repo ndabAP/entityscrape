@@ -3,7 +3,7 @@
     <header class="bg-primary text-white p-5 mb-5">
       <b-container class="text-center">
         <p>
-          The bar charts represent the distance between word types (default: adjectives) in news articles
+          The bar charts represent the distance between word types in news articles
           and persons. For  example, given the sentence: "I'm Donald Trump, the American president.", the
           distance between the adjective "American" and "Donald Trump" would equal three. Because "the" and ","
           are in between. The cumulated word occurrences are visualized through a color scale. Bars are
