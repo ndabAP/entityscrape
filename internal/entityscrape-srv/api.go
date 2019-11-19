@@ -106,11 +106,11 @@ func List(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	list := []string{
 		"Angela Merkel",
+		"El Chapo",
 		"Elon Musk",
 		"Donald Trump",
 		"Greta Thunberg",
 		"Kim Jong-un",
-		"El Chapo",
 		"Xi Jinping",
 	}
 
