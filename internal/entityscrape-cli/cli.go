@@ -25,7 +25,7 @@ var (
 		"Donald Trump",
 		"Greta Thunberg",
 		"Kim Jong-un",
-		"Recep Erdogan",
+		"El Chapo",
 		"Xi Jinping",
 	}
 	aliases = [][]string{
@@ -34,7 +34,7 @@ var (
 		{"Trump"},
 		{"Greta Tintin Eleonora Ernman Thunberg", "Thunberg"},
 		{"Jong-un"},
-		{"Recep Tayyip Erdoğan", "Recep Tayyip Erdogan", "Erdoğan", "Erdogan"},
+		{"Chapo", "Joaquín Archivaldo Guzmán Loera", "Joaquin Guzman", "Joaquin Archivaldo Guzman Loera", "Joaquín Loera", "Joaquin Loera"},
 		{"Jinping"},
 	}
 )
