@@ -24,7 +24,6 @@ var (
 		"Elon Musk",
 		"Donald Trump",
 		"Greta Thunberg",
-		"Kim Jong-un",
 		"El Chapo",
 		"Xi Jinping",
 	}
@@ -33,7 +32,6 @@ var (
 		{"Elon Reeve Musk", "Musk"},
 		{"Trump"},
 		{"Greta Tintin Eleonora Ernman Thunberg", "Thunberg"},
-		{"Jong-un"},
 		{"Chapo", "Joaquín Archivaldo Guzmán Loera", "Joaquin Guzman", "Joaquin Archivaldo Guzman Loera", "Joaquín Loera", "Joaquin Loera"},
 		{"Jinping"},
 	}

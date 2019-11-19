@@ -110,7 +110,6 @@ func List(w http.ResponseWriter, r *http.Request) {
 		"Elon Musk",
 		"Donald Trump",
 		"Greta Thunberg",
-		"Kim Jong-un",
 		"Xi Jinping",
 	}
 
