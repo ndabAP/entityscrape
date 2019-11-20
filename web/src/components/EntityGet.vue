@@ -29,7 +29,12 @@ const DEFAULT_CHART = {
   textposition: 'auto',
   orientation: 'h',
   marker: {
-    color: []
+    color: [],
+
+    colorscale: [
+      ['0.0', '#007bff'],
+      ['1.0', '#6c757d']
+    ]
   }
 }
 
