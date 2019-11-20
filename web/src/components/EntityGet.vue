@@ -1,6 +1,6 @@
 <template>
     <div>
-      <p v-if="news > 0">Based on {{ news }} news and {{ associations }} associations.</p>
+      <p v-if="news > 0">Based on {{ news | format }} news and {{ associations | format }} associations.</p>
 
       <b-form-select
         class="mb-4"
@@ -109,6 +109,14 @@ export default {
       responsive: true
     }
   }),
+
+  filters: {
+    format (number) {
+      const numberFormat = Intl.NumberFormat()
+
+      return numberFormat.format(number)
+    }
+  },
 
   methods: {
     async getEntity () {

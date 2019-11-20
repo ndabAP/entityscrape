@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header class="bg-primary text-white p-5 mb-5">
+    <header class="bg-primary text-white p-5 mb-4">
       <b-container class="text-center">
         <p>
           The bar charts represent the distance between word types in news articles
@@ -49,12 +49,6 @@ export default {
     this.persons = persons
 
     this.person = head(persons)
-  },
-
-  watch: {
-    person () {
-
-    }
   }
 }
 </script>
