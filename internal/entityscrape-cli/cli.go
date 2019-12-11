@@ -27,6 +27,8 @@ var (
 		"El Chapo",
 		"Xi Jinping",
 		"Vladimir Putin",
+		"Kim Kardashian",
+		"Volodymyr Zelensky",
 	}
 	aliases = [][]string{
 		{"Angela Dorothea Merkel", "Merkel"},
@@ -36,6 +38,8 @@ var (
 		{"Chapo", "Joaquín Archivaldo Guzmán Loera", "Joaquin Guzman", "Joaquin Archivaldo Guzman Loera", "Joaquín Loera", "Joaquin Loera"},
 		{"Jinping"},
 		{"Putin", "Vladimir Vladimirovich Putin", "Vladimirovich Putin"},
+		{"Kimberly Noel Kardashian West", "Kimberly West", "Kimberly Noel Kardashian", "Kim Kardashian West", "Kimberly Kardashian West"},
+		{"Zelensky", "Volodymyr Oleksandrovych Zelensky", "Zelenskyy"},
 	}
 )
 
