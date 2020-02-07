@@ -1,6 +1,8 @@
 <template>
     <div>
-      <p v-if="news > 0">Based on {{ news | format }} news and {{ associations | format }} associations.</p>
+      <p v-if="news > 0">
+        Since 365 days, based on {{ news | format }} news and {{ associations | format }} associations.
+      </p>
 
       <b-form-select
         class="mb-4"
@@ -132,7 +134,7 @@ export default {
         this.chart.text = []
         this.chart.marker.color = []
 
-        entity.map(({ count, distance, word }) => {
+        entity.forEach(({ count, distance, word }) => {
           this.chart.x.push(Math.round(distance))
           this.chart.y.push(word)
           this.chart.text.push(Math.round(distance))

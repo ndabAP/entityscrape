@@ -4,9 +4,10 @@ import (
 	"context"
 	"log"
 	"os"
+	"time"
 
 	"github.com/joho/godotenv"
-	"github.com/ndabAP/assocentity/v7/tokenize"
+	"github.com/ndabAP/assocentity/v8/tokenize"
 	"github.com/ndabAP/entityscrape/pkg/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -14,9 +15,9 @@ import (
 )
 
 var (
-	err        error
-	client     *mongo.Client
-	collection *mongo.Collection
+	err       error
+	client    *mongo.Client
+	assoccoll *mongo.Collection
 )
 
 func init() {
@@ -37,7 +38,7 @@ func init() {
 		log.Fatal(err)
 	}
 
-	collection = client.Database("entityScrapeDB").Collection("associations")
+	assoccoll = client.Database("entityScrapeDB").Collection("associations")
 }
 
 // InsertMany inserts many documents at once
@@ -54,7 +55,7 @@ func InsertMany(assocs []model.Assoc) error {
 		docs = append(docs, doc)
 	}
 
-	_, err = collection.InsertMany(context.Background(), docs)
+	_, err = assoccoll.InsertMany(context.Background(), docs)
 	if err != nil {
 		return err
 	}
@@ -72,7 +73,7 @@ func InsertOne(assoc model.Assoc) error {
 		"word":     assoc.Word,
 	}
 
-	if _, err := collection.InsertOne(context.Background(), doc); err != nil {
+	if _, err := assoccoll.InsertOne(context.Background(), doc); err != nil {
 		return err
 	}
 
@@ -84,7 +85,7 @@ func FindOne(word, entity string) (*model.Assoc, error) {
 	filter := bson.D{{Key: "word", Value: word}, {Key: "entitiy", Value: entity}}
 
 	var w *model.Assoc
-	err := collection.FindOne(context.TODO(), filter).Decode(w)
+	err := assoccoll.FindOne(context.TODO(), filter).Decode(w)
 	if err != nil {
 		return w, err
 	}
@@ -97,7 +98,7 @@ func UpdateOne(word, entity string, dist float64) error {
 	filter := bson.D{{Key: "word", Value: word}, {Key: "entity", Value: entity}}
 	update := bson.D{{Key: "$set", Value: bson.D{{Key: "distance", Value: dist}}}}
 
-	if _, err := collection.UpdateOne(context.Background(), filter, update); err != nil {
+	if _, err := assoccoll.UpdateOne(context.Background(), filter, update); err != nil {
 		return err
 	}
 
@@ -132,6 +133,7 @@ var poSs = map[string]int{
 func Aggregate(entity, poS string) ([]Element, error) {
 	pipeline := []bson.M{
 		bson.M{"$match": bson.M{
+			"date":   bson.M{"$gt": time.Now().AddDate(0, 0, -365).Format("2006-12-13T15:04:05Z")},
 			"entity": entity,
 			"pos":    poSs[poS],
 		}},
@@ -154,7 +156,7 @@ func Aggregate(entity, poS string) ([]Element, error) {
 	var cur *mongo.Cursor
 	ctx := context.Background()
 
-	cur, err := collection.Aggregate(ctx, pipeline)
+	cur, err := assoccoll.Aggregate(ctx, pipeline)
 	if err != nil {
 		return nil, err
 	}
@@ -176,7 +178,7 @@ func Aggregate(entity, poS string) ([]Element, error) {
 func Associations(entity string) (int64, error) {
 	filter := bson.D{{Key: "entity", Value: entity}}
 
-	count, err := collection.CountDocuments(context.TODO(), filter)
+	count, err := assoccoll.CountDocuments(context.TODO(), filter)
 	if err != nil {
 		return 0, err
 	}

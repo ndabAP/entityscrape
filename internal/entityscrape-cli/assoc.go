@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/joho/godotenv"
-	"github.com/ndabAP/assocentity/v7"
-	"github.com/ndabAP/assocentity/v7/tokenize"
+	"github.com/ndabAP/assocentity/v8"
+	"github.com/ndabAP/assocentity/v8/tokenize"
 )
 
 const (
@@ -32,7 +32,7 @@ type AssocEntities struct{}
 // AssocEntities returns associated entities
 func (ae AssocEntities) AssocEntities(text string, entities []string, logger *log.Logger) (map[tokenize.Token]float64, error) {
 	// Create a NLP instance
-	nlp, err := tokenize.NewNLP(credentialsFile, text, entities, lang)
+	nlp, err := tokenize.NewNLP(credentialsFile, lang)
 	if err != nil {
 		return map[tokenize.Token]float64{}, err
 	}
@@ -42,7 +42,7 @@ func (ae AssocEntities) AssocEntities(text string, entities []string, logger *lo
 
 	log.Printf("getting associations for aliases: %s", strings.Join(entities, ", "))
 
-	assocEntities, err := assocentity.Do(nlp, psd, entities)
+	assocEntities, err := assocentity.Do(nlp, psd, text, entities)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -44,8 +44,10 @@ github.com/joho/godotenv v1.3.0/go.mod h1:7hK45KPybAkOC6peb+G5yklZfMxEjkZhHbwpqx
 github.com/jstemmer/go-junit-report v0.0.0-20190106144839-af01ea7f8024/go.mod h1:6v2b51hI/fHJwM22ozAgKL4VKDeJcHhJFhtBdhmNjmU=
 github.com/ndabAP/assocentity/v6 v6.0.7 h1:KUVEPUWVYl+8u0AlSt0J0S+tdeJujZgCnD8SRPI6nDY=
 github.com/ndabAP/assocentity/v6 v6.0.7/go.mod h1:8FNwqMLDgMAQb91YttG2LTWlySWJS9J69HpSSBd+Xjs=
-github.com/ndabAP/assocentity/v7 v7.0.0 h1:z7g3o90lFZEDjk6huwZmh1qL/m25JCVqhTWvaWce3yg=
-github.com/ndabAP/assocentity/v7 v7.0.0/go.mod h1:cdLcn+WFjLdyT65Jip9mcJk5OG/skKQK1gFaBbOfpZQ=
+github.com/ndabAP/assocentity/v7 v7.0.3 h1:Oh4Yc98esKJgweL6Mg3FlLsnOltIUBkRcoIg4Zd3VE8=
+github.com/ndabAP/assocentity/v7 v7.0.3/go.mod h1:cdLcn+WFjLdyT65Jip9mcJk5OG/skKQK1gFaBbOfpZQ=
+github.com/ndabAP/assocentity/v8 v8.0.1 h1:jLikPQoeFBcHTCWD3ZDpRr33tgLQXtw/67UWliEyCKg=
+github.com/ndabAP/assocentity/v8 v8.0.1/go.mod h1:nHWoiWmSxIeuvOvA0zInxa9kB1XH+gowyvW0yl7ZQpg=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

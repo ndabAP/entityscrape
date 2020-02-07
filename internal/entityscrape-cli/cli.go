@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ndabAP/assocentity/v7/tokenize"
+	"github.com/ndabAP/assocentity/v8/tokenize"
 	"github.com/ndabAP/entityscrape/pkg/api"
 	assocDB "github.com/ndabAP/entityscrape/pkg/db/assoc"
 	newsDB "github.com/ndabAP/entityscrape/pkg/db/news"
