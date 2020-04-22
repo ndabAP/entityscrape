@@ -4,11 +4,38 @@
         Since 365 days, based on {{ news | format }} news and {{ associations | format }} associations.
       </p>
 
-      <b-form-select
-        class="mb-4"
-        v-model="partOfSpeech"
-        :options="partOfSpeeches">
-      </b-form-select>
+      <b-row>
+        <b-col col sm="12" md="12" lg="2" class="mb-2">
+          <div>
+            <b-form-select
+              v-model="partOfSpeech"
+              :options="partOfSpeeches">
+            </b-form-select>
+          </div>
+        </b-col>
+
+        <b-col col sm="12" md="6" lg="5" class="d-none d-md-inline">
+          <div>
+            <b-form-datepicker
+              hide-header
+              label-help=""
+              v-model="from"
+              class="mb-2">
+            </b-form-datepicker>
+          </div>
+        </b-col>
+        <b-col col sm="12" md="6" lg="5" class="d-none d-md-inline">
+          <div>
+            <b-form-datepicker
+              hide-header
+              label-help=""
+              v-model="to"
+              :min="from"
+              class="mb-2">
+            </b-form-datepicker>
+          </div>
+        </b-col>
+      </b-row>
 
       <div :id="`${dash}-chart`" />
     </div>
@@ -39,6 +66,7 @@ const DEFAULT_CHART = {
     ]
   }
 }
+const DAYS_AGO = 90
 
 export default {
   props: {
@@ -57,6 +85,8 @@ export default {
   },
 
   data: () => ({
+    from: new Date(new Date().setDate(new Date().getDate() - DAYS_AGO)).toISOString().split('T')[0], // "DAYS_AGO" days ago
+    to: new Date().toISOString().split('T')[0], // Today
     partOfSpeech: 'adj',
     partOfSpeeches: [
       { value: 'adj', text: 'Adjective' },
@@ -128,7 +158,9 @@ export default {
   methods: {
     async getEntity () {
       return new Promise(async resolve => {
-        let { data: entity } = await axios.get(`/api/entities?entity=${this.uri}&part-of-speech=${this.partOfSpeech}`)
+        const url = `/api/entities?entity=${this.uri}&part-of-speech=${this.partOfSpeech}&from=${this.from}&to=${this.to}`
+        const { data: entity } = await axios.get(url)
+
         this.chart.x = []
         this.chart.y = []
         this.chart.text = []
@@ -190,6 +222,16 @@ export default {
 
       await this.getNews()
       await this.getAssociations()
+    },
+
+    async from () {
+      await this.getEntity()
+      Plotly.update(`${this.dash}-chart`, {}, this.layout, this.options)
+    },
+
+    async to () {
+      await this.getEntity()
+      Plotly.update(`${this.dash}-chart`, {}, this.layout, this.options)
     }
   }
 }

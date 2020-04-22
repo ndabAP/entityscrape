@@ -19,13 +19,15 @@ func Entities(w http.ResponseWriter, r *http.Request) {
 
 	entity := r.URL.Query().Get("entity")
 	poS := r.URL.Query().Get("part-of-speech")
-	if entity == "" || poS == "" {
+	from := r.URL.Query().Get("from")
+	to := r.URL.Query().Get("to")
+	if entity == "" || poS == "" || from == "" || to == "" {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 
 		return
 	}
 
-	aggregation, err := assoc.Aggregate(entity, poS)
+	aggregation, err := assoc.Aggregate(entity, poS, from, to)
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 

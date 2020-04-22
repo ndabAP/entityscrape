@@ -130,10 +130,33 @@ var poSs = map[string]int{
 }
 
 // Aggregate aggregates
-func Aggregate(entity, poS string) ([]Element, error) {
+func Aggregate(entity, poS, from, to string) ([]Element, error) {
+	var (
+		err error
+		f   time.Time
+		t   time.Time
+	)
+	f, err = time.Parse("2006-01-02", from)
+	if err != nil {
+		return []Element{}, err
+	}
+	t, err = time.Parse("2006-01-02", to)
+	if err != nil {
+		return []Element{}, err
+	}
+
+	// Include starting today
+	t.AddDate(0, 0, 1)
+
+	// Include ending day
+	t = t.AddDate(0, 0, 1)
+
 	pipeline := []bson.M{
 		bson.M{"$match": bson.M{
-			"date":   bson.M{"$gt": time.Now().AddDate(0, 0, -365).Format("2006-12-13T15:04:05Z")},
+			"date": bson.M{
+				"$gt": f.Format("2006-01-02T15:04:05Z"),
+				"$lt": t.Format("2006-01-02T15:04:05Z"),
+			},
 			"entity": entity,
 			"pos":    poSs[poS],
 		}},
@@ -156,12 +179,12 @@ func Aggregate(entity, poS string) ([]Element, error) {
 	var cur *mongo.Cursor
 	ctx := context.Background()
 
-	cur, err := assoccoll.Aggregate(ctx, pipeline)
+	cur, err = assoccoll.Aggregate(ctx, pipeline)
 	if err != nil {
 		return nil, err
 	}
 
-	var aggregation []Element
+	var aggregation []Element = []Element{}
 	for cur.Next(ctx) {
 		elem := &Element{}
 		cur.Decode(elem)
