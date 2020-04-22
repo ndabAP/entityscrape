@@ -37,7 +37,8 @@
         </b-col>
       </b-row>
 
-      <div :id="`${dash}-chart`" />
+      <div class="mt-2" v-show="!isLoading" :id="`${dash}-chart`" />
+      <p class="mt-2" v-show="isLoading">Loading ...</p>
     </div>
 </template>
 
@@ -77,8 +78,10 @@ export default {
   },
 
   async mounted () {
+    this.setIsLoading(true)
     await this.getEntity()
     Plotly.newPlot(`${this.dash}-chart`, [this.chart], this.layout, this.options)
+    this.setIsLoading(false)
 
     await this.getNews()
     await this.getAssociations()
@@ -106,6 +109,7 @@ export default {
     news: 0,
     associations: 0,
     chart: DEFAULT_CHART,
+    isLoading: false,
 
     layout: {
       autosize: true,
@@ -173,7 +177,7 @@ export default {
           this.chart.marker.color.push(count)
         })
 
-        resolve()
+        setTimeout(resolve, 3000)
       })
     },
 
@@ -193,6 +197,10 @@ export default {
 
         resolve()
       })
+    },
+
+    setIsLoading (isLoading) {
+      this.isLoading = isLoading
     }
   },
 
@@ -211,26 +219,34 @@ export default {
   },
 
   watch: {
-    async partOfSpeech () {
-      await this.getEntity()
-      Plotly.update(`${this.dash}-chart`, {}, this.layout, this.options)
-    },
-
     async entity () {
+      this.setIsLoading(true)
       await this.getEntity()
       Plotly.newPlot(`${this.dash}-chart`, [this.chart], this.layout, this.options)
+      this.setIsLoading(false)
 
       await this.getNews()
       await this.getAssociations()
     },
 
-    async from () {
+    async partOfSpeech () {
+      this.setIsLoading(true)
       await this.getEntity()
+      this.setIsLoading(false)
+      Plotly.update(`${this.dash}-chart`, {}, this.layout, this.options)
+    },
+
+    async from () {
+      this.setIsLoading(true)
+      await this.getEntity()
+      this.setIsLoading(false)
       Plotly.update(`${this.dash}-chart`, {}, this.layout, this.options)
     },
 
     async to () {
+      this.setIsLoading(true)
       await this.getEntity()
+      this.setIsLoading(false)
       Plotly.update(`${this.dash}-chart`, {}, this.layout, this.options)
     }
   }
