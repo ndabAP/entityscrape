@@ -9,21 +9,22 @@ import (
 	srv "github.com/ndabAP/entityscrape/internal/entityscrape-srv"
 )
 
-var (
-	port = os.Getenv("PORT")
-)
-
 func init() {
-	godotenv.Load()
+	// .env
+	if err := godotenv.Load(); err != nil {
+		panic(err)
+	}
 }
 
 func main() {
+	var port = os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("port must be set")
 	}
 
 	fs := http.FileServer(http.Dir("./website"))
 	http.Handle("/", fs)
+
 	http.HandleFunc("/api/entities", srv.Entities)
 	http.HandleFunc("/api/news", srv.News)
 	http.HandleFunc("/api/list", srv.List)
