@@ -2,7 +2,7 @@ module github.com/ndabAP/entityscrape
 
 go 1.18
 
-require github.com/ndabAP/assocentity/v9 v9.1.3
+require github.com/ndabAP/assocentity/v10 v10.0.0-20221105095722-f9fec7497a05
 
 require (
 	cloud.google.com/go/compute v1.12.1 // indirect

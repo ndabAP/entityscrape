@@ -8,9 +8,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/ndabAP/assocentity/v9"
-	"github.com/ndabAP/assocentity/v9/nlp"
-	"github.com/ndabAP/assocentity/v9/tokenize"
+	"github.com/ndabAP/assocentity/v10"
+	"github.com/ndabAP/assocentity/v10/nlp"
+	"github.com/ndabAP/assocentity/v10/tokenize"
 )
 
 func init() {
@@ -34,13 +34,16 @@ func main() {
 	// TEST
 	records = records[0:2]
 
-	resChan := make(chan map[string]float64)
+	resChan := make(chan map[tokenize.Token]float64)
 	ctx := context.Background()
 	go processData(ctx, records, entities, resChan)
 
+	i := 0
+	// Per record/news
 	for res := range resChan {
 		if len(res) > 0 {
-			writeResult("./public/assocentities.csv", res)
+			writeResult("./public/assocentities_"+fmt.Sprint(i)+".csv", res)
+			i++
 		}
 	}
 }
@@ -63,24 +66,28 @@ func parseEntities(path string) (entities [][]string) {
 	return
 }
 
-func processData(ctx context.Context, records [][]string, entities [][]string, resCh chan map[string]float64) {
+func processData(ctx context.Context, records [][]string, entities [][]string, resCh chan map[tokenize.Token]float64) {
 	defer func() {
 		close(resCh)
 	}()
 	for _, entities := range entities {
 		eachText(records, func(text string) {
-			pos := tokenize.ANY
-			assocEnt, err := assocEntities(ctx, text, entities, pos)
+			switch text {
+			case "":
+				return
+			}
+
+			res, err := assocEntities(ctx, text, entities, tokenize.ANY)
 			if err != nil {
 				logAndFail(err)
 			}
 
-			resCh <- assocEnt
+			resCh <- res
 		})
 	}
 }
 
-func writeResult(path string, res map[string]float64) {
+func writeResult(path string, res map[tokenize.Token]float64) {
 	file, err := os.Create(path)
 	if err != nil {
 		logAndFail(err)
@@ -91,7 +98,7 @@ func writeResult(path string, res map[string]float64) {
 	defer w.Flush()
 	for token, dist := range res {
 		record := []string{
-			token, fmt.Sprintf("%v", dist),
+			token.Text, fmt.Sprintf("%v", dist),
 		}
 		if err := w.Write(record); err != nil {
 			logAndFail(err)
@@ -124,7 +131,7 @@ func eachText(records [][]string, textHandler func(content string)) {
 	}
 }
 
-func assocEntities(ctx context.Context, text string, entities []string, pos tokenize.PoS) (assocEntities map[string]float64, err error) {
+func assocEntities(ctx context.Context, text string, entities []string, pos tokenize.PoS) (assocEntities map[tokenize.Token]float64, err error) {
 	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
 	posDeterm := nlp.NewNLPPoSDetermer(pos)
 	assocEntities, err = assocentity.Do(ctx, nlpTok, posDeterm, text, entities)
