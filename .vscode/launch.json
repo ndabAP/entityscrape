@@ -5,26 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "CLI",
+            "name": "Launch",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/cmd/entityscrape-cli/main.go",
+            "program": "${workspaceFolder}/main.go",
             "env": {},
-            "args": [],
+            "args": [
+                "-gog-svc-loc=/home/jvawcj/.config/assocentity/assocentity-366111-4ea68cbd6d1e.json"
+            ],
             "cwd": "${workspaceFolder}"
         },
-        {
-            "name": "SRV",
-            "type": "go",
-            "request": "launch",
-            "mode": "auto",
-            "program": "${workspaceFolder}/cmd/entityscrape-srv/main.go",
-            "env": {
-                "PORT": 3000
-            },
-            "args": [],
-            "cwd": "${workspaceFolder}"
-        }
     ]
 }
