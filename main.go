@@ -13,11 +13,11 @@ import (
 	"github.com/ndabAP/assocentity/v9/tokenize"
 )
 
-var logger = log.Default()
-
 func init() {
 	log.SetFlags(0)
 }
+
+var logger = log.Default()
 
 func init() {
 	flag.Parse()
@@ -39,7 +39,9 @@ func main() {
 	go processData(ctx, records, entities, resChan)
 
 	for res := range resChan {
-		writeResult(res)
+		if len(res) > 0 {
+			writeResult("./public/assocentities.csv", res)
+		}
 	}
 }
 
@@ -78,10 +80,16 @@ func processData(ctx context.Context, records [][]string, entities [][]string, r
 	}
 }
 
-func writeResult(assocEnt map[string]float64) {
-	w := csv.NewWriter(os.Stdout)
+func writeResult(path string, res map[string]float64) {
+	file, err := os.Create(path)
+	if err != nil {
+		logAndFail(err)
+	}
+	defer file.Close()
+
+	w := csv.NewWriter(file)
 	defer w.Flush()
-	for token, dist := range assocEnt {
+	for token, dist := range res {
 		record := []string{
 			token, fmt.Sprintf("%v", dist),
 		}
@@ -95,8 +103,9 @@ func eachText(records [][]string, textHandler func(content string)) {
 	for _, record := range records {
 		for idx, field := range record {
 			switch idx {
-			// article_id
-			case 0,
+			case
+				// article_id
+				0,
 				// publish_date
 				1,
 				// article_source_link
