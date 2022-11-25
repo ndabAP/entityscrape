@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/ndabAP/assocentity/v10"
@@ -33,9 +34,7 @@ func main() {
 	articles = articles[0:2]
 	// TEST END
 
-	ctx := context.Background()
-	assocArticles := processArticles(ctx, articles, entities)
-	log.Println(assocArticles)
+	http.HandleFunc("/", hello)
 }
 
 func processArticles(ctx context.Context, articles [][]string, entities [][]string) map[tokenize.Token]float64 {

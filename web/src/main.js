@@ -1,15 +1,11 @@
-import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+import { createApp } from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
+import naive from 'naive-ui'
 
-Vue.use(BootstrapVue)
+import './assets/main.css'
 
-Vue.config.productionTip = false
+const app = createApp(App)
 
-new Vue({
-  render: h => h(App)
-}).$mount('#app')
+app.use(naive)
+
+app.mount('#app')
