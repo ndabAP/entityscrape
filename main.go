@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"strconv"
 
 	"github.com/ndabAP/assocentity/v10"
 	"github.com/ndabAP/assocentity/v10/nlp"
@@ -36,98 +35,78 @@ type JSONResEl struct {
 }
 
 func main() {
-	articles := parseArticles("./data/articles.csv")
-	entities := parseEntities("./data/entities.csv")
+	articles, err := readCSV("./data/articles.csv")
+	if err != nil {
+		logAndFail(err)
+	}
+	// Remove CSV header
+	articles = articles[1:]
+	entities, err := readCSV("./data/entities.csv")
+	if err != nil {
+		logAndFail(err)
+	}
 
 	// TEST START
 	articles = articles[0:2]
 	// TEST END
 
-	assocEntitiesRes := make(map[tokenize.Token][]float64)
-	jsonRes := JSONRes{
-		Els: make([]JSONResEl, 0),
-	}
-
 	// For Trump, Putin, Obama
 	for _, entities := range entities {
+		assocEntitiesRes := make(map[tokenize.Token][]float64)
+
 		var jsonResEl JSONResEl = JSONResEl{
 			Entities:         entities,
 			AssocEntitiesRes: make(map[tokenize.Token]float64),
 		}
 
 		for _, article := range articles {
-			eachText(article, func(text string) {
-				switch text {
-				case "":
-					return
-				}
+			for idx, text := range article {
+				switch idx {
+				case
+					// article_id
+					0,
+					// publish_date
+					1,
+					// article_source_link
+					2,
+					// title
+					3,
+					// subtitle
+					4:
+					continue
 
-				assocEntities, err := assocEntitiesDo(context.TODO(), text, entities, tokenize.ANY)
-				if err != nil {
-					logAndFail(err)
-				}
-				for tok := range assocEntities {
-					if dist, ok := assocEntitiesRes[tok]; ok {
-						assocEntitiesRes[tok] = append(assocEntitiesRes[tok], dist...)
+				// Text
+				case 5:
+					assocEntities, err := assocEntitiesDo(context.TODO(), text, entities, tokenize.ANY)
+					if err != nil {
+						logAndFail(err)
+					}
+					for tok := range assocEntities {
+						if dist, ok := assocEntities[tok]; ok {
+							assocEntitiesRes[tok] = append(assocEntitiesRes[tok], dist)
+						}
 					}
 				}
-			})
+			}
 		}
 
 		for tok, dist := range assocEntitiesRes {
 			jsonResEl.AssocEntitiesRes[tok] = avgFloat(dist)
 		}
 
-		// TODO Write here already JSON
-
-		jsonRes.Els = append(jsonRes.Els, jsonResEl)
-	}
-
-	for i, el := range jsonRes.Els {
-		file, _ := json.MarshalIndent(el, "", " ")
-
-		_ = ioutil.WriteFile(strconv.FormatInt(int64(i), 10), file, 0644)
-	}
-}
-
-func processArticles(ctx context.Context, articles [][]string, entities [][]string) JSONArrRes {
-	assocEntitiesRes := make(map[tokenize.Token][]float64)
-	jsonResArr := make([]JSONRes, 0)
-
-	// For Trump, Putin, Obama
-	for _, entities := range entities {
-		var jsonRes JSONRes = JSONRes{
-			Entities:         entities,
-			AssocEntitiesRes: map[tokenize.Token]float64{},
+		if len(jsonResEl.AssocEntitiesRes) == 0 {
+			continue
 		}
 
-		for _, article := range articles {
-			eachText(article, func(text string) {
-				switch text {
-				case "":
-					return
-				}
-
-				assocEntities, err := assocEntitiesDo(ctx, text, entities, tokenize.ANY)
-				if err != nil {
-					logAndFail(err)
-				}
-				for tok := range assocEntities {
-					if dist, ok := assocEntitiesRes[tok]; ok {
-						assocEntitiesRes[tok] = append(assocEntitiesRes[tok], dist...)
-					}
-				}
-			})
+		file, err := json.MarshalIndent(jsonResEl, "", " ")
+		if err != nil {
+			logAndFail(err)
 		}
 
-		for tok, dist := range assocEntitiesRes {
-			jsonRes.AssocEntitiesRes[tok] = avgFloat(dist)
+		if err := ioutil.WriteFile(entities[0], file, 0644); err != nil {
+			logAndFail(err)
 		}
-
-		jsonResArr = append(jsonResArr, jsonRes)
 	}
-
-	return jsonResArr
 }
 
 // eachText iterates through articles and call textHandler func on every
@@ -153,24 +132,6 @@ func eachText(article []string, textHandler func(content string)) {
 			textHandler(field)
 		}
 	}
-}
-
-func parseArticles(path string) (articles [][]string) {
-	articles, err := readCSV(path)
-	if err != nil {
-		logAndFail(err)
-	}
-	// Remove header
-	articles = articles[1:]
-	return
-}
-
-func parseEntities(path string) (entities [][]string) {
-	entities, err := readCSV(path)
-	if err != nil {
-		logAndFail(err)
-	}
-	return
 }
 
 func assocEntitiesDo(ctx context.Context, text string, entities []string, pos tokenize.PoS) (assocEntities map[tokenize.Token]float64, err error) {
