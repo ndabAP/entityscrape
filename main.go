@@ -3,11 +3,12 @@ package main
 import (
 	"context"
 	"encoding/csv"
+	"encoding/json"
 	"flag"
-	"fmt"
+	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/ndabAP/assocentity/v10"
 	"github.com/ndabAP/assocentity/v10/nlp"
@@ -26,6 +27,14 @@ var (
 	gogSvcLocF = flag.String("gog-svc-loc", "", "")
 )
 
+type JSONRes struct {
+	Els []JSONResEl // Marshal json map token
+}
+type JSONResEl struct {
+	Entities         []string
+	AssocEntitiesRes map[tokenize.Token]float64
+}
+
 func main() {
 	articles := parseArticles("./data/articles.csv")
 	entities := parseEntities("./data/entities.csv")
@@ -34,16 +43,18 @@ func main() {
 	articles = articles[0:2]
 	// TEST END
 
-	http.HandleFunc("/", hello)
-}
+	assocEntitiesRes := make(map[tokenize.Token][]float64)
+	jsonRes := JSONRes{
+		Els: make([]JSONResEl, 0),
+	}
 
-func processArticles(ctx context.Context, articles [][]string, entities [][]string) map[tokenize.Token]float64 {
-	var (
-		assocArticlesAccum = make(map[tokenize.Token][]float64)
-		assocArticles      = make(map[tokenize.Token]float64)
-	)
 	// For Trump, Putin, Obama
 	for _, entities := range entities {
+		var jsonResEl JSONResEl = JSONResEl{
+			Entities:         entities,
+			AssocEntitiesRes: make(map[tokenize.Token]float64),
+		}
+
 		for _, article := range articles {
 			eachText(article, func(text string) {
 				switch text {
@@ -51,42 +62,72 @@ func processArticles(ctx context.Context, articles [][]string, entities [][]stri
 					return
 				}
 
-				assocArticle, err := assocEntities(ctx, text, entities, tokenize.ANY)
+				assocEntities, err := assocEntitiesDo(context.TODO(), text, entities, tokenize.ANY)
 				if err != nil {
 					logAndFail(err)
 				}
-				for tok := range assocArticle {
-					if dist, ok := assocArticlesAccum[tok]; ok {
-						assocArticlesAccum[tok] = append(assocArticlesAccum[tok], dist...)
+				for tok := range assocEntities {
+					if dist, ok := assocEntitiesRes[tok]; ok {
+						assocEntitiesRes[tok] = append(assocEntitiesRes[tok], dist...)
 					}
 				}
 			})
 		}
+
+		for tok, dist := range assocEntitiesRes {
+			jsonResEl.AssocEntitiesRes[tok] = avgFloat(dist)
+		}
+
+		// TODO Write here already JSON
+
+		jsonRes.Els = append(jsonRes.Els, jsonResEl)
 	}
 
-	for tok, dist := range assocArticlesAccum {
-		assocArticles[tok] = avgFloat(dist)
+	for i, el := range jsonRes.Els {
+		file, _ := json.MarshalIndent(el, "", " ")
+
+		_ = ioutil.WriteFile(strconv.FormatInt(int64(i), 10), file, 0644)
 	}
-	return assocArticles
 }
 
-func writeResult(path string, res map[tokenize.Token]float64) {
-	file, err := os.Create(path)
-	if err != nil {
-		logAndFail(err)
-	}
-	defer file.Close()
+func processArticles(ctx context.Context, articles [][]string, entities [][]string) JSONArrRes {
+	assocEntitiesRes := make(map[tokenize.Token][]float64)
+	jsonResArr := make([]JSONRes, 0)
 
-	w := csv.NewWriter(file)
-	defer w.Flush()
-	for token, dist := range res {
-		record := []string{
-			token.Text, fmt.Sprintf("%v", dist),
+	// For Trump, Putin, Obama
+	for _, entities := range entities {
+		var jsonRes JSONRes = JSONRes{
+			Entities:         entities,
+			AssocEntitiesRes: map[tokenize.Token]float64{},
 		}
-		if err := w.Write(record); err != nil {
-			logAndFail(err)
+
+		for _, article := range articles {
+			eachText(article, func(text string) {
+				switch text {
+				case "":
+					return
+				}
+
+				assocEntities, err := assocEntitiesDo(ctx, text, entities, tokenize.ANY)
+				if err != nil {
+					logAndFail(err)
+				}
+				for tok := range assocEntities {
+					if dist, ok := assocEntitiesRes[tok]; ok {
+						assocEntitiesRes[tok] = append(assocEntitiesRes[tok], dist...)
+					}
+				}
+			})
 		}
+
+		for tok, dist := range assocEntitiesRes {
+			jsonRes.AssocEntitiesRes[tok] = avgFloat(dist)
+		}
+
+		jsonResArr = append(jsonResArr, jsonRes)
 	}
+
+	return jsonResArr
 }
 
 // eachText iterates through articles and call textHandler func on every
@@ -132,7 +173,7 @@ func parseEntities(path string) (entities [][]string) {
 	return
 }
 
-func assocEntities(ctx context.Context, text string, entities []string, pos tokenize.PoS) (assocEntities map[tokenize.Token]float64, err error) {
+func assocEntitiesDo(ctx context.Context, text string, entities []string, pos tokenize.PoS) (assocEntities map[tokenize.Token]float64, err error) {
 	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
 	posDeterm := nlp.NewNLPPoSDetermer(pos)
 	assocEntities, err = assocentity.Do(ctx, nlpTok, posDeterm, text, entities)
