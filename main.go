@@ -1,3 +1,15 @@
+// Donald_Trump.json
+// {
+// 	[pos]: [
+// 		{
+// 			word: string
+// 			distance: number
+// 		}
+// 	]
+// }
+
+// Pre-format has duplicate words and accumulates
+
 package main
 
 import (
@@ -5,13 +17,12 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"flag"
-	"io/ioutil"
 	"log"
 	"os"
 
-	"github.com/ndabAP/assocentity/v10"
-	"github.com/ndabAP/assocentity/v10/nlp"
-	"github.com/ndabAP/assocentity/v10/tokenize"
+	"github.com/ndabAP/assocentity/v11"
+	"github.com/ndabAP/assocentity/v11/nlp"
+	"github.com/ndabAP/assocentity/v11/tokenize"
 )
 
 func init() {
@@ -26,12 +37,57 @@ var (
 	gogSvcLocF = flag.String("gog-svc-loc", "", "")
 )
 
-type JSONRes struct {
-	Els []JSONResEl // Marshal json map token
+// TODO Doesn't take all articles into account. Last is overwritten. Need slice
+type assocEntity struct {
+	Entity       []string
+	Associations map[tokenize.Token]float64
 }
-type JSONResEl struct {
-	Entities         []string
-	AssocEntitiesRes map[tokenize.Token]float64
+
+func (ea assocEntity) MarshalJSON() ([]byte, error) {
+	var poSMapIds = map[tokenize.PoS]string{
+		tokenize.UNKN:  "UNKNOWN",
+		tokenize.ADJ:   "ADJ",
+		tokenize.ADP:   "ADP",
+		tokenize.ADV:   "ADV",
+		tokenize.CONJ:  "CONJ",
+		tokenize.DET:   "DET",
+		tokenize.NOUN:  "NOUN",
+		tokenize.NUM:   "NUM",
+		tokenize.PRON:  "PRON",
+		tokenize.PRT:   "PRT",
+		tokenize.PUNCT: "PUNCT",
+		tokenize.VERB:  "VERB",
+		tokenize.X:     "X",
+		tokenize.AFFIX: "AFFIX",
+	}
+
+	type assocEntityJSON struct {
+		Entity       []string `json:"entity"`
+		Associations map[string]struct {
+			Distance     float64 `json:"distance"`
+			PartOfSpeech string  `json:"partOfSpeech"`
+		} `json:"associations"`
+	}
+	assocEntityRes := &assocEntityJSON{
+		Entity: ea.Entity,
+		Associations: make(map[string]struct {
+			Distance     float64 `json:"distance"`
+			PartOfSpeech string  `json:"partOfSpeech"`
+		}),
+	}
+
+	for token, distance := range ea.Associations {
+		pos := poSMapIds[token.PoS]
+		assocEntityRes.Associations[token.Text] = struct {
+			Distance     float64 "json:\"distance\""
+			PartOfSpeech string  "json:\"partOfSpeech\""
+		}{
+			Distance:     distance,
+			PartOfSpeech: pos,
+		}
+	}
+
+	return json.Marshal(assocEntityRes)
 }
 
 func main() {
@@ -50,16 +106,18 @@ func main() {
 	articles = articles[0:2]
 	// TEST END
 
-	// For Trump, Putin, Obama
+	// For [[Donal Trump, Trump], [Putin], [Obama], ...]
 	for _, entities := range entities {
-		assocEntitiesRes := make(map[tokenize.Token][]float64)
+		assocEntitiesAccum := make(map[tokenize.Token][]float64)
 
-		var jsonResEl JSONResEl = JSONResEl{
-			Entities:         entities,
-			AssocEntitiesRes: make(map[tokenize.Token]float64),
+		var assocEntities assocEntity = assocEntity{
+			Entity:       entities,
+			Associations: make(map[tokenize.Token]float64),
 		}
 
+		// For [[ID, TITLE, TEXT], [ID2, TITLE, TEXT], ...]
 		for _, article := range articles {
+			// Or: text := article[5]
 			for idx, text := range article {
 				switch idx {
 				case
@@ -77,68 +135,36 @@ func main() {
 
 				// Text
 				case 5:
-					assocEntities, err := assocEntitiesDo(context.TODO(), text, entities, tokenize.ANY)
+					nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
+					posDeterm := nlp.NewNLPPoSDetermer(tokenize.ANY)
+					assocEntities, err := assocentity.Do(context.TODO(), nlpTok, posDeterm, text, entities)
 					if err != nil {
 						logAndFail(err)
 					}
+
 					for tok := range assocEntities {
 						if dist, ok := assocEntities[tok]; ok {
-							assocEntitiesRes[tok] = append(assocEntitiesRes[tok], dist)
+							assocEntitiesAccum[tok] = append(assocEntitiesAccum[tok], dist)
 						}
 					}
 				}
 			}
 		}
 
-		for tok, dist := range assocEntitiesRes {
-			jsonResEl.AssocEntitiesRes[tok] = avgFloat(dist)
+		for tok, dist := range assocEntitiesAccum {
+			assocEntities.Associations[tok] = avgFloat(dist)
 		}
 
-		if len(jsonResEl.AssocEntitiesRes) == 0 {
-			continue
-		}
-
-		file, err := json.MarshalIndent(jsonResEl, "", " ")
+		file, err := json.MarshalIndent(assocEntities, "", " ")
 		if err != nil {
 			logAndFail(err)
 		}
-
-		if err := ioutil.WriteFile(entities[0], file, 0644); err != nil {
+		if err := os.WriteFile("./public/"+entities[0]+".json", file, 0644); err != nil {
 			logAndFail(err)
 		}
+
+		// Next entity
 	}
-}
-
-// eachText iterates through articles and call textHandler func on every
-// text containing column, which is in the current case at column 6
-func eachText(article []string, textHandler func(content string)) {
-	for idx, field := range article {
-		switch idx {
-		case
-			// article_id
-			0,
-			// publish_date
-			1,
-			// article_source_link
-			2,
-			// title
-			3,
-			// subtitle
-			4:
-			continue
-
-		// Text
-		case 5:
-			textHandler(field)
-		}
-	}
-}
-
-func assocEntitiesDo(ctx context.Context, text string, entities []string, pos tokenize.PoS) (assocEntities map[tokenize.Token]float64, err error) {
-	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
-	posDeterm := nlp.NewNLPPoSDetermer(pos)
-	assocEntities, err = assocentity.Do(ctx, nlpTok, posDeterm, text, entities)
-	return
 }
 
 func readCSV(path string) (records [][]string, err error) {
