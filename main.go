@@ -1,15 +1,11 @@
 // Donald_Trump.json
 // {
-// 	[pos]: [
-// 		{
-// 			word: string
-// 			distance: number
-// 		}
-// 	]
+// 	[pos]: {
+// 		[word]: distance
+// 	}
 // }
 
 // Pre-format has duplicate words and accumulates
-
 package main
 
 import (
@@ -24,6 +20,18 @@ import (
 	"github.com/ndabAP/assocentity/v11/nlp"
 	"github.com/ndabAP/assocentity/v11/tokenize"
 )
+
+type JSONResultValue struct {
+	Value    string
+	Distance float64
+}
+
+//	{
+//		Donald Trump: {
+//			adjective: [{ value: small, distance: 5.5 }]
+//		}
+//	}
+type JSONResult map[string]map[string][]JSONResultValue
 
 func init() {
 	log.SetFlags(0)
@@ -106,15 +114,12 @@ func main() {
 	articles = articles[0:2]
 	// TEST END
 
+	var jsonRes JSONResult = make(JSONResult)
 	// For [[Donal Trump, Trump], [Putin], [Obama], ...]
 	for _, entities := range entities {
-		assocEntitiesAccum := make(map[tokenize.Token][]float64)
+		jsonRes[entities[0]] = make(map[string][]JSONResultValue)
 
-		var assocEntities assocEntity = assocEntity{
-			Entity:       entities,
-			Associations: make(map[tokenize.Token]float64),
-		}
-
+		texts := make([]string, 0)
 		// For [[ID, TITLE, TEXT], [ID2, TITLE, TEXT], ...]
 		for _, article := range articles {
 			// Or: text := article[5]
@@ -135,27 +140,42 @@ func main() {
 
 				// Text
 				case 5:
-					nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
-					posDeterm := nlp.NewNLPPoSDetermer(tokenize.ANY)
-					assocEntities, err := assocentity.Do(context.TODO(), nlpTok, posDeterm, text, entities)
-					if err != nil {
-						logAndFail(err)
-					}
-
-					for tok := range assocEntities {
-						if dist, ok := assocEntities[tok]; ok {
-							assocEntitiesAccum[tok] = append(assocEntitiesAccum[tok], dist)
-						}
-					}
+					texts = append(texts, text)
 				}
 			}
 		}
 
-		for tok, dist := range assocEntitiesAccum {
-			assocEntities.Associations[tok] = avgFloat(dist)
+		// TODO "tokenize.Token" is overwriten if same PoS and word. Which is
+		// the case for multiple texts
+		assocentities, err := assocentity.Dos(
+			context.TODO(),
+			nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang),
+			nlp.NewNLPPoSDetermer(tokenize.ANY),
+			texts,
+			entities,
+		)
+		if err != nil {
+			logAndFail(err)
 		}
 
-		file, err := json.MarshalIndent(assocEntities, "", " ")
+		// 1. Accum
+		// TODO Switch pos here since all inside and mixed
+		accum := make(map[tokenize.PoS][]JSONResultValue)
+		for tok, dist := range assocentities {
+			accum[tok.PoS] = append(accum[tok.PoS], JSONResultValue{
+				Value:    tok.Text,
+				Distance: dist,
+			})
+		}
+		// 2. Calc
+		for pos, jsonResVal := range accum {
+			switch pos {
+			case tokenize.ADJ:
+
+			}
+		}
+
+		file, err := json.MarshalIndent(&assocentities, "", " ")
 		if err != nil {
 			logAndFail(err)
 		}
