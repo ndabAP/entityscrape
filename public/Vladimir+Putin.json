@@ -1,0 +1,497 @@
+[
+ {
+  "dist": 186,
+  "pos": "X",
+  "text": "What"
+ },
+ {
+  "dist": 201,
+  "pos": "X",
+  "text": "doesn"
+ },
+ {
+  "dist": 202,
+  "pos": "X",
+  "text": "ghat"
+ },
+ {
+  "dist": 312,
+  "pos": "X",
+  "text": "�"
+ },
+ {
+  "dist": 172,
+  "pos": "ADJ",
+  "text": "mysterious"
+ },
+ {
+  "dist": 173,
+  "pos": "ADJ",
+  "text": "ugly"
+ },
+ {
+  "dist": 174,
+  "pos": "ADJ",
+  "text": "other"
+ },
+ {
+  "dist": 174,
+  "pos": "ADJ",
+  "text": "unexplained"
+ },
+ {
+  "dist": 174,
+  "pos": "ADJ",
+  "text": "medical"
+ },
+ {
+  "dist": 177,
+  "pos": "ADJ",
+  "text": "national"
+ },
+ {
+  "dist": 183,
+  "pos": "ADJ",
+  "text": "innocent"
+ },
+ {
+  "dist": 188,
+  "pos": "ADJ",
+  "text": "prominent"
+ },
+ {
+  "dist": 190,
+  "pos": "ADJ",
+  "text": "longtime"
+ },
+ {
+  "dist": 191,
+  "pos": "ADJ",
+  "text": "former"
+ },
+ {
+  "dist": 180,
+  "pos": "ADP",
+  "text": "during"
+ },
+ {
+  "dist": 181,
+  "pos": "ADP",
+  "text": "out"
+ },
+ {
+  "dist": 197,
+  "pos": "ADP",
+  "text": "along"
+ },
+ {
+  "dist": 210,
+  "pos": "ADP",
+  "text": "if"
+ },
+ {
+  "dist": 225,
+  "pos": "ADP",
+  "text": "before"
+ },
+ {
+  "dist": 228,
+  "pos": "ADP",
+  "text": "On"
+ },
+ {
+  "dist": 228,
+  "pos": "ADP",
+  "text": "of"
+ },
+ {
+  "dist": 232,
+  "pos": "ADP",
+  "text": "from"
+ },
+ {
+  "dist": 236,
+  "pos": "ADP",
+  "text": "behind"
+ },
+ {
+  "dist": 237,
+  "pos": "ADP",
+  "text": "in"
+ },
+ {
+  "dist": 170,
+  "pos": "ADV",
+  "text": "hardly"
+ },
+ {
+  "dist": 172,
+  "pos": "ADV",
+  "text": "matter"
+ },
+ {
+  "dist": 172,
+  "pos": "ADV",
+  "text": "no"
+ },
+ {
+  "dist": 172,
+  "pos": "ADV",
+  "text": "never"
+ },
+ {
+  "dist": 178,
+  "pos": "ADV",
+  "text": "now"
+ },
+ {
+  "dist": 181,
+  "pos": "ADV",
+  "text": "straight"
+ },
+ {
+  "dist": 183,
+  "pos": "ADV",
+  "text": "so"
+ },
+ {
+  "dist": 186,
+  "pos": "ADV",
+  "text": "ago"
+ },
+ {
+  "dist": 195,
+  "pos": "ADV",
+  "text": "When"
+ },
+ {
+  "dist": 198,
+  "pos": "ADV",
+  "text": "closely"
+ },
+ {
+  "dist": 173,
+  "pos": "CONJ",
+  "text": "or"
+ },
+ {
+  "dist": 174,
+  "pos": "CONJ",
+  "text": "nor"
+ },
+ {
+  "dist": 175,
+  "pos": "CONJ",
+  "text": "neither"
+ },
+ {
+  "dist": 247,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "dist": 280,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "dist": 300,
+  "pos": "CONJ",
+  "text": "And"
+ },
+ {
+  "dist": 171,
+  "pos": "DET",
+  "text": "there"
+ },
+ {
+  "dist": 180,
+  "pos": "DET",
+  "text": "This"
+ },
+ {
+  "dist": 196,
+  "pos": "DET",
+  "text": "him."
+ },
+ {
+  "dist": 206,
+  "pos": "DET",
+  "text": "which"
+ },
+ {
+  "dist": 229,
+  "pos": "DET",
+  "text": "A"
+ },
+ {
+  "dist": 234,
+  "pos": "DET",
+  "text": "a"
+ },
+ {
+  "dist": 236,
+  "pos": "DET",
+  "text": "all"
+ },
+ {
+  "dist": 245,
+  "pos": "DET",
+  "text": "that"
+ },
+ {
+  "dist": 245,
+  "pos": "DET",
+  "text": "both"
+ },
+ {
+  "dist": 245,
+  "pos": "DET",
+  "text": "the"
+ },
+ {
+  "dist": 170,
+  "pos": "NOUN",
+  "text": "harm"
+ },
+ {
+  "dist": 170,
+  "pos": "NOUN",
+  "text": "?"
+ },
+ {
+  "dist": 170,
+  "pos": "NOUN",
+  "text": "circumstances"
+ },
+ {
+  "dist": 171,
+  "pos": "NOUN",
+  "text": "might"
+ },
+ {
+  "dist": 171,
+  "pos": "NOUN",
+  "text": "pattern"
+ },
+ {
+  "dist": 172,
+  "pos": "NOUN",
+  "text": "critics"
+ },
+ {
+  "dist": 173,
+  "pos": "NOUN",
+  "text": "tactics"
+ },
+ {
+  "dist": 173,
+  "pos": "NOUN",
+  "text": "opponents"
+ },
+ {
+  "dist": 174,
+  "pos": "NOUN",
+  "text": "problems"
+ },
+ {
+  "dist": 175,
+  "pos": "NOUN",
+  "text": "Ross"
+ },
+ {
+  "dist": 185,
+  "pos": "NUM",
+  "text": "Two"
+ },
+ {
+  "dist": 206,
+  "pos": "NUM",
+  "text": "2006"
+ },
+ {
+  "dist": 230,
+  "pos": "NUM",
+  "text": "one"
+ },
+ {
+  "dist": 246,
+  "pos": "NUM",
+  "text": "three"
+ },
+ {
+  "dist": 249,
+  "pos": "NUM",
+  "text": "2015"
+ },
+ {
+  "dist": 255,
+  "pos": "NUM",
+  "text": "two"
+ },
+ {
+  "dist": 289,
+  "pos": "NUM",
+  "text": "35"
+ },
+ {
+  "dist": 171,
+  "pos": "PRON",
+  "text": "their"
+ },
+ {
+  "dist": 171,
+  "pos": "PRON",
+  "text": "They"
+ },
+ {
+  "dist": 172,
+  "pos": "PRON",
+  "text": "my"
+ },
+ {
+  "dist": 183,
+  "pos": "PRON",
+  "text": "You"
+ },
+ {
+  "dist": 184,
+  "pos": "PRON",
+  "text": "our"
+ },
+ {
+  "dist": 185,
+  "pos": "PRON",
+  "text": "you"
+ },
+ {
+  "dist": 188,
+  "pos": "PRON",
+  "text": "We"
+ },
+ {
+  "dist": 212,
+  "pos": "PRON",
+  "text": "it"
+ },
+ {
+  "dist": 218,
+  "pos": "PRON",
+  "text": "who"
+ },
+ {
+  "dist": 233,
+  "pos": "PRON",
+  "text": "he"
+ },
+ {
+  "dist": 180,
+  "pos": "PRT",
+  "text": "away"
+ },
+ {
+  "dist": 209,
+  "pos": "PRT",
+  "text": "'s"
+ },
+ {
+  "dist": 241,
+  "pos": "PRT",
+  "text": "to"
+ },
+ {
+  "dist": 212,
+  "pos": "PUNCT",
+  "text": "�"
+ },
+ {
+  "dist": 246,
+  "pos": "PUNCT",
+  "text": "."
+ },
+ {
+  "dist": 248,
+  "pos": "PUNCT",
+  "text": "\""
+ },
+ {
+  "dist": 248,
+  "pos": "PUNCT",
+  "text": ","
+ },
+ {
+  "dist": 249,
+  "pos": "PUNCT",
+  "text": "-"
+ },
+ {
+  "dist": 250,
+  "pos": "PUNCT",
+  "text": "?"
+ },
+ {
+  "dist": 257,
+  "pos": "PUNCT",
+  "text": ";"
+ },
+ {
+  "dist": 309,
+  "pos": "PUNCT",
+  "text": "]"
+ },
+ {
+  "dist": 311,
+  "pos": "PUNCT",
+  "text": "["
+ },
+ {
+  "dist": 170,
+  "pos": "VERB",
+  "text": "come"
+ },
+ {
+  "dist": 171,
+  "pos": "VERB",
+  "text": "fight"
+ },
+ {
+  "dist": 172,
+  "pos": "VERB",
+  "text": "stop"
+ },
+ {
+  "dist": 172,
+  "pos": "VERB",
+  "text": "will"
+ },
+ {
+  "dist": 173,
+  "pos": "VERB",
+  "text": "dying"
+ },
+ {
+  "dist": 173,
+  "pos": "VERB",
+  "text": "stopped"
+ },
+ {
+  "dist": 177,
+  "pos": "VERB",
+  "text": "told"
+ },
+ {
+  "dist": 181,
+  "pos": "VERB",
+  "text": "Wiping"
+ },
+ {
+  "dist": 188,
+  "pos": "VERB",
+  "text": "got"
+ },
+ {
+  "dist": 188,
+  "pos": "VERB",
+  "text": "'s"
+ }
+]

@@ -1,0 +1,497 @@
+[
+ {
+  "dist": 206,
+  "pos": "X",
+  "text": "ghat"
+ },
+ {
+  "dist": 206,
+  "pos": "X",
+  "text": "doesn"
+ },
+ {
+  "dist": 211,
+  "pos": "X",
+  "text": "What"
+ },
+ {
+  "dist": 273,
+  "pos": "X",
+  "text": "�"
+ },
+ {
+  "dist": 211,
+  "pos": "ADJ",
+  "text": "human"
+ },
+ {
+  "dist": 215,
+  "pos": "ADJ",
+  "text": "innocent"
+ },
+ {
+  "dist": 219,
+  "pos": "ADJ",
+  "text": "veteran"
+ },
+ {
+  "dist": 226,
+  "pos": "ADJ",
+  "text": "other"
+ },
+ {
+  "dist": 229,
+  "pos": "ADJ",
+  "text": "ugly"
+ },
+ {
+  "dist": 238,
+  "pos": "ADJ",
+  "text": "first"
+ },
+ {
+  "dist": 239,
+  "pos": "ADJ",
+  "text": "second"
+ },
+ {
+  "dist": 242,
+  "pos": "ADJ",
+  "text": "major"
+ },
+ {
+  "dist": 243,
+  "pos": "ADJ",
+  "text": "most"
+ },
+ {
+  "dist": 245,
+  "pos": "ADJ",
+  "text": "ill"
+ },
+ {
+  "dist": 206,
+  "pos": "ADP",
+  "text": "if"
+ },
+ {
+  "dist": 206,
+  "pos": "ADP",
+  "text": "along"
+ },
+ {
+  "dist": 216,
+  "pos": "ADP",
+  "text": "before"
+ },
+ {
+  "dist": 219,
+  "pos": "ADP",
+  "text": "during"
+ },
+ {
+  "dist": 225,
+  "pos": "ADP",
+  "text": "behind"
+ },
+ {
+  "dist": 234,
+  "pos": "ADP",
+  "text": "for"
+ },
+ {
+  "dist": 244,
+  "pos": "ADP",
+  "text": "within"
+ },
+ {
+  "dist": 258,
+  "pos": "ADP",
+  "text": "with"
+ },
+ {
+  "dist": 258,
+  "pos": "ADP",
+  "text": "in"
+ },
+ {
+  "dist": 258,
+  "pos": "ADP",
+  "text": "On"
+ },
+ {
+  "dist": 206,
+  "pos": "ADV",
+  "text": "When"
+ },
+ {
+  "dist": 215,
+  "pos": "ADV",
+  "text": "so"
+ },
+ {
+  "dist": 217,
+  "pos": "ADV",
+  "text": "repeatedly"
+ },
+ {
+  "dist": 222,
+  "pos": "ADV",
+  "text": "only"
+ },
+ {
+  "dist": 232,
+  "pos": "ADV",
+  "text": "never"
+ },
+ {
+  "dist": 233,
+  "pos": "ADV",
+  "text": "no"
+ },
+ {
+  "dist": 233,
+  "pos": "ADV",
+  "text": "matter"
+ },
+ {
+  "dist": 240,
+  "pos": "ADV",
+  "text": "hardly"
+ },
+ {
+  "dist": 246,
+  "pos": "ADV",
+  "text": "shortly"
+ },
+ {
+  "dist": 255,
+  "pos": "ADV",
+  "text": "now"
+ },
+ {
+  "dist": 225,
+  "pos": "CONJ",
+  "text": "neither"
+ },
+ {
+  "dist": 226,
+  "pos": "CONJ",
+  "text": "nor"
+ },
+ {
+  "dist": 248,
+  "pos": "CONJ",
+  "text": "or"
+ },
+ {
+  "dist": 263,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "dist": 267,
+  "pos": "CONJ",
+  "text": "And"
+ },
+ {
+  "dist": 341,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "dist": 206,
+  "pos": "DET",
+  "text": "him."
+ },
+ {
+  "dist": 206,
+  "pos": "DET",
+  "text": "which"
+ },
+ {
+  "dist": 219,
+  "pos": "DET",
+  "text": "A"
+ },
+ {
+  "dist": 231,
+  "pos": "DET",
+  "text": "that"
+ },
+ {
+  "dist": 245,
+  "pos": "DET",
+  "text": "there"
+ },
+ {
+  "dist": 258,
+  "pos": "DET",
+  "text": "This"
+ },
+ {
+  "dist": 272,
+  "pos": "DET",
+  "text": "a"
+ },
+ {
+  "dist": 277,
+  "pos": "DET",
+  "text": "The"
+ },
+ {
+  "dist": 282,
+  "pos": "DET",
+  "text": "the"
+ },
+ {
+  "dist": 286,
+  "pos": "DET",
+  "text": "an"
+ },
+ {
+  "dist": 206,
+  "pos": "NOUN",
+  "text": "host"
+ },
+ {
+  "dist": 206,
+  "pos": "NOUN",
+  "text": "killer"
+ },
+ {
+  "dist": 206,
+  "pos": "NOUN",
+  "text": "\""
+ },
+ {
+  "dist": 206,
+  "pos": "NOUN",
+  "text": "t"
+ },
+ {
+  "dist": 206,
+  "pos": "NOUN",
+  "text": "counterpart"
+ },
+ {
+  "dist": 206,
+  "pos": "NOUN",
+  "text": "Reilly"
+ },
+ {
+  "dist": 207,
+  "pos": "NOUN",
+  "text": "Lot"
+ },
+ {
+  "dist": 207,
+  "pos": "NOUN",
+  "text": "O"
+ },
+ {
+  "dist": 208,
+  "pos": "NOUN",
+  "text": "Bill"
+ },
+ {
+  "dist": 208,
+  "pos": "NOUN",
+  "text": "Host"
+ },
+ {
+  "dist": 232,
+  "pos": "NUM",
+  "text": "three"
+ },
+ {
+  "dist": 234,
+  "pos": "NUM",
+  "text": "2015"
+ },
+ {
+  "dist": 238,
+  "pos": "NUM",
+  "text": "two"
+ },
+ {
+  "dist": 262,
+  "pos": "NUM",
+  "text": "35"
+ },
+ {
+  "dist": 264,
+  "pos": "NUM",
+  "text": "Two"
+ },
+ {
+  "dist": 282,
+  "pos": "NUM",
+  "text": "2006"
+ },
+ {
+  "dist": 301,
+  "pos": "NUM",
+  "text": "one"
+ },
+ {
+  "dist": 208,
+  "pos": "PRON",
+  "text": "We"
+ },
+ {
+  "dist": 212,
+  "pos": "PRON",
+  "text": "you"
+ },
+ {
+  "dist": 214,
+  "pos": "PRON",
+  "text": "our"
+ },
+ {
+  "dist": 214,
+  "pos": "PRON",
+  "text": "You"
+ },
+ {
+  "dist": 223,
+  "pos": "PRON",
+  "text": "he"
+ },
+ {
+  "dist": 230,
+  "pos": "PRON",
+  "text": "him"
+ },
+ {
+  "dist": 231,
+  "pos": "PRON",
+  "text": "my"
+ },
+ {
+  "dist": 232,
+  "pos": "PRON",
+  "text": "it"
+ },
+ {
+  "dist": 234,
+  "pos": "PRON",
+  "text": "They"
+ },
+ {
+  "dist": 236,
+  "pos": "PRON",
+  "text": "their"
+ },
+ {
+  "dist": 218,
+  "pos": "PRT",
+  "text": "away"
+ },
+ {
+  "dist": 266,
+  "pos": "PRT",
+  "text": "'s"
+ },
+ {
+  "dist": 282,
+  "pos": "PRT",
+  "text": "to"
+ },
+ {
+  "dist": 207,
+  "pos": "PUNCT",
+  "text": "�"
+ },
+ {
+  "dist": 240,
+  "pos": "PUNCT",
+  "text": ";"
+ },
+ {
+  "dist": 272,
+  "pos": "PUNCT",
+  "text": "]"
+ },
+ {
+  "dist": 273,
+  "pos": "PUNCT",
+  "text": "["
+ },
+ {
+  "dist": 276,
+  "pos": "PUNCT",
+  "text": "-"
+ },
+ {
+  "dist": 277,
+  "pos": "PUNCT",
+  "text": "."
+ },
+ {
+  "dist": 279,
+  "pos": "PUNCT",
+  "text": ","
+ },
+ {
+  "dist": 290,
+  "pos": "PUNCT",
+  "text": "\""
+ },
+ {
+  "dist": 293,
+  "pos": "PUNCT",
+  "text": "?"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "did"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "'m"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "interjected"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "mean"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "respects"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "get"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "going"
+ },
+ {
+  "dist": 206,
+  "pos": "VERB",
+  "text": "asked"
+ },
+ {
+  "dist": 209,
+  "pos": "VERB",
+  "text": "'re"
+ },
+ {
+  "dist": 209,
+  "pos": "VERB",
+  "text": "got"
+ }
+]

@@ -14,30 +14,18 @@ import (
 	"encoding/json"
 	"flag"
 	"log"
+	"net/url"
 	"os"
+	"path/filepath"
+	"sort"
 
-	"github.com/ndabAP/assocentity/v11"
-	"github.com/ndabAP/assocentity/v11/nlp"
-	"github.com/ndabAP/assocentity/v11/tokenize"
+	"github.com/ndabAP/assocentity/v12"
+	"github.com/ndabAP/assocentity/v12/nlp"
+	"github.com/ndabAP/assocentity/v12/tokenize"
 )
-
-type JSONResultValue struct {
-	Value    string
-	Distance float64
-}
-
-//	{
-//		Donald Trump: {
-//			adjective: [{ value: small, distance: 5.5 }]
-//		}
-//	}
-type JSONResult map[string]map[string][]JSONResultValue
 
 func init() {
 	log.SetFlags(0)
-}
-
-func init() {
 	flag.Parse()
 }
 
@@ -45,112 +33,66 @@ var (
 	gogSvcLocF = flag.String("gog-svc-loc", "", "")
 )
 
-// TODO Doesn't take all articles into account. Last is overwritten. Need slice
-type assocEntity struct {
-	Entity       []string
-	Associations map[tokenize.Token]float64
-}
-
-func (ea assocEntity) MarshalJSON() ([]byte, error) {
-	var poSMapIds = map[tokenize.PoS]string{
-		tokenize.UNKN:  "UNKNOWN",
-		tokenize.ADJ:   "ADJ",
-		tokenize.ADP:   "ADP",
-		tokenize.ADV:   "ADV",
-		tokenize.CONJ:  "CONJ",
-		tokenize.DET:   "DET",
-		tokenize.NOUN:  "NOUN",
-		tokenize.NUM:   "NUM",
-		tokenize.PRON:  "PRON",
-		tokenize.PRT:   "PRT",
-		tokenize.PUNCT: "PUNCT",
-		tokenize.VERB:  "VERB",
-		tokenize.X:     "X",
-		tokenize.AFFIX: "AFFIX",
-	}
-
-	type assocEntityJSON struct {
-		Entity       []string `json:"entity"`
-		Associations map[string]struct {
-			Distance     float64 `json:"distance"`
-			PartOfSpeech string  `json:"partOfSpeech"`
-		} `json:"associations"`
-	}
-	assocEntityRes := &assocEntityJSON{
-		Entity: ea.Entity,
-		Associations: make(map[string]struct {
-			Distance     float64 `json:"distance"`
-			PartOfSpeech string  `json:"partOfSpeech"`
-		}),
-	}
-
-	for token, distance := range ea.Associations {
-		pos := poSMapIds[token.PoS]
-		assocEntityRes.Associations[token.Text] = struct {
-			Distance     float64 "json:\"distance\""
-			PartOfSpeech string  "json:\"partOfSpeech\""
-		}{
-			Distance:     distance,
-			PartOfSpeech: pos,
-		}
-	}
-
-	return json.Marshal(assocEntityRes)
-}
-
 func main() {
-	articles, err := readCSV("./data/articles.csv")
+	articles, err := readCSV("./source/articles.csv")
 	if err != nil {
 		logAndFail(err)
 	}
+	entities, err := readCSV("./source/entities.csv")
+	if err != nil {
+		logAndFail(err)
+	}
+
+	// Accumulate texts
+	texts := make([]string, 0)
 	// Remove CSV header
 	articles = articles[1:]
-	entities, err := readCSV("./data/entities.csv")
-	if err != nil {
-		logAndFail(err)
+	// For [[ID1, TITLE1, TEXT1], [ID2, TITLE2, TEXT2], ...]
+	for _, article := range articles {
+		// Or: text := article[5]
+		for idx, text := range article {
+			switch idx {
+			case
+				// article_id
+				0,
+				// publish_date
+				1,
+				// article_source_link
+				2,
+				// title
+				3,
+				// subtitle
+				4:
+				continue
+
+			// Text
+			case 5:
+				texts = append(texts, text)
+			}
+		}
 	}
 
 	// TEST START
-	articles = articles[0:2]
+	texts = texts[18:19]
 	// TEST END
 
-	var jsonRes JSONResult = make(JSONResult)
-	// For [[Donal Trump, Trump], [Putin], [Obama], ...]
+	log.Printf("len(texts)=%v", len(texts))
+	log.Printf("len(entities)=%v", len(entities))
+
+	// Get mean distance per entities
+	log.Println("get meanN")
+	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
 	for _, entities := range entities {
-		jsonRes[entities[0]] = make(map[string][]JSONResultValue)
+		log.Printf("entities=%v", entities)
 
-		texts := make([]string, 0)
-		// For [[ID, TITLE, TEXT], [ID2, TITLE, TEXT], ...]
-		for _, article := range articles {
-			// Or: text := article[5]
-			for idx, text := range article {
-				switch idx {
-				case
-					// article_id
-					0,
-					// publish_date
-					1,
-					// article_source_link
-					2,
-					// title
-					3,
-					// subtitle
-					4:
-					continue
+		// First entity is primary one
+		entity := entities[0]
+		log.Printf("entity=%v", entity)
 
-				// Text
-				case 5:
-					texts = append(texts, text)
-				}
-			}
-		}
-
-		// TODO "tokenize.Token" is overwriten if same PoS and word. Which is
-		// the case for multiple texts
-		assocentities, err := assocentity.Dos(
-			context.TODO(),
-			nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang),
-			nlp.NewNLPPoSDetermer(tokenize.ANY),
+		meanN, err := assocentity.MeanN(
+			context.Background(),
+			nlpTok,
+			tokenize.ANY,
 			texts,
 			entities,
 		)
@@ -158,28 +100,72 @@ func main() {
 			logAndFail(err)
 		}
 
-		// 1. Accum
-		// TODO Switch pos here since all inside and mixed
-		accum := make(map[tokenize.PoS][]JSONResultValue)
-		for tok, dist := range assocentities {
-			accum[tok.PoS] = append(accum[tok.PoS], JSONResultValue{
-				Value:    tok.Text,
-				Distance: dist,
+		log.Printf("len(meanN)=%v", len(meanN))
+
+		// Convert to slice to make it sortable
+		log.Println("convert to slice")
+		type meanNVal struct {
+			dist float64
+			tok  tokenize.Token
+		}
+		meanNVals := make([]meanNVal, 0)
+		for tok, dist := range meanN {
+			meanNVals = append(meanNVals, meanNVal{
+				dist: dist,
+				tok:  tok,
 			})
 		}
-		// 2. Calc
-		for pos, jsonResVal := range accum {
-			switch pos {
-			case tokenize.ADJ:
 
+		// Sort by closest distance
+		log.Println("sort by pos and dist")
+		sort.Slice(meanNVals, func(i, j int) bool {
+			if meanNVals[i].tok.PoS != meanNVals[j].tok.PoS {
+				return meanNVals[i].tok.PoS < meanNVals[j].tok.PoS
 			}
+			return meanNVals[i].dist < meanNVals[j].dist
+		})
+
+		// Top 10 per pos
+		log.Println("limit top 10")
+		topMeanNVals := make([]struct {
+			Dist int    `json:"dist"`
+			Pos  string `json:"pos"`
+			Text string `json:"text"`
+		}, 0)
+		poSHits := make(map[tokenize.PoS]int)
+		for _, meanNVal := range meanNVals {
+			switch meanNVal.tok.PoS {
+			case tokenize.X, tokenize.UNKN:
+				continue
+			}
+
+			// Stop at 10 results
+			if poSHits[meanNVal.tok.PoS] >= 10 {
+				continue
+			}
+
+			topMeanNVals = append(topMeanNVals, struct {
+				Dist int    `json:"dist"`
+				Pos  string `json:"pos"`
+				Text string `json:"text"`
+			}{
+				Dist: int(meanNVal.dist),
+				Pos:  tokenize.PoSMapStr[meanNVal.tok.PoS],
+				Text: meanNVal.tok.Text,
+			})
+
+			poSHits[meanNVal.tok.PoS] += 1
 		}
 
-		file, err := json.MarshalIndent(&assocentities, "", " ")
+		// Write top 10 to disk
+		log.Println("write to disk")
+		log.Printf("len(topMeanNVals)=%v", len(topMeanNVals))
+		file, err := json.MarshalIndent(&topMeanNVals, "", " ")
 		if err != nil {
 			logAndFail(err)
 		}
-		if err := os.WriteFile("./public/"+entities[0]+".json", file, 0644); err != nil {
+		name := filepath.Join("public", url.QueryEscape(entity)+".json")
+		if err := os.WriteFile(name, file, 0644); err != nil {
 			logAndFail(err)
 		}
 
@@ -204,13 +190,4 @@ func readCSV(path string) (records [][]string, err error) {
 
 func logAndFail(err error) {
 	log.Fatal(err)
-}
-
-// Returns the average of a float slice
-func avgFloat(xs []float64) float64 {
-	sum := 0.0
-	for _, x := range xs {
-		sum += x
-	}
-	return sum / float64(len(xs))
 }
