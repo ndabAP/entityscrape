@@ -1,11 +1,3 @@
-// Donald_Trump.json
-// {
-// 	[pos]: {
-// 		[word]: distance
-// 	}
-// }
-
-// Pre-format has duplicate words and accumulates
 package main
 
 import (
@@ -30,17 +22,29 @@ func init() {
 }
 
 var (
-	gogSvcLocF = flag.String("gog-svc-loc", "", "")
+	gogSvcLocF = flag.String(
+		"gog-svc-loc",
+		"",
+		"Google Clouds NLP JSON service account file, example: -gog-svc-loc=\"~/gog-svc-loc.json\"",
+	)
 )
 
 func main() {
 	articles, err := readCSV("./source/articles.csv")
 	if err != nil {
-		logAndFail(err)
+		log.Fatal(err)
 	}
 	entities, err := readCSV("./source/entities.csv")
 	if err != nil {
-		logAndFail(err)
+		log.Fatal(err)
+	}
+
+	// Validate
+	if len(*gogSvcLocF) == 0 {
+		log.Fatal("missing service account file")
+	}
+	if len(entities) == 0 {
+		log.Fatal("missing entities")
 	}
 
 	// Accumulate texts
@@ -76,10 +80,14 @@ func main() {
 	texts = texts[18:19]
 	// TEST END
 
-	log.Printf("len(texts)=%v", len(texts))
-	log.Printf("len(entities)=%v", len(entities))
+	if len(texts) == 0 {
+		log.Fatal("missing texts")
+	}
 
-	// Get mean distance per entities
+	log.Printf("len(texts)=%d", len(texts))
+	log.Printf("len(entities)=%d", len(entities))
+
+	// Get mean distance per entity
 	log.Println("get meanN")
 	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
 	for _, entities := range entities {
@@ -87,7 +95,7 @@ func main() {
 
 		// First entity is primary one
 		entity := entities[0]
-		log.Printf("entity=%v", entity)
+		log.Printf("entity=%s", entity)
 
 		meanN, err := assocentity.MeanN(
 			context.Background(),
@@ -97,10 +105,10 @@ func main() {
 			entities,
 		)
 		if err != nil {
-			logAndFail(err)
+			log.Fatal(err)
 		}
 
-		log.Printf("len(meanN)=%v", len(meanN))
+		log.Printf("len(meanN)=%d", len(meanN))
 
 		// Convert to slice to make it sortable
 		log.Println("convert to slice")
@@ -110,6 +118,12 @@ func main() {
 		}
 		meanNVals := make([]meanNVal, 0)
 		for tok, dist := range meanN {
+			// Skip unknown pos
+			switch tok.PoS {
+			case tokenize.X, tokenize.UNKN:
+				continue
+			}
+
 			meanNVals = append(meanNVals, meanNVal{
 				dist: dist,
 				tok:  tok,
@@ -128,26 +142,20 @@ func main() {
 		// Top 10 per pos
 		log.Println("limit top 10")
 		type topMeanNVal struct {
-			Dist int    `json:"dist"`
-			Pos  string `json:"pos"`
-			Text string `json:"text"`
+			Dist float64 `json:"dist"`
+			Pos  string  `json:"pos"`
+			Text string  `json:"text"`
 		}
-		topMeanNVals := make([]topMeanNVal, 10)
+		topMeanNVals := make([]topMeanNVal, 0)
 		poSHits := make(map[tokenize.PoS]int)
 		for _, meanNVal := range meanNVals {
-			// Skip unknown pos
-			switch meanNVal.tok.PoS {
-			case tokenize.X, tokenize.UNKN:
-				continue
-			}
-
 			// Stop at 10 results
 			if poSHits[meanNVal.tok.PoS] >= 10 {
 				continue
 			}
 
 			topMeanNVals = append(topMeanNVals, topMeanNVal{
-				Dist: int(meanNVal.dist),
+				Dist: meanNVal.dist,
 				Pos:  tokenize.PoSMapStr[meanNVal.tok.PoS],
 				Text: meanNVal.tok.Text,
 			})
@@ -157,14 +165,14 @@ func main() {
 
 		// Write top 10 to disk
 		log.Println("write to disk")
-		log.Printf("len(topMeanNVals)=%v", len(topMeanNVals))
+		log.Printf("len(topMeanNVals)=%d", len(topMeanNVals))
 		file, err := json.MarshalIndent(&topMeanNVals, "", " ")
 		if err != nil {
-			logAndFail(err)
+			log.Fatal(err)
 		}
 		name := filepath.Join("public", url.QueryEscape(entity)+".json")
 		if err := os.WriteFile(name, file, 0644); err != nil {
-			logAndFail(err)
+			log.Fatal(err)
 		}
 
 		// Next entity
@@ -184,8 +192,4 @@ func readCSV(path string) (records [][]string, err error) {
 		return
 	}
 	return
-}
-
-func logAndFail(err error) {
-	log.Fatal(err)
 }
