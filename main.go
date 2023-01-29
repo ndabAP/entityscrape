@@ -127,13 +127,15 @@ func main() {
 
 		// Top 10 per pos
 		log.Println("limit top 10")
-		topMeanNVals := make([]struct {
+		type topMeanNVal struct {
 			Dist int    `json:"dist"`
 			Pos  string `json:"pos"`
 			Text string `json:"text"`
-		}, 0)
+		}
+		topMeanNVals := make([]topMeanNVal, 10)
 		poSHits := make(map[tokenize.PoS]int)
 		for _, meanNVal := range meanNVals {
+			// Skip unknown pos
 			switch meanNVal.tok.PoS {
 			case tokenize.X, tokenize.UNKN:
 				continue
@@ -144,11 +146,7 @@ func main() {
 				continue
 			}
 
-			topMeanNVals = append(topMeanNVals, struct {
-				Dist int    `json:"dist"`
-				Pos  string `json:"pos"`
-				Text string `json:"text"`
-			}{
+			topMeanNVals = append(topMeanNVals, topMeanNVal{
 				Dist: int(meanNVal.dist),
 				Pos:  tokenize.PoSMapStr[meanNVal.tok.PoS],
 				Text: meanNVal.tok.Text,
