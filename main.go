@@ -77,7 +77,7 @@ func main() {
 	}
 
 	// TEST START
-	texts = texts[18:19]
+	texts = texts[0:20]
 	// TEST END
 
 	if len(texts) == 0 {
@@ -118,6 +118,8 @@ func main() {
 		}
 		meanNVals := make([]meanNVal, 0)
 		for tok, dist := range meanN {
+			// TODO Only allow a-zA-Z0-9 runes
+
 			// Skip unknown pos
 			switch tok.PoS {
 			case tokenize.X, tokenize.UNKN:
@@ -162,10 +164,10 @@ func main() {
 
 			poSHits[meanNVal.tok.PoS] += 1
 		}
+		log.Printf("len(topMeanNVals)=%d", len(topMeanNVals))
 
 		// Write top 10 to disk
 		log.Println("write to disk")
-		log.Printf("len(topMeanNVals)=%d", len(topMeanNVals))
 		file, err := json.MarshalIndent(&topMeanNVals, "", " ")
 		if err != nil {
 			log.Fatal(err)
