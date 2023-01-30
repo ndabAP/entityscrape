@@ -1,24 +1,30 @@
 <template>
   <n-space vertical>
-    <n-select v-model="value" :options="options" />
+    <n-select v-model="entity" :options="entities" />
   </n-space>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref, reactive, watch } from "vue";
 import { Bar } from "vue-chartjs";
+import entities from "../../source/entities.csv?raw";
 
 export default defineComponent({
   components: { Bar },
+
   setup() {
+    const entity = ref(null);
+
+    watch(entity, () => {});
+
     return {
-      value: ref(null),
-      options: [
-        {
-          label: "Everybody's Got Something to Hide Except Me and My Monkey",
-          value: "song0",
-        },
-      ],
+      entity,
+      entities: entities.split(/\r?\n/).map((entities) => {
+        return {
+          label: entities.split(",").at(0),
+          value: entities.split(",").at(0),
+        };
+      }),
     };
   },
 });

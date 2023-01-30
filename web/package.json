@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "chart.js": "^3.9.1",
+    "raw-loader": "^4.0.2",
     "vue": "^3.2.41",
     "vue-chartjs": "^4.1.2"
   },
   "devDependencies": {
+    "@rollup/plugin-dsv": "^3.0.2",
     "@rushstack/eslint-patch": "^1.1.4",
     "@vitejs/plugin-vue": "^3.1.2",
     "@vue/eslint-config-prettier": "^7.0.0",
