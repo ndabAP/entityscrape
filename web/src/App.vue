@@ -13,7 +13,14 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref, computed, watch } from "vue";
+import {
+  defineComponent,
+  onMounted,
+  ref,
+  computed,
+  reactive,
+  watch,
+} from "vue";
 import { Bar } from "vue-chartjs";
 import entities from "../../source/entities.csv?raw";
 import {
@@ -36,7 +43,6 @@ ChartJS.register(
 );
 
 const pos = {
-  ANY: "Any",
   ADJ: "Adjective",
   ADV: "Adverb",
   AFFIX: "Affix",
@@ -53,7 +59,7 @@ export default defineComponent({
   components: { Bar },
 
   setup() {
-    const selectedEntity = ref(null);
+    const selectedEntity = ref(entities.split(/\r?\n/).at(0).split(",").at(0));
     const selectedPos = ref(null);
 
     const availableEntities = entities.split(/\r?\n/).map((entities) => {
@@ -70,14 +76,15 @@ export default defineComponent({
       });
     }
 
-    let meanN = null;
+    let meanN = [];
     const fetchEntity = async (entity) => {
+      console.debug(entity);
       entity = entity.toLowerCase().replace(/ /g, "+");
       const response = await fetch(`/${entity}.json`);
       meanN = await response.json();
     };
 
-    let posMeanN = []
+    let posMeanN = reactive([]);
     const chartData = computed(() => {
       if (posMeanN.length === 0) {
         return {
@@ -86,7 +93,6 @@ export default defineComponent({
         };
       }
 
-      // Update chart
 
       return {
         labels: posMeanN.map((meanN) => {
@@ -94,6 +100,7 @@ export default defineComponent({
         }),
         datasets: [
           {
+            label: 'Mean distances',
             data: posMeanN.map((meanN) => {
               return meanN.distance;
             }),
@@ -102,18 +109,22 @@ export default defineComponent({
       };
     });
 
-    watch(selectedEntity, async () => {
-      await fetchEntity(selectedEntity);
-    });
-    watch(selectedPos, () => {
-      posMeanN = meanN.filter((meanN) => {
-        return selectedPos.value === meanN.pos;
-      });
-    });
-
     onMounted(async () => {
-      await fetchEntity(entities.split(/\r?\n/).at(0).split(",").at(0));
+      await fetchEntity(selectedEntity.value);
+      watch(selectedPos, () => {
+        posMeanN.splice(0);
+
+        meanN.forEach((meanN) => {
+          if (selectedPos.value === meanN.pos) {
+            posMeanN.push(meanN);
+          }
+        });
+      });
       selectedPos.value = "NOUN";
+
+      watch(selectedEntity, async (entity) => {
+        await fetchEntity(entity);
+      });
     });
 
     return {
