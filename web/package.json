@@ -8,10 +8,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.2.0",
     "raw-loader": "^4.0.2",
     "vue": "^3.2.41",
-    "vue-chartjs": "^4.1.2"
+    "vue-chartjs": "^5.2.0"
   },
   "devDependencies": {
     "@rollup/plugin-dsv": "^3.0.2",

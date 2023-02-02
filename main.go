@@ -32,6 +32,7 @@ var (
 )
 
 func main() {
+	// Load
 	articles, err := readCSV("./source/articles.csv")
 	if err != nil {
 		log.Fatal(err)
@@ -137,7 +138,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	// Top 10 per pos
 	log.Println("limit top 10")
 	type topMeanNVal struct {
-		Dist float64 `json:"dist"`
+		Dist float64 `json:"distance"`
 		Pos  string  `json:"pos"`
 		Text string  `json:"text"`
 	}
@@ -166,7 +167,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 		log.Fatal(err)
 	}
 	name := url.QueryEscape(strings.ToLower(entity))
-	path := filepath.Join("public", name+".json")
+	path := filepath.Join("web/public", name+".json")
 	if err := os.WriteFile(path, file, 0600); err != nil {
 		log.Fatal(err)
 	}
