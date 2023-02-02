@@ -1,0 +1,452 @@
+[
+ {
+  "distance": 4,
+  "pos": "ADJ",
+  "text": "insurgent"
+ },
+ {
+  "distance": 6,
+  "pos": "ADJ",
+  "text": "unharmed"
+ },
+ {
+  "distance": 9,
+  "pos": "ADJ",
+  "text": "phony"
+ },
+ {
+  "distance": 9,
+  "pos": "ADJ",
+  "text": "non-sequitur"
+ },
+ {
+  "distance": 10,
+  "pos": "ADJ",
+  "text": "anti"
+ },
+ {
+  "distance": 16,
+  "pos": "ADJ",
+  "text": "typical"
+ },
+ {
+  "distance": 17.666666666666668,
+  "pos": "ADJ",
+  "text": "inaugural"
+ },
+ {
+  "distance": 22,
+  "pos": "ADJ",
+  "text": "Italian"
+ },
+ {
+  "distance": 23,
+  "pos": "ADJ",
+  "text": "homegrown"
+ },
+ {
+  "distance": 25.666666666666668,
+  "pos": "ADJ",
+  "text": "significant"
+ },
+ {
+  "distance": 136,
+  "pos": "ADP",
+  "text": "Though"
+ },
+ {
+  "distance": 191,
+  "pos": "ADP",
+  "text": "minus"
+ },
+ {
+  "distance": 195.8095238095238,
+  "pos": "ADP",
+  "text": "until"
+ },
+ {
+  "distance": 203,
+  "pos": "ADP",
+  "text": "Whether"
+ },
+ {
+  "distance": 236,
+  "pos": "ADP",
+  "text": "despite"
+ },
+ {
+  "distance": 247.3448275862069,
+  "pos": "ADP",
+  "text": "inside"
+ },
+ {
+  "distance": 252.51724137931035,
+  "pos": "ADP",
+  "text": "because"
+ },
+ {
+  "distance": 257.64285714285717,
+  "pos": "ADP",
+  "text": "beyond"
+ },
+ {
+  "distance": 266.1875,
+  "pos": "ADP",
+  "text": "outside"
+ },
+ {
+  "distance": 272.7758620689655,
+  "pos": "ADP",
+  "text": "under"
+ },
+ {
+  "distance": 1,
+  "pos": "ADV",
+  "text": "Firstly"
+ },
+ {
+  "distance": 13,
+  "pos": "ADV",
+  "text": "ideologically"
+ },
+ {
+  "distance": 15,
+  "pos": "ADV",
+  "text": "extraordinarily"
+ },
+ {
+  "distance": 22,
+  "pos": "ADV",
+  "text": "impatiently"
+ },
+ {
+  "distance": 25,
+  "pos": "ADV",
+  "text": "previously"
+ },
+ {
+  "distance": 36,
+  "pos": "ADV",
+  "text": "third"
+ },
+ {
+  "distance": 39,
+  "pos": "ADV",
+  "text": "second"
+ },
+ {
+  "distance": 41,
+  "pos": "ADV",
+  "text": "Nonetheless"
+ },
+ {
+  "distance": 45,
+  "pos": "ADV",
+  "text": "say."
+ },
+ {
+  "distance": 51,
+  "pos": "ADV",
+  "text": "Similarly"
+ },
+ {
+  "distance": 24,
+  "pos": "CONJ",
+  "text": "Nor"
+ },
+ {
+  "distance": 170,
+  "pos": "CONJ",
+  "text": "n"
+ },
+ {
+  "distance": 204,
+  "pos": "CONJ",
+  "text": "Neither"
+ },
+ {
+  "distance": 208.5,
+  "pos": "CONJ",
+  "text": "nor"
+ },
+ {
+  "distance": 363.25,
+  "pos": "CONJ",
+  "text": "Yet"
+ },
+ {
+  "distance": 405,
+  "pos": "CONJ",
+  "text": "yet"
+ },
+ {
+  "distance": 429.3157894736842,
+  "pos": "CONJ",
+  "text": "so"
+ },
+ {
+  "distance": 476.24778761061947,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "distance": 532.0451127819549,
+  "pos": "CONJ",
+  "text": "And"
+ },
+ {
+  "distance": 542.0369230769231,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "distance": 111.5,
+  "pos": "DET",
+  "text": "Raqqa"
+ },
+ {
+  "distance": 160.3,
+  "pos": "DET",
+  "text": "No"
+ },
+ {
+  "distance": 198.5,
+  "pos": "DET",
+  "text": "Those"
+ },
+ {
+  "distance": 256.4074074074074,
+  "pos": "DET",
+  "text": "All"
+ },
+ {
+  "distance": 277.6,
+  "pos": "DET",
+  "text": "each"
+ },
+ {
+  "distance": 323.69444444444446,
+  "pos": "DET",
+  "text": "some"
+ },
+ {
+  "distance": 365.6829268292683,
+  "pos": "DET",
+  "text": "there"
+ },
+ {
+  "distance": 383,
+  "pos": "DET",
+  "text": "whatever"
+ },
+ {
+  "distance": 394.1929824561403,
+  "pos": "DET",
+  "text": "There"
+ },
+ {
+  "distance": 419.5,
+  "pos": "DET",
+  "text": "That"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "Adel"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "Von"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "Haram"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "Boko"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "profile"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "notion"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "Expletive"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "pup"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "captain"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "Labor"
+ },
+ {
+  "distance": 3,
+  "pos": "NUM",
+  "text": "30,000"
+ },
+ {
+  "distance": 17,
+  "pos": "NUM",
+  "text": "39"
+ },
+ {
+  "distance": 23,
+  "pos": "NUM",
+  "text": "1.19"
+ },
+ {
+  "distance": 32,
+  "pos": "NUM",
+  "text": "57"
+ },
+ {
+  "distance": 32,
+  "pos": "NUM",
+  "text": "3,000"
+ },
+ {
+  "distance": 58,
+  "pos": "NUM",
+  "text": "150"
+ },
+ {
+  "distance": 65,
+  "pos": "NUM",
+  "text": "45km"
+ },
+ {
+  "distance": 72,
+  "pos": "NUM",
+  "text": "Four"
+ },
+ {
+  "distance": 78,
+  "pos": "NUM",
+  "text": "13,000"
+ },
+ {
+  "distance": 91.83333333333333,
+  "pos": "NUM",
+  "text": "23"
+ },
+ {
+  "distance": 58.333333333333336,
+  "pos": "PRON",
+  "text": "whom"
+ },
+ {
+  "distance": 162,
+  "pos": "PRON",
+  "text": "you'r"
+ },
+ {
+  "distance": 182.16129032258064,
+  "pos": "PRON",
+  "text": "You"
+ },
+ {
+  "distance": 243,
+  "pos": "PRON",
+  "text": "IS"
+ },
+ {
+  "distance": 261.75,
+  "pos": "PRON",
+  "text": "themselves"
+ },
+ {
+  "distance": 267.08527131782944,
+  "pos": "PRON",
+  "text": "she"
+ },
+ {
+  "distance": 270,
+  "pos": "PRON",
+  "text": "Its"
+ },
+ {
+  "distance": 277,
+  "pos": "PRON",
+  "text": "it."
+ },
+ {
+  "distance": 322.86206896551727,
+  "pos": "PRON",
+  "text": "What"
+ },
+ {
+  "distance": 329.09574468085106,
+  "pos": "PRON",
+  "text": "what"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "Defeating"
+ },
+ {
+  "distance": 3,
+  "pos": "VERB",
+  "text": "demolish"
+ },
+ {
+  "distance": 4,
+  "pos": "VERB",
+  "text": "considers"
+ },
+ {
+  "distance": 4,
+  "pos": "VERB",
+  "text": "responding"
+ },
+ {
+  "distance": 5,
+  "pos": "VERB",
+  "text": "suffering"
+ },
+ {
+  "distance": 5,
+  "pos": "VERB",
+  "text": "asserted"
+ },
+ {
+  "distance": 7,
+  "pos": "VERB",
+  "text": "publishing"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "devolve"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "backing"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "counter"
+ }
+]

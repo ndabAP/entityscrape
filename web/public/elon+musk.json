@@ -1,0 +1,432 @@
+[
+ {
+  "distance": 7,
+  "pos": "ADJ",
+  "text": "ambitious"
+ },
+ {
+  "distance": 16,
+  "pos": "ADJ",
+  "text": "serial"
+ },
+ {
+  "distance": 19,
+  "pos": "ADJ",
+  "text": "busy"
+ },
+ {
+  "distance": 21,
+  "pos": "ADJ",
+  "text": "full"
+ },
+ {
+  "distance": 29,
+  "pos": "ADJ",
+  "text": "Boring"
+ },
+ {
+  "distance": 32,
+  "pos": "ADJ",
+  "text": "unnamed"
+ },
+ {
+  "distance": 38,
+  "pos": "ADJ",
+  "text": "newest"
+ },
+ {
+  "distance": 40,
+  "pos": "ADJ",
+  "text": "Muslim"
+ },
+ {
+  "distance": 47,
+  "pos": "ADJ",
+  "text": "prior"
+ },
+ {
+  "distance": 54,
+  "pos": "ADJ",
+  "text": "tiny"
+ },
+ {
+  "distance": 23,
+  "pos": "ADP",
+  "text": "For"
+ },
+ {
+  "distance": 81,
+  "pos": "ADP",
+  "text": "Despite"
+ },
+ {
+  "distance": 92.5,
+  "pos": "ADP",
+  "text": "While"
+ },
+ {
+  "distance": 104,
+  "pos": "ADP",
+  "text": "Like"
+ },
+ {
+  "distance": 105,
+  "pos": "ADP",
+  "text": "As"
+ },
+ {
+  "distance": 105,
+  "pos": "ADP",
+  "text": "through"
+ },
+ {
+  "distance": 116.76923076923077,
+  "pos": "ADP",
+  "text": "around"
+ },
+ {
+  "distance": 120,
+  "pos": "ADP",
+  "text": "Without"
+ },
+ {
+  "distance": 122.61111111111111,
+  "pos": "ADP",
+  "text": "by"
+ },
+ {
+  "distance": 130.5,
+  "pos": "ADP",
+  "text": "since"
+ },
+ {
+  "distance": 1,
+  "pos": "ADV",
+  "text": "slowly"
+ },
+ {
+  "distance": 2,
+  "pos": "ADV",
+  "text": "Probably"
+ },
+ {
+  "distance": 9,
+  "pos": "ADV",
+  "text": "likely"
+ },
+ {
+  "distance": 11,
+  "pos": "ADV",
+  "text": "back"
+ },
+ {
+  "distance": 12,
+  "pos": "ADV",
+  "text": "more"
+ },
+ {
+  "distance": 41,
+  "pos": "ADV",
+  "text": "slightly"
+ },
+ {
+  "distance": 42,
+  "pos": "ADV",
+  "text": "down"
+ },
+ {
+  "distance": 62,
+  "pos": "ADV",
+  "text": "ago"
+ },
+ {
+  "distance": 70,
+  "pos": "ADV",
+  "text": "late"
+ },
+ {
+  "distance": 72.33333333333333,
+  "pos": "ADV",
+  "text": "already"
+ },
+ {
+  "distance": 171,
+  "pos": "CONJ",
+  "text": "But"
+ },
+ {
+  "distance": 177.65625,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "distance": 250.8,
+  "pos": "CONJ",
+  "text": "or"
+ },
+ {
+  "distance": 251.5,
+  "pos": "CONJ",
+  "text": "So"
+ },
+ {
+  "distance": 251.5,
+  "pos": "CONJ",
+  "text": "\u0026"
+ },
+ {
+  "distance": 289.25,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "distance": 4,
+  "pos": "DET",
+  "text": "whatever"
+ },
+ {
+  "distance": 35,
+  "pos": "DET",
+  "text": "another"
+ },
+ {
+  "distance": 57.25,
+  "pos": "DET",
+  "text": "This"
+ },
+ {
+  "distance": 95,
+  "pos": "DET",
+  "text": "each"
+ },
+ {
+  "distance": 105,
+  "pos": "DET",
+  "text": "These"
+ },
+ {
+  "distance": 110,
+  "pos": "DET",
+  "text": "these"
+ },
+ {
+  "distance": 124.4,
+  "pos": "DET",
+  "text": "any"
+ },
+ {
+  "distance": 152.33333333333334,
+  "pos": "DET",
+  "text": "an"
+ },
+ {
+  "distance": 153.33333333333334,
+  "pos": "DET",
+  "text": "A"
+ },
+ {
+  "distance": 167.3375,
+  "pos": "DET",
+  "text": "a"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "Celebrity"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "curtain"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "amount"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "civilians"
+ },
+ {
+  "distance": 9,
+  "pos": "NOUN",
+  "text": "complaint"
+ },
+ {
+  "distance": 10,
+  "pos": "NOUN",
+  "text": "A"
+ },
+ {
+  "distance": 12,
+  "pos": "NOUN",
+  "text": "revenues"
+ },
+ {
+  "distance": 13,
+  "pos": "NOUN",
+  "text": "Earth"
+ },
+ {
+  "distance": 24,
+  "pos": "NOUN",
+  "text": "Solar"
+ },
+ {
+  "distance": 25,
+  "pos": "NOUN",
+  "text": "City"
+ },
+ {
+  "distance": 15,
+  "pos": "NUM",
+  "text": "$456"
+ },
+ {
+  "distance": 22,
+  "pos": "NUM",
+  "text": "08.02."
+ },
+ {
+  "distance": 35,
+  "pos": "NUM",
+  "text": "$638"
+ },
+ {
+  "distance": 39,
+  "pos": "NUM",
+  "text": "seven"
+ },
+ {
+  "distance": 56,
+  "pos": "NUM",
+  "text": "04.02."
+ },
+ {
+  "distance": 68,
+  "pos": "NUM",
+  "text": "319"
+ },
+ {
+  "distance": 72.25,
+  "pos": "NUM",
+  "text": "45"
+ },
+ {
+  "distance": 77,
+  "pos": "NUM",
+  "text": "27.01."
+ },
+ {
+  "distance": 79,
+  "pos": "NUM",
+  "text": "2018"
+ },
+ {
+  "distance": 83,
+  "pos": "NUM",
+  "text": "$717"
+ },
+ {
+  "distance": 37,
+  "pos": "PRON",
+  "text": "His"
+ },
+ {
+  "distance": 109,
+  "pos": "PRON",
+  "text": "who"
+ },
+ {
+  "distance": 155.3,
+  "pos": "PRON",
+  "text": "them"
+ },
+ {
+  "distance": 158.83333333333334,
+  "pos": "PRON",
+  "text": "He"
+ },
+ {
+  "distance": 173.11764705882354,
+  "pos": "PRON",
+  "text": "his"
+ },
+ {
+  "distance": 178.25,
+  "pos": "PRON",
+  "text": "him"
+ },
+ {
+  "distance": 184,
+  "pos": "PRON",
+  "text": "they"
+ },
+ {
+  "distance": 188.33333333333334,
+  "pos": "PRON",
+  "text": "We"
+ },
+ {
+  "distance": 189,
+  "pos": "PRON",
+  "text": "what"
+ },
+ {
+  "distance": 195.125,
+  "pos": "PRON",
+  "text": "their"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "Does"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "plans"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "sleep"
+ },
+ {
+  "distance": 2,
+  "pos": "VERB",
+  "text": "raising"
+ },
+ {
+  "distance": 3,
+  "pos": "VERB",
+  "text": "founded"
+ },
+ {
+  "distance": 6,
+  "pos": "VERB",
+  "text": "planned"
+ },
+ {
+  "distance": 10,
+  "pos": "VERB",
+  "text": "diminished"
+ },
+ {
+  "distance": 16,
+  "pos": "VERB",
+  "text": "lost"
+ },
+ {
+  "distance": 19.5,
+  "pos": "VERB",
+  "text": "announced"
+ },
+ {
+  "distance": 20,
+  "pos": "VERB",
+  "text": "According"
+ }
+]

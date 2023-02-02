@@ -43,7 +43,6 @@ ChartJS.register(
 const pos = {
   ADJ: "Adjective",
   ADV: "Adverb",
-  AFFIX: "Affix",
   CONJ: "Conjunction",
   DET: "Determiner",
   NOUN: "Noun",
@@ -57,7 +56,7 @@ export default defineComponent({
   components: { Bar },
 
   setup() {
-    const selectedEntity = ref(entities.split(/\r?\n/).at(0).split(",").at(0));
+    const selectedEntity = ref(entities.split(/\r?\n/).at(2).split(",").at(0));
     const selectedPos = ref(null);
 
     const availableEntities = entities.split(/\r?\n/).map((entities) => {

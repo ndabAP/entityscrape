@@ -1,0 +1,452 @@
+[
+ {
+  "distance": 2,
+  "pos": "ADJ",
+  "text": "obvious"
+ },
+ {
+  "distance": 2,
+  "pos": "ADJ",
+  "text": "alone"
+ },
+ {
+  "distance": 13,
+  "pos": "ADJ",
+  "text": "clever"
+ },
+ {
+  "distance": 15,
+  "pos": "ADJ",
+  "text": "Texan"
+ },
+ {
+  "distance": 18,
+  "pos": "ADJ",
+  "text": "executive"
+ },
+ {
+  "distance": 21.333333333333332,
+  "pos": "ADJ",
+  "text": "impartial"
+ },
+ {
+  "distance": 22.333333333333332,
+  "pos": "ADJ",
+  "text": "embarrassing"
+ },
+ {
+  "distance": 28.5,
+  "pos": "ADJ",
+  "text": "Special"
+ },
+ {
+  "distance": 29,
+  "pos": "ADJ",
+  "text": "overseas"
+ },
+ {
+  "distance": 29.5,
+  "pos": "ADJ",
+  "text": "angry"
+ },
+ {
+  "distance": 54,
+  "pos": "ADP",
+  "text": "Besides"
+ },
+ {
+  "distance": 83.33333333333333,
+  "pos": "ADP",
+  "text": "via"
+ },
+ {
+  "distance": 85,
+  "pos": "ADP",
+  "text": "Between"
+ },
+ {
+  "distance": 122.88888888888889,
+  "pos": "ADP",
+  "text": "throughout"
+ },
+ {
+  "distance": 127.75,
+  "pos": "ADP",
+  "text": "albeit"
+ },
+ {
+  "distance": 160.5121951219512,
+  "pos": "ADP",
+  "text": "If"
+ },
+ {
+  "distance": 162,
+  "pos": "ADP",
+  "text": "down"
+ },
+ {
+  "distance": 168,
+  "pos": "ADP",
+  "text": "so"
+ },
+ {
+  "distance": 175.0222222222222,
+  "pos": "ADP",
+  "text": "On"
+ },
+ {
+  "distance": 176,
+  "pos": "ADP",
+  "text": "To"
+ },
+ {
+  "distance": 14,
+  "pos": "ADV",
+  "text": "overseas"
+ },
+ {
+  "distance": 15,
+  "pos": "ADV",
+  "text": "eastward"
+ },
+ {
+  "distance": 28,
+  "pos": "ADV",
+  "text": "freely"
+ },
+ {
+  "distance": 28,
+  "pos": "ADV",
+  "text": "narrowly"
+ },
+ {
+  "distance": 32,
+  "pos": "ADV",
+  "text": "harder"
+ },
+ {
+  "distance": 34,
+  "pos": "ADV",
+  "text": "deeper"
+ },
+ {
+  "distance": 37.5,
+  "pos": "ADV",
+  "text": "doubtless"
+ },
+ {
+  "distance": 44,
+  "pos": "ADV",
+  "text": "roughly"
+ },
+ {
+  "distance": 46,
+  "pos": "ADV",
+  "text": "outside"
+ },
+ {
+  "distance": 50,
+  "pos": "ADV",
+  "text": "together"
+ },
+ {
+  "distance": 257,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 276.3478260869565,
+  "pos": "CONJ",
+  "text": "both"
+ },
+ {
+  "distance": 294.97014925373134,
+  "pos": "CONJ",
+  "text": "And"
+ },
+ {
+  "distance": 328,
+  "pos": "CONJ",
+  "text": "Yet"
+ },
+ {
+  "distance": 335.01553760099443,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "distance": 336.1014492753623,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "distance": 370,
+  "pos": "CONJ",
+  "text": "att"
+ },
+ {
+  "distance": 378,
+  "pos": "CONJ",
+  "text": "plus"
+ },
+ {
+  "distance": 389.5625,
+  "pos": "CONJ",
+  "text": "so"
+ },
+ {
+  "distance": 394.3391304347826,
+  "pos": "CONJ",
+  "text": "But"
+ },
+ {
+  "distance": 184.93333333333334,
+  "pos": "DET",
+  "text": "another"
+ },
+ {
+  "distance": 187.54545454545453,
+  "pos": "DET",
+  "text": "What"
+ },
+ {
+  "distance": 188,
+  "pos": "DET",
+  "text": "Every"
+ },
+ {
+  "distance": 197.6,
+  "pos": "DET",
+  "text": "That"
+ },
+ {
+  "distance": 210.8,
+  "pos": "DET",
+  "text": "Another"
+ },
+ {
+  "distance": 226.75,
+  "pos": "DET",
+  "text": "An"
+ },
+ {
+  "distance": 233.57142857142858,
+  "pos": "DET",
+  "text": "quite"
+ },
+ {
+  "distance": 270.9433962264151,
+  "pos": "DET",
+  "text": "This"
+ },
+ {
+  "distance": 272.45454545454544,
+  "pos": "DET",
+  "text": "No"
+ },
+ {
+  "distance": 275.1636363636364,
+  "pos": "DET",
+  "text": "those"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "blc"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "YotaPhone"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "counter-terrorism"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "wake"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "admiration"
+ },
+ {
+  "distance": 5,
+  "pos": "NOUN",
+  "text": "Benjamin"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "Order"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "novelty"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "Okla"
+ },
+ {
+  "distance": 7,
+  "pos": "NOUN",
+  "text": "Lankford"
+ },
+ {
+  "distance": 39.333333333333336,
+  "pos": "NUM",
+  "text": "Six"
+ },
+ {
+  "distance": 42,
+  "pos": "NUM",
+  "text": "20,000"
+ },
+ {
+  "distance": 45,
+  "pos": "NUM",
+  "text": "$350"
+ },
+ {
+  "distance": 45,
+  "pos": "NUM",
+  "text": "1987"
+ },
+ {
+  "distance": 70,
+  "pos": "NUM",
+  "text": "77"
+ },
+ {
+  "distance": 70,
+  "pos": "NUM",
+  "text": "70.1"
+ },
+ {
+  "distance": 70,
+  "pos": "NUM",
+  "text": "302"
+ },
+ {
+  "distance": 70,
+  "pos": "NUM",
+  "text": "85.1"
+ },
+ {
+  "distance": 70,
+  "pos": "NUM",
+  "text": "1.88"
+ },
+ {
+  "distance": 70,
+  "pos": "NUM",
+  "text": "13.2"
+ },
+ {
+  "distance": 30,
+  "pos": "PRON",
+  "text": "My"
+ },
+ {
+  "distance": 133.66666666666666,
+  "pos": "PRON",
+  "text": "themselves"
+ },
+ {
+  "distance": 163.1,
+  "pos": "PRON",
+  "text": "whom"
+ },
+ {
+  "distance": 192,
+  "pos": "PRON",
+  "text": "Her"
+ },
+ {
+  "distance": 197.1494252873563,
+  "pos": "PRON",
+  "text": "our"
+ },
+ {
+  "distance": 199.76470588235293,
+  "pos": "PRON",
+  "text": "them"
+ },
+ {
+  "distance": 218.75,
+  "pos": "PRON",
+  "text": "himself"
+ },
+ {
+  "distance": 258,
+  "pos": "PRON",
+  "text": "herself"
+ },
+ {
+  "distance": 267.8196721311475,
+  "pos": "PRON",
+  "text": "she"
+ },
+ {
+  "distance": 277.6025641025641,
+  "pos": "PRON",
+  "text": "her"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "reaffirm"
+ },
+ {
+  "distance": 2,
+  "pos": "VERB",
+  "text": "challenged"
+ },
+ {
+  "distance": 3,
+  "pos": "VERB",
+  "text": "visited"
+ },
+ {
+  "distance": 3,
+  "pos": "VERB",
+  "text": "linked"
+ },
+ {
+  "distance": 3,
+  "pos": "VERB",
+  "text": "convince"
+ },
+ {
+  "distance": 4,
+  "pos": "VERB",
+  "text": "signing"
+ },
+ {
+  "distance": 4,
+  "pos": "VERB",
+  "text": "awarded"
+ },
+ {
+  "distance": 10,
+  "pos": "VERB",
+  "text": "knock"
+ },
+ {
+  "distance": 12.5,
+  "pos": "VERB",
+  "text": "scheduled"
+ },
+ {
+  "distance": 14,
+  "pos": "VERB",
+  "text": "established"
+ }
+]

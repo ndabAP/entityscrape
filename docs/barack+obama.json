@@ -1,0 +1,452 @@
+[
+ {
+  "distance": 1,
+  "pos": "ADJ",
+  "text": "favorite"
+ },
+ {
+  "distance": 2,
+  "pos": "ADJ",
+  "text": "stricter"
+ },
+ {
+  "distance": 4,
+  "pos": "ADJ",
+  "text": "subtle"
+ },
+ {
+  "distance": 5,
+  "pos": "ADJ",
+  "text": "systematic"
+ },
+ {
+  "distance": 5,
+  "pos": "ADJ",
+  "text": "appellate"
+ },
+ {
+  "distance": 5,
+  "pos": "ADJ",
+  "text": "seventh"
+ },
+ {
+  "distance": 9,
+  "pos": "ADJ",
+  "text": "contrasting"
+ },
+ {
+  "distance": 9,
+  "pos": "ADJ",
+  "text": "unproven"
+ },
+ {
+  "distance": 11,
+  "pos": "ADJ",
+  "text": "leftward"
+ },
+ {
+  "distance": 11,
+  "pos": "ADJ",
+  "text": "Most"
+ },
+ {
+  "distance": 30,
+  "pos": "ADP",
+  "text": "BEFORE"
+ },
+ {
+  "distance": 75,
+  "pos": "ADP",
+  "text": "Besides"
+ },
+ {
+  "distance": 92,
+  "pos": "ADP",
+  "text": "opposite"
+ },
+ {
+  "distance": 99.25,
+  "pos": "ADP",
+  "text": "aboard"
+ },
+ {
+  "distance": 110.66666666666667,
+  "pos": "ADP",
+  "text": "we'r"
+ },
+ {
+  "distance": 117.5,
+  "pos": "ADP",
+  "text": "but"
+ },
+ {
+  "distance": 193.75,
+  "pos": "ADP",
+  "text": "Though"
+ },
+ {
+  "distance": 195,
+  "pos": "ADP",
+  "text": "aka"
+ },
+ {
+  "distance": 208,
+  "pos": "ADP",
+  "text": "lilibuster"
+ },
+ {
+  "distance": 212.16129032258064,
+  "pos": "ADP",
+  "text": "@"
+ },
+ {
+  "distance": 2,
+  "pos": "ADV",
+  "text": "There"
+ },
+ {
+  "distance": 4,
+  "pos": "ADV",
+  "text": "technically"
+ },
+ {
+  "distance": 6,
+  "pos": "ADV",
+  "text": "seldom"
+ },
+ {
+  "distance": 8,
+  "pos": "ADV",
+  "text": "secretly"
+ },
+ {
+  "distance": 11,
+  "pos": "ADV",
+  "text": "popularly"
+ },
+ {
+  "distance": 14,
+  "pos": "ADV",
+  "text": "democratically"
+ },
+ {
+  "distance": 15,
+  "pos": "ADV",
+  "text": "professionally"
+ },
+ {
+  "distance": 18,
+  "pos": "ADV",
+  "text": "Once"
+ },
+ {
+  "distance": 19,
+  "pos": "ADV",
+  "text": "blithely"
+ },
+ {
+  "distance": 22,
+  "pos": "ADV",
+  "text": "similarly"
+ },
+ {
+  "distance": 16,
+  "pos": "CONJ",
+  "text": "Both"
+ },
+ {
+  "distance": 123.33333333333333,
+  "pos": "CONJ",
+  "text": "neither"
+ },
+ {
+  "distance": 126.33333333333333,
+  "pos": "CONJ",
+  "text": "nor"
+ },
+ {
+  "distance": 149.75,
+  "pos": "CONJ",
+  "text": "plus"
+ },
+ {
+  "distance": 195,
+  "pos": "CONJ",
+  "text": "Nor"
+ },
+ {
+  "distance": 238.67857142857142,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 258.27272727272725,
+  "pos": "CONJ",
+  "text": "Yet"
+ },
+ {
+  "distance": 266.5,
+  "pos": "CONJ",
+  "text": "So"
+ },
+ {
+  "distance": 295.55,
+  "pos": "CONJ",
+  "text": "\u0026"
+ },
+ {
+  "distance": 357.03225806451616,
+  "pos": "CONJ",
+  "text": "And"
+ },
+ {
+  "distance": 57.666666666666664,
+  "pos": "DET",
+  "text": "te"
+ },
+ {
+  "distance": 122.26315789473684,
+  "pos": "DET",
+  "text": "what"
+ },
+ {
+  "distance": 161.75,
+  "pos": "DET",
+  "text": "hina"
+ },
+ {
+  "distance": 196.125,
+  "pos": "DET",
+  "text": "Such"
+ },
+ {
+  "distance": 258.92,
+  "pos": "DET",
+  "text": "each"
+ },
+ {
+  "distance": 279.5,
+  "pos": "DET",
+  "text": "Any"
+ },
+ {
+  "distance": 281.8,
+  "pos": "DET",
+  "text": "Another"
+ },
+ {
+  "distance": 290.1666666666667,
+  "pos": "DET",
+  "text": "nothing."
+ },
+ {
+  "distance": 294,
+  "pos": "DET",
+  "text": "half"
+ },
+ {
+  "distance": 297.6875,
+  "pos": "DET",
+  "text": "All"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "predecessors"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "tower"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "penalties"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "meantime"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "continuation"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "blockage"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "fraud"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "voter"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "culprit"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "critique"
+ },
+ {
+  "distance": 8,
+  "pos": "NUM",
+  "text": "1983"
+ },
+ {
+  "distance": 15,
+  "pos": "NUM",
+  "text": "$5,000"
+ },
+ {
+  "distance": 19,
+  "pos": "NUM",
+  "text": "1967"
+ },
+ {
+  "distance": 20,
+  "pos": "NUM",
+  "text": "$10,000"
+ },
+ {
+  "distance": 40.5,
+  "pos": "NUM",
+  "text": "28,000"
+ },
+ {
+  "distance": 47,
+  "pos": "NUM",
+  "text": "3,400"
+ },
+ {
+  "distance": 51,
+  "pos": "NUM",
+  "text": "4.3"
+ },
+ {
+  "distance": 51.5,
+  "pos": "NUM",
+  "text": "17.03."
+ },
+ {
+  "distance": 53,
+  "pos": "NUM",
+  "text": "1961"
+ },
+ {
+  "distance": 57,
+  "pos": "NUM",
+  "text": "415,000"
+ },
+ {
+  "distance": 44,
+  "pos": "PRON",
+  "text": "u"
+ },
+ {
+  "distance": 72,
+  "pos": "PRON",
+  "text": "WHAT"
+ },
+ {
+  "distance": 73,
+  "pos": "PRON",
+  "text": "IT"
+ },
+ {
+  "distance": 122,
+  "pos": "PRON",
+  "text": "Its"
+ },
+ {
+  "distance": 142,
+  "pos": "PRON",
+  "text": "YOU"
+ },
+ {
+  "distance": 174.33333333333334,
+  "pos": "PRON",
+  "text": "it."
+ },
+ {
+  "distance": 187,
+  "pos": "PRON",
+  "text": "ourselves"
+ },
+ {
+  "distance": 206.75,
+  "pos": "PRON",
+  "text": "whatever"
+ },
+ {
+  "distance": 270.3333333333333,
+  "pos": "PRON",
+  "text": "one"
+ },
+ {
+  "distance": 284.14285714285717,
+  "pos": "PRON",
+  "text": "Whoever"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "slapping"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "Conducting"
+ },
+ {
+  "distance": 1,
+  "pos": "VERB",
+  "text": "bashed"
+ },
+ {
+  "distance": 3,
+  "pos": "VERB",
+  "text": "coincided"
+ },
+ {
+  "distance": 4,
+  "pos": "VERB",
+  "text": "desecrated"
+ },
+ {
+  "distance": 5,
+  "pos": "VERB",
+  "text": "missed"
+ },
+ {
+  "distance": 6,
+  "pos": "VERB",
+  "text": "Appearing"
+ },
+ {
+  "distance": 7,
+  "pos": "VERB",
+  "text": "throw"
+ },
+ {
+  "distance": 7,
+  "pos": "VERB",
+  "text": "restarted"
+ },
+ {
+  "distance": 8,
+  "pos": "VERB",
+  "text": "reform"
+ }
+]

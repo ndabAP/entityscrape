@@ -1,0 +1,447 @@
+[
+ {
+  "distance": 10.5,
+  "pos": "ADJ",
+  "text": "personal"
+ },
+ {
+  "distance": 12.5,
+  "pos": "ADJ",
+  "text": "Russian"
+ },
+ {
+  "distance": 13,
+  "pos": "ADJ",
+  "text": "Irish"
+ },
+ {
+  "distance": 18,
+  "pos": "ADJ",
+  "text": "agricultural"
+ },
+ {
+  "distance": 28,
+  "pos": "ADJ",
+  "text": "broader"
+ },
+ {
+  "distance": 28,
+  "pos": "ADJ",
+  "text": "southern"
+ },
+ {
+  "distance": 32,
+  "pos": "ADJ",
+  "text": "meticulous"
+ },
+ {
+  "distance": 39,
+  "pos": "ADJ",
+  "text": "mature"
+ },
+ {
+  "distance": 39.5,
+  "pos": "ADJ",
+  "text": "negotiable"
+ },
+ {
+  "distance": 41,
+  "pos": "ADJ",
+  "text": "robust"
+ },
+ {
+  "distance": 10,
+  "pos": "ADP",
+  "text": "Although"
+ },
+ {
+  "distance": 61,
+  "pos": "ADP",
+  "text": "near"
+ },
+ {
+  "distance": 64,
+  "pos": "ADP",
+  "text": "beween"
+ },
+ {
+  "distance": 120,
+  "pos": "ADP",
+  "text": "unless"
+ },
+ {
+  "distance": 125.5,
+  "pos": "ADP",
+  "text": "During"
+ },
+ {
+  "distance": 132,
+  "pos": "ADP",
+  "text": "atop"
+ },
+ {
+  "distance": 132.66666666666666,
+  "pos": "ADP",
+  "text": "Since"
+ },
+ {
+  "distance": 134.875,
+  "pos": "ADP",
+  "text": "After"
+ },
+ {
+  "distance": 137,
+  "pos": "ADP",
+  "text": "By"
+ },
+ {
+  "distance": 158.8,
+  "pos": "ADP",
+  "text": "although"
+ },
+ {
+  "distance": 11.666666666666666,
+  "pos": "ADV",
+  "text": "importantly"
+ },
+ {
+  "distance": 13.5,
+  "pos": "ADV",
+  "text": "Most"
+ },
+ {
+  "distance": 14,
+  "pos": "ADV",
+  "text": "Abroad"
+ },
+ {
+  "distance": 16,
+  "pos": "ADV",
+  "text": "publicly"
+ },
+ {
+  "distance": 17,
+  "pos": "ADV",
+  "text": "partly"
+ },
+ {
+  "distance": 20,
+  "pos": "ADV",
+  "text": "else"
+ },
+ {
+  "distance": 26,
+  "pos": "ADV",
+  "text": "arduously"
+ },
+ {
+  "distance": 32,
+  "pos": "ADV",
+  "text": "again"
+ },
+ {
+  "distance": 55.5,
+  "pos": "ADV",
+  "text": "personally"
+ },
+ {
+  "distance": 58,
+  "pos": "ADV",
+  "text": "undoubtedly"
+ },
+ {
+  "distance": 122.14285714285714,
+  "pos": "CONJ",
+  "text": "so"
+ },
+ {
+  "distance": 127.33333333333333,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 257.1404011461318,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "distance": 262.8703703703704,
+  "pos": "CONJ",
+  "text": "or"
+ },
+ {
+  "distance": 274.4,
+  "pos": "CONJ",
+  "text": "And"
+ },
+ {
+  "distance": 282.5777777777778,
+  "pos": "CONJ",
+  "text": "But"
+ },
+ {
+  "distance": 308.0420168067227,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "distance": 317,
+  "pos": "CONJ",
+  "text": "So"
+ },
+ {
+  "distance": 329.9230769230769,
+  "pos": "CONJ",
+  "text": "both"
+ },
+ {
+  "distance": 74.75,
+  "pos": "DET",
+  "text": "Both"
+ },
+ {
+  "distance": 80.4,
+  "pos": "DET",
+  "text": "Another"
+ },
+ {
+  "distance": 94,
+  "pos": "DET",
+  "text": "half"
+ },
+ {
+  "distance": 97.5,
+  "pos": "DET",
+  "text": "neither"
+ },
+ {
+  "distance": 124.4,
+  "pos": "DET",
+  "text": "every"
+ },
+ {
+  "distance": 138.5,
+  "pos": "DET",
+  "text": "another"
+ },
+ {
+  "distance": 148.375,
+  "pos": "DET",
+  "text": "Some"
+ },
+ {
+  "distance": 160.8,
+  "pos": "DET",
+  "text": "All"
+ },
+ {
+  "distance": 166,
+  "pos": "DET",
+  "text": "An"
+ },
+ {
+  "distance": 167.43333333333334,
+  "pos": "DET",
+  "text": "This"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "August"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "mass"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "gift"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "startup"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "groundwork"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "Devices"
+ },
+ {
+  "distance": 7,
+  "pos": "NOUN",
+  "text": "Yota"
+ },
+ {
+  "distance": 7,
+  "pos": "NOUN",
+  "text": "Healthy"
+ },
+ {
+  "distance": 10,
+  "pos": "NOUN",
+  "text": "Kenny"
+ },
+ {
+  "distance": 11,
+  "pos": "NOUN",
+  "text": "Enda"
+ },
+ {
+  "distance": 5,
+  "pos": "NUM",
+  "text": "2030"
+ },
+ {
+  "distance": 29.5,
+  "pos": "NUM",
+  "text": "19.03."
+ },
+ {
+  "distance": 33,
+  "pos": "NUM",
+  "text": "77"
+ },
+ {
+  "distance": 39,
+  "pos": "NUM",
+  "text": "415,000"
+ },
+ {
+  "distance": 48,
+  "pos": "NUM",
+  "text": "111,000"
+ },
+ {
+  "distance": 52.857142857142854,
+  "pos": "NUM",
+  "text": "seven"
+ },
+ {
+  "distance": 54.5,
+  "pos": "NUM",
+  "text": "45"
+ },
+ {
+  "distance": 57,
+  "pos": "NUM",
+  "text": "15.03."
+ },
+ {
+  "distance": 57.5,
+  "pos": "NUM",
+  "text": "70"
+ },
+ {
+  "distance": 68,
+  "pos": "NUM",
+  "text": "09.03."
+ },
+ {
+  "distance": 87.5,
+  "pos": "PRON",
+  "text": "Our"
+ },
+ {
+  "distance": 130.625,
+  "pos": "PRON",
+  "text": "you"
+ },
+ {
+  "distance": 150.5,
+  "pos": "PRON",
+  "text": "it."
+ },
+ {
+  "distance": 166,
+  "pos": "PRON",
+  "text": "one"
+ },
+ {
+  "distance": 174,
+  "pos": "PRON",
+  "text": "itself"
+ },
+ {
+  "distance": 179,
+  "pos": "PRON",
+  "text": "your"
+ },
+ {
+  "distance": 186.72727272727272,
+  "pos": "PRON",
+  "text": "You"
+ },
+ {
+  "distance": 187,
+  "pos": "PRON",
+  "text": "Their"
+ },
+ {
+  "distance": 205.9170305676856,
+  "pos": "PRON",
+  "text": "his"
+ },
+ {
+  "distance": 220.48387096774192,
+  "pos": "PRON",
+  "text": "we"
+ },
+ {
+  "distance": 5,
+  "pos": "VERB",
+  "text": "anticipated"
+ },
+ {
+  "distance": 6,
+  "pos": "VERB",
+  "text": "lays"
+ },
+ {
+  "distance": 8,
+  "pos": "VERB",
+  "text": "introduced"
+ },
+ {
+  "distance": 8,
+  "pos": "VERB",
+  "text": "arrange"
+ },
+ {
+  "distance": 10,
+  "pos": "VERB",
+  "text": "notes"
+ },
+ {
+  "distance": 10.5,
+  "pos": "VERB",
+  "text": "affirmed"
+ },
+ {
+  "distance": 15,
+  "pos": "VERB",
+  "text": "goes"
+ },
+ {
+  "distance": 17,
+  "pos": "VERB",
+  "text": "presented"
+ },
+ {
+  "distance": 19,
+  "pos": "VERB",
+  "text": "published"
+ },
+ {
+  "distance": 19,
+  "pos": "VERB",
+  "text": "defend"
+ }
+]

@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/main.go",
             "env": {},
             "args": [
-                "-gog-svc-loc=/home/jvawcj/.config/assocentity/assocentity-366111-4ea68cbd6d1e.json"
+                "-gog-svc-loc=/home/y6z9bp/.config/assocentity/assocentity-366111-4ea68cbd6d1e.json"
             ],
             "cwd": "${workspaceFolder}"
         },

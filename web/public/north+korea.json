@@ -1,0 +1,452 @@
+[
+ {
+  "distance": 2,
+  "pos": "ADJ",
+  "text": "bigger"
+ },
+ {
+  "distance": 5,
+  "pos": "ADJ",
+  "text": "Syrian"
+ },
+ {
+  "distance": 5,
+  "pos": "ADJ",
+  "text": "terrorist"
+ },
+ {
+  "distance": 13,
+  "pos": "ADJ",
+  "text": "Mass"
+ },
+ {
+  "distance": 17,
+  "pos": "ADJ",
+  "text": "extreme"
+ },
+ {
+  "distance": 17,
+  "pos": "ADJ",
+  "text": "Low"
+ },
+ {
+  "distance": 23,
+  "pos": "ADJ",
+  "text": "accurate"
+ },
+ {
+  "distance": 28,
+  "pos": "ADJ",
+  "text": "functional"
+ },
+ {
+  "distance": 29,
+  "pos": "ADJ",
+  "text": "Canadian"
+ },
+ {
+  "distance": 29,
+  "pos": "ADJ",
+  "text": "onerous"
+ },
+ {
+  "distance": 35,
+  "pos": "ADP",
+  "text": "Of"
+ },
+ {
+  "distance": 64,
+  "pos": "ADP",
+  "text": "via"
+ },
+ {
+  "distance": 69.5,
+  "pos": "ADP",
+  "text": "throughout"
+ },
+ {
+  "distance": 95.5,
+  "pos": "ADP",
+  "text": "down"
+ },
+ {
+  "distance": 98.71428571428571,
+  "pos": "ADP",
+  "text": "Amid"
+ },
+ {
+  "distance": 100,
+  "pos": "ADP",
+  "text": "upon"
+ },
+ {
+  "distance": 101.0909090909091,
+  "pos": "ADP",
+  "text": "Under"
+ },
+ {
+  "distance": 121,
+  "pos": "ADP",
+  "text": "Until"
+ },
+ {
+  "distance": 157.4,
+  "pos": "ADP",
+  "text": "Besides"
+ },
+ {
+  "distance": 158.06666666666666,
+  "pos": "ADP",
+  "text": "Although"
+ },
+ {
+  "distance": 9,
+  "pos": "ADV",
+  "text": "matter"
+ },
+ {
+  "distance": 13,
+  "pos": "ADV",
+  "text": "barely"
+ },
+ {
+  "distance": 27,
+  "pos": "ADV",
+  "text": "undoubtedly"
+ },
+ {
+  "distance": 30,
+  "pos": "ADV",
+  "text": "afterward"
+ },
+ {
+  "distance": 44,
+  "pos": "ADV",
+  "text": "Directly"
+ },
+ {
+  "distance": 51,
+  "pos": "ADV",
+  "text": "gradually"
+ },
+ {
+  "distance": 56,
+  "pos": "ADV",
+  "text": "understandably"
+ },
+ {
+  "distance": 60,
+  "pos": "ADV",
+  "text": "perhaps"
+ },
+ {
+  "distance": 62.5,
+  "pos": "ADV",
+  "text": "greatly"
+ },
+ {
+  "distance": 63,
+  "pos": "ADV",
+  "text": "heavily"
+ },
+ {
+  "distance": 29.666666666666668,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 92.6,
+  "pos": "CONJ",
+  "text": "So"
+ },
+ {
+  "distance": 93.5,
+  "pos": "CONJ",
+  "text": "so"
+ },
+ {
+  "distance": 133.375,
+  "pos": "CONJ",
+  "text": "neither"
+ },
+ {
+  "distance": 192.05882352941177,
+  "pos": "CONJ",
+  "text": "nor"
+ },
+ {
+  "distance": 235.47460595446586,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "distance": 247.67052023121389,
+  "pos": "CONJ",
+  "text": "But"
+ },
+ {
+  "distance": 262.46325936704255,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "distance": 281.36813186813185,
+  "pos": "CONJ",
+  "text": "or"
+ },
+ {
+  "distance": 291.5,
+  "pos": "CONJ",
+  "text": "\u0026"
+ },
+ {
+  "distance": 66.5,
+  "pos": "DET",
+  "text": "half"
+ },
+ {
+  "distance": 102.57142857142857,
+  "pos": "DET",
+  "text": "Another"
+ },
+ {
+  "distance": 109,
+  "pos": "DET",
+  "text": "All"
+ },
+ {
+  "distance": 172.2753623188406,
+  "pos": "DET",
+  "text": "both"
+ },
+ {
+  "distance": 172.91379310344828,
+  "pos": "DET",
+  "text": "An"
+ },
+ {
+  "distance": 175.78571428571428,
+  "pos": "DET",
+  "text": "neither"
+ },
+ {
+  "distance": 181.16666666666666,
+  "pos": "DET",
+  "text": "every"
+ },
+ {
+  "distance": 192.22222222222223,
+  "pos": "DET",
+  "text": "Both"
+ },
+ {
+  "distance": 206,
+  "pos": "DET",
+  "text": "Those"
+ },
+ {
+  "distance": 206.57142857142858,
+  "pos": "DET",
+  "text": "what"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "Assad"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "usage"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "documentary"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "al"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "Uzbekistan"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "Bashar"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "prize"
+ },
+ {
+  "distance": 5,
+  "pos": "NOUN",
+  "text": "Sudan"
+ },
+ {
+  "distance": 5,
+  "pos": "NOUN",
+  "text": "Emirates"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "Arab"
+ },
+ {
+  "distance": 9,
+  "pos": "NUM",
+  "text": "zero"
+ },
+ {
+  "distance": 14,
+  "pos": "NUM",
+  "text": "1,340,000"
+ },
+ {
+  "distance": 24,
+  "pos": "NUM",
+  "text": "4,571"
+ },
+ {
+  "distance": 28,
+  "pos": "NUM",
+  "text": "1997"
+ },
+ {
+  "distance": 29,
+  "pos": "NUM",
+  "text": "1.3"
+ },
+ {
+  "distance": 37,
+  "pos": "NUM",
+  "text": "1,367"
+ },
+ {
+  "distance": 41,
+  "pos": "NUM",
+  "text": "202"
+ },
+ {
+  "distance": 43,
+  "pos": "NUM",
+  "text": "1,796"
+ },
+ {
+  "distance": 51,
+  "pos": "NUM",
+  "text": "1975"
+ },
+ {
+  "distance": 52,
+  "pos": "NUM",
+  "text": "14"
+ },
+ {
+  "distance": 41,
+  "pos": "PRON",
+  "text": "YOU"
+ },
+ {
+  "distance": 167.0888888888889,
+  "pos": "PRON",
+  "text": "Who"
+ },
+ {
+  "distance": 168.57142857142858,
+  "pos": "PRON",
+  "text": "itself"
+ },
+ {
+  "distance": 177.55555555555554,
+  "pos": "PRON",
+  "text": "it."
+ },
+ {
+  "distance": 188,
+  "pos": "PRON",
+  "text": "themselves"
+ },
+ {
+  "distance": 189,
+  "pos": "PRON",
+  "text": "whomever"
+ },
+ {
+  "distance": 204.74647887323943,
+  "pos": "PRON",
+  "text": "you"
+ },
+ {
+  "distance": 205,
+  "pos": "PRON",
+  "text": "me"
+ },
+ {
+  "distance": 206,
+  "pos": "PRON",
+  "text": "Their"
+ },
+ {
+  "distance": 212.33333333333334,
+  "pos": "PRON",
+  "text": "We"
+ },
+ {
+  "distance": 5,
+  "pos": "VERB",
+  "text": "increasing"
+ },
+ {
+  "distance": 6,
+  "pos": "VERB",
+  "text": "exposed"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "grapples"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "joined"
+ },
+ {
+  "distance": 11,
+  "pos": "VERB",
+  "text": "joins"
+ },
+ {
+  "distance": 14,
+  "pos": "VERB",
+  "text": "pending"
+ },
+ {
+  "distance": 15,
+  "pos": "VERB",
+  "text": "outlast"
+ },
+ {
+  "distance": 16,
+  "pos": "VERB",
+  "text": "burns"
+ },
+ {
+  "distance": 19,
+  "pos": "VERB",
+  "text": "upended"
+ },
+ {
+  "distance": 20.5,
+  "pos": "VERB",
+  "text": "tasked"
+ }
+]

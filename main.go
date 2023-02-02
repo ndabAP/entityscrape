@@ -58,10 +58,6 @@ func main() {
 	}
 	log.Printf("len(texts)=%d", len(texts))
 
-	// TEST START
-	// texts = texts[0:27]
-	// TEST END
-
 	// Get mean distance per entity
 	log.Println("get meanN")
 	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
@@ -84,14 +80,25 @@ func main() {
 func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	log.Printf("entities=%v", entities)
 
-	// First entity is primary one
+	// First entity is primary
 	entity := entities[0]
 	log.Printf("entity=%s", entity)
 
+	// Ignore articles without entity
+	temp := texts[:0]
+	for _, text := range texts {
+		if strings.Contains(text, entity) {
+			temp = append(temp, text)
+		}
+	}
+	texts = temp
+	log.Printf("len(texts)=%d", len(texts))
+
+	poS := tokenize.ADJ | tokenize.ADP | tokenize.ADV | tokenize.CONJ | tokenize.DET | tokenize.NOUN | tokenize.NUM | tokenize.PRON | tokenize.VERB
 	meanN, err := assocentity.MeanN(
 		context.Background(),
 		tokenizer,
-		tokenize.ADJ|tokenize.ADP|tokenize.ADV|tokenize.CONJ|tokenize.DET|tokenize.NOUN|tokenize.NUM|tokenize.PRON|tokenize.VERB,
+		poS,
 		texts,
 		entities,
 	)
@@ -103,6 +110,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 
 	if len(meanN) == 0 {
 		log.Print("no meanN found, exiting")
+		os.Exit(0)
 	}
 
 	// Convert to slice to make it sortable
@@ -180,7 +188,6 @@ func readEntities(path string) (entities [][]string, err error) {
 	for scanner.Scan() {
 		entities = append(entities, strings.Split(scanner.Text(), ","))
 	}
-
 	return
 }
 
@@ -193,9 +200,6 @@ func readArticles(path string) (articles [][]string, err error) {
 
 	csvReader := csv.NewReader(file)
 	articles, err = csvReader.ReadAll()
-	if err != nil {
-		return
-	}
 	return
 }
 
