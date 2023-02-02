@@ -76,7 +76,7 @@ export default defineComponent({
     let meanN = [];
     const fetchEntity = async (entity) => {
       entity = entity.toLowerCase().replace(/ /g, "+");
-      const response = await fetch(`/${entity}.json`);
+      const response = await fetch(`/entityscrape/${entity}.json`);
       meanN = await response.json();
     };
 
