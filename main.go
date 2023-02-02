@@ -58,7 +58,7 @@ func main() {
 	log.Printf("len(texts)=%d", len(texts))
 
 	// TEST START
-	texts = texts[0:1]
+	texts = texts[0:25]
 	// TEST END
 
 	// Get mean distance per entity
@@ -211,6 +211,9 @@ func accumTexts(articles [][]string) (texts []string) {
 
 			// Text
 			case 5:
+				if len(text) == 0 {
+					continue
+				}
 				texts = append(texts, text)
 			}
 		}
