@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"encoding/csv"
 	"encoding/json"
@@ -32,12 +33,12 @@ var (
 )
 
 func main() {
-	// Load
-	articles, err := readCSV("./source/articles.csv")
+	// Read
+	articles, err := readArticles("./source/articles.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
-	entities, err := readCSV("./source/entities.csv")
+	entities, err := readEntities("./source/entities.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -58,7 +59,7 @@ func main() {
 	log.Printf("len(texts)=%d", len(texts))
 
 	// TEST START
-	texts = texts[0:25]
+	// texts = texts[0:27]
 	// TEST END
 
 	// Get mean distance per entity
@@ -90,7 +91,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	meanN, err := assocentity.MeanN(
 		context.Background(),
 		tokenizer,
-		tokenize.ANY,
+		tokenize.ADJ|tokenize.ADP|tokenize.ADV|tokenize.CONJ|tokenize.DET|tokenize.NOUN|tokenize.NUM|tokenize.PRON|tokenize.VERB,
 		texts,
 		entities,
 	)
@@ -113,13 +114,6 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	meanNVals := make([]meanNVal, 0)
 	for tok, dist := range meanN {
 		// TODO: Whitelist: a-zA-Z0-9
-
-		// Skip irrelevant pos
-		switch tok.PoS {
-		case tokenize.PUNCT, tokenize.X, tokenize.UNKN:
-			continue
-		}
-
 		meanNVals = append(meanNVals, meanNVal{
 			dist: dist,
 			tok:  tok,
@@ -127,7 +121,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	}
 
 	// Sort by closest distance
-	log.Println("sort by pos and dist")
+	log.Println("sort by pos and distance")
 	sort.Slice(meanNVals, func(i, j int) bool {
 		if meanNVals[i].tok.PoS != meanNVals[j].tok.PoS {
 			return meanNVals[i].tok.PoS < meanNVals[j].tok.PoS
@@ -175,7 +169,22 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	return nil
 }
 
-func readCSV(path string) (records [][]string, err error) {
+func readEntities(path string) (entities [][]string, err error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		entities = append(entities, strings.Split(scanner.Text(), ","))
+	}
+
+	return
+}
+
+func readArticles(path string) (articles [][]string, err error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return
@@ -183,7 +192,7 @@ func readCSV(path string) (records [][]string, err error) {
 	defer file.Close()
 
 	csvReader := csv.NewReader(file)
-	records, err = csvReader.ReadAll()
+	articles, err = csvReader.ReadAll()
 	if err != nil {
 		return
 	}

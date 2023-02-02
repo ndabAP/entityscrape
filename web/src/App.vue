@@ -3,12 +3,10 @@
     <n-select v-model:value="selectedEntity" :options="availableEntities" />
     <n-select v-model:value="selectedPos" :options="availablePos" />
 
-    <Bar
-      :options="{
-        responsive: true,
-      }"
-      :data="chartData"
-    />
+    <Bar :options="{
+      indexAxis: 'y',
+      responsive: true,
+    }" :data="chartData" />
   </n-space>
 </template>
 
@@ -22,7 +20,7 @@ import {
   watch,
 } from "vue";
 import { Bar } from "vue-chartjs";
-import entities from "../../source/entities.csv?raw";
+import entities from "../../source/entities.txt?raw";
 import {
   Chart as ChartJS,
   Title,
@@ -78,10 +76,18 @@ export default defineComponent({
 
     let meanN = [];
     const fetchEntity = async (entity) => {
-      console.debug(entity);
       entity = entity.toLowerCase().replace(/ /g, "+");
       const response = await fetch(`/${entity}.json`);
       meanN = await response.json();
+    };
+
+    const filterPosMeanN = () => {
+      posMeanN.splice(0);
+      meanN.forEach((meanN) => {
+        if (selectedPos.value === meanN.pos) {
+          posMeanN.push(meanN);
+        }
+      });
     };
 
     let posMeanN = reactive([]);
@@ -93,14 +99,14 @@ export default defineComponent({
         };
       }
 
-
       return {
         labels: posMeanN.map((meanN) => {
           return meanN.text;
         }),
+
         datasets: [
           {
-            label: 'Mean distances',
+            label: "Mean distances",
             data: posMeanN.map((meanN) => {
               return meanN.distance;
             }),
@@ -111,19 +117,15 @@ export default defineComponent({
 
     onMounted(async () => {
       await fetchEntity(selectedEntity.value);
-      watch(selectedPos, () => {
-        posMeanN.splice(0);
 
-        meanN.forEach((meanN) => {
-          if (selectedPos.value === meanN.pos) {
-            posMeanN.push(meanN);
-          }
-        });
+      watch(selectedPos, () => {
+        filterPosMeanN();
       });
       selectedPos.value = "NOUN";
 
       watch(selectedEntity, async (entity) => {
         await fetchEntity(entity);
+        filterPosMeanN();
       });
     });
 

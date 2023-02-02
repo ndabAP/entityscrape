@@ -1,0 +1,6 @@
+Donald Trump,Trump
+ISIS
+Barack Obama,Obama
+Vladimir Putin,Putin
+Xi Jinping,Xi,Jinping
+North Korea,North Korean,North Korea
