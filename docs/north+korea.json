@@ -1,23 +1,8 @@
 [
  {
-  "distance": 2,
-  "pos": "ADJ",
-  "text": "bigger"
- },
- {
   "distance": 5,
   "pos": "ADJ",
   "text": "Syrian"
- },
- {
-  "distance": 5,
-  "pos": "ADJ",
-  "text": "terrorist"
- },
- {
-  "distance": 13,
-  "pos": "ADJ",
-  "text": "Mass"
  },
  {
   "distance": 17,
@@ -25,229 +10,219 @@
   "text": "extreme"
  },
  {
-  "distance": 17,
+  "distance": 25,
   "pos": "ADJ",
-  "text": "Low"
+  "text": "federal"
  },
  {
-  "distance": 23,
+  "distance": 39,
   "pos": "ADJ",
-  "text": "accurate"
+  "text": "tough"
  },
  {
-  "distance": 28,
+  "distance": 42.5,
   "pos": "ADJ",
-  "text": "functional"
+  "text": "right"
  },
  {
-  "distance": 29,
+  "distance": 49,
   "pos": "ADJ",
-  "text": "Canadian"
+  "text": "simple"
  },
  {
-  "distance": 29,
+  "distance": 63,
   "pos": "ADJ",
-  "text": "onerous"
+  "text": "insensitive"
  },
  {
-  "distance": 35,
-  "pos": "ADP",
-  "text": "Of"
+  "distance": 74,
+  "pos": "ADJ",
+  "text": "male"
  },
  {
-  "distance": 64,
+  "distance": 79,
+  "pos": "ADJ",
+  "text": "original"
+ },
+ {
+  "distance": 96.5,
+  "pos": "ADJ",
+  "text": "discriminatory"
+ },
+ {
+  "distance": 69,
   "pos": "ADP",
   "text": "via"
  },
  {
-  "distance": 69.5,
+  "distance": 71,
   "pos": "ADP",
   "text": "throughout"
  },
  {
-  "distance": 95.5,
+  "distance": 86,
   "pos": "ADP",
-  "text": "down"
+  "text": "Since"
  },
  {
-  "distance": 98.71428571428571,
+  "distance": 133,
   "pos": "ADP",
-  "text": "Amid"
+  "text": "under"
  },
  {
-  "distance": 100,
+  "distance": 139.16666666666666,
   "pos": "ADP",
-  "text": "upon"
+  "text": "between"
  },
  {
-  "distance": 101.0909090909091,
+  "distance": 161,
   "pos": "ADP",
-  "text": "Under"
+  "text": "Despite"
  },
  {
-  "distance": 121,
+  "distance": 191,
   "pos": "ADP",
-  "text": "Until"
+  "text": "because"
  },
  {
-  "distance": 157.4,
+  "distance": 195.375,
   "pos": "ADP",
-  "text": "Besides"
+  "text": "if"
  },
  {
-  "distance": 158.06666666666666,
+  "distance": 198.5,
   "pos": "ADP",
-  "text": "Although"
+  "text": "behind"
  },
  {
-  "distance": 9,
-  "pos": "ADV",
-  "text": "matter"
+  "distance": 211,
+  "pos": "ADP",
+  "text": "by"
  },
  {
-  "distance": 13,
-  "pos": "ADV",
-  "text": "barely"
- },
- {
-  "distance": 27,
-  "pos": "ADV",
-  "text": "undoubtedly"
- },
- {
-  "distance": 30,
-  "pos": "ADV",
-  "text": "afterward"
- },
- {
-  "distance": 44,
-  "pos": "ADV",
-  "text": "Directly"
- },
- {
-  "distance": 51,
-  "pos": "ADV",
-  "text": "gradually"
- },
- {
-  "distance": 56,
-  "pos": "ADV",
-  "text": "understandably"
- },
- {
-  "distance": 60,
+  "distance": 61,
   "pos": "ADV",
   "text": "perhaps"
  },
  {
-  "distance": 62.5,
+  "distance": 62,
   "pos": "ADV",
-  "text": "greatly"
+  "text": "too"
  },
  {
-  "distance": 63,
+  "distance": 68,
   "pos": "ADV",
-  "text": "heavily"
+  "text": "far"
  },
  {
-  "distance": 29.666666666666668,
-  "pos": "CONJ",
-  "text": "either"
+  "distance": 105,
+  "pos": "ADV",
+  "text": "indeed"
  },
  {
-  "distance": 92.6,
-  "pos": "CONJ",
-  "text": "So"
+  "distance": 112,
+  "pos": "ADV",
+  "text": "Then"
  },
  {
-  "distance": 93.5,
-  "pos": "CONJ",
-  "text": "so"
+  "distance": 140,
+  "pos": "ADV",
+  "text": "north"
  },
  {
-  "distance": 133.375,
-  "pos": "CONJ",
-  "text": "neither"
+  "distance": 151.22222222222223,
+  "pos": "ADV",
+  "text": "behind"
  },
  {
-  "distance": 192.05882352941177,
-  "pos": "CONJ",
-  "text": "nor"
+  "distance": 162.14285714285714,
+  "pos": "ADV",
+  "text": "never"
  },
  {
-  "distance": 235.47460595446586,
+  "distance": 170,
+  "pos": "ADV",
+  "text": "ahead"
+ },
+ {
+  "distance": 178,
+  "pos": "ADV",
+  "text": "completely"
+ },
+ {
+  "distance": 252.44444444444446,
   "pos": "CONJ",
   "text": "but"
  },
  {
-  "distance": 247.67052023121389,
-  "pos": "CONJ",
-  "text": "But"
- },
- {
-  "distance": 262.46325936704255,
+  "distance": 331.25,
   "pos": "CONJ",
   "text": "and"
  },
  {
-  "distance": 281.36813186813185,
+  "distance": 417.25,
+  "pos": "CONJ",
+  "text": "But"
+ },
+ {
+  "distance": 450.5,
   "pos": "CONJ",
   "text": "or"
  },
  {
-  "distance": 291.5,
-  "pos": "CONJ",
-  "text": "\u0026"
- },
- {
-  "distance": 66.5,
-  "pos": "DET",
-  "text": "half"
- },
- {
-  "distance": 102.57142857142857,
+  "distance": 84,
   "pos": "DET",
   "text": "Another"
  },
  {
-  "distance": 109,
+  "distance": 154.66666666666666,
   "pos": "DET",
-  "text": "All"
+  "text": "A"
  },
  {
-  "distance": 172.2753623188406,
+  "distance": 181.4,
+  "pos": "DET",
+  "text": "another"
+ },
+ {
+  "distance": 194.55555555555554,
+  "pos": "DET",
+  "text": "no"
+ },
+ {
+  "distance": 201.25,
+  "pos": "DET",
+  "text": "any"
+ },
+ {
+  "distance": 211.14285714285714,
   "pos": "DET",
   "text": "both"
  },
  {
-  "distance": 172.91379310344828,
-  "pos": "DET",
-  "text": "An"
- },
- {
-  "distance": 175.78571428571428,
-  "pos": "DET",
-  "text": "neither"
- },
- {
-  "distance": 181.16666666666666,
-  "pos": "DET",
-  "text": "every"
- },
- {
-  "distance": 192.22222222222223,
-  "pos": "DET",
-  "text": "Both"
- },
- {
-  "distance": 206,
+  "distance": 213,
   "pos": "DET",
   "text": "Those"
  },
  {
-  "distance": 206.57142857142858,
+  "distance": 249.3684210526316,
   "pos": "DET",
-  "text": "what"
+  "text": "that"
+ },
+ {
+  "distance": 308.06666666666666,
+  "pos": "DET",
+  "text": "a"
+ },
+ {
+  "distance": 325,
+  "pos": "DET",
+  "text": "The"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "Kim"
  },
  {
   "distance": 1,
@@ -257,22 +232,17 @@
  {
   "distance": 2,
   "pos": "NOUN",
-  "text": "usage"
- },
- {
-  "distance": 2,
-  "pos": "NOUN",
-  "text": "documentary"
- },
- {
-  "distance": 2,
-  "pos": "NOUN",
   "text": "al"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "Jong"
  },
  {
   "distance": 3,
   "pos": "NOUN",
-  "text": "Uzbekistan"
+  "text": "Un"
  },
  {
   "distance": 3,
@@ -280,159 +250,169 @@
   "text": "Bashar"
  },
  {
-  "distance": 4,
+  "distance": 7,
   "pos": "NOUN",
-  "text": "prize"
+  "text": "aim"
  },
  {
-  "distance": 5,
+  "distance": 11,
   "pos": "NOUN",
-  "text": "Sudan"
+  "text": "shelters"
  },
  {
-  "distance": 5,
+  "distance": 12,
   "pos": "NOUN",
-  "text": "Emirates"
- },
- {
-  "distance": 6,
-  "pos": "NOUN",
-  "text": "Arab"
- },
- {
-  "distance": 9,
-  "pos": "NUM",
-  "text": "zero"
+  "text": "refugee"
  },
  {
   "distance": 14,
-  "pos": "NUM",
-  "text": "1,340,000"
+  "pos": "NOUN",
+  "text": "attacks"
  },
  {
-  "distance": 24,
+  "distance": 58.6,
   "pos": "NUM",
-  "text": "4,571"
+  "text": "2016"
+ },
+ {
+  "distance": 135.66666666666666,
+  "pos": "NUM",
+  "text": "20"
+ },
+ {
+  "distance": 163.5,
+  "pos": "NUM",
+  "text": "one"
+ },
+ {
+  "distance": 167,
+  "pos": "NUM",
+  "text": "2017"
+ },
+ {
+  "distance": 172,
+  "pos": "NUM",
+  "text": "5"
+ },
+ {
+  "distance": 172.66666666666666,
+  "pos": "NUM",
+  "text": "2018"
+ },
+ {
+  "distance": 177.66666666666666,
+  "pos": "NUM",
+  "text": "ten"
+ },
+ {
+  "distance": 181.66666666666666,
+  "pos": "NUM",
+  "text": "800"
+ },
+ {
+  "distance": 213.33333333333334,
+  "pos": "NUM",
+  "text": "$1"
+ },
+ {
+  "distance": 213.66666666666666,
+  "pos": "NUM",
+  "text": "trillion"
  },
  {
   "distance": 28,
-  "pos": "NUM",
-  "text": "1997"
- },
- {
-  "distance": 29,
-  "pos": "NUM",
-  "text": "1.3"
+  "pos": "PRON",
+  "text": "whom"
  },
  {
   "distance": 37,
-  "pos": "NUM",
-  "text": "1,367"
- },
- {
-  "distance": 41,
-  "pos": "NUM",
-  "text": "202"
- },
- {
-  "distance": 43,
-  "pos": "NUM",
-  "text": "1,796"
- },
- {
-  "distance": 51,
-  "pos": "NUM",
-  "text": "1975"
- },
- {
-  "distance": 52,
-  "pos": "NUM",
-  "text": "14"
- },
- {
-  "distance": 41,
   "pos": "PRON",
-  "text": "YOU"
+  "text": "she"
  },
  {
-  "distance": 167.0888888888889,
+  "distance": 140.66666666666666,
   "pos": "PRON",
-  "text": "Who"
+  "text": "I"
  },
  {
-  "distance": 168.57142857142858,
+  "distance": 191,
   "pos": "PRON",
-  "text": "itself"
+  "text": "we"
  },
  {
-  "distance": 177.55555555555554,
+  "distance": 228.83333333333334,
   "pos": "PRON",
-  "text": "it."
+  "text": "It"
  },
  {
-  "distance": 188,
-  "pos": "PRON",
-  "text": "themselves"
- },
- {
-  "distance": 189,
-  "pos": "PRON",
-  "text": "whomever"
- },
- {
-  "distance": 204.74647887323943,
-  "pos": "PRON",
-  "text": "you"
- },
- {
-  "distance": 205,
+  "distance": 233.33333333333334,
   "pos": "PRON",
   "text": "me"
  },
  {
-  "distance": 206,
+  "distance": 235,
   "pos": "PRON",
-  "text": "Their"
+  "text": "themselves"
  },
  {
-  "distance": 212.33333333333334,
+  "distance": 243.14285714285714,
+  "pos": "PRON",
+  "text": "he"
+ },
+ {
+  "distance": 252.66666666666666,
   "pos": "PRON",
   "text": "We"
  },
  {
-  "distance": 5,
-  "pos": "VERB",
-  "text": "increasing"
+  "distance": 257.46153846153845,
+  "pos": "PRON",
+  "text": "its"
  },
  {
-  "distance": 6,
-  "pos": "VERB",
-  "text": "exposed"
+  "distance": 131.33333333333334,
+  "pos": "PRT",
+  "text": "in"
  },
  {
-  "distance": 9,
-  "pos": "VERB",
-  "text": "grapples"
+  "distance": 195,
+  "pos": "PRT",
+  "text": "on"
  },
  {
-  "distance": 9,
-  "pos": "VERB",
-  "text": "joined"
+  "distance": 199.125,
+  "pos": "PRT",
+  "text": "up"
  },
  {
-  "distance": 11,
-  "pos": "VERB",
-  "text": "joins"
+  "distance": 232.9402985074627,
+  "pos": "PRT",
+  "text": "to"
  },
  {
-  "distance": 14,
-  "pos": "VERB",
-  "text": "pending"
+  "distance": 350,
+  "pos": "PRT",
+  "text": "down"
  },
  {
-  "distance": 15,
-  "pos": "VERB",
-  "text": "outlast"
+  "distance": 369,
+  "pos": "PRT",
+  "text": "out"
+ },
+ {
+  "distance": 436.9230769230769,
+  "pos": "PRT",
+  "text": "'s"
+ },
+ {
+  "distance": 565,
+  "pos": "PRT",
+  "text": "'"
+ },
+ {
+  "distance": 972,
+  "pos": "PRT",
+  "text": "away"
  },
  {
   "distance": 16,
@@ -440,13 +420,48 @@
   "text": "burns"
  },
  {
-  "distance": 19,
+  "distance": 21,
   "pos": "VERB",
-  "text": "upended"
+  "text": "attacking"
  },
  {
-  "distance": 20.5,
+  "distance": 23,
   "pos": "VERB",
-  "text": "tasked"
+  "text": "showing"
+ },
+ {
+  "distance": 29,
+  "pos": "VERB",
+  "text": "appeared"
+ },
+ {
+  "distance": 34,
+  "pos": "VERB",
+  "text": "crack"
+ },
+ {
+  "distance": 37,
+  "pos": "VERB",
+  "text": "praised"
+ },
+ {
+  "distance": 42,
+  "pos": "VERB",
+  "text": "working"
+ },
+ {
+  "distance": 44,
+  "pos": "VERB",
+  "text": "supported"
+ },
+ {
+  "distance": 47,
+  "pos": "VERB",
+  "text": "shows"
+ },
+ {
+  "distance": 55,
+  "pos": "VERB",
+  "text": "thinks"
  }
 ]
