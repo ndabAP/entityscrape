@@ -5,9 +5,19 @@
   "text": "ex-election"
  },
  {
-  "distance": 3,
+  "distance": 2,
   "pos": "ADJ",
-  "text": "45th"
+  "text": "under"
+ },
+ {
+  "distance": 4,
+  "pos": "ADJ",
+  "text": "politicized"
+ },
+ {
+  "distance": 5,
+  "pos": "ADJ",
+  "text": "forceful"
  },
  {
   "distance": 5,
@@ -15,9 +25,9 @@
   "text": "reflationary"
  },
  {
-  "distance": 9,
+  "distance": 10,
   "pos": "ADJ",
-  "text": "mired"
+  "text": "homophobic"
  },
  {
   "distance": 10,
@@ -25,14 +35,14 @@
   "text": "Controversial"
  },
  {
-  "distance": 10,
+  "distance": 12,
   "pos": "ADJ",
-  "text": "homophobic"
+  "text": "glorious"
  },
  {
   "distance": 12,
   "pos": "ADJ",
-  "text": "Ordinary"
+  "text": "belligerent"
  },
  {
   "distance": 14,
@@ -40,214 +50,209 @@
   "text": "longwinded"
  },
  {
-  "distance": 14,
-  "pos": "ADJ",
-  "text": "stony"
- },
- {
-  "distance": 15,
-  "pos": "ADJ",
-  "text": "faced"
- },
- {
-  "distance": 23.75,
+  "distance": 24.5,
   "pos": "ADP",
   "text": "Via"
  },
  {
-  "distance": 50.5,
+  "distance": 53,
   "pos": "ADP",
   "text": "regon"
  },
  {
-  "distance": 71.4,
+  "distance": 73.2,
   "pos": "ADP",
   "text": "whilst"
  },
  {
-  "distance": 87,
+  "distance": 88.5,
   "pos": "ADP",
-  "text": "IF"
+  "text": "Whilst"
  },
  {
-  "distance": 99,
+  "distance": 100,
   "pos": "ADP",
   "text": "minus"
  },
  {
-  "distance": 102,
+  "distance": 106,
   "pos": "ADP",
   "text": "BEFORE"
  },
  {
-  "distance": 112,
-  "pos": "ADP",
-  "text": "Underneath"
- },
- {
-  "distance": 144.72727272727272,
+  "distance": 146.45454545454547,
   "pos": "ADP",
   "text": "t a"
  },
  {
-  "distance": 153.25,
+  "distance": 149,
+  "pos": "ADP",
+  "text": "vs."
+ },
+ {
+  "distance": 157.75,
   "pos": "ADP",
   "text": "Near"
  },
  {
-  "distance": 154.8,
+  "distance": 158.2,
   "pos": "ADP",
   "text": "cause"
  },
  {
-  "distance": 7.666666666666667,
+  "distance": 8,
   "pos": "ADV",
   "text": "lightheartedly"
  },
  {
-  "distance": 12,
+  "distance": 13,
   "pos": "ADV",
   "text": "Aesthetically"
  },
  {
-  "distance": 12,
+  "distance": 20,
   "pos": "ADV",
-  "text": "fatally"
+  "text": "organically"
  },
  {
-  "distance": 13,
-  "pos": "ADV",
-  "text": "noticeably"
- },
- {
-  "distance": 27,
+  "distance": 27.5,
   "pos": "ADV",
   "text": "remotely"
  },
  {
-  "distance": 29.666666666666668,
+  "distance": 31,
   "pos": "ADV",
   "text": "Seriously"
  },
  {
-  "distance": 34,
+  "distance": 32,
   "pos": "ADV",
-  "text": "namely"
+  "text": "patiently"
  },
  {
-  "distance": 34.8,
+  "distance": 36.2,
   "pos": "ADV",
   "text": "Full"
  },
  {
-  "distance": 36.5,
+  "distance": 39,
   "pos": "ADV",
   "text": "below."
  },
  {
-  "distance": 44.666666666666664,
+  "distance": 46,
   "pos": "ADV",
   "text": "funnily"
  },
  {
-  "distance": 191.02857142857144,
+  "distance": 47.333333333333336,
+  "pos": "ADV",
+  "text": "periodically"
+ },
+ {
+  "distance": 183.0759493670886,
   "pos": "CONJ",
   "text": "Both"
  },
  {
-  "distance": 222.06666666666666,
-  "pos": "CONJ",
-  "text": "minus"
- },
- {
-  "distance": 224.5,
+  "distance": 230.625,
   "pos": "CONJ",
   "text": "n"
  },
  {
-  "distance": 263.44,
+  "distance": 245.03030303030303,
   "pos": "CONJ",
   "text": "plus"
  },
  {
-  "distance": 287.6666666666667,
+  "distance": 259.88,
+  "pos": "CONJ",
+  "text": "minus"
+ },
+ {
+  "distance": 299,
   "pos": "CONJ",
   "text": "nay"
  },
  {
-  "distance": 315.8857142857143,
-  "pos": "CONJ",
-  "text": "AND"
- },
- {
-  "distance": 335.77286135693214,
-  "pos": "CONJ",
-  "text": "either"
- },
- {
-  "distance": 339.6111111111111,
-  "pos": "CONJ",
-  "text": "Nor"
- },
- {
-  "distance": 355.43956043956047,
-  "pos": "CONJ",
-  "text": "neither"
- },
- {
-  "distance": 355.5677083333333,
+  "distance": 310.6,
   "pos": "CONJ",
   "text": "Yet"
  },
  {
-  "distance": 11,
+  "distance": 331.51162790697674,
+  "pos": "CONJ",
+  "text": "AND"
+ },
+ {
+  "distance": 354.4347826086956,
+  "pos": "CONJ",
+  "text": "Nor"
+ },
+ {
+  "distance": 358.68359375,
+  "pos": "CONJ",
+  "text": "\u0026"
+ },
+ {
+  "distance": 360.3368983957219,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 12,
   "pos": "DET",
   "text": "credit."
  },
  {
-  "distance": 80.33333333333333,
+  "distance": 81.66666666666667,
   "pos": "DET",
   "text": "a a"
  },
  {
-  "distance": 88,
+  "distance": 91,
   "pos": "DET",
   "text": "nevertherless"
  },
  {
-  "distance": 108.75,
+  "distance": 111.66666666666667,
   "pos": "DET",
   "text": "Ler"
  },
  {
-  "distance": 113,
-  "pos": "DET",
-  "text": "te"
- },
- {
-  "distance": 126.33333333333333,
+  "distance": 130,
   "pos": "DET",
   "text": "he"
  },
  {
-  "distance": 132.2,
+  "distance": 140,
   "pos": "DET",
   "text": "hina"
  },
  {
-  "distance": 139,
+  "distance": 143.5,
   "pos": "DET",
   "text": "$30,000"
  },
  {
-  "distance": 154,
+  "distance": 159,
   "pos": "DET",
   "text": "genuine."
  },
  {
-  "distance": 158.75,
+  "distance": 160.25,
   "pos": "DET",
   "text": "proverbially"
+ },
+ {
+  "distance": 165.41666666666666,
+  "pos": "DET",
+  "text": "$1"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "hereafter"
  },
  {
   "distance": 3,
@@ -255,34 +260,9 @@
   "text": "pier"
  },
  {
-  "distance": 3,
-  "pos": "NOUN",
-  "text": "Scaramucci"
- },
- {
-  "distance": 4,
-  "pos": "NOUN",
-  "text": "Pang"
- },
- {
   "distance": 5,
   "pos": "NOUN",
   "text": "proverbs"
- },
- {
-  "distance": 5,
-  "pos": "NOUN",
-  "text": "toe"
- },
- {
-  "distance": 5,
-  "pos": "NOUN",
-  "text": "Marr"
- },
- {
-  "distance": 5,
-  "pos": "NOUN",
-  "text": "Guoteng"
  },
  {
   "distance": 6,
@@ -292,12 +272,32 @@
  {
   "distance": 6,
   "pos": "NOUN",
-  "text": "Dakotas"
+  "text": "Marr"
  },
  {
   "distance": 7,
   "pos": "NOUN",
   "text": "abstention"
+ },
+ {
+  "distance": 8,
+  "pos": "NOUN",
+  "text": "Anybody"
+ },
+ {
+  "distance": 8,
+  "pos": "NOUN",
+  "text": "itseld"
+ },
+ {
+  "distance": 8,
+  "pos": "NOUN",
+  "text": "course."
+ },
+ {
+  "distance": 8,
+  "pos": "NOUN",
+  "text": "Solutions"
  },
  {
   "distance": 9,
@@ -315,24 +315,9 @@
   "text": "719"
  },
  {
-  "distance": 23,
-  "pos": "NUM",
-  "text": "$22"
- },
- {
   "distance": 27,
   "pos": "NUM",
   "text": "84"
- },
- {
-  "distance": 27.5,
-  "pos": "NUM",
-  "text": "11.07."
- },
- {
-  "distance": 28,
-  "pos": "NUM",
-  "text": "6.1"
  },
  {
   "distance": 29,
@@ -342,62 +327,127 @@
  {
   "distance": 32,
   "pos": "NUM",
-  "text": "14.02."
- },
- {
-  "distance": 32,
-  "pos": "NUM",
   "text": "86"
  },
  {
-  "distance": 107.53125,
-  "pos": "PRON",
-  "text": "u"
+  "distance": 33.333333333333336,
+  "pos": "NUM",
+  "text": "14.02."
  },
  {
-  "distance": 133.71428571428572,
-  "pos": "PRON",
-  "text": "em"
+  "distance": 36,
+  "pos": "NUM",
+  "text": "28."
  },
  {
-  "distance": 147.55,
-  "pos": "PRON",
-  "text": "yours"
+  "distance": 41,
+  "pos": "NUM",
+  "text": "5.1"
  },
  {
-  "distance": 167.52380952380952,
-  "pos": "PRON",
-  "text": "i"
+  "distance": 41,
+  "pos": "NUM",
+  "text": "127"
  },
  {
-  "distance": 172.67567567567568,
-  "pos": "PRON",
-  "text": "yourself"
- },
- {
-  "distance": 184.21052631578948,
-  "pos": "PRON",
-  "text": "YOUR"
- },
- {
-  "distance": 185.25,
-  "pos": "PRON",
-  "text": "it."
- },
- {
-  "distance": 188.28571428571428,
+  "distance": 45,
   "pos": "PRON",
   "text": "ours"
  },
  {
-  "distance": 206.14285714285714,
+  "distance": 138,
+  "pos": "PRON",
+  "text": "u"
+ },
+ {
+  "distance": 146.52941176470588,
+  "pos": "PRON",
+  "text": "it."
+ },
+ {
+  "distance": 163.65,
+  "pos": "PRON",
+  "text": "yourself"
+ },
+ {
+  "distance": 182.84615384615384,
+  "pos": "PRON",
+  "text": "IT"
+ },
+ {
+  "distance": 190.26315789473685,
+  "pos": "PRON",
+  "text": "YOUR"
+ },
+ {
+  "distance": 205,
+  "pos": "PRON",
+  "text": "yours"
+ },
+ {
+  "distance": 214.71428571428572,
   "pos": "PRON",
   "text": "SHE"
  },
  {
-  "distance": 230.42105263157896,
+  "distance": 234.5625,
   "pos": "PRON",
-  "text": "IT"
+  "text": "whatever"
+ },
+ {
+  "distance": 251.9090909090909,
+  "pos": "PRON",
+  "text": "s"
+ },
+ {
+  "distance": 34,
+  "pos": "PRT",
+  "text": "ago."
+ },
+ {
+  "distance": 59.5,
+  "pos": "PRT",
+  "text": "pero"
+ },
+ {
+  "distance": 71.5,
+  "pos": "PRT",
+  "text": "loathe"
+ },
+ {
+  "distance": 151,
+  "pos": "PRT",
+  "text": "open"
+ },
+ {
+  "distance": 184,
+  "pos": "PRT",
+  "text": "along"
+ },
+ {
+  "distance": 197.55555555555554,
+  "pos": "PRT",
+  "text": "helpful."
+ },
+ {
+  "distance": 207.14285714285714,
+  "pos": "PRT",
+  "text": "party."
+ },
+ {
+  "distance": 211.12,
+  "pos": "PRT",
+  "text": "forth"
+ },
+ {
+  "distance": 218,
+  "pos": "PRT",
+  "text": "Out"
+ },
+ {
+  "distance": 225.78571428571428,
+  "pos": "PRT",
+  "text": "test."
  },
  {
   "distance": 1,
@@ -405,19 +455,9 @@
   "text": "reevaluating"
  },
  {
-  "distance": 1,
+  "distance": 6,
   "pos": "VERB",
-  "text": "souring"
- },
- {
-  "distance": 5,
-  "pos": "VERB",
-  "text": "detailed"
- },
- {
-  "distance": 5,
-  "pos": "VERB",
-  "text": "stifle"
+  "text": "foster"
  },
  {
   "distance": 7,
@@ -425,14 +465,19 @@
   "text": "rekindle"
  },
  {
-  "distance": 10,
+  "distance": 8,
   "pos": "VERB",
-  "text": "spoofed"
+  "text": "withdrawing"
  },
  {
   "distance": 10,
   "pos": "VERB",
   "text": "leaks"
+ },
+ {
+  "distance": 10,
+  "pos": "VERB",
+  "text": "spoofed"
  },
  {
   "distance": 11,
@@ -442,11 +487,16 @@
  {
   "distance": 12,
   "pos": "VERB",
-  "text": "confronts"
+  "text": "transported"
  },
  {
   "distance": 12,
   "pos": "VERB",
-  "text": "derailed"
+  "text": "confronts"
+ },
+ {
+  "distance": 13,
+  "pos": "VERB",
+  "text": "exposes"
  }
 ]

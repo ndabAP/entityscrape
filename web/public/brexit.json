@@ -1,0 +1,502 @@
+[
+ {
+  "distance": 2,
+  "pos": "ADJ",
+  "text": "affected"
+ },
+ {
+  "distance": 2,
+  "pos": "ADJ",
+  "text": "light"
+ },
+ {
+  "distance": 2,
+  "pos": "ADJ",
+  "text": "politicized"
+ },
+ {
+  "distance": 4,
+  "pos": "ADJ",
+  "text": "under"
+ },
+ {
+  "distance": 5,
+  "pos": "ADJ",
+  "text": "Controversial"
+ },
+ {
+  "distance": 7,
+  "pos": "ADJ",
+  "text": "transferable"
+ },
+ {
+  "distance": 9,
+  "pos": "ADJ",
+  "text": "authoritarian"
+ },
+ {
+  "distance": 9,
+  "pos": "ADJ",
+  "text": "Underwater"
+ },
+ {
+  "distance": 10,
+  "pos": "ADJ",
+  "text": "pre-Article"
+ },
+ {
+  "distance": 14,
+  "pos": "ADJ",
+  "text": "excessive"
+ },
+ {
+  "distance": 23,
+  "pos": "ADP",
+  "text": "So"
+ },
+ {
+  "distance": 53,
+  "pos": "ADP",
+  "text": "Between"
+ },
+ {
+  "distance": 57,
+  "pos": "ADP",
+  "text": "Unless"
+ },
+ {
+  "distance": 63,
+  "pos": "ADP",
+  "text": "Among"
+ },
+ {
+  "distance": 81,
+  "pos": "ADP",
+  "text": "Until"
+ },
+ {
+  "distance": 109.5,
+  "pos": "ADP",
+  "text": "instead"
+ },
+ {
+  "distance": 132.6,
+  "pos": "ADP",
+  "text": "apart"
+ },
+ {
+  "distance": 144.25,
+  "pos": "ADP",
+  "text": "above"
+ },
+ {
+  "distance": 158,
+  "pos": "ADP",
+  "text": "Once"
+ },
+ {
+  "distance": 160.5,
+  "pos": "ADP",
+  "text": "unlike"
+ },
+ {
+  "distance": 2,
+  "pos": "ADV",
+  "text": "sort"
+ },
+ {
+  "distance": 7,
+  "pos": "ADV",
+  "text": "substantially"
+ },
+ {
+  "distance": 9,
+  "pos": "ADV",
+  "text": "Worse"
+ },
+ {
+  "distance": 14,
+  "pos": "ADV",
+  "text": "consistently"
+ },
+ {
+  "distance": 17,
+  "pos": "ADV",
+  "text": "naturally"
+ },
+ {
+  "distance": 26.5,
+  "pos": "ADV",
+  "text": "unceremoniously"
+ },
+ {
+  "distance": 26.5,
+  "pos": "ADV",
+  "text": "consequentially"
+ },
+ {
+  "distance": 31,
+  "pos": "ADV",
+  "text": "Notably"
+ },
+ {
+  "distance": 33,
+  "pos": "ADV",
+  "text": "strictly"
+ },
+ {
+  "distance": 34,
+  "pos": "ADV",
+  "text": "unsuccessfully"
+ },
+ {
+  "distance": 262.5,
+  "pos": "CONJ",
+  "text": "Nor"
+ },
+ {
+  "distance": 266.1111111111111,
+  "pos": "CONJ",
+  "text": "Yet"
+ },
+ {
+  "distance": 269.4193548387097,
+  "pos": "CONJ",
+  "text": "Or"
+ },
+ {
+  "distance": 278.1,
+  "pos": "CONJ",
+  "text": "so"
+ },
+ {
+  "distance": 298.025,
+  "pos": "CONJ",
+  "text": "nor"
+ },
+ {
+  "distance": 303.74074074074076,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 315.875,
+  "pos": "CONJ",
+  "text": "neither"
+ },
+ {
+  "distance": 321.4830985915493,
+  "pos": "CONJ",
+  "text": "But"
+ },
+ {
+  "distance": 321.8864611260054,
+  "pos": "CONJ",
+  "text": "and"
+ },
+ {
+  "distance": 329.2851445663011,
+  "pos": "CONJ",
+  "text": "but"
+ },
+ {
+  "distance": 71,
+  "pos": "DET",
+  "text": "nary"
+ },
+ {
+  "distance": 89,
+  "pos": "DET",
+  "text": "nevertherless"
+ },
+ {
+  "distance": 106,
+  "pos": "DET",
+  "text": "2014before"
+ },
+ {
+  "distance": 117,
+  "pos": "DET",
+  "text": "for."
+ },
+ {
+  "distance": 179,
+  "pos": "DET",
+  "text": "Every"
+ },
+ {
+  "distance": 189.92307692307693,
+  "pos": "DET",
+  "text": "Which"
+ },
+ {
+  "distance": 197.16666666666666,
+  "pos": "DET",
+  "text": "Those"
+ },
+ {
+  "distance": 235.15384615384616,
+  "pos": "DET",
+  "text": "either"
+ },
+ {
+  "distance": 262.85714285714283,
+  "pos": "DET",
+  "text": "Another"
+ },
+ {
+  "distance": 270.5217391304348,
+  "pos": "DET",
+  "text": "what"
+ },
+ {
+  "distance": 1,
+  "pos": "NOUN",
+  "text": "Riyadh"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "eurosceptics"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "wildcard"
+ },
+ {
+  "distance": 2,
+  "pos": "NOUN",
+  "text": "leanings"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "30s"
+ },
+ {
+  "distance": 3,
+  "pos": "NOUN",
+  "text": "extra"
+ },
+ {
+  "distance": 4,
+  "pos": "NOUN",
+  "text": "input"
+ },
+ {
+  "distance": 5,
+  "pos": "NOUN",
+  "text": "LGBTQ"
+ },
+ {
+  "distance": 5,
+  "pos": "NOUN",
+  "text": "SMMT"
+ },
+ {
+  "distance": 6,
+  "pos": "NOUN",
+  "text": "fits"
+ },
+ {
+  "distance": 4,
+  "pos": "NUM",
+  "text": "1.10"
+ },
+ {
+  "distance": 5,
+  "pos": "NUM",
+  "text": "13.02."
+ },
+ {
+  "distance": 17,
+  "pos": "NUM",
+  "text": "19,924"
+ },
+ {
+  "distance": 23,
+  "pos": "NUM",
+  "text": "81"
+ },
+ {
+  "distance": 23,
+  "pos": "NUM",
+  "text": "12.5"
+ },
+ {
+  "distance": 27,
+  "pos": "NUM",
+  "text": "12.9"
+ },
+ {
+  "distance": 27,
+  "pos": "NUM",
+  "text": "59,000"
+ },
+ {
+  "distance": 28,
+  "pos": "NUM",
+  "text": "1.66"
+ },
+ {
+  "distance": 30,
+  "pos": "NUM",
+  "text": "01.03."
+ },
+ {
+  "distance": 30,
+  "pos": "NUM",
+  "text": "21.3"
+ },
+ {
+  "distance": 129.33333333333334,
+  "pos": "PRON",
+  "text": "whoever"
+ },
+ {
+  "distance": 180.53571428571428,
+  "pos": "PRON",
+  "text": "Its"
+ },
+ {
+  "distance": 185.76666666666668,
+  "pos": "PRON",
+  "text": "ourselves"
+ },
+ {
+  "distance": 209.6,
+  "pos": "PRON",
+  "text": "My"
+ },
+ {
+  "distance": 217.625,
+  "pos": "PRON",
+  "text": "myself"
+ },
+ {
+  "distance": 225.0810810810811,
+  "pos": "PRON",
+  "text": "Her"
+ },
+ {
+  "distance": 233.64245810055866,
+  "pos": "PRON",
+  "text": "my"
+ },
+ {
+  "distance": 242.4,
+  "pos": "PRON",
+  "text": "herself"
+ },
+ {
+  "distance": 250.23333333333332,
+  "pos": "PRON",
+  "text": "himself"
+ },
+ {
+  "distance": 250.44444444444446,
+  "pos": "PRON",
+  "text": "Their"
+ },
+ {
+  "distance": 43,
+  "pos": "PRT",
+  "text": "ta"
+ },
+ {
+  "distance": 188.88524590163934,
+  "pos": "PRT",
+  "text": "To"
+ },
+ {
+  "distance": 215.5,
+  "pos": "PRT",
+  "text": "by"
+ },
+ {
+  "distance": 230.10714285714286,
+  "pos": "PRT",
+  "text": "in"
+ },
+ {
+  "distance": 240.92857142857142,
+  "pos": "PRT",
+  "text": "about"
+ },
+ {
+  "distance": 247,
+  "pos": "PRT",
+  "text": "away"
+ },
+ {
+  "distance": 279.29545454545456,
+  "pos": "PRT",
+  "text": "on"
+ },
+ {
+  "distance": 282.1559139784946,
+  "pos": "PRT",
+  "text": "down"
+ },
+ {
+  "distance": 290.0742548818088,
+  "pos": "PRT",
+  "text": "'s"
+ },
+ {
+  "distance": 304,
+  "pos": "PRT",
+  "text": "forward"
+ },
+ {
+  "distance": 3,
+  "pos": "VERB",
+  "text": "safeguard"
+ },
+ {
+  "distance": 4,
+  "pos": "VERB",
+  "text": "stem"
+ },
+ {
+  "distance": 4.5,
+  "pos": "VERB",
+  "text": "Remember"
+ },
+ {
+  "distance": 5,
+  "pos": "VERB",
+  "text": "undid"
+ },
+ {
+  "distance": 5,
+  "pos": "VERB",
+  "text": "awaits"
+ },
+ {
+  "distance": 6,
+  "pos": "VERB",
+  "text": "accompany"
+ },
+ {
+  "distance": 8,
+  "pos": "VERB",
+  "text": "relies"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "grappling"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "stalled"
+ },
+ {
+  "distance": 9,
+  "pos": "VERB",
+  "text": "braced"
+ }
+]

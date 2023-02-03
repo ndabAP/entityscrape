@@ -84,6 +84,8 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	entity := entities[0]
 	log.Printf("entity=%s", entity)
 
+	l := log.New(os.Stderr, entity+":", 0)
+
 	// Ignore articles without entity
 	temp := texts[:0]
 	for _, text := range texts {
@@ -92,9 +94,9 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 		}
 	}
 	texts = temp
-	log.Printf("len(texts)=%d", len(texts))
+	l.Printf("len(texts)=%d", len(texts))
 
-	poS := tokenize.ADJ | tokenize.ADP | tokenize.ADV | tokenize.CONJ | tokenize.DET | tokenize.NOUN | tokenize.NUM | tokenize.PRON | tokenize.VERB
+	poS := tokenize.ADJ | tokenize.ADP | tokenize.ADV | tokenize.CONJ | tokenize.DET | tokenize.NOUN | tokenize.NUM | tokenize.PRON | tokenize.PRT | tokenize.VERB
 	meanN, err := assocentity.MeanN(
 		context.Background(),
 		tokenizer,
@@ -103,18 +105,18 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 		entities,
 	)
 	if err != nil {
-		log.Fatal(err)
+		l.Fatal(err)
 	}
 
-	log.Printf("len(meanN)=%d", len(meanN))
+	l.Printf("len(meanN)=%d", len(meanN))
 
 	if len(meanN) == 0 {
-		log.Print("no meanN found, exiting")
+		l.Print("no meanN found, exiting")
 		os.Exit(0)
 	}
 
 	// Convert to slice to make it sortable
-	log.Println("convert to slice")
+	l.Println("convert to slice")
 	type meanNVal struct {
 		dist float64
 		tok  tokenize.Token
@@ -129,7 +131,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	}
 
 	// Sort by closest distance
-	log.Println("sort by pos and distance")
+	l.Println("sort by pos and distance")
 	sort.Slice(meanNVals, func(i, j int) bool {
 		if meanNVals[i].tok.PoS != meanNVals[j].tok.PoS {
 			return meanNVals[i].tok.PoS < meanNVals[j].tok.PoS
@@ -138,7 +140,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	})
 
 	// Top 10 per pos
-	log.Println("limit top 10")
+	l.Println("limit top 10")
 	type topMeanNVal struct {
 		Dist float64 `json:"distance"`
 		Pos  string  `json:"pos"`
@@ -160,18 +162,18 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 
 		poSCounter[meanNVal.tok.PoS] += 1
 	}
-	log.Printf("len(topMeanNVals)=%d", len(topMeanNVals))
+	l.Printf("len(topMeanNVals)=%d", len(topMeanNVals))
 
 	// Write top 10 to disk
-	log.Println("write to disk")
+	l.Println("write to disk")
 	file, err := json.MarshalIndent(&topMeanNVals, "", " ")
 	if err != nil {
-		log.Fatal(err)
+		l.Fatal(err)
 	}
 	name := url.QueryEscape(strings.ToLower(entity))
 	path := filepath.Join("web/public", name+".json")
 	if err := os.WriteFile(path, file, 0600); err != nil {
-		log.Fatal(err)
+		l.Fatal(err)
 	}
 
 	return nil

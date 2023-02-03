@@ -1,6 +1,7 @@
+Barack Obama,Obama
+Brexit
 Donald Trump,Trump
 ISIS
-Barack Obama,Obama
+North Korea,North Korean,North Korea
 Vladimir Putin,Putin
 Xi Jinping,Xi,Jinping
-North Korea,North Korean,North Korea

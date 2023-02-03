@@ -13,7 +13,9 @@
       for creating this experiment. You can create new ones with updating the
       <code>source/entities.txt</code> file and run the CLI with the provided
       Visual Studio Code debug configuration. The experiments source code can be
-      found at <a target="_blank" href="https://github.com/ndabAP/entityscrape">Github</a>.
+      found at
+      <a target="_blank" href="https://github.com/ndabAP/entityscrape">Github</a
+      >.
     </p>
 
     <n-form-item size="small" label="Entity">
@@ -24,17 +26,44 @@
     </n-form-item>
 
     <div style="height: 475px">
-      <Bar :data="chartData" :options="{
-        indexAxis: 'y',
-        maintainAspectRatio: false,
-        responsive: true,
-      }" />
+      <Bar
+        :data="chartData"
+        :options="{
+          indexAxis: 'y',
+          maintainAspectRatio: false,
+          responsive: true,
+
+          scales: {
+            x: {
+              grid: {
+                drawBorder: false,
+                display: false,
+              },
+            },
+            y: {
+              ticks: {
+                font: {
+                  size: 13,
+                  family:
+                    'v-sans, system-ui, -apple-system, BlinkMacSystemFont',
+                },
+              },
+              grid: {
+                display: false,
+              },
+            },
+          },
+        }"
+      />
     </div>
 
     <small>
       <b>Data source</b>:
-      <a target="_blank" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GMFCTR">dai,
-        tianru, 2017, "News Articles", Harvard Dataverse, V1</a>
+      <a
+        target="_blank"
+        href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GMFCTR"
+        >dai, tianru, 2017, "News Articles", Harvard Dataverse, V1</a
+      >
     </small>
   </n-space>
 </template>
@@ -59,6 +88,7 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
+import { darkTheme } from "naive-ui";
 
 ChartJS.register(
   Title,
@@ -71,13 +101,14 @@ ChartJS.register(
 
 const pos = {
   ADJ: "Adjective",
+  ADP: "Adposition",
   ADV: "Adverb",
   CONJ: "Conjunction",
   DET: "Determiner",
   NOUN: "Noun",
   NUM: "Number",
   PRON: "Pronoun",
-  PRT: "Preposition",
+  PRT: "Particle",
   VERB: "Verb",
 };
 
@@ -85,7 +116,7 @@ export default defineComponent({
   components: { Bar },
 
   setup() {
-    const selectedEntity = ref(entities.split(/\r?\n/).at(2).split(",").at(0));
+    const selectedEntity = ref(entities.split(/\r?\n/).at(0).split(",").at(0));
     const selectedPos = ref(null);
 
     const availableEntities = entities.split(/\r?\n/).map((entities) => {
@@ -158,6 +189,8 @@ export default defineComponent({
     });
 
     return {
+      darkTheme,
+
       chartData,
 
       availableEntities,
