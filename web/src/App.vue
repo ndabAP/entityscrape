@@ -1,28 +1,36 @@
 <template>
   <n-space vertical>
     <h1>entityscrape</h1>
-    <p>This a social experiment which shows the mean distance between part of speeches
-(e. g. adjectives or nouns) in news articles (like from NBC or CNN) and randomly
-selected entities (like Xi Jingping or ISIS).</p>
+    <p>
+      This a social experiment which shows the mean distance between part of
+      speeches (e. g. adjectives or nouns) in news articles (like from NBC or
+      CNN) and randomly selected entities (like Xi Jingping or ISIS).
+    </p>
 
-<p>The Go package <a href="https://github.com/ndabAP/assocentity">assocentity</a> was
-used for creating this experiment. You can create new ones with updating the
-<code>source/entities.txt</code> file and run the CLI with the provided Visual Studio Code
-debug configuration.</p>
+    <p>
+      The Go package
+      <a href="https://github.com/ndabAP/assocentity">assocentity</a> was used
+      for creating this experiment. You can create new ones with updating the
+      <code>source/entities.txt</code> file and run the CLI with the provided
+      Visual Studio Code debug configuration.
+    </p>
 
     <n-form-item size="small" label="Entity">
       <n-select v-model:value="selectedEntity" :options="availableEntities" />
     </n-form-item>
-    <n-form-item  size="small" label="Part of speech">
+    <n-form-item size="small" label="Part of speech">
       <n-select v-model:value="selectedPos" :options="availablePos" />
     </n-form-item>
 
-    <Bar :options="{
-      indexAxis: 'y',
-      responsive: true,
-    }" :data="chartData" />
+    <div style="height: 475px">
+      <Bar :data="chartData" :options="{
+        indexAxis: 'y',
+        maintainAspectRatio: false,
+        responsive: true,
+      }" />
+    </div>
 
-   <small><b>Data source</b>:
+    <small><b>Data source</b>:
       <a target="_blank" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GMFCTR">dai,
         tianru, 2017, "News Articles", Harvard Dataverse, V1</a></small>
   </n-space>
