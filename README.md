@@ -2,8 +2,8 @@
 
 This a social experiment which shows the distance between part of speeches
 (e. g. adjectives or nouns) in news articles (like from NBC or CNN) and randomly
-selected entities (like Xi Jingping or ISIS). Go to the
-[website](https://ndabap.github.io/entityscrape/index.html) to it!
+selected entities (like Xi Jingping or ISIS). Go straight to the
+[website](https://ndabap.github.io/entityscrape/index.html)!
 
 The Go package [assocentity](https://github.com/ndabAP/assocentity) was
 used for creating this experiment. You can create new ones with updating the
