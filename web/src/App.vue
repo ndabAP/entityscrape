@@ -1,7 +1,7 @@
 <template>
   <n-space vertical>
     <h1>entityscrape</h1>
-    <p>This a social experiment which shows the distance between part of speeches
+    <p>This a social experiment which shows the mean distance between part of speeches
 (e. g. adjectives or nouns) in news articles (like from NBC or CNN) and randomly
 selected entities (like Xi Jingping or ISIS).</p>
 

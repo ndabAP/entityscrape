@@ -1,6 +1,6 @@
 # entityscrape
 
-This a social experiment which shows the distance between part of speeches
+This a social experiment which shows the mean distance between part of speeches
 (e. g. adjectives or nouns) in news articles (like from NBC or CNN) and randomly
 selected entities (like Xi Jingping or ISIS). Go straight to the
 [website](https://ndabap.github.io/entityscrape/index.html)!
