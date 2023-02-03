@@ -12,7 +12,8 @@
       <a href="https://github.com/ndabAP/assocentity">assocentity</a> was used
       for creating this experiment. You can create new ones with updating the
       <code>source/entities.txt</code> file and run the CLI with the provided
-      Visual Studio Code debug configuration.
+      Visual Studio Code debug configuration. The experiments source code can be
+      found at <a target="_blank" href="https://github.com/ndabAP/entityscrape">Github</a>.
     </p>
 
     <n-form-item size="small" label="Entity">
@@ -30,9 +31,11 @@
       }" />
     </div>
 
-    <small><b>Data source</b>:
+    <small>
+      <b>Data source</b>:
       <a target="_blank" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GMFCTR">dai,
-        tianru, 2017, "News Articles", Harvard Dataverse, V1</a></small>
+        tianru, 2017, "News Articles", Harvard Dataverse, V1</a>
+    </small>
   </n-space>
 </template>
 
