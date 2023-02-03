@@ -1,12 +1,30 @@
 <template>
   <n-space vertical>
-    <n-select v-model:value="selectedEntity" :options="availableEntities" />
-    <n-select v-model:value="selectedPos" :options="availablePos" />
+    <h1>entityscrape</h1>
+    <p>This a social experiment which shows the distance between part of speeches
+(e. g. adjectives or nouns) in news articles (like from NBC or CNN) and randomly
+selected entities (like Xi Jingping or ISIS).</p>
+
+<p>The Go package <a href="https://github.com/ndabAP/assocentity">assocentity</a> was
+used for creating this experiment. You can create new ones with updating the
+<code>source/entities.txt</code> file and run the CLI with the provided Visual Studio Code
+debug configuration.</p>
+
+    <n-form-item size="small" label="Entity">
+      <n-select v-model:value="selectedEntity" :options="availableEntities" />
+    </n-form-item>
+    <n-form-item  size="small" label="Part of speech">
+      <n-select v-model:value="selectedPos" :options="availablePos" />
+    </n-form-item>
 
     <Bar :options="{
       indexAxis: 'y',
       responsive: true,
     }" :data="chartData" />
+
+   <small><b>Data source</b>:
+      <a target="_blank" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GMFCTR">dai,
+        tianru, 2017, "News Articles", Harvard Dataverse, V1</a></small>
   </n-space>
 </template>
 
@@ -76,7 +94,7 @@ export default defineComponent({
     let meanN = [];
     const fetchEntity = async (entity) => {
       entity = entity.toLowerCase().replace(/ /g, "+");
-      const response = await fetch(`/entityscrape/${entity}.json`);
+      const response = await fetch(`${import.meta.env.BASE_URL}${entity}.json`);
       meanN = await response.json();
     };
 
@@ -120,7 +138,7 @@ export default defineComponent({
       watch(selectedPos, () => {
         filterPosMeanN();
       });
-      selectedPos.value = "NOUN";
+      selectedPos.value = "ADJ";
 
       watch(selectedEntity, async (entity) => {
         await fetchEntity(entity);
