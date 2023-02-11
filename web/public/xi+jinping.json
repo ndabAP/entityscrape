@@ -1,377 +1,477 @@
 [
  {
-  "distance": 12.5,
+  "distance": 51.6,
   "pos": "ADJ",
-  "text": "Russian"
+  "text": "underway"
  },
  {
-  "distance": 16,
+  "distance": 63.8,
   "pos": "ADJ",
-  "text": "local"
+  "text": "friendly"
  },
  {
-  "distance": 45,
+  "distance": 65.75,
   "pos": "ADJ",
-  "text": "strong"
+  "text": "unconfirmed"
  },
  {
-  "distance": 49,
-  "pos": "ADJ",
-  "text": "overseas"
- },
- {
-  "distance": 50,
+  "distance": 74.7,
   "pos": "ADJ",
   "text": "good"
  },
  {
-  "distance": 63,
+  "distance": 75.75,
   "pos": "ADJ",
-  "text": "very"
+  "text": "earlier"
+ },
+ {
+  "distance": 76.25,
+  "pos": "ADJ",
+  "text": "productive"
+ },
+ {
+  "distance": 77.5,
+  "pos": "ADJ",
+  "text": "domestic"
+ },
+ {
+  "distance": 77.5,
+  "pos": "ADJ",
+  "text": "mutual"
+ },
+ {
+  "distance": 87.16666666666667,
+  "pos": "ADJ",
+  "text": "unofficial"
  },
  {
   "distance": 89,
   "pos": "ADJ",
-  "text": "fourth"
+  "text": "glad"
  },
  {
-  "distance": 91,
-  "pos": "ADJ",
-  "text": "third"
- },
- {
-  "distance": 98,
-  "pos": "ADJ",
-  "text": "mobile"
- },
- {
-  "distance": 100,
-  "pos": "ADJ",
-  "text": "dominant"
- },
- {
-  "distance": 2,
+  "distance": 97.75,
   "pos": "ADP",
-  "text": "to"
+  "text": "toward"
  },
  {
-  "distance": 8,
+  "distance": 110.30434782608695,
   "pos": "ADP",
-  "text": "by"
+  "text": "before"
  },
  {
-  "distance": 11,
+  "distance": 110.33333333333333,
   "pos": "ADP",
-  "text": "into"
+  "text": "because"
  },
  {
-  "distance": 15,
+  "distance": 122,
   "pos": "ADP",
-  "text": "through"
+  "text": "since"
  },
  {
-  "distance": 24,
+  "distance": 137.14285714285714,
   "pos": "ADP",
-  "text": "In"
+  "text": "after"
  },
  {
-  "distance": 34,
+  "distance": 158.70833333333334,
   "pos": "ADP",
-  "text": "from"
+  "text": "despite"
  },
  {
-  "distance": 60,
-  "pos": "ADP",
-  "text": "as"
- },
- {
-  "distance": 78,
-  "pos": "ADP",
-  "text": "along"
- },
- {
-  "distance": 92.4,
+  "distance": 163.27272727272728,
   "pos": "ADP",
   "text": "in"
  },
  {
-  "distance": 97.27272727272727,
+  "distance": 171.35537190082644,
   "pos": "ADP",
-  "text": "of"
+  "text": "between"
  },
  {
-  "distance": 5,
+  "distance": 175.8095238095238,
+  "pos": "ADP",
+  "text": "if"
+ },
+ {
+  "distance": 201,
+  "pos": "ADP",
+  "text": "to"
+ },
+ {
+  "distance": 13.5,
   "pos": "ADV",
-  "text": "later"
+  "text": "most"
  },
  {
-  "distance": 29,
+  "distance": 82,
   "pos": "ADV",
-  "text": "now"
+  "text": "casually"
  },
  {
-  "distance": 33,
+  "distance": 88.5,
   "pos": "ADV",
-  "text": "overseas"
+  "text": "principally"
  },
  {
-  "distance": 56,
+  "distance": 105,
   "pos": "ADV",
-  "text": "not"
+  "text": "yet"
  },
  {
-  "distance": 71,
+  "distance": 127.85714285714286,
   "pos": "ADV",
-  "text": "However"
+  "text": "late"
  },
  {
-  "distance": 133.25,
+  "distance": 140.55555555555554,
+  "pos": "ADV",
+  "text": "surely"
+ },
+ {
+  "distance": 142.56756756756758,
+  "pos": "ADV",
+  "text": "very"
+ },
+ {
+  "distance": 145.11111111111111,
+  "pos": "ADV",
+  "text": "just"
+ },
+ {
+  "distance": 153.36363636363637,
+  "pos": "ADV",
+  "text": "n't"
+ },
+ {
+  "distance": 155.5,
+  "pos": "ADV",
+  "text": "notably"
+ },
+ {
+  "distance": 132.16666666666666,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 220.11111111111111,
+  "pos": "CONJ",
+  "text": "or"
+ },
+ {
+  "distance": 273.3333333333333,
   "pos": "CONJ",
   "text": "and"
  },
  {
-  "distance": 43,
-  "pos": "DET",
-  "text": "Some"
+  "distance": 287.3703703703704,
+  "pos": "CONJ",
+  "text": "but"
  },
  {
-  "distance": 72,
-  "pos": "DET",
-  "text": "there"
+  "distance": 305.4347826086956,
+  "pos": "CONJ",
+  "text": "both"
  },
  {
-  "distance": 99.35714285714286,
+  "distance": 77.75,
   "pos": "DET",
-  "text": "a"
+  "text": "both"
  },
  {
-  "distance": 100.6,
+  "distance": 82.2,
   "pos": "DET",
-  "text": "the"
+  "text": "another"
  },
  {
-  "distance": 101,
-  "pos": "DET",
-  "text": "an"
- },
- {
-  "distance": 109.5,
+  "distance": 147,
   "pos": "DET",
   "text": "this"
  },
  {
-  "distance": 112.66666666666667,
-  "pos": "DET",
-  "text": "The"
- },
- {
-  "distance": 122,
+  "distance": 164.6,
   "pos": "DET",
   "text": "all"
  },
  {
-  "distance": 127.5,
+  "distance": 165,
   "pos": "DET",
-  "text": "which"
+  "text": "these"
  },
  {
-  "distance": 167,
+  "distance": 194.08510638297872,
+  "pos": "DET",
+  "text": "any"
+ },
+ {
+  "distance": 218.9655172413793,
+  "pos": "DET",
+  "text": "the"
+ },
+ {
+  "distance": 228.8125,
   "pos": "DET",
   "text": "that"
  },
  {
-  "distance": 2,
-  "pos": "NOUN",
-  "text": "gift"
+  "distance": 232.66666666666666,
+  "pos": "DET",
+  "text": "those"
  },
  {
-  "distance": 3,
-  "pos": "NOUN",
-  "text": "startup"
+  "distance": 234.3111111111111,
+  "pos": "DET",
+  "text": "a"
  },
  {
-  "distance": 4,
+  "distance": 40.42857142857143,
   "pos": "NOUN",
-  "text": "months"
+  "text": "problem"
  },
  {
-  "distance": 6,
+  "distance": 51.2,
   "pos": "NOUN",
-  "text": "Devices"
+  "text": "negotiations"
  },
  {
-  "distance": 7,
+  "distance": 53.4,
   "pos": "NOUN",
-  "text": "Yota"
+  "text": "reports"
  },
  {
-  "distance": 10.5,
+  "distance": 56.333333333333336,
   "pos": "NOUN",
-  "text": "President"
+  "text": "courtesy"
  },
  {
-  "distance": 15,
+  "distance": 60.166666666666664,
   "pos": "NOUN",
-  "text": "YotaPhone"
+  "text": "adrian"
  },
  {
-  "distance": 17,
+  "distance": 60.333333333333336,
   "pos": "NOUN",
-  "text": "distribution"
+  "text": "minutes"
  },
  {
-  "distance": 18,
+  "distance": 61.4,
   "pos": "NOUN",
-  "text": "channels"
+  "text": "appreciation"
  },
  {
-  "distance": 18,
+  "distance": 64.54545454545455,
   "pos": "NOUN",
-  "text": "Putin"
+  "text": "communications"
  },
  {
-  "distance": 3,
+  "distance": 65.75,
+  "pos": "NOUN",
+  "text": "reference"
+ },
+ {
+  "distance": 65.75,
+  "pos": "NOUN",
+  "text": "contrast"
+ },
+ {
+  "distance": 32,
   "pos": "NUM",
-  "text": "Six"
+  "text": "19.03."
  },
  {
-  "distance": 14,
+  "distance": 59.666666666666664,
+  "pos": "NUM",
+  "text": "seven"
+ },
+ {
+  "distance": 89.16666666666667,
+  "pos": "NUM",
+  "text": "1979"
+ },
+ {
+  "distance": 102,
+  "pos": "NUM",
+  "text": "18"
+ },
+ {
+  "distance": 117.85714285714286,
+  "pos": "NUM",
+  "text": "18.03."
+ },
+ {
+  "distance": 125.2,
+  "pos": "NUM",
+  "text": "17.03."
+ },
+ {
+  "distance": 142.22727272727272,
+  "pos": "NUM",
+  "text": "4"
+ },
+ {
+  "distance": 143.57142857142858,
+  "pos": "NUM",
+  "text": "28"
+ },
+ {
+  "distance": 144.35135135135135,
+  "pos": "NUM",
+  "text": "6"
+ },
+ {
+  "distance": 161.5,
   "pos": "NUM",
   "text": "2"
  },
  {
-  "distance": 22,
-  "pos": "NUM",
-  "text": "2014"
- },
- {
-  "distance": 42,
-  "pos": "NUM",
-  "text": "30"
- },
- {
-  "distance": 58,
-  "pos": "NUM",
-  "text": "100"
- },
- {
-  "distance": 91,
-  "pos": "NUM",
-  "text": "2017"
- },
- {
-  "distance": 115.5,
-  "pos": "NUM",
-  "text": "03"
- },
- {
-  "distance": 127,
-  "pos": "NUM",
-  "text": "81"
- },
- {
-  "distance": 147,
-  "pos": "NUM",
-  "text": "60"
- },
- {
-  "distance": 175,
-  "pos": "NUM",
-  "text": "352"
- },
- {
-  "distance": 47,
+  "distance": 102,
   "pos": "PRON",
-  "text": "It"
+  "text": "my"
  },
  {
-  "distance": 112.5,
+  "distance": 136.6046511627907,
   "pos": "PRON",
-  "text": "We"
+  "text": "i"
  },
  {
-  "distance": 117.5,
+  "distance": 163.6,
+  "pos": "PRON",
+  "text": "it."
+ },
+ {
+  "distance": 190.1764705882353,
+  "pos": "PRON",
+  "text": "him"
+ },
+ {
+  "distance": 196.42857142857142,
+  "pos": "PRON",
+  "text": "they"
+ },
+ {
+  "distance": 203,
+  "pos": "PRON",
+  "text": "we"
+ },
+ {
+  "distance": 204,
+  "pos": "PRON",
+  "text": "his"
+ },
+ {
+  "distance": 217.34736842105264,
   "pos": "PRON",
   "text": "it"
  },
  {
-  "distance": 119,
+  "distance": 233.1125,
   "pos": "PRON",
-  "text": "our"
+  "text": "he"
  },
  {
-  "distance": 135.5,
+  "distance": 233.23076923076923,
   "pos": "PRON",
-  "text": "who"
+  "text": "what"
  },
  {
-  "distance": 163.5,
-  "pos": "PRON",
-  "text": "its"
- },
- {
-  "distance": 62.666666666666664,
+  "distance": 142.625,
   "pos": "PRT",
-  "text": "to"
+  "text": "in"
  },
  {
-  "distance": 73.5,
+  "distance": 148.0952380952381,
+  "pos": "PRT",
+  "text": "through"
+ },
+ {
+  "distance": 188.75,
+  "pos": "PRT",
+  "text": "about"
+ },
+ {
+  "distance": 226.28571428571428,
   "pos": "PRT",
   "text": "'s"
  },
  {
-  "distance": 128,
+  "distance": 261.3235294117647,
+  "pos": "PRT",
+  "text": "out"
+ },
+ {
+  "distance": 262.85714285714283,
   "pos": "PRT",
   "text": "up"
  },
  {
-  "distance": 8,
-  "pos": "VERB",
-  "text": "introduced"
+  "distance": 316.29411764705884,
+  "pos": "PRT",
+  "text": "off"
  },
  {
-  "distance": 9,
-  "pos": "VERB",
-  "text": "made"
+  "distance": 322.1111111111111,
+  "pos": "PRT",
+  "text": "on"
  },
  {
-  "distance": 17,
-  "pos": "VERB",
-  "text": "presented"
+  "distance": 325.04347826086956,
+  "pos": "PRT",
+  "text": "'"
  },
  {
-  "distance": 30,
-  "pos": "VERB",
-  "text": "hoping"
+  "distance": 449,
+  "pos": "PRT",
+  "text": "to"
  },
  {
-  "distance": 32,
+  "distance": 19.333333333333332,
   "pos": "VERB",
-  "text": "attract"
+  "text": "expected"
  },
  {
-  "distance": 35,
+  "distance": 45.714285714285715,
   "pos": "VERB",
-  "text": "come"
+  "text": "enhancing"
  },
  {
-  "distance": 46,
+  "distance": 57.2,
   "pos": "VERB",
-  "text": "shown"
+  "text": "occurred"
  },
  {
-  "distance": 47,
+  "distance": 59,
   "pos": "VERB",
-  "text": "have"
+  "text": "lasted"
  },
  {
-  "distance": 47.8,
+  "distance": 59.5,
   "pos": "VERB",
-  "text": "is"
+  "text": "reporting"
  },
  {
-  "distance": 55,
+  "distance": 59.77777777777778,
   "pos": "VERB",
-  "text": "launch"
+  "text": "places"
+ },
+ {
+  "distance": 62.6,
+  "pos": "VERB",
+  "text": "express"
+ },
+ {
+  "distance": 65.75,
+  "pos": "VERB",
+  "text": "released"
+ },
+ {
+  "distance": 66.6,
+  "pos": "VERB",
+  "text": "say"
+ },
+ {
+  "distance": 67.75,
+  "pos": "VERB",
+  "text": "considered"
  }
 ]

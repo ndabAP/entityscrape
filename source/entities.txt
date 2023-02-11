@@ -1,7 +1,8 @@
+Angela Merkel,Merkel
 Barack Obama,Obama
 Brexit
 Donald Trump,Trump
-ISIS
-North Korea,North Korean,North Korea
+North Korea
 Vladimir Putin,Putin
 Xi Jinping,Xi,Jinping
+2015

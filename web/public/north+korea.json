@@ -1,467 +1,477 @@
 [
  {
-  "distance": 5,
+  "distance": 53.857142857142854,
   "pos": "ADJ",
-  "text": "Syrian"
+  "text": "indiscriminate"
  },
  {
-  "distance": 17,
+  "distance": 61.285714285714285,
   "pos": "ADJ",
-  "text": "extreme"
+  "text": "despicable"
  },
  {
-  "distance": 25,
+  "distance": 72.66666666666667,
   "pos": "ADJ",
-  "text": "federal"
+  "text": "voluntary"
  },
  {
-  "distance": 39,
+  "distance": 76.38461538461539,
   "pos": "ADJ",
-  "text": "tough"
+  "text": "diplomatic"
  },
  {
-  "distance": 42.5,
+  "distance": 79.25,
   "pos": "ADJ",
-  "text": "right"
+  "text": "secure"
  },
  {
-  "distance": 49,
+  "distance": 80.75,
   "pos": "ADJ",
-  "text": "simple"
+  "text": "unanimous"
  },
  {
-  "distance": 63,
+  "distance": 83.05555555555556,
   "pos": "ADJ",
-  "text": "insensitive"
+  "text": "secretive"
  },
  {
-  "distance": 74,
+  "distance": 83.5,
   "pos": "ADJ",
-  "text": "male"
- },
- {
-  "distance": 79,
-  "pos": "ADJ",
-  "text": "original"
- },
- {
-  "distance": 96.5,
-  "pos": "ADJ",
-  "text": "discriminatory"
- },
- {
-  "distance": 69,
-  "pos": "ADP",
-  "text": "via"
- },
- {
-  "distance": 71,
-  "pos": "ADP",
-  "text": "throughout"
+  "text": "historic"
  },
  {
   "distance": 86,
-  "pos": "ADP",
-  "text": "Since"
+  "pos": "ADJ",
+  "text": "previous"
  },
  {
-  "distance": 133,
-  "pos": "ADP",
-  "text": "under"
+  "distance": 86.33333333333333,
+  "pos": "ADJ",
+  "text": "islamic"
  },
  {
-  "distance": 139.16666666666666,
+  "distance": 122.18181818181819,
   "pos": "ADP",
-  "text": "between"
+  "text": "although"
  },
  {
   "distance": 161,
   "pos": "ADP",
-  "text": "Despite"
+  "text": "between"
  },
  {
-  "distance": 191,
+  "distance": 164.33333333333334,
   "pos": "ADP",
-  "text": "because"
+  "text": "before"
  },
  {
-  "distance": 195.375,
+  "distance": 167.77777777777777,
   "pos": "ADP",
-  "text": "if"
+  "text": "besides"
  },
  {
-  "distance": 198.5,
+  "distance": 189,
   "pos": "ADP",
-  "text": "behind"
+  "text": "onto"
  },
  {
-  "distance": 211,
+  "distance": 196.8,
   "pos": "ADP",
-  "text": "by"
+  "text": "whether"
  },
  {
-  "distance": 61,
+  "distance": 206.19298245614036,
+  "pos": "ADP",
+  "text": "across"
+ },
+ {
+  "distance": 231.1818181818182,
+  "pos": "ADP",
+  "text": "through"
+ },
+ {
+  "distance": 234,
+  "pos": "ADP",
+  "text": "along"
+ },
+ {
+  "distance": 250.57912457912457,
+  "pos": "ADP",
+  "text": "against"
+ },
+ {
+  "distance": 34.5,
   "pos": "ADV",
-  "text": "perhaps"
+  "text": "long"
  },
  {
-  "distance": 62,
+  "distance": 55.714285714285715,
   "pos": "ADV",
-  "text": "too"
+  "text": "angrily"
  },
  {
-  "distance": 68,
+  "distance": 93.85714285714286,
   "pos": "ADV",
-  "text": "far"
+  "text": "afloat"
  },
  {
-  "distance": 105,
+  "distance": 112.66666666666667,
   "pos": "ADV",
-  "text": "indeed"
+  "text": "personally"
  },
  {
-  "distance": 112,
+  "distance": 121.11111111111111,
   "pos": "ADV",
-  "text": "Then"
+  "text": "as"
  },
  {
-  "distance": 140,
+  "distance": 122.6,
   "pos": "ADV",
-  "text": "north"
+  "text": "reluctantly"
  },
  {
-  "distance": 151.22222222222223,
+  "distance": 128.66666666666666,
   "pos": "ADV",
-  "text": "behind"
+  "text": "adamantly"
  },
  {
-  "distance": 162.14285714285714,
+  "distance": 128.85714285714286,
   "pos": "ADV",
-  "text": "never"
+  "text": "last"
  },
  {
-  "distance": 170,
+  "distance": 130.875,
   "pos": "ADV",
-  "text": "ahead"
+  "text": "intensively"
  },
  {
-  "distance": 178,
+  "distance": 131.77777777777777,
   "pos": "ADV",
-  "text": "completely"
+  "text": "closer"
  },
  {
-  "distance": 252.44444444444446,
+  "distance": 31.333333333333332,
+  "pos": "CONJ",
+  "text": "either"
+ },
+ {
+  "distance": 105.57142857142857,
+  "pos": "CONJ",
+  "text": "plus"
+ },
+ {
+  "distance": 304.56657963446474,
   "pos": "CONJ",
   "text": "but"
  },
  {
-  "distance": 331.25,
+  "distance": 330.9389312977099,
   "pos": "CONJ",
-  "text": "and"
+  "text": "both"
  },
  {
-  "distance": 417.25,
+  "distance": 667.8,
   "pos": "CONJ",
-  "text": "But"
+  "text": "so"
  },
  {
-  "distance": 450.5,
-  "pos": "CONJ",
-  "text": "or"
- },
- {
-  "distance": 84,
-  "pos": "DET",
-  "text": "Another"
- },
- {
-  "distance": 154.66666666666666,
-  "pos": "DET",
-  "text": "A"
- },
- {
-  "distance": 181.4,
+  "distance": 150.9047619047619,
   "pos": "DET",
   "text": "another"
  },
  {
-  "distance": 194.55555555555554,
+  "distance": 163.57894736842104,
   "pos": "DET",
-  "text": "no"
+  "text": "whatever"
  },
  {
-  "distance": 201.25,
+  "distance": 189.26923076923077,
   "pos": "DET",
-  "text": "any"
+  "text": "an"
  },
  {
-  "distance": 211.14285714285714,
+  "distance": 190.69230769230768,
+  "pos": "DET",
+  "text": "half"
+ },
+ {
+  "distance": 191.13793103448276,
   "pos": "DET",
   "text": "both"
  },
  {
-  "distance": 213,
+  "distance": 207.38888888888889,
   "pos": "DET",
-  "text": "Those"
+  "text": "all"
  },
  {
-  "distance": 249.3684210526316,
+  "distance": 253.81420765027323,
+  "pos": "DET",
+  "text": "there"
+ },
+ {
+  "distance": 275.2027027027027,
   "pos": "DET",
   "text": "that"
  },
  {
-  "distance": 308.06666666666666,
+  "distance": 285.25714285714287,
   "pos": "DET",
-  "text": "a"
+  "text": "these"
  },
  {
-  "distance": 325,
+  "distance": 291.0281690140845,
   "pos": "DET",
-  "text": "The"
+  "text": "no"
  },
  {
-  "distance": 1,
+  "distance": 22.5,
   "pos": "NOUN",
-  "text": "Kim"
+  "text": "possession"
  },
  {
-  "distance": 1,
+  "distance": 37.166666666666664,
   "pos": "NOUN",
-  "text": "Assad"
+  "text": "blog"
  },
  {
-  "distance": 2,
+  "distance": 42.833333333333336,
   "pos": "NOUN",
-  "text": "al"
+  "text": "launching"
  },
  {
-  "distance": 2,
+  "distance": 43.166666666666664,
   "pos": "NOUN",
-  "text": "Jong"
+  "text": "un-employees"
  },
  {
-  "distance": 3,
+  "distance": 46.833333333333336,
   "pos": "NOUN",
-  "text": "Un"
+  "text": "no."
  },
  {
-  "distance": 3,
+  "distance": 49,
   "pos": "NOUN",
-  "text": "Bashar"
+  "text": "manipulation"
  },
  {
-  "distance": 7,
+  "distance": 52.75,
   "pos": "NOUN",
-  "text": "aim"
+  "text": "millitary"
  },
  {
-  "distance": 11,
+  "distance": 54.875,
   "pos": "NOUN",
-  "text": "shelters"
+  "text": "ground"
  },
  {
-  "distance": 12,
+  "distance": 55.125,
   "pos": "NOUN",
-  "text": "refugee"
+  "text": "satellite"
  },
  {
-  "distance": 14,
+  "distance": 60.333333333333336,
   "pos": "NOUN",
-  "text": "attacks"
+  "text": "improvement"
  },
  {
-  "distance": 58.6,
+  "distance": 63.75,
   "pos": "NUM",
-  "text": "2016"
+  "text": "nine"
  },
  {
-  "distance": 135.66666666666666,
+  "distance": 123.22222222222223,
   "pos": "NUM",
-  "text": "20"
+  "text": "28,500"
  },
  {
-  "distance": 163.5,
+  "distance": 129.33333333333334,
   "pos": "NUM",
-  "text": "one"
+  "text": "1950"
  },
  {
-  "distance": 167,
+  "distance": 130.875,
   "pos": "NUM",
-  "text": "2017"
+  "text": "2100"
  },
  {
-  "distance": 172,
+  "distance": 148.33333333333334,
   "pos": "NUM",
-  "text": "5"
+  "text": "3,600"
  },
  {
-  "distance": 172.66666666666666,
+  "distance": 157.0735294117647,
   "pos": "NUM",
-  "text": "2018"
+  "text": "$1.35"
  },
  {
-  "distance": 177.66666666666666,
+  "distance": 161.57142857142858,
   "pos": "NUM",
   "text": "ten"
  },
  {
-  "distance": 181.66666666666666,
+  "distance": 163.6875,
   "pos": "NUM",
-  "text": "800"
+  "text": "2008"
  },
  {
-  "distance": 213.33333333333334,
+  "distance": 165.93333333333334,
   "pos": "NUM",
-  "text": "$1"
+  "text": "2009"
  },
  {
-  "distance": 213.66666666666666,
+  "distance": 174.85714285714286,
   "pos": "NUM",
-  "text": "trillion"
+  "text": "2003"
  },
  {
-  "distance": 28,
+  "distance": 159.66666666666666,
+  "pos": "PRON",
+  "text": "it."
+ },
+ {
+  "distance": 166.8235294117647,
+  "pos": "PRON",
+  "text": "who"
+ },
+ {
+  "distance": 223.89361702127658,
   "pos": "PRON",
   "text": "whom"
  },
  {
-  "distance": 37,
+  "distance": 227.0222222222222,
   "pos": "PRON",
-  "text": "she"
+  "text": "our"
  },
  {
-  "distance": 140.66666666666666,
+  "distance": 238.26027397260273,
   "pos": "PRON",
-  "text": "I"
+  "text": "itself"
  },
  {
-  "distance": 191,
+  "distance": 259.28125,
   "pos": "PRON",
-  "text": "we"
+  "text": "his"
  },
  {
-  "distance": 228.83333333333334,
+  "distance": 264.47058823529414,
   "pos": "PRON",
-  "text": "It"
+  "text": "whoever"
  },
  {
-  "distance": 233.33333333333334,
+  "distance": 270.64406779661016,
   "pos": "PRON",
-  "text": "me"
+  "text": "you"
  },
  {
-  "distance": 235,
+  "distance": 289.18518518518516,
   "pos": "PRON",
-  "text": "themselves"
+  "text": "your"
  },
  {
-  "distance": 243.14285714285714,
+  "distance": 289.9795918367347,
   "pos": "PRON",
-  "text": "he"
+  "text": "whose"
  },
  {
-  "distance": 252.66666666666666,
-  "pos": "PRON",
-  "text": "We"
- },
- {
-  "distance": 257.46153846153845,
-  "pos": "PRON",
-  "text": "its"
- },
- {
-  "distance": 131.33333333333334,
-  "pos": "PRT",
-  "text": "in"
- },
- {
-  "distance": 195,
-  "pos": "PRT",
-  "text": "on"
- },
- {
-  "distance": 199.125,
-  "pos": "PRT",
-  "text": "up"
- },
- {
-  "distance": 232.9402985074627,
+  "distance": 121.45454545454545,
   "pos": "PRT",
   "text": "to"
  },
  {
-  "distance": 350,
+  "distance": 167.21428571428572,
+  "pos": "PRT",
+  "text": "about"
+ },
+ {
+  "distance": 187,
+  "pos": "PRT",
+  "text": "back"
+ },
+ {
+  "distance": 218.5,
+  "pos": "PRT",
+  "text": "in"
+ },
+ {
+  "distance": 236.36729222520108,
+  "pos": "PRT",
+  "text": "up"
+ },
+ {
+  "distance": 301.89473684210526,
   "pos": "PRT",
   "text": "down"
  },
  {
-  "distance": 369,
+  "distance": 302.90058479532166,
+  "pos": "PRT",
+  "text": "off"
+ },
+ {
+  "distance": 305.54411764705884,
+  "pos": "PRT",
+  "text": "through"
+ },
+ {
+  "distance": 309.3888888888889,
+  "pos": "PRT",
+  "text": "on"
+ },
+ {
+  "distance": 317.8052550231839,
   "pos": "PRT",
   "text": "out"
  },
  {
-  "distance": 436.9230769230769,
-  "pos": "PRT",
-  "text": "'s"
- },
- {
-  "distance": 565,
-  "pos": "PRT",
-  "text": "'"
- },
- {
-  "distance": 972,
-  "pos": "PRT",
-  "text": "away"
- },
- {
-  "distance": 16,
+  "distance": 28,
   "pos": "VERB",
-  "text": "burns"
+  "text": "pressuring"
  },
  {
-  "distance": 21,
+  "distance": 36.23076923076923,
   "pos": "VERB",
-  "text": "attacking"
+  "text": "declare"
  },
  {
-  "distance": 23,
+  "distance": 37.166666666666664,
   "pos": "VERB",
-  "text": "showing"
+  "text": "communicating"
  },
  {
-  "distance": 29,
+  "distance": 37.166666666666664,
   "pos": "VERB",
-  "text": "appeared"
+  "text": "relent"
  },
  {
-  "distance": 34,
+  "distance": 47.25,
   "pos": "VERB",
-  "text": "crack"
+  "text": "had"
  },
  {
-  "distance": 37,
+  "distance": 50,
   "pos": "VERB",
-  "text": "praised"
+  "text": "match"
  },
  {
-  "distance": 42,
+  "distance": 50.125,
   "pos": "VERB",
-  "text": "working"
+  "text": "fail"
  },
  {
-  "distance": 44,
+  "distance": 54.57142857142857,
   "pos": "VERB",
-  "text": "supported"
+  "text": "subverting"
  },
  {
-  "distance": 47,
+  "distance": 56.142857142857146,
   "pos": "VERB",
-  "text": "shows"
+  "text": "objected"
  },
  {
-  "distance": 55,
+  "distance": 72,
   "pos": "VERB",
-  "text": "thinks"
+  "text": "departed"
  }
 ]
