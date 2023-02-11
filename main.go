@@ -14,9 +14,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ndabAP/assocentity/v12"
-	"github.com/ndabAP/assocentity/v12/nlp"
-	"github.com/ndabAP/assocentity/v12/tokenize"
+	"github.com/ndabAP/assocentity/v13"
+	"github.com/ndabAP/assocentity/v13/nlp"
+	"github.com/ndabAP/assocentity/v13/tokenize"
 )
 
 func init() {
@@ -109,7 +109,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	if err != nil {
 		l.Fatal(err)
 	}
-	assocentity.Aggregate(dists, assocentity.HumandReadableAggregator)
+	assocentity.Normalize(dists, assocentity.HumandReadableNormalizer)
 	assocentity.Threshold(dists, 0.1)
 	mean := assocentity.Mean(dists)
 

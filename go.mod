@@ -2,7 +2,7 @@ module github.com/ndabAP/entityscrape
 
 go 1.18
 
-require github.com/ndabAP/assocentity/v12 v12.2.0
+require github.com/ndabAP/assocentity/v13 v13.0.1
 
 require (
 	cloud.google.com/go/compute v1.12.1 // indirect
@@ -24,5 +24,3 @@ require (
 	google.golang.org/grpc v1.50.1 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 )
-
-replace github.com/ndabAP/assocentity/v12 => ../assocentity
