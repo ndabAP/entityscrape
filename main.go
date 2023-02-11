@@ -59,7 +59,7 @@ func main() {
 	log.Printf("len(texts)=%d", len(texts))
 
 	// Get mean distance per entity
-	log.Println("get meanN")
+	log.Println("get mean")
 	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
 	var wg sync.WaitGroup
 	for _, entities := range entities {
@@ -86,7 +86,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 
 	l := log.New(os.Stderr, entity+":", 0)
 
-	// Ignore articles without entity
+	// Ignore articles without entity. This is a fuzzy search to spare the API
 	temp := texts[:0]
 	for _, text := range texts {
 		if strings.Contains(text, entity) {
@@ -96,35 +96,40 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	texts = temp
 	l.Printf("len(texts)=%d", len(texts))
 
-	poS := tokenize.ADJ | tokenize.ADP | tokenize.ADV | tokenize.CONJ | tokenize.DET | tokenize.NOUN | tokenize.NUM | tokenize.PRON | tokenize.PRT | tokenize.VERB
-	meanN, err := assocentity.MeanN(
+	var (
+		poS    = tokenize.ADJ | tokenize.ADP | tokenize.ADV | tokenize.CONJ | tokenize.DET | tokenize.NOUN | tokenize.NUM | tokenize.PRON | tokenize.PRT | tokenize.VERB
+		source = assocentity.NewSource(entities, texts)
+	)
+	dists, err := assocentity.Distances(
 		context.Background(),
 		tokenizer,
 		poS,
-		texts,
-		entities,
+		source,
 	)
 	if err != nil {
 		l.Fatal(err)
 	}
+	assocentity.Normalize(dists)
+	assocentity.Threshold(dists, 0.1)
+	mean := assocentity.Mean(dists)
 
-	l.Printf("len(meanN)=%d", len(meanN))
+	l.Printf("len(mean)=%d", len(mean))
 
-	if len(meanN) == 0 {
-		l.Print("no meanN found, exiting")
+	if len(mean) == 0 {
+		l.Print("no mean found, exiting")
 		os.Exit(0)
 	}
 
 	// Convert to slice to make it sortable
 	l.Println("convert to slice")
-	type meanNVal struct {
+	type meanVal struct {
 		dist float64
 		tok  tokenize.Token
 	}
-	meanNVals := make([]meanNVal, 0)
-	for tok, dist := range meanN {
+	meanVals := make([]meanVal, 0)
+	for tok, dist := range mean {
 		// TODO: Whitelist: a-zA-Z0-9
-		meanNVals = append(meanNVals, meanNVal{
+		meanVals = append(meanVals, meanVal{
 			dist: dist,
 			tok:  tok,
 		})
@@ -132,41 +137,41 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 
 	// Sort by closest distance
 	l.Println("sort by pos and distance")
-	sort.Slice(meanNVals, func(i, j int) bool {
-		if meanNVals[i].tok.PoS != meanNVals[j].tok.PoS {
-			return meanNVals[i].tok.PoS < meanNVals[j].tok.PoS
+	sort.Slice(meanVals, func(i, j int) bool {
+		if meanVals[i].tok.PoS != meanVals[j].tok.PoS {
+			return meanVals[i].tok.PoS < meanVals[j].tok.PoS
 		}
-		return meanNVals[i].dist < meanNVals[j].dist
+		return meanVals[i].dist < meanVals[j].dist
 	})
 
 	// Top 10 per pos
 	l.Println("limit top 10")
-	type topMeanNVal struct {
+	type topMeanVal struct {
 		Dist float64 `json:"distance"`
 		Pos  string  `json:"pos"`
 		Text string  `json:"text"`
 	}
-	topMeanNVals := make([]topMeanNVal, 0)
+	topMeanVals := make([]topMeanVal, 0) // API result response
 	poSCounter := make(map[tokenize.PoS]int)
-	for _, meanNVal := range meanNVals {
+	for _, meanVal := range meanVals {
 		// Stop at 10 results per pos
-		if poSCounter[meanNVal.tok.PoS] >= 10 {
+		if poSCounter[meanVal.tok.PoS] >= 10 {
 			continue
 		}
 
-		topMeanNVals = append(topMeanNVals, topMeanNVal{
-			Dist: meanNVal.dist,
-			Pos:  tokenize.PoSMapStr[meanNVal.tok.PoS],
-			Text: meanNVal.tok.Text,
+		topMeanVals = append(topMeanVals, topMeanVal{
+			Dist: meanVal.dist,
+			Pos:  tokenize.PoSMapStr[meanVal.tok.PoS],
+			Text: meanVal.tok.Text,
 		})
 
-		poSCounter[meanNVal.tok.PoS] += 1
+		poSCounter[meanVal.tok.PoS] += 1
 	}
-	l.Printf("len(topMeanNVals)=%d", len(topMeanNVals))
+	l.Printf("len(topMeanVals)=%d", len(topMeanVals))
 
 	// Write top 10 to disk
 	l.Println("write to disk")
-	file, err := json.MarshalIndent(&topMeanNVals, "", " ")
+	file, err := json.MarshalIndent(&topMeanVals, "", " ")
 	if err != nil {
 		l.Fatal(err)
 	}
