@@ -159,9 +159,14 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 			continue
 		}
 
+		// Ignore unusual missmatches
+		poS, ok := tokenize.PoSMapStr[meanVal.tok.PoS]
+		if !ok {
+			continue
+		}
 		topMeanVals = append(topMeanVals, topMeanVal{
 			Dist: meanVal.dist,
-			PoS:  tokenize.PoSMapStr[meanVal.tok.PoS],
+			PoS:  poS,
 			Text: meanVal.tok.Text,
 		})
 
@@ -211,7 +216,12 @@ func readArticles(path string) (articles [][]string, err error) {
 }
 
 func accumTexts(articles [][]string) (texts []string) {
-	// For [[ID1, DATE1, LINK1, TITLE1, SUBTILE1, TEXT1], [ID2, DATE2, LINK2, TITLE2, SUBTILE2, TEXT2], ...]
+	// For
+	//	[
+	//		[ID1, DATE1, LINK1, TITLE1, SUBTILE1, TEXT1],
+	//		[ID2, DATE2, LINK2, TITLE2, SUBTILE2, TEXT2],
+	//		...
+	//	]
 	for _, article := range articles[1:] { // Remove CSV header
 		// Or: text := article[5]
 		for idx, text := range article {
