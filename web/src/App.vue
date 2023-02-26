@@ -10,7 +10,7 @@
     <p>
       The Go package
       <a href="https://github.com/ndabAP/assocentity">assocentity</a> was used
-      for creating this experiment. You can create new ones with updating the
+      for creating this experiment. You can create new ones by updating the
       <code>source/entities.txt</code> file and run the CLI with the provided
       Visual Studio Code debug configuration. The experiments source code can be
       found at
@@ -40,6 +40,7 @@
                 display: false,
               },
             },
+
             y: {
               ticks: {
                 font: {
@@ -133,25 +134,25 @@ export default defineComponent({
       });
     }
 
-    let meanN = [];
+    let mean = [];
     const fetchEntity = async (entity) => {
       entity = entity.toLowerCase().replace(/ /g, "+");
       const response = await fetch(`${import.meta.env.BASE_URL}${entity}.json`);
-      meanN = await response.json();
+      mean = await response.json();
     };
 
-    const filterPosMeanN = () => {
-      posMeanN.splice(0);
-      meanN.forEach((meanN) => {
+    const filterPosMean = () => {
+      posMean.splice(0);
+      mean.forEach((meanN) => {
         if (selectedPos.value === meanN.pos) {
-          posMeanN.push(meanN);
+          posMean.push(meanN);
         }
       });
     };
 
-    let posMeanN = reactive([]);
+    let posMean = reactive([]);
     const chartData = computed(() => {
-      if (posMeanN.length === 0) {
+      if (posMean.length === 0) {
         return {
           labels: [],
           datasets: [],
@@ -159,15 +160,15 @@ export default defineComponent({
       }
 
       return {
-        labels: posMeanN.map((meanN) => {
-          return meanN.text;
+        labels: posMean.map((mean) => {
+          return mean.text;
         }),
 
         datasets: [
           {
             label: "Mean distances",
-            data: posMeanN.map((meanN) => {
-              return meanN.distance;
+            data: posMean.map((mean) => {
+              return mean.distance;
             }),
           },
         ],
@@ -178,13 +179,13 @@ export default defineComponent({
       await fetchEntity(selectedEntity.value);
 
       watch(selectedPos, () => {
-        filterPosMeanN();
+        filterPosMean();
       });
       selectedPos.value = "ADJ";
 
       watch(selectedEntity, async (entity) => {
         await fetchEntity(entity);
-        filterPosMeanN();
+        filterPosMean();
       });
     });
 
