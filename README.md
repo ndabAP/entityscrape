@@ -6,7 +6,7 @@ selected entities (like Xi Jingping or ISIS). Go straight to the
 [website](https://ndabap.github.io/entityscrape/index.html)!
 
 The Go package [assocentity](https://github.com/ndabAP/assocentity) was
-used for creating this experiment. You can create new ones with updating the
+used for creating this experiment. You can create new ones by updating the
 `source/entities.txt` file and run the CLI with the provided Visual Studio Code
 debug configuration.
 

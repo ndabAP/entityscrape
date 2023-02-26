@@ -10,7 +10,7 @@
     <p>
       The Go package
       <a href="https://github.com/ndabAP/assocentity">assocentity</a> was used
-      for creating this experiment. You can create new ones with updating the
+      for creating this experiment. You can create new ones by updating the
       <code>source/entities.txt</code> file and run the CLI with the provided
       Visual Studio Code debug configuration. The experiments source code can be
       found at
