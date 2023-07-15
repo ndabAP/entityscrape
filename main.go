@@ -14,9 +14,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/ndabAP/assocentity/v13"
-	"github.com/ndabAP/assocentity/v13/nlp"
-	"github.com/ndabAP/assocentity/v13/tokenize"
+	"github.com/ndabAP/assocentity/v14"
+	"github.com/ndabAP/assocentity/v14/nlp"
+	"github.com/ndabAP/assocentity/v14/tokenize"
 )
 
 func init() {
@@ -26,13 +26,14 @@ func init() {
 
 var (
 	gogSvcLocF = flag.String(
-		"gog-svc-loc",
+		"google-svc-acc-key",
 		"",
-		"Google Clouds NLP JSON service account file, example: -gog-svc-loc=\"~/gog-svc-loc.json\"",
+		"Google Clouds NLP JSON service account file, example: -google-svc-acc-key=\"~/google-svc-acc-key.json\"",
 	)
 )
 
 func main() {
+	log.Println("reading articles and entities ...")
 	// Read
 	articles, err := readArticles("./source/articles.csv")
 	if err != nil {
@@ -58,11 +59,22 @@ func main() {
 	}
 	log.Printf("len(texts)=%d", len(texts))
 
-	// Get mean distance per entity
-	log.Println("get mean ...")
+	log.Println("getting distances ...")
 	nlpTok := nlp.NewNLPTokenizer(*gogSvcLocF, nlp.AutoLang)
 	var wg sync.WaitGroup
 	for _, entities := range entities {
+		switch l := len(entities); {
+		case l > 10:
+			if err := scrape(texts, entities, nlpTok); err != nil {
+				log.Fatal(err)
+			}
+
+			continue
+
+		default:
+			// Use goroutine strategy
+		}
+
 		wg.Add(1)
 
 		go func(entities []string) {
@@ -80,7 +92,7 @@ func main() {
 func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	log.Printf("entities=%v", entities)
 
-	// First entity is primary
+	// First entity is primary by definition
 	entity := entities[0]
 	log.Printf("entity=%s", entity)
 
@@ -109,7 +121,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	if err != nil {
 		l.Fatal(err)
 	}
-	assocentity.Normalize(dists, assocentity.HumandReadableNormalizer)
+	assocentity.Normalize(dists, assocentity.HumanReadableNormalizer)
 	assocentity.Threshold(dists, 0.1)
 	mean := assocentity.Mean(dists)
 
@@ -121,14 +133,14 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	}
 
 	// Convert to slice to make it sortable
-	l.Println("convert to slice ...")
+	l.Println("converting to slice ...")
 	type meanVal struct {
 		dist float64
 		tok  tokenize.Token
 	}
 	meanVals := make([]meanVal, 0)
 	for tok, dist := range mean {
-		// TODO: Whitelist: a-zA-Z0-9
+		// TODO: Whitelist ASCII
 		meanVals = append(meanVals, meanVal{
 			dist: dist,
 			tok:  tok,
@@ -136,7 +148,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	}
 
 	// Sort by closest distance
-	l.Println("sort by pos and distance ...")
+	l.Println("sorting by pos and distance ...")
 	sort.Slice(meanVals, func(i, j int) bool {
 		if meanVals[i].tok.PoS != meanVals[j].tok.PoS {
 			return meanVals[i].tok.PoS < meanVals[j].tok.PoS
@@ -151,7 +163,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 		PoS  string  `json:"pos"`
 		Text string  `json:"text"`
 	}
-	topMeanVals := make([]topMeanVal, 0) // API result response
+	topMeanVals := make([]topMeanVal, 0)
 	poSCounter := make(map[tokenize.PoS]int)
 	for _, meanVal := range meanVals {
 		// Stop at 10 results per pos
@@ -175,7 +187,7 @@ func scrape(texts, entities []string, tokenizer tokenize.Tokenizer) error {
 	l.Printf("len(topMeanVals)=%d", len(topMeanVals))
 
 	// Write top 10 to disk
-	l.Println("write to disk ...")
+	l.Println("writing to disk ...")
 	file, err := json.MarshalIndent(&topMeanVals, "", " ")
 	if err != nil {
 		l.Fatal(err)
@@ -241,10 +253,9 @@ func accumTexts(articles [][]string) (texts []string) {
 
 			// Text
 			case 5:
-				if len(text) == 0 {
-					continue
+				if len(text) > 0 {
+					texts = append(texts, text)
 				}
-				texts = append(texts, text)
 			}
 		}
 	}
