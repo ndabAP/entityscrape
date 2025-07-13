@@ -2,6 +2,7 @@ package cases
 
 import (
 	"context"
+	"errors"
 	"io"
 	"io/fs"
 	"log/slog"
@@ -11,6 +12,7 @@ import (
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
 	"github.com/ndabAP/assocentity/tokenize/nlp"
+	"github.com/ndabAP/entityscrape/parser"
 	"github.com/ndabAP/entityscrape/store"
 	"github.com/ndabAP/entityscrape/translator"
 	"golang.org/x/text/language"
@@ -52,12 +54,12 @@ var (
 )
 
 func NewStudy[samples, aggregated any](
-	corpus string,
+	ident string,
 	collect Collector[samples],
 	aggregate Aggregator[samples, aggregated],
 	report Reporter[aggregated],
 ) study[samples, aggregated] {
-	store := store.NewFile(filepath.Join("cases", corpus, "report"))
+	store := store.NewFile(filepath.Join("cases", ident, "report"))
 	subjects := make(map[string]Analyses)
 	return study[samples, aggregated]{
 		Subjects:  subjects,
@@ -149,19 +151,22 @@ func (study study[samples, aggregated]) analysis(
 	slog.Debug("parsing files", "n", len(filenames))
 	texts := make([]string, 0, len(filenames))
 	for _, filename := range filenames {
-		slog.Debug("processing file", "filename", filename)
-
 		select {
 		case <-ctx.Done():
 			return assocentity.Analyses{}, ctx.Err()
 		default:
 		}
 
+		slog.Debug("processing file", "filename", filename)
 		file, err := Corpus.Open(path.Join("corpus", filename))
 		if err != nil {
 			return assocentity.Analyses{}, err
 		}
 		text, err := parse(file)
+		if errors.Is(err, parser.ErrTextTooShort) {
+			slog.Debug("skipping short text")
+			continue
+		}
 		if err != nil {
 			return assocentity.Analyses{}, err
 		}
@@ -169,9 +174,24 @@ func (study study[samples, aggregated]) analysis(
 	}
 	slog.Debug("files parsed")
 
-	texts = texts
-
 	slog.Debug("creating analyses")
 	src := assocentity.NewSource(entity, texts)
 	return src.Analyses(ctx, tokenize, feats)
+}
+
+func WalkCorpus(corpus string, fn func(filename string) error) {
+	root := filepath.Join("corpus", corpus)
+	err := fs.WalkDir(Corpus, root, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			return nil
+		}
+
+		return fn(path)
+	})
+	if err != nil {
+		panic(err)
+	}
 }

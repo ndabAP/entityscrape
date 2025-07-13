@@ -7,25 +7,25 @@ import (
 )
 
 // AMND parses "Adverse Media News Dataset".
-func AMND(f io.Reader) (text string, err error) {
+func AMND(r io.Reader) (text []string, err error) {
 	type data struct {
 		Text string `json:"text"`
 	}
 
 	var d data
-	if err = json.NewDecoder(f).Decode(&d); err != nil {
+	if err = json.NewDecoder(r).Decode(&d); err != nil {
 		return
 	}
-	text = d.Text
+	text = []string{d.Text}
 
 	// Validate
 	if len(text) < 15 {
-		return "", ErrTextTooShort
+		return []string{}, ErrTextTooShort
 	}
 
 	// Replace
-	text = strings.ReplaceAll(text, "\n", " ")
-	text = strings.ReplaceAll(text, "\t", " ")
+	text[0] = strings.ReplaceAll(text[0], "\n", " ")
+	text[0] = strings.ReplaceAll(text[0], "\t", " ")
 
 	return
 }

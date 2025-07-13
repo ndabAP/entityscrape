@@ -1,5 +1,2 @@
-Economy_Business_and_Finance_20241224114557/*.json
-Economy_Business_and_Finance_20241225073247/*.json
-Economy_Business_and_Finance_20241226073250/*.json
-Economy_Business_and_Finance_20241227073241/*.json
-German-Political-Speeches-Corpus/*.xml
+*
+!.gitkeep

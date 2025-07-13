@@ -35,7 +35,7 @@ type (
 )
 
 var (
-	corpus = "gpsc"
+	ident = "nsops"
 
 	collector = func(analyses assocentity.Analyses) []sample {
 		var (
@@ -145,12 +145,11 @@ func Conduct(ctx context.Context) error {
 	default:
 	}
 
-	slog.Debug("conducting national sentiment of political speeches")
 	return conduct(ctx)
 }
 
 func conduct(ctx context.Context) error {
-	study := cases.NewStudy(corpus, collector, aggregator, reporter)
+	study := cases.NewStudy(ident, collector, aggregator, reporter)
 
 	feats := tokenize.FeatureSyntax
 
@@ -161,7 +160,6 @@ func conduct(ctx context.Context) error {
 
 		// GPSC
 		{
-			slog.Debug("adding german political speeches corpus")
 			var (
 				filenames = []string{
 					path.Join("German-Political-Speeches-Corpus", "Bundesregierung.xml"),
