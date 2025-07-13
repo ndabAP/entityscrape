@@ -163,9 +163,14 @@ func (study study[samples, aggregated]) analysis(
 			return assocentity.Analyses{}, err
 		}
 		text, err := parse(file)
-		if errors.Is(err, parser.ErrTextTooShort) {
+		switch {
+		case errors.Is(err, parser.ErrTextTooShort):
 			slog.Debug("skipping short text")
 			continue
+		case errors.Is(err, parser.ErrUnsupportedLang):
+			slog.Debug("skipping unsupported language")
+			continue
+		default:
 		}
 		if err != nil {
 			return assocentity.Analyses{}, err

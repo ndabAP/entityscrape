@@ -3,10 +3,12 @@ package isob
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 	"log/slog"
 	"path/filepath"
 	"slices"
+	"sort"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/dependency"
@@ -73,18 +75,25 @@ var (
 			}
 
 			i := slices.IndexFunc(aggregates, func(aggregate aggregate) bool {
-				return ws == aggregate.Heads[0]
+				for i, w := range aggregate.Heads {
+					if w[0] != ws[i] {
+						return false
+					}
+				}
+
+				return true
 			})
 			// Find matches
 			switch i {
 			case -1:
-				var (
-					heads = ws
-					n     = 1
-				)
+				n := 1
 				aggregates = append(aggregates, aggregate{
-					Heads: heads,
-					N:     n,
+					Heads: [lvl][2]string{
+						{ws[0], ""},
+						{ws[1], ""},
+						{ws[2], ""},
+					},
+					N: n,
 				})
 			// Found
 			default:
@@ -92,9 +101,33 @@ var (
 			}
 		}
 
+		// Top n sorted
+		const limit = 10
+		sort.Slice(aggregates, func(i, j int) bool {
+			return aggregates[i].N > aggregates[j].N
+		})
+		if len(aggregates) > limit {
+			aggregates = aggregates[:limit]
+		}
+
 		return aggregates
 	}
 	reporter = func(aggregates aggregates, translate cases.Translate, writer io.Writer) error {
+		// Collect words to translate.
+		words := make([]string, 0, len(aggregates))
+		for i, aggregate := range aggregates {
+			words = append(words, aggregate.Heads[i][0])
+		}
+		w, err := translate(words)
+		if err != nil {
+			return err
+		}
+		// Add translated words back.
+		for i := range aggregates {
+			aggregates[i].Heads[i][1] = w[i]
+		}
+
+		return json.NewEncoder(writer).Encode(&aggregates)
 	}
 )
 

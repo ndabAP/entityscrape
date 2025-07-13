@@ -9,7 +9,8 @@ import (
 // AMND parses "Adverse Media News Dataset".
 func AMND(r io.Reader) (text []string, err error) {
 	type data struct {
-		Text string `json:"text"`
+		Language string `json:"language"`
+		Text     string `json:"text"`
 	}
 
 	var d data
@@ -21,6 +22,11 @@ func AMND(r io.Reader) (text []string, err error) {
 	// Validate
 	if len(text) < 15 {
 		return []string{}, ErrTextTooShort
+	}
+	switch d.Language {
+	case "english":
+	default:
+		return []string{}, ErrUnsupportedLang
 	}
 
 	// Replace
