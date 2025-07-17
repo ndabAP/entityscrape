@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"io"
 	"log/slog"
-	"path"
 	"slices"
 	"sort"
 
@@ -107,9 +106,8 @@ func Conduct(ctx context.Context) error {
 func conduct(ctx context.Context) error {
 	study := cases.NewStudy(ident, collector, aggregator, reporter)
 
-	feats := tokenize.FeatureSyntax
-
 	var (
+		feats  = tokenize.FeatureSyntax
 		lang   = language.English
 		parser = parser.Etc
 	)
@@ -117,12 +115,12 @@ func conduct(ctx context.Context) error {
 	// Pop
 	{
 		entity := []string{"Pop"}
-		var (
-			root      = "pop"
-			filenames = []string{
-				path.Join(root, "bye_bye_bye.txt"),
-			}
-		)
+
+		filenames := make([]string, 0)
+		cases.WalkCorpus("etc/pop", func(filename string) error {
+			filenames = append(filenames, filename)
+			return nil
+		})
 		study.Subjects["Pop"] = cases.Analyses{
 			Entity:    entity,
 			Feats:     feats,

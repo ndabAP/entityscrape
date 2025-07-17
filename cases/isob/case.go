@@ -47,16 +47,16 @@ var (
 
 			var (
 				s sample
-				l int
+				d int
 			)
 			tree.Ancestors(token, func(token *tokenize.Token) bool {
-				if l == depth {
+				if d == depth {
 					return false
 				}
 
-				s[l-1] = token
+				s[d-1] = token
 
-				l++
+				d++
 				return true
 			})
 			samples = append(samples, s)
