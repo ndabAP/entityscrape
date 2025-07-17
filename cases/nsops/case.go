@@ -162,7 +162,7 @@ func conduct(ctx context.Context) error {
 		{
 			var (
 				filenames = []string{
-					path.Join("German-Political-Speeches-Corpus", "Bundesregierung.xml"),
+					path.Join("gpsc", "Bundesregierung.xml"),
 				}
 				parser = parser.GPSC
 			)

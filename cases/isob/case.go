@@ -20,13 +20,13 @@ import (
 
 var logger = slog.Default()
 
-const lvl = 3 // Indices are 0-based
+const depth = 3 // Indices are 0-based
 
 type (
-	sample    [lvl]*tokenize.Token
+	sample    [depth]*tokenize.Token
 	aggregate struct {
-		Heads [lvl][2]string `json:"heads"`
-		N     int            `json:"n"`
+		Heads [depth][2]string `json:"heads"`
+		N     int              `json:"n"`
 	}
 	aggregates []aggregate
 )
@@ -50,7 +50,7 @@ var (
 				l int
 			)
 			tree.Ancestors(token, func(token *tokenize.Token) bool {
-				if l == lvl {
+				if l == depth {
 					return false
 				}
 
@@ -69,7 +69,7 @@ var (
 	aggregator = func(samples []sample) aggregates {
 		aggregates := make(aggregates, 0, len(samples))
 		for _, sample := range samples {
-			ws := [lvl]string{}
+			ws := [depth]string{}
 			for i, w := range sample {
 				ws[i] = w.Lemma
 			}
@@ -88,7 +88,7 @@ var (
 			case -1:
 				n := 1
 				aggregates = append(aggregates, aggregate{
-					Heads: [lvl][2]string{
+					Heads: [depth][2]string{
 						{ws[0], ""},
 						{ws[1], ""},
 						{ws[2], ""},
