@@ -110,18 +110,51 @@ func conduct(ctx context.Context) error {
 		feats  = tokenize.FeatureSyntax
 		lang   = language.English
 		parser = parser.Etc
+
+		// We have no real entity.
+		entity = []string{"."}
 	)
 
 	// Pop
 	{
-		entity := []string{"Pop"}
-
 		filenames := make([]string, 0)
 		cases.WalkCorpus("etc/pop", func(filename string) error {
 			filenames = append(filenames, filename)
 			return nil
 		})
 		study.Subjects["Pop"] = cases.Analyses{
+			Entity:    entity,
+			Feats:     feats,
+			Filenames: filenames,
+			Language:  lang,
+			Parser:    parser,
+			Ext:       "json",
+		}
+	}
+	// Rap
+	{
+		filenames := make([]string, 0)
+		cases.WalkCorpus("etc/rap", func(filename string) error {
+			filenames = append(filenames, filename)
+			return nil
+		})
+		study.Subjects["Rap"] = cases.Analyses{
+			Entity:    entity,
+			Feats:     feats,
+			Filenames: filenames,
+			Language:  lang,
+			Parser:    parser,
+			Ext:       "json",
+		}
+	}
+	// Rock
+	{
+		filenames := make([]string, 0)
+		cases.WalkCorpus("etc/rock", func(filename string) error {
+			filenames = append(filenames, filename)
+			return nil
+		})
+		study.Subjects["Rock"] = cases.Analyses{
 			Entity:    entity,
 			Feats:     feats,
 			Filenames: filenames,
