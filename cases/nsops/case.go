@@ -19,8 +19,6 @@ import (
 	"golang.org/x/text/language"
 )
 
-var logger = slog.Default()
-
 type (
 	sample struct {
 		*tokenize.Token
@@ -153,7 +151,7 @@ func conduct(ctx context.Context) error {
 
 	feats := tokenize.FeatureSyntax
 
-	// Deutschland
+	// Germany
 	{
 		lang := language.German
 		entity := []string{"Deutschland", "Deutschlands", "Deutschlande"}
@@ -166,6 +164,29 @@ func conduct(ctx context.Context) error {
 				}
 				parser = parser.GPSC
 			)
+			study.Subjects["Deutschland"] = cases.Analyses{
+				Entity:    entity,
+				Feats:     feats,
+				Filenames: filenames,
+				Language:  lang,
+				Parser:    parser,
+				Ext:       "json",
+			}
+		}
+	}
+	// Russia
+	{
+		lang := language.Russian
+		entity := []string{"Россия", "России"}
+
+		// GPSC
+		{
+			parser := parser.DS
+			filenames := make([]string, 0)
+			cases.WalkCorpus("ds", func(filename string) error {
+				filenames = append(filenames, filename)
+				return nil
+			})
 			study.Subjects["Deutschland"] = cases.Analyses{
 				Entity:    entity,
 				Feats:     feats,

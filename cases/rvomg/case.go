@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"log/slog"
 	"slices"
 	"sort"
 
@@ -15,8 +14,6 @@ import (
 	"github.com/ndabAP/entityscrape/parser"
 	"golang.org/x/text/language"
 )
-
-var logger = slog.Default()
 
 type (
 	sample    *tokenize.Token

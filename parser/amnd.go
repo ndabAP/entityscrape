@@ -29,7 +29,7 @@ func AMND(r io.Reader) (text []string, err error) {
 		return []string{}, ErrUnsupportedLang
 	}
 
-	// Replace
+	// Normalize
 	text[0] = strings.ReplaceAll(text[0], "\n", " ")
 	text[0] = strings.ReplaceAll(text[0], "\t", " ")
 

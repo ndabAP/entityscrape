@@ -38,9 +38,15 @@ func init() {
 func main() {
 	g, ctx := errgroup.WithContext(ctx)
 
+	// g.Go(func() error {
+	// 	return isob.Conduct(ctx)
+	// })
 	g.Go(func() error {
 		return nsops.Conduct(ctx)
 	})
+	// g.Go(func() error {
+	// 	return rvomg.Conduct(ctx)
+	// })
 
 	if err := g.Wait(); err != nil {
 		logger.Error(err.Error())
