@@ -42,6 +42,8 @@ var (
 				return true
 			}
 
+			// TODO: Handle multi-token entities.
+
 			var (
 				s sample
 				d int
@@ -149,14 +151,16 @@ func conduct(ctx context.Context) error {
 		parser    = parser.AMND
 		ext       = "json"
 	)
-	cases.WalkCorpus("amnd", func(filename string) error {
+	if err := cases.WalkCorpus("amnd", func(filename string) error {
 		if filepath.Ext(filename) != ".json" {
 			return nil
 		}
 
 		filenames = append(filenames, filename)
 		return nil
-	})
+	}); err != nil {
+		return err
+	}
 
 	// Apple
 	{

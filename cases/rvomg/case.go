@@ -115,10 +115,12 @@ func conduct(ctx context.Context) error {
 	// Pop
 	{
 		filenames := make([]string, 0)
-		cases.WalkCorpus("etc/pop", func(filename string) error {
+		if err := cases.WalkCorpus("etc/pop", func(filename string) error {
 			filenames = append(filenames, filename)
 			return nil
-		})
+		}); err != nil {
+			return err
+		}
 		study.Subjects["Pop"] = cases.Analyses{
 			Entity:    entity,
 			Feats:     feats,
@@ -131,10 +133,12 @@ func conduct(ctx context.Context) error {
 	// Rap
 	{
 		filenames := make([]string, 0)
-		cases.WalkCorpus("etc/rap", func(filename string) error {
+		if err := cases.WalkCorpus("etc/rap", func(filename string) error {
 			filenames = append(filenames, filename)
 			return nil
-		})
+		}); err != nil {
+			return err
+		}
 		study.Subjects["Rap"] = cases.Analyses{
 			Entity:    entity,
 			Feats:     feats,
@@ -147,10 +151,12 @@ func conduct(ctx context.Context) error {
 	// Rock
 	{
 		filenames := make([]string, 0)
-		cases.WalkCorpus("etc/rock", func(filename string) error {
+		if err := cases.WalkCorpus("etc/rock", func(filename string) error {
 			filenames = append(filenames, filename)
 			return nil
-		})
+		}); err != nil {
+			return err
+		}
 		study.Subjects["Rock"] = cases.Analyses{
 			Entity:    entity,
 			Feats:     feats,

@@ -177,17 +177,19 @@ func conduct(ctx context.Context) error {
 	// Russia
 	{
 		lang := language.Russian
-		entity := []string{"Россия", "России"}
+		entity := []string{"Россия", "России", "Россией"}
 
-		// GPSC
+		// DS
 		{
 			parser := parser.DS
 			filenames := make([]string, 0)
-			cases.WalkCorpus("ds", func(filename string) error {
+			if err := cases.WalkCorpus("ds", func(filename string) error {
 				filenames = append(filenames, filename)
 				return nil
-			})
-			study.Subjects["Deutschland"] = cases.Analyses{
+			}); err != nil {
+				return err
+			}
+			study.Subjects["Russia"] = cases.Analyses{
 				Entity:    entity,
 				Feats:     feats,
 				Filenames: filenames,
@@ -196,6 +198,12 @@ func conduct(ctx context.Context) error {
 				Ext:       "json",
 			}
 		}
+	}
+	// USA
+	{
+		lang := language.English
+		entity := []string{"United States", "USA", "United States of America"}
+
 	}
 
 	if err := study.Conduct(ctx); err != nil {
