@@ -5,7 +5,7 @@ import (
 	"errors"
 	"log/slog"
 	"math/rand/v2"
-	"path"
+	"os"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
@@ -107,13 +107,13 @@ func (study study[samples, aggregated]) analysis(
 
 		// Sampling
 		n := rand.Uint64N(100)
-		if n >= Sampling {
+		if n >= SampleRate {
 			slog.Debug("skipping file (sampling)", "filename", filename, "n", n)
 			continue
 		}
 
 		slog.Debug("processing file", "filename", filename)
-		file, err := Corpus.Open(path.Join("corpus", filename))
+		file, err := os.Open(filename)
 		if err != nil {
 			return assocentity.Analyses{}, err
 		}

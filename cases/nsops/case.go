@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"io"
 	"log/slog"
-	"path"
+	"path/filepath"
 	"slices"
 	"sort"
 
@@ -160,7 +160,7 @@ func conduct(ctx context.Context) error {
 		{
 			var (
 				filenames = []string{
-					path.Join("gpsc", "Bundesregierung.xml"),
+					filepath.Join(cases.GetCorpusRootDir(), "gpsc", "Bundesregierung.xml"),
 				}
 				parser = parser.GPSC
 			)

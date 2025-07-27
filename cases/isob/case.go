@@ -17,7 +17,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-const depth = 3 // Indices are 0-based
+const depth = 3
 
 type (
 	sample    [depth]*tokenize.Token

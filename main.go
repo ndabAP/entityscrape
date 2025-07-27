@@ -2,14 +2,13 @@ package main
 
 import (
 	"context"
-	"embed"
 	_ "embed"
 	"log/slog"
 	"os"
 	"strconv"
 
 	"github.com/ndabAP/entityscrape/cases"
-	"github.com/ndabAP/entityscrape/cases/nsops"
+	"github.com/ndabAP/entityscrape/cases/isob"
 
 	"golang.org/x/sync/errgroup"
 )
@@ -20,15 +19,21 @@ var (
 	}))
 
 	ctx = context.Background()
-
-	//go:embed corpus/*
-	corpus embed.FS
 )
 
 func init() {
 	slog.SetDefault(logger)
 
-	cases.Corpus = corpus
+	_, err := os.Stat("go.mod")
+	if os.IsNotExist(err) {
+		panic("must be executed in root")
+	}
+
+	cwd, err := os.Getwd()
+	if err != nil {
+		panic(err.Error())
+	}
+	cases.SetCorpusRootDir(cwd)
 
 	gcloudSvcAccountKey := os.Getenv("GCLOUD_SERVICE_ACCOUNT_KEY")
 	if len(gcloudSvcAccountKey) == 0 {
@@ -36,28 +41,28 @@ func init() {
 	}
 	cases.GoogleCloudSvcAccountKey = gcloudSvcAccountKey
 
-	sampling := os.Getenv("SAMPLING")
-	if len(sampling) > 0 {
-		s, err := strconv.ParseUint(sampling, 10, 64)
+	sampleRate := os.Getenv("SAMPLE_RATE")
+	if len(sampleRate) > 0 {
+		s, err := strconv.ParseUint(sampleRate, 10, 64)
 		if err != nil {
 			panic(err.Error())
 		}
 		if s > 100 {
-			panic("SAMPLING must be <= 100")
+			panic("SAMPLE_RATE must be <= 100")
 		}
-		cases.Sampling = s
+		cases.SampleRate = s
 	}
 }
 
 func main() {
 	g, ctx := errgroup.WithContext(ctx)
 
-	// g.Go(func() error {
-	// 	return isob.Conduct(ctx)
-	// })
 	g.Go(func() error {
-		return nsops.Conduct(ctx)
+		return isob.Conduct(ctx)
 	})
+	// g.Go(func() error {
+	// 	return nsops.Conduct(ctx)
+	// })
 	// g.Go(func() error {
 	// 	return rvomg.Conduct(ctx)
 	// })
