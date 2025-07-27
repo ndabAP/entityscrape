@@ -5,8 +5,18 @@ const router = createRouter({
   routes: [
     {
       path: '/isob',
-      name: 'home',
-     component: () => import('../views/Isob.vue'),
+      name: 'isob',
+      component: () => import('../views/Isob.vue'),
+    },
+    {
+      path: '/nsops',
+      name: 'nsops',
+      component: () => import('../views/Nsops.vue'),
+    },
+    {
+      path: '/rvomg',
+      name: 'rvomg',
+      component: () => import('../views/Rvomg.vue'),
     },
   ],
 })

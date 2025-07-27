@@ -1,7 +1,6 @@
 {
   "name": "entityscrape-client",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +9,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "mermaid": "^11.9.0",
     "plotly.js": "^3.0.3",
     "plotly.js-dist-min": "^3.0.3",
     "vue": "^3.5.17",

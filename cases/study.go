@@ -10,6 +10,7 @@ import (
 var (
 	Corpus                   fs.FS
 	GoogleCloudSvcAccountKey string
+	Sampling                 uint64 = 100 // Default: 100 %
 )
 
 func NewStudy[samples, aggregated any](
@@ -18,7 +19,10 @@ func NewStudy[samples, aggregated any](
 	aggregate Aggregator[samples, aggregated],
 	report Reporter[aggregated],
 ) study[samples, aggregated] {
-	store := store.NewFile(filepath.Join("cases", ident, "report"))
+	store, err := store.NewFile(filepath.Join("cases", ident, "report"))
+	if err != nil {
+		panic(err.Error())
+	}
 	subjects := make(map[string]Analyses)
 	return study[samples, aggregated]{
 		Subjects:  subjects,

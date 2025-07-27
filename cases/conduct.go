@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"log/slog"
+	"math/rand/v2"
 	"path"
 
 	"github.com/ndabAP/assocentity"
@@ -15,9 +16,11 @@ import (
 )
 
 func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
-	translator := translator.NewGoogle(ctx, GoogleCloudSvcAccountKey)
+	defer translator.ClearCache()
 
 	slog.Debug("processing subjects", "n", len(study.Subjects))
+
+	translator := translator.NewGoogle(ctx, GoogleCloudSvcAccountKey)
 	for subject, analyses := range study.Subjects {
 		select {
 		case <-ctx.Done():
@@ -75,7 +78,8 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			return err
 		}
 		writer.Close()
-		slog.Debug("reporting done")
+
+		slog.Debug("reporting done", "subject", subject)
 	}
 
 	return nil
@@ -99,6 +103,13 @@ func (study study[samples, aggregated]) analysis(
 		case <-ctx.Done():
 			return assocentity.Analyses{}, ctx.Err()
 		default:
+		}
+
+		// Sampling
+		n := rand.Uint64N(100)
+		if n >= Sampling {
+			slog.Debug("skipping file (sampling)", "filename", filename, "n", n)
+			continue
 		}
 
 		slog.Debug("processing file", "filename", filename)

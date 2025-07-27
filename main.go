@@ -6,6 +6,7 @@ import (
 	_ "embed"
 	"log/slog"
 	"os"
+	"strconv"
 
 	"github.com/ndabAP/entityscrape/cases"
 	"github.com/ndabAP/entityscrape/cases/nsops"
@@ -28,11 +29,24 @@ func init() {
 	slog.SetDefault(logger)
 
 	cases.Corpus = corpus
+
 	gcloudSvcAccountKey := os.Getenv("GCLOUD_SERVICE_ACCOUNT_KEY")
 	if len(gcloudSvcAccountKey) == 0 {
 		panic("missing GCLOUD_SERVICE_ACCOUNT_KEY")
 	}
 	cases.GoogleCloudSvcAccountKey = gcloudSvcAccountKey
+
+	sampling := os.Getenv("SAMPLING")
+	if len(sampling) > 0 {
+		s, err := strconv.ParseUint(sampling, 10, 64)
+		if err != nil {
+			panic(err.Error())
+		}
+		if s > 100 {
+			panic("SAMPLING must be <= 100")
+		}
+		cases.Sampling = s
+	}
 }
 
 func main() {

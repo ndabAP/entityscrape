@@ -3,6 +3,8 @@ package translator
 import (
 	"context"
 	"fmt"
+	"log/slog"
+	"slices"
 
 	translate "cloud.google.com/go/translate"
 	"golang.org/x/sync/semaphore"
@@ -17,7 +19,10 @@ type (
 	}
 )
 
-var sema = semaphore.NewWeighted(5)
+var (
+	sema  = semaphore.NewWeighted(5)
+	cache = make(map[[2]language.Tag]map[string]string)
+)
 
 func NewGoogle(ctx context.Context, creds string) translator {
 	c, err := translate.NewClient(ctx, option.WithCredentialsFile(creds))
@@ -30,20 +35,42 @@ func NewGoogle(ctx context.Context, creds string) translator {
 	}
 }
 
-func (t translator) Translate(inputs []string, src, target language.Tag) ([]string, error) {
-	sema.Acquire(t.ctx, 1)
+func ClearCache() {
+	cache = make(map[[2]language.Tag]map[string]string)
+}
+
+func (translator translator) Translate(inputs []string, src, target language.Tag) ([]string, error) {
+	slog.Debug("translate", "n", len(inputs), "src", src.String(), "target", target.String())
+
+	sema.Acquire(translator.ctx, 1)
 	defer sema.Release(1)
 
-	var (
-		ctx  = t.ctx
-		opts = &translate.Options{
-			Format: translate.Text,
-			Source: src,
+	ctx := translator.ctx
+
+	outputs := make([]string, 0, len(inputs))
+
+	// Check cache first.
+	for i, input := range inputs {
+		output, ok := cache[[2]language.Tag{src, target}][input]
+		if !ok {
+			continue
 		}
 
-		outputs = make([]string, 0, len(inputs))
-	)
-	translation, err := t.client.Translate(ctx, inputs, target, opts)
+		slog.Debug("cache hit", "input", input, "output", output)
+
+		outputs = append(outputs, output)
+		inputs = slices.Delete(inputs, i, i+1)
+	}
+	// Use cache exhaustively.
+	if len(inputs) == 0 {
+		return outputs, nil
+	}
+
+	opts := &translate.Options{
+		Format: translate.Text,
+		Source: src,
+	}
+	translation, err := translator.client.Translate(ctx, inputs, target, opts)
 	if err != nil {
 		return outputs, err
 	}
@@ -51,8 +78,12 @@ func (t translator) Translate(inputs []string, src, target language.Tag) ([]stri
 		return outputs, fmt.Errorf("translate: %s", inputs)
 	}
 
-	for _, t := range translation {
-		outputs = append(outputs, t.Text)
+	for i, t := range translation {
+		output := t.Text
+		outputs = append(outputs, output)
+
+		// Add to cache.
+		cache[[2]language.Tag{src, target}][inputs[i]] = output
 	}
 	return outputs, nil
 }

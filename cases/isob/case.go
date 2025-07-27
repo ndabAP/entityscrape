@@ -42,8 +42,6 @@ var (
 				return true
 			}
 
-			// TODO: Handle multi-token entities.
-
 			var (
 				s sample
 				d int
@@ -51,6 +49,10 @@ var (
 			tree.Ancestors(token, func(token *tokenize.Token) bool {
 				if d == depth {
 					return false
+				}
+				// Multi-token entity
+				if slices.Contains(entities, token) {
+					return true
 				}
 
 				s[d-1] = token
@@ -143,13 +145,13 @@ func Conduct(ctx context.Context) error {
 func conduct(ctx context.Context) error {
 	study := cases.NewStudy(ident, collector, aggregator, reporter)
 
-	feats := tokenize.FeatureSyntax
-
 	var (
-		lang      = language.English
+		feats  = tokenize.FeatureSyntax
+		lang   = language.English
+		parser = parser.AMND
+		ext    = "json"
+
 		filenames = make([]string, 0)
-		parser    = parser.AMND
-		ext       = "json"
 	)
 	if err := cases.WalkCorpus("amnd", func(filename string) error {
 		if filepath.Ext(filename) != ".json" {

@@ -14,17 +14,19 @@ type file struct {
 
 var mu sync.Mutex
 
-func NewFile(base string) *file {
+func NewFile(base string) (*file, error) {
 	mu.Lock()
 	defer mu.Unlock()
 
 	f := &file{base: base}
-	_ = f.RemoveAll()
+	if err := f.RemoveAll(); err != nil {
+		return nil, err
+	}
 	if err := os.MkdirAll(base, 0o755); err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	return f
+	return f, nil
 }
 
 func (s *file) RemoveAll() error {

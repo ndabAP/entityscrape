@@ -201,9 +201,8 @@ func conduct(ctx context.Context) error {
 	}
 	// USA
 	{
-		lang := language.English
-		entity := []string{"United States", "USA", "United States of America"}
-
+		// lang := language.English
+		// entity := []string{"United States", "USA", "United States of America"}
 	}
 
 	if err := study.Conduct(ctx); err != nil {
