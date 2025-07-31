@@ -19,7 +19,8 @@ type (
 		Ext       string
 	}
 
-	Translate                           func([]string) ([]string, error)
+	Translate func([]string) ([]string, error)
+
 	Collector[samples any]              func(assocentity.Analyses) samples
 	Aggregator[samples, aggregated any] func(samples) aggregated
 	Reporter[aggregated any]            func(aggregated, Translate, io.Writer) error

@@ -57,9 +57,11 @@ var (
 				if slices.Contains(entities, token) {
 					return true
 				}
-				// Ignore possesive nouns.
-				if token.Lemma == "'s" {
+				// Ignore possesive noun suffix.
+				switch token.Lemma {
+				case "’s", "'s":
 					return true
+				default:
 				}
 				// Ignore non-ASCII characters.
 				r, _ := utf8.DecodeRuneInString(token.Lemma)
@@ -79,6 +81,16 @@ var (
 			return false
 		})
 
+		// Delete samples that contain only nil tokens.
+		samples = slices.DeleteFunc(samples, func(sample sample) bool {
+			for _, t := range sample {
+				if t != nil {
+					return false
+				}
+			}
+
+			return true
+		})
 		return samples
 	}
 	aggregator = func(samples []sample) aggregates {

@@ -108,7 +108,7 @@ func (study study[samples, aggregated]) analysis(
 		// Sampling
 		n := rand.Uint64N(100)
 		if n >= SampleRate {
-			slog.Debug("skipping file (sampling)", "filename", filename, "n", n)
+			slog.Debug("skipping file (sampling)", "filename", filename, "sample_n", n)
 			continue
 		}
 
@@ -132,7 +132,7 @@ func (study study[samples, aggregated]) analysis(
 		}
 		texts = append(texts, text...)
 	}
-	slog.Debug("files parsed", "texts", len(texts))
+	slog.Debug("files parsed", "texts_n", len(texts))
 
 	slog.Debug("creating analyses")
 	src := assocentity.NewSource(entity, texts)
