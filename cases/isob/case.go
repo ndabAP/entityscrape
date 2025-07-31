@@ -8,6 +8,8 @@ import (
 	"path/filepath"
 	"slices"
 	"sort"
+	"unicode"
+	"unicode/utf8"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/dependency"
@@ -44,14 +46,26 @@ var (
 
 			var (
 				s sample
-				d int
+				d int = 1
 			)
 			tree.Ancestors(token, func(token *tokenize.Token) bool {
 				if d == depth {
 					return false
 				}
-				// Multi-token entity
+
+				// Ignore multi-token entity.
 				if slices.Contains(entities, token) {
+					return true
+				}
+				// Ignore possesive nouns.
+				if token.Lemma == "'s" {
+					return true
+				}
+				// Ignore non-ASCII characters.
+				r, _ := utf8.DecodeRuneInString(token.Lemma)
+				switch {
+				case unicode.IsDigit(r), unicode.IsLetter(r):
+				default:
 					return true
 				}
 
@@ -180,37 +194,37 @@ func conduct(ctx context.Context) error {
 		}
 
 	}
-	// Google
-	{
-		var (
-			ident  = "Google"
-			entity = []string{ident}
-		)
-		study.Subjects[ident] = cases.Analyses{
-			Entity:    entity,
-			Feats:     feats,
-			Filenames: filenames,
-			Language:  lang,
-			Parser:    parser,
-			Ext:       ext,
-		}
+	// // Google
+	// {
+	// 	var (
+	// 		ident  = "Google"
+	// 		entity = []string{ident}
+	// 	)
+	// 	study.Subjects[ident] = cases.Analyses{
+	// 		Entity:    entity,
+	// 		Feats:     feats,
+	// 		Filenames: filenames,
+	// 		Language:  lang,
+	// 		Parser:    parser,
+	// 		Ext:       ext,
+	// 	}
 
-	}
-	// Amazon
-	{
-		var (
-			ident  = "Amazon"
-			entity = []string{ident}
-		)
-		study.Subjects[ident] = cases.Analyses{
-			Entity:    entity,
-			Feats:     feats,
-			Filenames: filenames,
-			Language:  lang,
-			Parser:    parser,
-			Ext:       ext,
-		}
-	}
+	// }
+	// // Amazon
+	// {
+	// 	var (
+	// 		ident  = "Amazon"
+	// 		entity = []string{ident}
+	// 	)
+	// 	study.Subjects[ident] = cases.Analyses{
+	// 		Entity:    entity,
+	// 		Feats:     feats,
+	// 		Filenames: filenames,
+	// 		Language:  lang,
+	// 		Parser:    parser,
+	// 		Ext:       ext,
+	// 	}
+	// }
 
 	if err := study.Conduct(ctx); err != nil {
 		return err

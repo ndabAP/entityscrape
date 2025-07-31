@@ -1,13 +1,15 @@
 <template>
   <n-config-provider :theme="darkTheme">
     <n-layout position="absolute">
-      <n-layout>
-        <n-menu :mode="menuMode" responsive :options="menuOptions" />
-      </n-layout>
+      <n-menu
+        mode="horizontal"
+        :options="menuOptions"
+        responsive
+      />
 
-      <n-layout content-style="padding: 16px; max-width: 1200px">
-        <router-view />
-      </n-layout>
+      <div style="padding: 0 20px;">
+      <RouterView  />
+    </div>
     </n-layout>
   </n-config-provider>
 </template>
@@ -44,44 +46,11 @@ const menuOptions = [
       ),
     key: 'home',
   },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'isob'
-          }
-        },
-        { default: () => 'International sentiment of brands' }
-      ),
-    key: 'isob',
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'nsops'
-          }
-        },
-        { default: () => 'National sentiment of political speeches' }
-      ),
-    key: 'nsops',
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'rvomg'
-          }
-        },
-        { default: () => 'Root verbs of music genres' }
-      ),
-    key: 'rvomg',
-  },
 ]
 </script>
+
+<style>
+.n-menu .n-menu-item-content .n-menu-item-content-header {
+  white-space: break-spaces;
+}
+</style>

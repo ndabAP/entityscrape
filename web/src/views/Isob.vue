@@ -5,7 +5,9 @@
   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
 
+  <div style="display: block; margin-left: auto; margin-right: auto;">
   <XChart :code="code" />
+  </div>
 </template>
 
 <script setup>

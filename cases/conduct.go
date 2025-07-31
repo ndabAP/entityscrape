@@ -132,7 +132,7 @@ func (study study[samples, aggregated]) analysis(
 		}
 		texts = append(texts, text...)
 	}
-	slog.Debug("files parsed")
+	slog.Debug("files parsed", "texts", len(texts))
 
 	slog.Debug("creating analyses")
 	src := assocentity.NewSource(entity, texts)
