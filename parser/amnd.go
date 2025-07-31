@@ -1,17 +1,17 @@
 package parser
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
-	"strings"
 )
 
 // AMND parses "Adverse Media News Dataset".
-func AMND(r io.Reader) (text []string, err error) {
+func AMND(r io.Reader, heuristics ...ApplyHeuristic) (text []string, err error) {
 	// TODO: Text is empty
 	type data struct {
-		Language string `json:"language"`
-		Text     string `json:"text"`
+		Language string          `json:"language"`
+		Text     json.RawMessage `json:"text"`
 	}
 
 	var d data
@@ -24,8 +24,6 @@ func AMND(r io.Reader) (text []string, err error) {
 		return []string{}, ErrTextTooShort
 	}
 
-	text = []string{d.Text}
-
 	switch d.Language {
 	case "english":
 	default:
@@ -33,10 +31,14 @@ func AMND(r io.Reader) (text []string, err error) {
 	}
 
 	// Normalize
-	text[0] = strings.ReplaceAll(text[0], "\\n", " ")
-	text[0] = strings.ReplaceAll(text[0], "\n", " ")
-	text[0] = strings.ReplaceAll(text[0], "\t", " ")
-	text[0] = strings.ReplaceAll(text[0], "\\u", " ")
+	d.Text = bytes.ReplaceAll(d.Text, []byte("\\n"), []byte(" "))
+	d.Text = bytes.ReplaceAll(d.Text, []byte("\n"), []byte(" "))
+	d.Text = bytes.ReplaceAll(d.Text, []byte("\t"), []byte(" "))
+	d.Text = bytes.ReplaceAll(d.Text, []byte("\\u"), []byte(" "))
 
+	for _, h := range heuristics {
+	}
+
+	text = []string{d.Text}
 	return
 }
