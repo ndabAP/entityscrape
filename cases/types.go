@@ -9,7 +9,7 @@ import (
 )
 
 type (
-	Parser   func(io.Reader, chan string) chan error
+	Parser   func(io.Reader, chan []byte) chan error
 	Analyses struct {
 		Entity []string
 

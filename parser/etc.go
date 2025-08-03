@@ -2,19 +2,25 @@ package parser
 
 import (
 	"bufio"
+	"bytes"
 	"io"
-	"strings"
 )
 
-func Etc(r io.Reader) (texts []string, err error) {
-	scanner := bufio.NewScanner(r)
-	var txt strings.Builder
-	for scanner.Scan() {
-		txt.WriteString(scanner.Text())
-		txt.WriteString(".")
-	}
-	texts = []string{txt.String()}
+func Etc(r io.Reader, texts chan []byte) chan error {
+	errs := make(chan error, 1)
+	go func() {
+		defer close(errs)
 
-	err = scanner.Err()
-	return texts, err
+		scanner := bufio.NewScanner(r)
+		var buf bytes.Buffer
+		for scanner.Scan() {
+			buf.Write(scanner.Bytes())
+			buf.WriteRune('.')
+		}
+
+		texts <- buf.Bytes()
+		errs <- scanner.Err()
+	}()
+
+	return errs
 }

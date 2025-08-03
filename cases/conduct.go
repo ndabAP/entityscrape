@@ -80,6 +80,8 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			if err := study.report(aggregated, translator, writer); err != nil {
 				return err
 			}
+
+			return nil
 		}()
 		if err != nil {
 			return err
@@ -108,12 +110,15 @@ func (study study[samples, aggregated]) analysis(
 	var (
 		texts = make([]string, 0, len(filenames))
 
-		textsChan = make(chan string, 50)
+		textsChan = make(chan []byte, 50)
 		errChan   = make(chan error)
 		done      = make(chan struct{})
 	)
+	defer close(textsChan)
+
 	go func() {
 		defer close(done)
+		defer close(errChan)
 
 		switch {
 		case reduct:
@@ -125,11 +130,11 @@ func (study study[samples, aggregated]) analysis(
 					errChan <- err
 					return
 				}
-				texts = append(texts, text)
+				texts = append(texts, string(text))
 			}
 		default:
 			for text := range textsChan {
-				texts = append(texts, text)
+				texts = append(texts, string(text))
 			}
 		}
 	}()

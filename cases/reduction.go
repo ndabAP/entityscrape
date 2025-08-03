@@ -3,17 +3,20 @@ package cases
 import (
 	"bufio"
 	"bytes"
-	"strings"
 	"unicode"
 	"unicode/utf8"
 )
 
-func reduce(text, entity string) (string, error) {
+// reduct perfoms a fuzzy search for the provided entity and removes sentences
+// defined in [unicode.Sentence_Terminal] which don't contain the entity.
+func reduce(text []byte, entity string) ([]byte, error) {
 	var (
+		// Cached delimiter
 		delim rune
 		size  int
 	)
-	scanner := bufio.NewScanner(strings.NewReader(text))
+
+	scanner := bufio.NewScanner(bytes.NewReader(text))
 	scanner.Split(func(data []byte, atEOF bool) (int, []byte, error) {
 		if atEOF && len(data) == 0 {
 			return 0, nil, nil
@@ -40,19 +43,22 @@ func reduce(text, entity string) (string, error) {
 		}
 	})
 
-	var t strings.Builder
+	var (
+		buf bytes.Buffer
+		e   = []byte(entity)
+	)
 	for scanner.Scan() {
-		if !bytes.Contains(scanner.Bytes(), []byte(entity)) {
+		if !bytes.Contains(scanner.Bytes(), e) {
 			continue
 		}
 
-		if _, err := t.Write(scanner.Bytes()); err != nil {
-			return "", err
+		if _, err := buf.Write(scanner.Bytes()); err != nil {
+			return []byte{}, err
 		}
 
 		// Re-add any terminal.
-		t.WriteRune(delim)
+		buf.WriteRune(delim)
 	}
 
-	return t.String(), scanner.Err()
+	return buf.Bytes(), scanner.Err()
 }
