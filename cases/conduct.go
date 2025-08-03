@@ -2,7 +2,6 @@ package cases
 
 import (
 	"context"
-	"errors"
 	"log/slog"
 	"math/rand/v2"
 	"os"
@@ -10,7 +9,6 @@ import (
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
 	"github.com/ndabAP/assocentity/tokenize/nlp"
-	"github.com/ndabAP/entityscrape/parser"
 	"github.com/ndabAP/entityscrape/translator"
 	"golang.org/x/text/language"
 )
@@ -31,11 +29,12 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 		slog.Debug("processing analyses", "subject", subject)
 		var (
 			entity    = analyses.Entity
+			ext       = analyses.Ext
 			feats     = analyses.Feats
 			filenames = analyses.Filenames
+			reduct    = analyses.Reduct
 			lang      = analyses.Language
 			parser    = analyses.Parser
-			ext       = analyses.Ext
 		)
 		tokenizer := nlp.New(GoogleCloudSvcAccountKey, lang.String())
 		analyses, err := study.analysis(
@@ -43,6 +42,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			entity,
 			filenames,
 			parser,
+			reduct,
 			tokenizer,
 			feats,
 		)
@@ -63,21 +63,27 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 		translator := func(w []string) ([]string, error) {
 			switch lang {
 			case language.English:
-				slog.Debug("skipping translation")
+				slog.Debug("skipping translation for English")
 				return w, nil
 			default:
 			}
 
 			return translator.Translate(w, lang, language.English)
 		}
-		writer, err := study.store.NewWriter(subject, ext)
+		err = func() error {
+			writer, err := study.store.NewWriter(subject, ext)
+			if err != nil {
+				return err
+			}
+			defer writer.Close()
+
+			if err := study.report(aggregated, translator, writer); err != nil {
+				return err
+			}
+		}()
 		if err != nil {
 			return err
 		}
-		if err := study.report(aggregated, translator, writer); err != nil {
-			return err
-		}
-		writer.Close()
 
 		slog.Debug("reporting done", "subject", subject)
 	}
@@ -90,6 +96,7 @@ func (study study[samples, aggregated]) analysis(
 	entity,
 	filenames []string,
 	parse Parser,
+	reduct bool,
 	tokenize tokenize.Tokenizer,
 	feats tokenize.Features,
 ) (
@@ -97,7 +104,36 @@ func (study study[samples, aggregated]) analysis(
 	error,
 ) {
 	slog.Debug("parsing files", "n", len(filenames))
-	texts := make([]string, 0, len(filenames))
+
+	var (
+		texts = make([]string, 0, len(filenames))
+
+		textsChan = make(chan string, 50)
+		errChan   = make(chan error)
+		done      = make(chan struct{})
+	)
+	go func() {
+		defer close(done)
+
+		switch {
+		case reduct:
+			slog.Debug("applying data reduction")
+
+			for text := range textsChan {
+				text, err := reduce(text, entity[0])
+				if err != nil {
+					errChan <- err
+					return
+				}
+				texts = append(texts, text)
+			}
+		default:
+			for text := range textsChan {
+				texts = append(texts, text)
+			}
+		}
+	}()
+
 	for _, filename := range filenames {
 		select {
 		case <-ctx.Done():
@@ -113,24 +149,31 @@ func (study study[samples, aggregated]) analysis(
 		}
 
 		slog.Debug("processing file", "filename", filename)
-		file, err := os.Open(filename)
+		err := func() error {
+			file, err := os.Open(filename)
+			if err != nil {
+				return err
+			}
+			defer file.Close()
+
+			for err := range parse(file, textsChan) {
+				return err
+			}
+
+			return nil
+		}()
 		if err != nil {
 			return assocentity.Analyses{}, err
 		}
-		text, err := parse(file)
-		switch {
-		case errors.Is(err, parser.ErrTextTooShort):
-			slog.Debug("skipping short text")
-			continue
-		case errors.Is(err, parser.ErrUnsupportedLang):
-			slog.Debug("skipping unsupported language")
-			continue
-		default:
-		}
-		if err != nil {
-			return assocentity.Analyses{}, err
-		}
-		texts = append(texts, text...)
+	}
+	close(textsChan)
+
+	select {
+	case <-ctx.Done():
+		return assocentity.Analyses{}, ctx.Err()
+	case err := <-errChan:
+		return assocentity.Analyses{}, err
+	case <-done:
 	}
 	slog.Debug("files parsed", "texts_n", len(texts))
 

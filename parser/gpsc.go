@@ -13,9 +13,7 @@ import (
 var spaceregex = regexp.MustCompile(`\s+`)
 
 // GPSC parses "German Political Speeches Corpus".
-func GPSC(r io.Reader) ([]string, error) {
-	texts := make([]string, 0)
-
+func GPSC(r io.Reader) (texts []string, err error) {
 	type (
 		text struct {
 			Anrede  string `xml:"anrede,attr"`
@@ -27,13 +25,13 @@ func GPSC(r io.Reader) ([]string, error) {
 	)
 
 	coll := collection{}
-	if err := xml.NewDecoder(r).Decode(&coll); err != nil {
-		return texts, err
+	if err = xml.NewDecoder(r).Decode(&coll); err != nil {
+		return
 	}
 	for _, t := range coll.Texts {
 		text := fmt.Sprintf("%s %s", t.Anrede, t.Rohtext)
 
-		if len(text) < 3 {
+		if len(text) < 15 {
 			slog.Debug("skipping short text")
 			continue
 		}
@@ -43,5 +41,5 @@ func GPSC(r io.Reader) ([]string, error) {
 		texts = append(texts, text)
 	}
 
-	return texts, nil
+	return
 }

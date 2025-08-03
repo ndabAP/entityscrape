@@ -8,7 +8,7 @@ import (
 
 var (
 	GoogleCloudSvcAccountKey string
-	SampleRate               uint64 = 100 // Default: 100 %
+	SampleRate               uint64 = 100 // Default: Nothing is sampled.
 )
 
 func NewStudy[samples, aggregated any](

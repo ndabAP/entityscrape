@@ -5,16 +5,18 @@ import (
 	"io"
 )
 
-func DS(r io.Reader) (text []string, err error) {
+func DS(r io.Reader) (texts []string, err error) {
 	c := csv.NewReader(r)
 	c.TrimLeadingSpace = true
 
+	c.Read()
+
 	d, err := c.ReadAll()
 	if err != nil {
-		return text, err
+		return texts, err
 	}
 	for _, r := range d[1:] {
-		text = append(text, r[9])
+		texts = append(texts, r[9])
 	}
-	return text, nil
+	return texts, nil
 }

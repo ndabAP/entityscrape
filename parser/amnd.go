@@ -7,38 +7,63 @@ import (
 )
 
 // AMND parses "Adverse Media News Dataset".
-func AMND(r io.Reader, heuristics ...ApplyHeuristic) (text []string, err error) {
-	// TODO: Text is empty
-	type data struct {
-		Language string          `json:"language"`
-		Text     json.RawMessage `json:"text"`
-	}
+func AMND(r io.Reader, texts chan string) chan error {
+	errs := make(chan error, 1)
+	go func() {
+		defer close(errs)
 
-	var d data
-	if err = json.NewDecoder(r).Decode(&d); err != nil {
-		return
-	}
+		decoder := json.NewDecoder(r)
+		if _, err := decoder.Token(); err != nil {
+			errs <- err
+			return
+		}
 
-	// Validate
-	if len(d.Text) < 15 {
-		return []string{}, ErrTextTooShort
-	}
+		var text, lang json.RawMessage
+		for decoder.More() {
+			token, err := decoder.Token()
+			if err != nil {
+				errs <- err
+				return
+			}
 
-	switch d.Language {
-	case "english":
-	default:
-		return []string{}, ErrUnsupportedLang
-	}
+			// Key
+			k, ok := token.(string)
+			if !ok {
+				continue
+			}
 
-	// Normalize
-	d.Text = bytes.ReplaceAll(d.Text, []byte("\\n"), []byte(" "))
-	d.Text = bytes.ReplaceAll(d.Text, []byte("\n"), []byte(" "))
-	d.Text = bytes.ReplaceAll(d.Text, []byte("\t"), []byte(" "))
-	d.Text = bytes.ReplaceAll(d.Text, []byte("\\u"), []byte(" "))
+			// Value
+			var v json.RawMessage
+			if err = decoder.Decode(&v); err != nil {
+				return
+			}
 
-	for _, h := range heuristics {
-	}
+			switch k {
+			case "language":
+				lang = v
+			case "text":
+				text = v
+			}
+		}
 
-	text = []string{d.Text}
-	return
+		// Validate
+		if !bytes.Equal(lang, []byte("english")) {
+			errs <- ErrUnsupportedLang
+			return
+		}
+		if len(text) < 15 {
+			errs <- ErrTextTooShort
+			return
+		}
+
+		// Normalize
+		text = bytes.ReplaceAll(text, []byte("\\n"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte("\n"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte("\t"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte("\\u"), []byte(" "))
+
+		texts <- string(text)
+	}()
+
+	return errs
 }

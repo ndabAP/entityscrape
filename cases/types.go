@@ -9,14 +9,18 @@ import (
 )
 
 type (
-	Parser   func(io.Reader) ([]string, error)
+	Parser   func(io.Reader, chan string) chan error
 	Analyses struct {
-		Entity    []string
-		Feats     tokenize.Features
-		Filenames []string
-		Parser    Parser
-		Language  language.Tag
+		Entity []string
+
+		Language language.Tag
+
+		Feats  tokenize.Features
+		Parser Parser
+		Reduct bool
+
 		Ext       string
+		Filenames []string
 	}
 
 	Translate func([]string) ([]string, error)

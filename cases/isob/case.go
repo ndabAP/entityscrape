@@ -198,11 +198,12 @@ func conduct(ctx context.Context) error {
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:    entity,
+			Ext:       ext,
 			Feats:     feats,
 			Filenames: filenames,
+			Reduct:    true,
 			Language:  lang,
 			Parser:    parser,
-			Ext:       ext,
 		}
 
 	}
@@ -214,11 +215,11 @@ func conduct(ctx context.Context) error {
 	// 	)
 	// 	study.Subjects[ident] = cases.Analyses{
 	// 		Entity:    entity,
+	// 		Ext:       ext,
 	// 		Feats:     feats,
 	// 		Filenames: filenames,
 	// 		Language:  lang,
 	// 		Parser:    parser,
-	// 		Ext:       ext,
 	// 	}
 
 	// }
@@ -230,11 +231,11 @@ func conduct(ctx context.Context) error {
 	// 	)
 	// 	study.Subjects[ident] = cases.Analyses{
 	// 		Entity:    entity,
+	// 		Ext:       ext,
 	// 		Feats:     feats,
 	// 		Filenames: filenames,
 	// 		Language:  lang,
 	// 		Parser:    parser,
-	// 		Ext:       ext,
 	// 	}
 	// }
 

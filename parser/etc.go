@@ -6,15 +6,15 @@ import (
 	"strings"
 )
 
-func Etc(r io.Reader) (text []string, err error) {
+func Etc(r io.Reader) (texts []string, err error) {
 	scanner := bufio.NewScanner(r)
 	var txt strings.Builder
 	for scanner.Scan() {
 		txt.WriteString(scanner.Text())
 		txt.WriteString(".")
 	}
-	text = []string{txt.String()}
+	texts = []string{txt.String()}
 
 	err = scanner.Err()
-	return text, err
+	return texts, err
 }
