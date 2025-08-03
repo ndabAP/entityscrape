@@ -48,7 +48,7 @@ func Test_reduce(t *testing.T) {
 			t.Parallel()
 
 			got, _ := reduce(tc.text, tc.entity)
-			if !bytes.Contains(got, tc.want) {
+			if !bytes.Equal(got, tc.want) {
 				t.Errorf("reduce() = %s, want %s", got, tc.want)
 			}
 		})

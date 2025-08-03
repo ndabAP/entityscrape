@@ -2,6 +2,7 @@ package cases
 
 import (
 	"context"
+	"errors"
 	"log/slog"
 	"math/rand/v2"
 	"os"
@@ -9,6 +10,7 @@ import (
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
 	"github.com/ndabAP/assocentity/tokenize/nlp"
+	"github.com/ndabAP/entityscrape/parser"
 	"github.com/ndabAP/entityscrape/translator"
 	"golang.org/x/text/language"
 )
@@ -110,76 +112,75 @@ func (study study[samples, aggregated]) analysis(
 	var (
 		texts = make([]string, 0, len(filenames))
 
-		textsChan = make(chan []byte, 50)
-		errChan   = make(chan error)
-		done      = make(chan struct{})
+		textChan = make(chan []byte, 50)
+		errChan  = make(chan error)
 	)
-	defer close(textsChan)
 
 	go func() {
-		defer close(done)
 		defer close(errChan)
 
 		switch {
 		case reduct:
 			slog.Debug("applying data reduction")
 
-			for text := range textsChan {
+			for text := range textChan {
 				text, err := reduce(text, entity[0])
+				if errors.Is(err, errEntityNotFound) {
+					continue
+				}
 				if err != nil {
 					errChan <- err
 					return
 				}
 				texts = append(texts, string(text))
 			}
+
 		default:
-			for text := range textsChan {
+			for text := range textChan {
 				texts = append(texts, string(text))
 			}
 		}
 	}()
 
-	for _, filename := range filenames {
-		select {
-		case <-ctx.Done():
-			return assocentity.Analyses{}, ctx.Err()
-		default:
-		}
+	go func() {
+		defer close(textChan)
 
-		// Sampling
-		n := rand.Uint64N(100)
-		if n >= SampleRate {
-			slog.Debug("skipping file (sampling)", "filename", filename, "sample_n", n)
-			continue
-		}
+		for _, filename := range filenames {
+			// Sampling
+			n := rand.Uint64N(100)
+			if n >= SampleRate {
+				slog.Debug("skipping file (sampling)", "filename", filename, "sample_n", n)
+				continue
+			}
 
-		slog.Debug("processing file", "filename", filename)
-		err := func() error {
+			slog.Debug("processing file", "filename", filename)
+
 			file, err := os.Open(filename)
 			if err != nil {
-				return err
+				errChan <- err
+				return
 			}
-			defer file.Close()
+			for err := range parse(file, textChan) {
+				if errors.Is(err, parser.ErrTextTooShort) {
+					continue
+				}
 
-			for err := range parse(file, textsChan) {
-				return err
+				errChan <- err
 			}
-
-			return nil
-		}()
-		if err != nil {
-			return assocentity.Analyses{}, err
+			file.Close()
 		}
-	}
-	close(textsChan)
+	}()
 
 	select {
 	case <-ctx.Done():
 		return assocentity.Analyses{}, ctx.Err()
+
 	case err := <-errChan:
-		return assocentity.Analyses{}, err
-	case <-done:
+		if err != nil {
+			return assocentity.Analyses{}, err
+		}
 	}
+
 	slog.Debug("files parsed", "texts_n", len(texts))
 
 	slog.Debug("creating analyses")

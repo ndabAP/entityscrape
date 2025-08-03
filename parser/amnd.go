@@ -7,7 +7,7 @@ import (
 )
 
 // AMND parses "Adverse Media News Dataset".
-func AMND(r io.Reader, texts chan []byte) chan error {
+func AMND(r io.Reader, textChan chan []byte) chan error {
 	errs := make(chan error, 1)
 	go func() {
 		defer close(errs)
@@ -47,7 +47,7 @@ func AMND(r io.Reader, texts chan []byte) chan error {
 		}
 
 		// Validate
-		if !bytes.Equal(lang, []byte("english")) {
+		if !bytes.Equal(lang, []byte(`"english"`)) {
 			errs <- ErrUnsupportedLang
 			return
 		}
@@ -61,8 +61,10 @@ func AMND(r io.Reader, texts chan []byte) chan error {
 		text = bytes.ReplaceAll(text, []byte("\n"), []byte(" "))
 		text = bytes.ReplaceAll(text, []byte("\t"), []byte(" "))
 		text = bytes.ReplaceAll(text, []byte("\\u"), []byte(" "))
+		text = bytes.TrimPrefix(text, []byte(`"`))
+		text = bytes.TrimSuffix(text, []byte(`"`))
 
-		texts <- text
+		textChan <- text
 	}()
 
 	return errs

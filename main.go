@@ -48,7 +48,7 @@ func init() {
 			panic(err.Error())
 		}
 		if s > 100 {
-			panic("SAMPLE_RATE must be <= 100")
+			panic("SAMPLE_RATE must be <= 100, or unset")
 		}
 		cases.SampleRate = s
 	}
@@ -58,6 +58,11 @@ func main() {
 	g, ctx := errgroup.WithContext(ctx)
 
 	g.Go(func() error {
+		defer func() {
+			if r := recover(); r != nil {
+				panic(r)
+			}
+		}()
 		return isob.Conduct(ctx)
 	})
 	// g.Go(func() error {

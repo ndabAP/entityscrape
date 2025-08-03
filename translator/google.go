@@ -36,7 +36,7 @@ func NewGoogle(ctx context.Context, creds string) translator {
 }
 
 func ClearCache() {
-	cache = make(map[[2]language.Tag]map[string]string)
+	clear(cache)
 }
 
 func (translator translator) Translate(inputs []string, src, target language.Tag) ([]string, error) {

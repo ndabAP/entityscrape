@@ -54,6 +54,7 @@ var (
 				}
 
 				// Ignore multi-token entity.
+				// TODO: Ancenstors should start from the final entity token.
 				if slices.Contains(entities, token) {
 					return true
 				}

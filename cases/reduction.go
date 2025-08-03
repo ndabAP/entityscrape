@@ -3,9 +3,12 @@ package cases
 import (
 	"bufio"
 	"bytes"
+	"errors"
 	"unicode"
 	"unicode/utf8"
 )
+
+var errEntityNotFound = errors.New("entity not found")
 
 // reduct perfoms a fuzzy search for the provided entity and removes sentences
 // defined in [unicode.Sentence_Terminal] which don't contain the entity.
@@ -52,13 +55,14 @@ func reduce(text []byte, entity string) ([]byte, error) {
 			continue
 		}
 
-		if _, err := buf.Write(scanner.Bytes()); err != nil {
-			return []byte{}, err
-		}
-
+		buf.Write(scanner.Bytes())
 		// Re-add any terminal.
 		buf.WriteRune(delim)
 	}
 
-	return buf.Bytes(), scanner.Err()
+	b := buf.Bytes()
+	if len(b) == 0 {
+		return []byte{}, errEntityNotFound
+	}
+	return bytes.TrimSpace(b), nil // Split never returns an error.
 }
