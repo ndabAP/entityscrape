@@ -13,7 +13,7 @@ import (
 var spaceregex = regexp.MustCompile(`\s+`)
 
 // GPSC parses "German Political Speeches Corpus".
-func GPSC(r io.Reader, texts chan []byte) chan error {
+func GPSC(r io.Reader, c chan []byte) chan error {
 	errs := make(chan error, 1)
 
 	go func() {
@@ -44,7 +44,7 @@ func GPSC(r io.Reader, texts chan []byte) chan error {
 			text = html.UnescapeString(text)
 			text = spaceregex.ReplaceAllString(text, " ")
 
-			texts <- []byte(text)
+			c <- []byte(text)
 		}
 	}()
 

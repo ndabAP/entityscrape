@@ -6,7 +6,7 @@ import (
 	"io"
 )
 
-func Etc(r io.Reader, texts chan []byte) chan error {
+func Etc(r io.Reader, c chan []byte) chan error {
 	errs := make(chan error, 1)
 	go func() {
 		defer close(errs)
@@ -18,7 +18,7 @@ func Etc(r io.Reader, texts chan []byte) chan error {
 			buf.WriteRune('.')
 		}
 
-		texts <- buf.Bytes()
+		c <- buf.Bytes()
 		errs <- scanner.Err()
 	}()
 

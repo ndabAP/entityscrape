@@ -11,8 +11,8 @@ import (
 var errEntityNotFound = errors.New("entity not found")
 
 // reduct perfoms a fuzzy search for the provided entity and removes sentences
-// defined in [unicode.Sentence_Terminal] which don't contain the entity.
-func reduce(text []byte, entity string) ([]byte, error) {
+// defined through [unicode.Sentence_Terminal] which don't contain the entity.
+func (study study[samples, aggregated]) reduce(text []byte, entity string) ([]byte, error) {
 	var (
 		// Cached delimiter
 		delim rune

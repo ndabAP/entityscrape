@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
+	"unicode"
 )
 
 // AMND parses "Adverse Media News Dataset".
-func AMND(r io.Reader, textChan chan []byte) chan error {
+func AMND(r io.Reader, c chan []byte) chan error {
 	errs := make(chan error, 1)
 	go func() {
 		defer close(errs)
@@ -63,8 +64,14 @@ func AMND(r io.Reader, textChan chan []byte) chan error {
 		text = bytes.ReplaceAll(text, []byte("\\u"), []byte(" "))
 		text = bytes.TrimPrefix(text, []byte(`"`))
 		text = bytes.TrimSuffix(text, []byte(`"`))
+		text = bytes.Map(func(r rune) rune {
+			if unicode.IsPrint(r) {
+				return r
+			}
+			return -1
+		}, text)
 
-		textChan <- text
+		c <- text
 	}()
 
 	return errs

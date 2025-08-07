@@ -124,7 +124,7 @@ func (study study[samples, aggregated]) analysis(
 			slog.Debug("applying data reduction")
 
 			for text := range textChan {
-				text, err := reduce(text, entity[0])
+				text, err := study.reduce(text, entity[0])
 				if errors.Is(err, errEntityNotFound) {
 					continue
 				}
