@@ -52,16 +52,13 @@ func AMND(r io.Reader, c chan []byte) chan error {
 			errs <- ErrUnsupportedLang
 			return
 		}
-		if len(text) < 15 {
-			errs <- ErrTextTooShort
-			return
-		}
 
 		// Normalize
+		text = bytes.ReplaceAll(text, []byte("\\u"), []byte(" "))
 		text = bytes.ReplaceAll(text, []byte("\\n"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte("\\"), []byte(" "))
 		text = bytes.ReplaceAll(text, []byte("\n"), []byte(" "))
 		text = bytes.ReplaceAll(text, []byte("\t"), []byte(" "))
-		text = bytes.ReplaceAll(text, []byte("\\u"), []byte(" "))
 		text = bytes.TrimPrefix(text, []byte(`"`))
 		text = bytes.TrimSuffix(text, []byte(`"`))
 		text = bytes.Map(func(r rune) rune {

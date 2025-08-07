@@ -97,8 +97,11 @@ var (
 	aggregator = func(samples []sample) aggregates {
 		aggregates := make(aggregates, 0, len(samples))
 		for _, sample := range samples {
-			ws := [depth]string{}
+			ws := make([]string, depth)
 			for i, w := range sample {
+				if w == nil {
+					continue
+				}
 				ws[i] = w.Lemma
 			}
 

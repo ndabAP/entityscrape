@@ -10,7 +10,6 @@ import (
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
 	"github.com/ndabAP/assocentity/tokenize/nlp"
-	"github.com/ndabAP/entityscrape/parser"
 	"github.com/ndabAP/entityscrape/translator"
 	"golang.org/x/text/language"
 )
@@ -161,10 +160,6 @@ func (study study[samples, aggregated]) analysis(
 				return
 			}
 			for err := range parse(file, textChan) {
-				if errors.Is(err, parser.ErrTextTooShort) {
-					continue
-				}
-
 				errChan <- err
 			}
 			file.Close()

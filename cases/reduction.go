@@ -42,20 +42,34 @@ func (study study[samples, aggregated]) reduce(text []byte, entity string) ([]by
 		// past it.
 		default:
 			delim, size = utf8.DecodeRune(data[i:])
+			// Check if really sentence terminal.
+			if d, _ := utf8.DecodeRune(data[i+size:]); !unicode.IsSpace(d) {
+				return 0, nil, nil
+			}
 			return i + size, data[:i], nil
 		}
 	})
 
 	var (
 		buf bytes.Buffer
-		e   = []byte(entity)
+
+		// Filters
+		e    = []byte(entity)
+		urls = []byte("http")
 	)
 	for scanner.Scan() {
-		if !bytes.Contains(scanner.Bytes(), e) {
+		b := scanner.Bytes()
+		if !bytes.Contains(b, e) {
+			continue
+		}
+		if len(b) < 15 {
+			continue
+		}
+		if bytes.Contains(b, urls) {
 			continue
 		}
 
-		buf.Write(scanner.Bytes())
+		buf.Write(b)
 		// Re-add any terminal.
 		buf.WriteRune(delim)
 	}

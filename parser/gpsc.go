@@ -4,7 +4,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
-	"log/slog"
 	"regexp"
 
 	"golang.org/x/net/html"
@@ -37,10 +36,6 @@ func GPSC(r io.Reader, c chan []byte) chan error {
 		for _, t := range coll.Texts {
 			text := fmt.Sprintf("%s %s", t.Anrede, t.Rohtext)
 
-			if len(text) < 15 {
-				slog.Debug(ErrTextTooShort.Error())
-				continue
-			}
 			text = html.UnescapeString(text)
 			text = spaceregex.ReplaceAllString(text, " ")
 
