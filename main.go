@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/ndabAP/entityscrape/cases"
-	"github.com/ndabAP/entityscrape/cases/isob"
+	"github.com/ndabAP/entityscrape/cases/isopf"
 
 	"golang.org/x/sync/errgroup"
 )
@@ -63,7 +63,7 @@ func main() {
 				panic(r)
 			}
 		}()
-		return isob.Conduct(ctx)
+		return isopf.Conduct(ctx)
 	})
 	// g.Go(func() error {
 	// 	return nsops.Conduct(ctx)

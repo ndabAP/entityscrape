@@ -1,5 +1,5 @@
-// International sentiment of brands
-package isob
+// International sentiment of public figures
+package isopf
 
 import (
 	"context"
@@ -31,7 +31,7 @@ type (
 )
 
 var (
-	ident = "isob"
+	ident = "isopf"
 
 	collector = func(analyses assocentity.Analyses) []sample {
 		var (
@@ -40,7 +40,7 @@ var (
 		)
 
 		analyses.Forest().Walk(func(token *tokenize.Token, tree dependency.Tree) bool {
-			if !slices.Contains(entities, token) {
+			if slices.Contains(entities, token) {
 				return true
 			}
 
@@ -48,19 +48,18 @@ var (
 				s sample
 				d int = 1
 			)
-			tree.Ancestors(token, func(token *tokenize.Token) bool {
+			tree.(token, func(t *tokenize.Token) bool {
 				if d == depth {
 					return false
 				}
 
 				// Ignore multi-token entity.
-				// TODO: Ancenstors should start from the final entity token.
 				if slices.Contains(entities, token) {
 					return true
 				}
 				// Ignore possesive noun suffix.
 				switch token.Lemma {
-				case "’s", "'s":
+				case "’s", "'s", "s":
 					return true
 				default:
 				}
@@ -73,24 +72,25 @@ var (
 				}
 
 				s[d-1] = token
-
 				d++
+
 				return true
 			})
+
 			samples = append(samples, s)
 
 			return false
 		})
 
-		// Delete samples that contain only nil tokens.
+		// Delete samples that don't contain all depth tokens.
 		samples = slices.DeleteFunc(samples, func(sample sample) bool {
 			for _, t := range sample {
-				if t != nil {
-					return false
+				if t == nil {
+					return true
 				}
 			}
 
-			return true
+			return false
 		})
 		return samples
 	}
@@ -99,9 +99,6 @@ var (
 		for _, sample := range samples {
 			ws := make([]string, depth)
 			for i, w := range sample {
-				if w == nil {
-					continue
-				}
 				ws[i] = w.Lemma
 			}
 
@@ -194,11 +191,11 @@ func conduct(ctx context.Context) error {
 		return err
 	}
 
-	// Apple
+	// Donald Trump
 	{
 		var (
-			ident  = "Apple"
-			entity = []string{ident}
+			ident  = "Trump"
+			entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump"}
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:    entity,
