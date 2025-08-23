@@ -12,150 +12,120 @@ import (
 	"unicode/utf8"
 
 	"github.com/ndabAP/assocentity"
-	"github.com/ndabAP/assocentity/dependency"
 	"github.com/ndabAP/assocentity/tokenize"
 	"github.com/ndabAP/entityscrape/cases"
 	"github.com/ndabAP/entityscrape/parser"
 	"golang.org/x/text/language"
 )
 
-const depth = 3
-
 type (
-	sample    [depth]*tokenize.Token
-	aggregate struct {
-		Heads [depth][2]string `json:"heads"`
-		N     int              `json:"n"`
+	samples struct {
+		ancestors, descendants []*tokenize.Token
 	}
-	aggregates []aggregate
+	aggregate struct {
+		Word [2]string `json:"heads"`
+		N    int       `json:"n"`
+	}
+	aggregates struct {
+		ancestors   []aggregate
+		descendants []aggregate
+	}
 )
 
 var (
 	ident = "isopf"
 
-	collector = func(analyses assocentity.Analyses) []sample {
-		var (
-			entities = analyses.Forest().Entities()
-			samples  = make([]sample, 0)
-		)
+	collector = func(analyses assocentity.Analyses) samples {
+		ancestors := analyses.Forest().Ancestors(nil)
+		descendants := analyses.Forest().Descendants(nil)
 
-		analyses.Forest().Walk(func(token *tokenize.Token, tree dependency.Tree) bool {
-			if slices.Contains(entities, token) {
+		// Reduce
+		deleteFunc := func(token *tokenize.Token) bool {
+			switch token.Lemma {
+			// Ignore possesive noun suffix.
+			case "’s", "'s", "s":
 				return true
-			}
-
-			var (
-				s sample
-				d int = 1
-			)
-			tree.(token, func(t *tokenize.Token) bool {
-				if d == depth {
-					return false
-				}
-
-				// Ignore multi-token entity.
-				if slices.Contains(entities, token) {
-					return true
-				}
-				// Ignore possesive noun suffix.
-				switch token.Lemma {
-				case "’s", "'s", "s":
-					return true
-				default:
-				}
-				// Ignore non-ASCII characters.
-				r, _ := utf8.DecodeRuneInString(token.Lemma)
-				switch {
-				case unicode.IsDigit(r), unicode.IsLetter(r):
-				default:
-					return true
-				}
-
-				s[d-1] = token
-				d++
-
-				return true
-			})
-
-			samples = append(samples, s)
-
-			return false
-		})
-
-		// Delete samples that don't contain all depth tokens.
-		samples = slices.DeleteFunc(samples, func(sample sample) bool {
-			for _, t := range sample {
-				if t == nil {
-					return true
-				}
-			}
-
-			return false
-		})
-		return samples
-	}
-	aggregator = func(samples []sample) aggregates {
-		aggregates := make(aggregates, 0, len(samples))
-		for _, sample := range samples {
-			ws := make([]string, depth)
-			for i, w := range sample {
-				ws[i] = w.Lemma
-			}
-
-			i := slices.IndexFunc(aggregates, func(aggregate aggregate) bool {
-				for i, w := range aggregate.Heads {
-					if w[0] != ws[i] {
-						return false
-					}
-				}
-
-				return true
-			})
-			// Find matches
-			switch i {
-			case -1:
-				n := 1
-				aggregates = append(aggregates, aggregate{
-					Heads: [depth][2]string{
-						{ws[0], ""},
-						{ws[1], ""},
-						{ws[2], ""},
-					},
-					N: n,
-				})
-			// Found
 			default:
-				aggregates[i].N++
+			}
+
+			// Ignore non-ASCII characters.
+			r, _ := utf8.DecodeRuneInString(token.Lemma)
+			switch {
+			case unicode.IsDigit(r), unicode.IsLetter(r):
+			default:
+				return true
+			}
+
+			return false
+		}
+		return samples{
+			ancestors:   slices.DeleteFunc(ancestors, deleteFunc),
+			descendants: slices.DeleteFunc(descendants, deleteFunc),
+		}
+	}
+	aggregator = func(s samples) aggregates {
+		ancestors := make([]aggregate, 0)
+		descendants := make([]aggregate, 0)
+
+		f := func(aggregates []aggregate, samples []*tokenize.Token) {
+			for _, sample := range samples {
+				i := slices.IndexFunc(aggregates, func(aggr aggregate) bool {
+					return aggr.Word[0] == sample.Lemma
+				})
+				// Find matches
+				switch i {
+				case -1:
+					n := 1
+					aggregates = append(aggregates, aggregate{
+						Word: [2]string{sample.Lemma},
+						N:    n,
+					})
+				// Found
+				default:
+					aggregates[i].N++
+				}
+			}
+
+			// Top n sorted
+			const limit = 10
+			sort.Slice(aggregates, func(i, j int) bool {
+				return aggregates[i].N > aggregates[j].N
+			})
+			if len(aggregates) > limit {
+				aggregates = aggregates[:limit]
 			}
 		}
 
-		// Top n sorted
-		const limit = 10
-		sort.Slice(aggregates, func(i, j int) bool {
-			return aggregates[i].N > aggregates[j].N
-		})
-		if len(aggregates) > limit {
-			aggregates = aggregates[:limit]
-		}
+		f(ancestors, s.ancestors)
+		f(descendants, s.descendants)
 
-		return aggregates
+		return aggregates{
+			ancestors:   ancestors,
+			descendants: descendants,
+		}
 	}
-	reporter = func(aggregates aggregates, translate cases.Translate, writer io.Writer) error {
+	reporter = func(aggrs aggregates, translate cases.Translate, writer io.Writer) error {
 		// Collect words to translate.
-		words := make([]string, 0, len(aggregates))
-		for i, aggregate := range aggregates {
-			words = append(words, aggregate.Heads[i][0])
-		}
-		w, err := translate(words)
-		if err != nil {
-			return err
-		}
-		// Add translated words back.
-		for i := range aggregates {
-			aggregates[i].Heads[i][1] = w[i]
+		f := func(aggregates []aggregate) error {
+			words := make([]string, 0, len(aggregates))
+			for i, aggregate := range aggregates {
+				words = append(words, aggregate.Word[i])
+			}
+			w, err := translate(words)
+			if err != nil {
+				return err
+			}
+			// Add translated words back.
+			for i := range aggregates {
+				aggregates[i].Word[1] = w[1]
+			}
+			return nil
 		}
 
-		return json.NewEncoder(writer).Encode(&aggregates)
+		f(aggrs.ancestors)
+		f(aggrs.descendants)
+
+		return json.NewEncoder(writer).Encode(&aggrs)
 	}
 )
 
