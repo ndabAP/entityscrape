@@ -114,8 +114,8 @@ var (
 		// Collect words to translate.
 		f := func(aggregates []aggregate) error {
 			words := make([]string, 0, len(aggregates))
-			for i, aggregate := range aggregates {
-				words = append(words, aggregate.Word[i])
+			for _, aggregate := range aggregates {
+				words = append(words, aggregate.Word[0])
 			}
 			w, err := translate(words)
 			if err != nil {
