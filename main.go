@@ -58,6 +58,7 @@ func main() {
 	g, ctx := errgroup.WithContext(ctx)
 
 	g.Go(func() error {
+		// Recover for easier debugging.
 		defer func() {
 			if r := recover(); r != nil {
 				panic(r)

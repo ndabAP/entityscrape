@@ -180,5 +180,5 @@ func (study study[samples, aggregated]) analysis(
 
 	slog.Debug("creating analyses")
 	src := assocentity.NewSource(entity, texts)
-	return src.Analyses(ctx, tokenize, feats)
+	return src.Analyses(ctx, tokenize, feats, assocentity.NFKC)
 }

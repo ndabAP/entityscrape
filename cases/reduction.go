@@ -42,10 +42,6 @@ func (study study[samples, aggregated]) reduce(text []byte, entity string) ([]by
 		// past it.
 		default:
 			delim, size = utf8.DecodeRune(data[i:])
-			// Check if really sentence terminal.
-			if d, _ := utf8.DecodeRune(data[i+size:]); !unicode.IsSpace(d) {
-				return 0, nil, nil
-			}
 			return i + size, data[:i], nil
 		}
 	})
@@ -54,18 +50,14 @@ func (study study[samples, aggregated]) reduce(text []byte, entity string) ([]by
 		buf bytes.Buffer
 
 		// Filters
-		e    = []byte(entity)
-		urls = []byte("http")
+		prot = []byte("http")
 	)
 	for scanner.Scan() {
 		b := scanner.Bytes()
-		if !bytes.Contains(b, e) {
+		if !bytes.Contains(b, []byte(entity)) {
 			continue
 		}
-		if len(b) < 15 {
-			continue
-		}
-		if bytes.Contains(b, urls) {
+		if bytes.Contains(b, prot) {
 			continue
 		}
 

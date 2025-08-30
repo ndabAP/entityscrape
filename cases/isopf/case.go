@@ -36,11 +36,18 @@ var (
 	ident = "isopf"
 
 	collector = func(analyses assocentity.Analyses) samples {
-		ancestors := analyses.Forest().Ancestors(nil)
-		descendants := analyses.Forest().Descendants(nil)
-
+		var (
+			ancestors   = analyses.Forest().Ancestors(nil)
+			descendants = analyses.Forest().Descendants(nil)
+		)
 		// Reduce
-		deleteFunc := func(token *tokenize.Token) bool {
+		del := func(token *tokenize.Token) bool {
+			switch token.PartOfSpeech.Tag {
+			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNum, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
+			default:
+				return true
+			}
+
 			switch token.Lemma {
 			// Ignore possesive noun suffix.
 			case "’s", "'s", "s":
@@ -59,15 +66,13 @@ var (
 			return false
 		}
 		return samples{
-			ancestors:   slices.DeleteFunc(ancestors, deleteFunc),
-			descendants: slices.DeleteFunc(descendants, deleteFunc),
+			ancestors:   slices.DeleteFunc(ancestors, del),
+			descendants: slices.DeleteFunc(descendants, del),
 		}
 	}
 	aggregator = func(s samples) aggregates {
-		ancestors := make([]aggregate, 0)
-		descendants := make([]aggregate, 0)
-
-		f := func(aggregates []aggregate, samples []*tokenize.Token) {
+		f := func(samples []*tokenize.Token) []aggregate {
+			aggregates := make([]aggregate, 0)
 			for _, sample := range samples {
 				i := slices.IndexFunc(aggregates, func(aggr aggregate) bool {
 					return aggr.Word[0] == sample.Lemma
@@ -94,10 +99,11 @@ var (
 			if len(aggregates) > limit {
 				aggregates = aggregates[:limit]
 			}
-		}
 
-		f(ancestors, s.ancestors)
-		f(descendants, s.descendants)
+			return aggregates
+		}
+		ancestors := f(s.ancestors)
+		descendants := f(s.descendants)
 
 		return aggregates{
 			ancestors:   ancestors,
@@ -121,7 +127,6 @@ var (
 			}
 			return nil
 		}
-
 		f(aggrs.ancestors)
 		f(aggrs.descendants)
 
