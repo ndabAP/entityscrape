@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"io"
 	"log/slog"
-	"path/filepath"
 	"slices"
 	"sort"
 
@@ -151,58 +150,81 @@ func conduct(ctx context.Context) error {
 
 	feats := tokenize.FeatureSyntax
 
-	// Germany
-	{
-		lang := language.German
-		entity := []string{"Deutschland", "Deutschlands", "Deutschlande"}
+	// // Germany
+	// {
+	// 	lang := language.German
+	// 	entity := []string{"Deutschland", "Deutschlands", "Deutschlande", "deutsche"}
 
-		// GPSC
-		{
-			var (
-				filenames = []string{
-					filepath.Join(cases.GetCorpusRootDir(), "gpsc", "Bundesregierung.xml"),
-				}
-				parser = parser.GPSC
-			)
-			study.Subjects["Deutschland"] = cases.Analyses{
-				Entity:    entity,
-				Feats:     feats,
-				Filenames: filenames,
-				Language:  lang,
-				Parser:    parser,
-				Ext:       "json",
-			}
-		}
-	}
-	// Russia
-	{
-		lang := language.Russian
-		entity := []string{"Россия", "России", "Россией"}
+	// 	// GPSC
+	// 	{
+	// 		var (
+	// 			filenames = []string{
+	// 				filepath.Join(cases.GetCorpusRootDir(), "gpsc", "Bundesregierung.xml"),
+	// 			}
+	// 			parser = parser.GPSC
+	// 		)
+	// 		study.Subjects["Deutschland"] = cases.Analyses{
+	// 			Entity:    entity,
+	// 			Feats:     feats,
+	// 			Filenames: filenames,
+	// 			Language:  lang,
+	// 			Parser:    parser,
+	// 			Reduct:    true,
+	// 			Ext:       "json",
+	// 		}
+	// 	}
+	// }
+	// // Russia
+	// {
+	// 	lang := language.Russian
+	// 	entity := []string{"Россия", "России", "Россией"}
 
-		// DS
+	// 	// DS
+	// 	{
+	// 		parser := parser.DS
+	// 		filenames := make([]string, 0)
+	// 		if err := cases.WalkCorpus("ds", func(filename string) error {
+	// 			filenames = append(filenames, filename)
+	// 			return nil
+	// 		}); err != nil {
+	// 			return err
+	// 		}
+	// 		study.Subjects["Russia"] = cases.Analyses{
+	// 			Entity:    entity,
+	// 			Feats:     feats,
+	// 			Filenames: filenames,
+	// 			Language:  lang,
+	// 			Parser:    parser,
+	// 			Reduct:    true,
+	// 			Ext:       "json",
+	// 		}
+	// 	}
+	// }
+	// USA
+	{
+		lang := language.English
+		entity := []string{"United States", "USA", "United States of America", "American", "Americans"}
+
+		// CRFTC
 		{
-			parser := parser.DS
+			parser := parser.CRFTC
 			filenames := make([]string, 0)
-			if err := cases.WalkCorpus("ds", func(filename string) error {
+			if err := cases.WalkCorpus("crftc", func(filename string) error {
 				filenames = append(filenames, filename)
 				return nil
 			}); err != nil {
 				return err
 			}
-			study.Subjects["Russia"] = cases.Analyses{
+			study.Subjects["USA"] = cases.Analyses{
 				Entity:    entity,
 				Feats:     feats,
 				Filenames: filenames,
 				Language:  lang,
 				Parser:    parser,
+				Reduct:    true,
 				Ext:       "json",
 			}
 		}
-	}
-	// USA
-	{
-		// lang := language.English
-		// entity := []string{"United States", "USA", "United States of America"}
 	}
 
 	if err := study.Conduct(ctx); err != nil {

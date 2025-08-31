@@ -1,6 +1,6 @@
 module github.com/ndabAP/entityscrape
 
-go 1.24.1
+go 1.25.0
 
 require (
 	cloud.google.com/go/translate v1.12.5

@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
-	"slices"
 
 	translate "cloud.google.com/go/translate"
 	"golang.org/x/sync/semaphore"
@@ -40,7 +39,7 @@ func ClearCache() {
 }
 
 func (translator translator) Translate(inputs []string, src, target language.Tag) ([]string, error) {
-	slog.Debug("translate", "n", len(inputs), "src", src.String(), "target", target.String())
+	slog.Debug("translating", "n", len(inputs), "src", src, "target", target)
 
 	sema.Acquire(translator.ctx, 1)
 	defer sema.Release(1)
@@ -50,19 +49,16 @@ func (translator translator) Translate(inputs []string, src, target language.Tag
 	outputs := make([]string, 0, len(inputs))
 
 	// Check cache first.
-	for i, input := range inputs {
+	for _, input := range inputs {
 		output, ok := cache[[2]language.Tag{src, target}][input]
 		if !ok {
 			continue
 		}
-
 		slog.Debug("cache hit", "input", input, "output", output)
-
 		outputs = append(outputs, output)
-		inputs = slices.Delete(inputs, i, i+1)
 	}
 	// Use cache exhaustively.
-	if len(inputs) == 0 {
+	if len(inputs) == len(outputs) {
 		return outputs, nil
 	}
 

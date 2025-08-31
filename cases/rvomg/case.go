@@ -5,8 +5,10 @@ import (
 	"context"
 	"encoding/json"
 	"io"
+	"path/filepath"
 	"slices"
 	"sort"
+	"strings"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
@@ -31,6 +33,11 @@ var (
 		roots := analyses.Forest().Roots()
 		samples := make([]sample, 0, len(roots))
 		for _, root := range roots {
+			switch root.Lemma {
+			case "s", "′", "wan", "doesn":
+				continue
+			default:
+			}
 			samples = append(samples, root)
 		}
 
@@ -39,7 +46,7 @@ var (
 	aggregator = func(samples []sample) aggregates {
 		aggregates := make(aggregates, 0, len(samples))
 		for _, sample := range samples {
-			w := sample.Lemma
+			w := strings.ToLower(sample.Lemma)
 			i := slices.IndexFunc(aggregates, func(aggregate aggregate) bool {
 				return w == aggregate.Word[0]
 			})
@@ -109,13 +116,14 @@ func conduct(ctx context.Context) error {
 		parser = parser.Etc
 
 		// We have no real entity.
-		entity = []string{"."}
+		entity = []string{".", "?", "!"}
 	)
 
 	// Pop
 	{
 		filenames := make([]string, 0)
-		if err := cases.WalkCorpus("etc/pop", func(filename string) error {
+		p := filepath.Join("etc", "pop")
+		if err := cases.WalkCorpus(p, func(filename string) error {
 			filenames = append(filenames, filename)
 			return nil
 		}); err != nil {
@@ -127,13 +135,15 @@ func conduct(ctx context.Context) error {
 			Filenames: filenames,
 			Language:  lang,
 			Parser:    parser,
+			Reduct:    true,
 			Ext:       "json",
 		}
 	}
 	// Rap
 	{
 		filenames := make([]string, 0)
-		if err := cases.WalkCorpus("etc/rap", func(filename string) error {
+		p := filepath.Join("etc", "rap")
+		if err := cases.WalkCorpus(p, func(filename string) error {
 			filenames = append(filenames, filename)
 			return nil
 		}); err != nil {
@@ -145,13 +155,15 @@ func conduct(ctx context.Context) error {
 			Filenames: filenames,
 			Language:  lang,
 			Parser:    parser,
+			Reduct:    true,
 			Ext:       "json",
 		}
 	}
 	// Rock
 	{
 		filenames := make([]string, 0)
-		if err := cases.WalkCorpus("etc/rock", func(filename string) error {
+		p := filepath.Join("etc", "rock")
+		if err := cases.WalkCorpus(p, func(filename string) error {
 			filenames = append(filenames, filename)
 			return nil
 		}); err != nil {
@@ -163,6 +175,7 @@ func conduct(ctx context.Context) error {
 			Filenames: filenames,
 			Language:  lang,
 			Parser:    parser,
+			Reduct:    true,
 			Ext:       "json",
 		}
 	}

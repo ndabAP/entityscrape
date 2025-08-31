@@ -5,7 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"path/filepath"
 	"slices"
 	"sort"
 	"unicode"
@@ -27,8 +26,8 @@ type (
 		N    int       `json:"n"`
 	}
 	aggregates struct {
-		ancestors   []aggregate
-		descendants []aggregate
+		Ancestors   []aggregate `json:"ancestors"`
+		Descendants []aggregate `json:"descendants"`
 	}
 )
 
@@ -43,7 +42,7 @@ var (
 		// Reduce
 		del := func(token *tokenize.Token) bool {
 			switch token.PartOfSpeech.Tag {
-			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNum, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
+			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
 			default:
 				return true
 			}
@@ -106,8 +105,8 @@ var (
 		descendants := f(s.descendants)
 
 		return aggregates{
-			ancestors:   ancestors,
-			descendants: descendants,
+			Ancestors:   ancestors,
+			Descendants: descendants,
 		}
 	}
 	reporter = func(aggrs aggregates, translate cases.Translate, writer io.Writer) error {
@@ -123,12 +122,12 @@ var (
 			}
 			// Add translated words back.
 			for i := range aggregates {
-				aggregates[i].Word[1] = w[1]
+				aggregates[i].Word[1] = w[i]
 			}
 			return nil
 		}
-		f(aggrs.ancestors)
-		f(aggrs.descendants)
+		f(aggrs.Ancestors)
+		f(aggrs.Descendants)
 
 		return json.NewEncoder(writer).Encode(&aggrs)
 	}
@@ -156,10 +155,6 @@ func conduct(ctx context.Context) error {
 		filenames = make([]string, 0)
 	)
 	if err := cases.WalkCorpus("amnd", func(filename string) error {
-		if filepath.Ext(filename) != ".json" {
-			return nil
-		}
-
 		filenames = append(filenames, filename)
 		return nil
 	}); err != nil {
@@ -183,37 +178,54 @@ func conduct(ctx context.Context) error {
 		}
 
 	}
-	// // Google
-	// {
-	// 	var (
-	// 		ident  = "Google"
-	// 		entity = []string{ident}
-	// 	)
-	// 	study.Subjects[ident] = cases.Analyses{
-	// 		Entity:    entity,
-	// 		Ext:       ext,
-	// 		Feats:     feats,
-	// 		Filenames: filenames,
-	// 		Language:  lang,
-	// 		Parser:    parser,
-	// 	}
-
-	// }
-	// // Amazon
-	// {
-	// 	var (
-	// 		ident  = "Amazon"
-	// 		entity = []string{ident}
-	// 	)
-	// 	study.Subjects[ident] = cases.Analyses{
-	// 		Entity:    entity,
-	// 		Ext:       ext,
-	// 		Feats:     feats,
-	// 		Filenames: filenames,
-	// 		Language:  lang,
-	// 		Parser:    parser,
-	// 	}
-	// }
+	// Elon Musk
+	{
+		var (
+			ident  = "Musk"
+			entity = []string{ident, "Elon Musk", "Elon Reeve Musk"}
+		)
+		study.Subjects[ident] = cases.Analyses{
+			Entity:    entity,
+			Ext:       ext,
+			Feats:     feats,
+			Filenames: filenames,
+			Reduct:    true,
+			Language:  lang,
+			Parser:    parser,
+		}
+	}
+	// Joe Biden
+	{
+		var (
+			ident  = "Biden"
+			entity = []string{ident, "Joe Biden", "Joseph Robinette Biden", "Joseph R. Biden", "Joseph Biden"}
+		)
+		study.Subjects[ident] = cases.Analyses{
+			Entity:    entity,
+			Ext:       ext,
+			Feats:     feats,
+			Filenames: filenames,
+			Reduct:    true,
+			Language:  lang,
+			Parser:    parser,
+		}
+	}
+	// Vladimir Putin
+	{
+		var (
+			ident  = "Putin"
+			entity = []string{ident, "Vladimir Putin", "Vladimir Vladimirovich Putin"}
+		)
+		study.Subjects[ident] = cases.Analyses{
+			Entity:    entity,
+			Ext:       ext,
+			Feats:     feats,
+			Filenames: filenames,
+			Reduct:    true,
+			Language:  lang,
+			Parser:    parser,
+		}
+	}
 
 	if err := study.Conduct(ctx); err != nil {
 		return err

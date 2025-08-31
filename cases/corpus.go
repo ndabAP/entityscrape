@@ -2,7 +2,6 @@ package cases
 
 import (
 	"io/fs"
-	"log/slog"
 	"path/filepath"
 )
 
@@ -30,8 +29,6 @@ func WalkCorpus(corpus string, fn func(filename string) error) error {
 		case ".gitignore", ".gitkeep":
 			return nil
 		}
-
-		slog.Debug("processing file", "filename", path)
 		return fn(path)
 	})
 	return err

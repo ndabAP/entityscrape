@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_reduce(t *testing.T) {
+func Test_reduct(t *testing.T) {
 	tests := []struct {
 		name   string
 		text   []byte
@@ -48,7 +48,7 @@ func Test_reduce(t *testing.T) {
 			t.Parallel()
 
 			s := study[any, any]{}
-			got, _ := s.reduce(tc.text, tc.entity)
+			got, _ := s.reduct(tc.text, []string{tc.entity})
 			if !bytes.Equal(got, tc.want) {
 				t.Errorf("reduce() = %s, want %s", got, tc.want)
 			}

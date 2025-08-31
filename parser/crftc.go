@@ -6,19 +6,20 @@ import (
 	"io"
 )
 
-func Etc(r io.Reader, c chan []byte) chan error {
+func CRFTC(r io.Reader, c chan []byte) chan error {
 	errs := make(chan error, 1)
 	go func() {
 		defer close(errs)
 
 		scanner := bufio.NewScanner(r)
-		var buf bytes.Buffer
+		scanner.Scan() // Skip header
 		for scanner.Scan() {
-			buf.Write(scanner.Bytes())
-			buf.WriteRune(' ')
+			spl := bytes.Split(scanner.Bytes(), []byte("|"))
+			if len(spl) < 2 {
+				continue
+			}
+			c <- spl[1]
 		}
-
-		c <- buf.Bytes()
 		if err := scanner.Err(); err != nil {
 			errs <- err
 		}

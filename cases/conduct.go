@@ -1,11 +1,13 @@
 package cases
 
 import (
+	"bufio"
 	"context"
 	"errors"
 	"log/slog"
 	"math/rand/v2"
 	"os"
+	"sync"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
@@ -13,6 +15,8 @@ import (
 	"github.com/ndabAP/entityscrape/translator"
 	"golang.org/x/text/language"
 )
+
+var mu sync.Mutex
 
 func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 	defer translator.ClearCache()
@@ -71,7 +75,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 
 			return translator.Translate(w, lang, language.English)
 		}
-		err = func() error {
+		if err := func() error {
 			writer, err := study.store.NewWriter(subject, ext)
 			if err != nil {
 				return err
@@ -83,8 +87,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			}
 
 			return nil
-		}()
-		if err != nil {
+		}(); err != nil {
 			return err
 		}
 
@@ -112,32 +115,31 @@ func (study study[samples, aggregated]) analysis(
 		texts = make([]string, 0, len(filenames))
 
 		textChan = make(chan []byte, 50)
-		errChan  = make(chan error)
+		errChan  = make(chan error, 1)
 	)
 
 	go func() {
 		defer close(errChan)
 
-		switch {
-		case reduct:
-			slog.Debug("applying data reduction")
+		for text := range textChan {
+			// Sampling
+			n := rand.Uint64N(100)
+			if n >= SampleRate {
+				continue
+			}
 
-			for text := range textChan {
-				text, err := study.reduce(text, entity[0])
+			var err error
+			if reduct {
+				text, err = study.reduct(text, entity)
 				if errors.Is(err, errEntityNotFound) {
 					continue
 				}
-				if err != nil {
-					errChan <- err
-					return
-				}
-				texts = append(texts, string(text))
 			}
-
-		default:
-			for text := range textChan {
-				texts = append(texts, string(text))
+			if err != nil {
+				errChan <- err
+				return
 			}
+			texts = append(texts, string(text))
 		}
 	}()
 
@@ -145,21 +147,15 @@ func (study study[samples, aggregated]) analysis(
 		defer close(textChan)
 
 		for _, filename := range filenames {
-			// Sampling
-			n := rand.Uint64N(100)
-			if n >= SampleRate {
-				slog.Debug("skipping file (sampling)", "filename", filename, "sample_n", n)
-				continue
-			}
-
-			slog.Debug("processing file", "filename", filename)
-
 			file, err := os.Open(filename)
 			if err != nil {
 				errChan <- err
 				return
 			}
 			for err := range parse(file, textChan) {
+				if errors.Is(err, bufio.ErrTooLong) {
+					continue
+				}
 				errChan <- err
 			}
 			file.Close()

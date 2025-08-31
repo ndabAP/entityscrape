@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/ndabAP/entityscrape/cases"
-	"github.com/ndabAP/entityscrape/cases/isopf"
+	"github.com/ndabAP/entityscrape/cases/nsops"
 
 	"golang.org/x/sync/errgroup"
 )
@@ -57,19 +57,29 @@ func init() {
 func main() {
 	g, ctx := errgroup.WithContext(ctx)
 
+	// g.Go(func() error {
+	// 	// Recover for easier debugging.
+	// 	defer func() {
+	// 		if r := recover(); r != nil {
+	// 			panic(r)
+	// 		}
+	// 	}()
+	// 	return isopf.Conduct(ctx)
+	// })
 	g.Go(func() error {
-		// Recover for easier debugging.
 		defer func() {
 			if r := recover(); r != nil {
 				panic(r)
 			}
 		}()
-		return isopf.Conduct(ctx)
+		return nsops.Conduct(ctx)
 	})
 	// g.Go(func() error {
-	// 	return nsops.Conduct(ctx)
-	// })
-	// g.Go(func() error {
+	// 	defer func() {
+	// 		if r := recover(); r != nil {
+	// 			panic(r)
+	// 		}
+	// 	}()
 	// 	return rvomg.Conduct(ctx)
 	// })
 
