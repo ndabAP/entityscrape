@@ -8,7 +8,9 @@ import (
 	"strconv"
 
 	"github.com/ndabAP/entityscrape/cases"
+	"github.com/ndabAP/entityscrape/cases/isopf"
 	"github.com/ndabAP/entityscrape/cases/nsops"
+	"github.com/ndabAP/entityscrape/cases/rvomg"
 
 	"golang.org/x/sync/errgroup"
 )
@@ -55,18 +57,27 @@ func init() {
 }
 
 func main() {
-	g, ctx := errgroup.WithContext(ctx)
+	study := os.Getenv("CASE_STUDY")
 
-	// g.Go(func() error {
-	// 	// Recover for easier debugging.
-	// 	defer func() {
-	// 		if r := recover(); r != nil {
-	// 			panic(r)
-	// 		}
-	// 	}()
-	// 	return isopf.Conduct(ctx)
-	// })
+	g, ctx := errgroup.WithContext(ctx)
 	g.Go(func() error {
+		if study != "isopf" {
+			return nil
+		}
+
+		// Recover for easier debugging.
+		defer func() {
+			if r := recover(); r != nil {
+				panic(r)
+			}
+		}()
+		return isopf.Conduct(ctx)
+	})
+	g.Go(func() error {
+		if study != "nsops" {
+			return nil
+		}
+
 		defer func() {
 			if r := recover(); r != nil {
 				panic(r)
@@ -74,15 +85,18 @@ func main() {
 		}()
 		return nsops.Conduct(ctx)
 	})
-	// g.Go(func() error {
-	// 	defer func() {
-	// 		if r := recover(); r != nil {
-	// 			panic(r)
-	// 		}
-	// 	}()
-	// 	return rvomg.Conduct(ctx)
-	// })
+	g.Go(func() error {
+		if study != "rvomg" {
+			return nil
+		}
 
+		defer func() {
+			if r := recover(); r != nil {
+				panic(r)
+			}
+		}()
+		return rvomg.Conduct(ctx)
+	})
 	if err := g.Wait(); err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)

@@ -13,13 +13,15 @@ func DS(r io.Reader, c chan []byte) chan error {
 		reader := csv.NewReader(r)
 		reader.TrimLeadingSpace = true
 
-		record, err := reader.Read()
+		records, err := reader.ReadAll()
 		if err != nil {
 			errs <- err
 			return
 		}
 
-		c <- []byte(record[9])
+		for _, r := range records[1:] {
+			c <- []byte(r[9])
+		}
 	}()
 
 	return errs

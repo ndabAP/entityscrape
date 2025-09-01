@@ -7,7 +7,6 @@ import (
 	"log/slog"
 	"math/rand/v2"
 	"os"
-	"sync"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
@@ -16,11 +15,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-var mu sync.Mutex
-
 func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
-	defer translator.ClearCache()
-
 	slog.Debug("processing subjects", "n", len(study.Subjects))
 
 	translator := translator.NewGoogle(ctx, GoogleCloudSvcAccountKey)
@@ -118,11 +113,11 @@ func (study study[samples, aggregated]) analysis(
 		errChan  = make(chan error, 1)
 	)
 
+	// Consumer
 	go func() {
 		defer close(errChan)
 
 		for text := range textChan {
-			// Sampling
 			n := rand.Uint64N(100)
 			if n >= SampleRate {
 				continue
@@ -142,7 +137,7 @@ func (study study[samples, aggregated]) analysis(
 			texts = append(texts, string(text))
 		}
 	}()
-
+	// Producer
 	go func() {
 		defer close(textChan)
 
