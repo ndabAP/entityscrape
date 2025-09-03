@@ -101,12 +101,9 @@ var (
 
 			return aggregates
 		}
-		ancestors := f(s.ancestors)
-		descendants := f(s.descendants)
-
 		return aggregates{
-			Ancestors:   ancestors,
-			Descendants: descendants,
+			Ancestors:   f(s.ancestors),
+			Descendants: f(s.descendants),
 		}
 	}
 	reporter = func(aggrs aggregates, translate cases.Translate, writer io.Writer) error {

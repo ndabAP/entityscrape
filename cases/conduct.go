@@ -166,7 +166,6 @@ func (study study[samples, aggregated]) analysis(
 			return assocentity.Analyses{}, err
 		}
 	}
-
 	slog.Debug("files parsed", "texts_n", len(texts))
 
 	slog.Debug("creating analyses")

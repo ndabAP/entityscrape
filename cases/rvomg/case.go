@@ -34,7 +34,7 @@ var (
 		samples := make([]sample, 0, len(roots))
 		for _, root := range roots {
 			switch root.Lemma {
-			case "s", "′", "wan", "doesn":
+			case "s", "′", "wan", "doesn", "gon":
 				continue
 			default:
 			}
