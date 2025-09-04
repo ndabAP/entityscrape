@@ -68,7 +68,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			default:
 			}
 
-			return translator.Translate(w, lang, lang)
+			return translator.Translate(w, lang, language.English)
 		}
 		if err := func() error {
 			writer, err := study.store.NewWriter(subject, ext)
