@@ -7,6 +7,7 @@ import (
 	"log/slog"
 	"math/rand/v2"
 	"os"
+	"strings"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
@@ -71,7 +72,8 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			return translator.Translate(w, lang, language.English)
 		}
 		if err := func() error {
-			writer, err := study.store.NewWriter(subject, ext)
+			pref := strings.ToLower(subject)
+			writer, err := study.store.NewWriter(pref, ext)
 			if err != nil {
 				return err
 			}

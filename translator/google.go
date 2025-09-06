@@ -46,8 +46,11 @@ func (translator translator) Translate(inputs []string, src, target language.Tag
 
 	ctx := translator.ctx
 
-	outputs := make([]string, 0, len(inputs))
+	if _, ok := cache[[2]language.Tag{src, target}]; !ok {
+		cache[[2]language.Tag{src, target}] = make(map[string]string)
+	}
 
+	outputs := make([]string, 0, len(inputs))
 	// Check cache first.
 	for _, input := range inputs {
 		output, ok := cache[[2]language.Tag{src, target}][input]

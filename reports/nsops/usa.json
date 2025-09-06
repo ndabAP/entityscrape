@@ -1,0 +1,82 @@
+[
+    {
+        "word": [
+            "States",
+            "States"
+        ],
+        "pos": "NOUN",
+        "n": 30420
+    },
+    {
+        "word": [
+            "Congress",
+            "Congress"
+        ],
+        "pos": "NOUN",
+        "n": 657
+    },
+    {
+        "word": [
+            "be",
+            "be"
+        ],
+        "pos": "VERB",
+        "n": 569
+    },
+    {
+        "word": [
+            "Code",
+            "Code"
+        ],
+        "pos": "NOUN",
+        "n": 532
+    },
+    {
+        "word": [
+            "Senate",
+            "Senate"
+        ],
+        "pos": "NOUN",
+        "n": 484
+    },
+    {
+        "word": [
+            "Service",
+            "Service"
+        ],
+        "pos": "NOUN",
+        "n": 406
+    },
+    {
+        "word": [
+            "Army",
+            "Army"
+        ],
+        "pos": "NOUN",
+        "n": 384
+    },
+    {
+        "word": [
+            "have",
+            "have"
+        ],
+        "pos": "VERB",
+        "n": 278
+    },
+    {
+        "word": [
+            "House",
+            "House"
+        ],
+        "pos": "NOUN",
+        "n": 257
+    },
+    {
+        "word": [
+            "Court",
+            "Court"
+        ],
+        "pos": "NOUN",
+        "n": 256
+    }
+]

@@ -1,0 +1,82 @@
+[
+    {
+        "word": [
+            "Bundesrepublik",
+            "Federal Republic"
+        ],
+        "pos": "NOUN",
+        "n": 1345
+    },
+    {
+        "word": [
+            "sein",
+            "be"
+        ],
+        "pos": "VERB",
+        "n": 987
+    },
+    {
+        "word": [
+            "haben",
+            "have"
+        ],
+        "pos": "VERB",
+        "n": 317
+    },
+    {
+        "word": [
+            "Standort",
+            "Location"
+        ],
+        "pos": "NOUN",
+        "n": 168
+    },
+    {
+        "word": [
+            "Teil",
+            "Part"
+        ],
+        "pos": "NOUN",
+        "n": 116
+    },
+    {
+        "word": [
+            "stehen",
+            "stand"
+        ],
+        "pos": "VERB",
+        "n": 112
+    },
+    {
+        "word": [
+            "machen",
+            "make"
+        ],
+        "pos": "VERB",
+        "n": 102
+    },
+    {
+        "word": [
+            "Einheit",
+            "Unit"
+        ],
+        "pos": "NOUN",
+        "n": 89
+    },
+    {
+        "word": [
+            "leisten",
+            "afford"
+        ],
+        "pos": "VERB",
+        "n": 75
+    },
+    {
+        "word": [
+            "Frankreich",
+            "France"
+        ],
+        "pos": "NOUN",
+        "n": 74
+    }
+]

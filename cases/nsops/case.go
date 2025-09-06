@@ -21,7 +21,6 @@ import (
 type (
 	sample struct {
 		*tokenize.Token
-		from bool
 	}
 	aggregate struct {
 		Word [2]string `json:"word"`
@@ -45,29 +44,16 @@ var (
 			_ tokenize.DependencyEdgeLabel,
 			tree dependency.Tree,
 		) bool {
-			switch {
-			// To entity
-			case slices.Contains(entities, to):
-				switch to.PartOfSpeech.Tag {
-				case tokenize.PartOfSpeechTagVerb, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagAdj:
-					samples = append(samples, sample{
-						Token: to,
-					})
-				default:
-				}
-
+			if !slices.Contains(entities, to) {
 				return true
+			}
 
-			// From entity
-			case slices.Contains(entities, from):
-				switch from.PartOfSpeech.Tag {
-				case tokenize.PartOfSpeechTagVerb, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagAdj:
-					samples = append(samples, sample{
-						Token: from,
-						from:  true,
-					})
-				default:
-				}
+			switch from.PartOfSpeech.Tag {
+			case tokenize.PartOfSpeechTagVerb, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagAdj:
+				samples = append(samples, sample{
+					Token: from,
+				})
+			default:
 			}
 
 			return true

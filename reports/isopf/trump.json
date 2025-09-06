@@ -1,0 +1,146 @@
+{
+    "ancestors": [
+        {
+            "heads": [
+                "President",
+                "President"
+            ],
+            "n": 5039
+        },
+        {
+            "heads": [
+                "elect",
+                "elect"
+            ],
+            "n": 1447
+        },
+        {
+            "heads": [
+                "U.",
+                "U."
+            ],
+            "n": 236
+        },
+        {
+            "heads": [
+                "Mr",
+                "Mr"
+            ],
+            "n": 172
+        },
+        {
+            "heads": [
+                "Musk",
+                "Musk"
+            ],
+            "n": 168
+        },
+        {
+            "heads": [
+                "president",
+                "president"
+            ],
+            "n": 68
+        },
+        {
+            "heads": [
+                "Elect",
+                "Elect"
+            ],
+            "n": 41
+        },
+        {
+            "heads": [
+                "ally",
+                "ally"
+            ],
+            "n": 40
+        },
+        {
+            "heads": [
+                "News",
+                "News"
+            ],
+            "n": 33
+        },
+        {
+            "heads": [
+                "Mr.",
+                "Mr."
+            ],
+            "n": 33
+        }
+    ],
+    "descendants": [
+        {
+            "heads": [
+                "administration",
+                "administration"
+            ],
+            "n": 2648
+        },
+        {
+            "heads": [
+                "say",
+                "say"
+            ],
+            "n": 1786
+        },
+        {
+            "heads": [
+                "tariff",
+                "tariff"
+            ],
+            "n": 1619
+        },
+        {
+            "heads": [
+                "announce",
+                "announce"
+            ],
+            "n": 874
+        },
+        {
+            "heads": [
+                "plan",
+                "plan"
+            ],
+            "n": 560
+        },
+        {
+            "heads": [
+                "policy",
+                "policy"
+            ],
+            "n": 481
+        },
+        {
+            "heads": [
+                "threaten",
+                "threaten"
+            ],
+            "n": 435
+        },
+        {
+            "heads": [
+                "threat",
+                "threat"
+            ],
+            "n": 412
+        },
+        {
+            "heads": [
+                "be",
+                "be"
+            ],
+            "n": 408
+        },
+        {
+            "heads": [
+                "announcement",
+                "announcement"
+            ],
+            "n": 348
+        }
+    ]
+}

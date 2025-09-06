@@ -1,0 +1,82 @@
+[
+    {
+        "word": [
+            "Банк",
+            "Bank"
+        ],
+        "pos": "NOUN",
+        "n": 539
+    },
+    {
+        "word": [
+            "гражданин",
+            "citizen"
+        ],
+        "pos": "NOUN",
+        "n": 327
+    },
+    {
+        "word": [
+            "территория",
+            "territory"
+        ],
+        "pos": "NOUN",
+        "n": 185
+    },
+    {
+        "word": [
+            "Президент",
+            "President"
+        ],
+        "pos": "NOUN",
+        "n": 162
+    },
+    {
+        "word": [
+            "Почта",
+            "Mail"
+        ],
+        "pos": "NOUN",
+        "n": 135
+    },
+    {
+        "word": [
+            "Правительство",
+            "Government"
+        ],
+        "pos": "NOUN",
+        "n": 127
+    },
+    {
+        "word": [
+            "экономика",
+            "economy"
+        ],
+        "pos": "NOUN",
+        "n": 71
+    },
+    {
+        "word": [
+            "народ",
+            "people"
+        ],
+        "pos": "NOUN",
+        "n": 62
+    },
+    {
+        "word": [
+            "регион",
+            "region"
+        ],
+        "pos": "NOUN",
+        "n": 55
+    },
+    {
+        "word": [
+            "фонд",
+            "fund"
+        ],
+        "pos": "NOUN",
+        "n": 48
+    }
+]

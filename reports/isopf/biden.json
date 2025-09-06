@@ -1,0 +1,146 @@
+{
+    "ancestors": [
+        {
+            "heads": [
+                "President",
+                "President"
+            ],
+            "n": 489
+        },
+        {
+            "heads": [
+                "president",
+                "president"
+            ],
+            "n": 20
+        },
+        {
+            "heads": [
+                "Trump",
+                "Trump"
+            ],
+            "n": 12
+        },
+        {
+            "heads": [
+                "Hunter",
+                "Hunter"
+            ],
+            "n": 11
+        },
+        {
+            "heads": [
+                "EU",
+                "EU"
+            ],
+            "n": 11
+        },
+        {
+            "heads": [
+                "Harris",
+                "Harris"
+            ],
+            "n": 9
+        },
+        {
+            "heads": [
+                "Obama",
+                "Obama"
+            ],
+            "n": 8
+        },
+        {
+            "heads": [
+                "News",
+                "News"
+            ],
+            "n": 7
+        },
+        {
+            "heads": [
+                "Chairman",
+                "Chairman"
+            ],
+            "n": 5
+        },
+        {
+            "heads": [
+                "Top",
+                "Top"
+            ],
+            "n": 5
+        }
+    ],
+    "descendants": [
+        {
+            "heads": [
+                "administration",
+                "administration"
+            ],
+            "n": 657
+        },
+        {
+            "heads": [
+                "be",
+                "be"
+            ],
+            "n": 77
+        },
+        {
+            "heads": [
+                "era",
+                "era"
+            ],
+            "n": 68
+        },
+        {
+            "heads": [
+                "Harris",
+                "Harris"
+            ],
+            "n": 54
+        },
+        {
+            "heads": [
+                "Administration",
+                "Administration"
+            ],
+            "n": 49
+        },
+        {
+            "heads": [
+                "say",
+                "say"
+            ],
+            "n": 35
+        },
+        {
+            "heads": [
+                "policy",
+                "policy"
+            ],
+            "n": 25
+        },
+        {
+            "heads": [
+                "sign",
+                "sign"
+            ],
+            "n": 21
+        },
+        {
+            "heads": [
+                "take",
+                "take"
+            ],
+            "n": 20
+        },
+        {
+            "heads": [
+                "pardon",
+                "pardon"
+            ],
+            "n": 19
+        }
+    ]
+}
