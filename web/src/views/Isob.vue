@@ -6,12 +6,12 @@
   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
 
   <div style="display: block; margin-left: auto; margin-right: auto;">
-  <XChart :code="code" />
+    <XChart :code="code" />
   </div>
 </template>
 
 <script setup>
-import XChart from '@/components/XChart.vue';
+import XChart from '@/components/XChart.vue'
 
 const code = `---
 config:

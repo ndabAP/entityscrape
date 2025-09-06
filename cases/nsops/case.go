@@ -146,7 +146,7 @@ func conduct(ctx context.Context) error {
 				}
 				parser = parser.GPSC
 			)
-			study.Subjects["Deutschland"] = cases.Analyses{
+			study.Subjects["Germany"] = cases.Analyses{
 				Entity:    entity,
 				Feats:     feats,
 				Filenames: filenames,

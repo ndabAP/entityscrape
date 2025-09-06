@@ -7,16 +7,16 @@
       />
 
       <div style="padding: 0 20px;">
-        <RouterView  />
+        <RouterView />
       </div>
     </n-layout>
   </n-config-provider>
 </template>
 
 <script setup>
-import { darkTheme } from 'naive-ui';
-import { h } from 'vue';
-import { RouterLink } from 'vue-router';
+import { darkTheme } from 'naive-ui'
+import { h } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const menuOptions = [
   {
@@ -30,9 +30,9 @@ const menuOptions = [
         },
         { default: () => 'Studies' }
       ),
-    key: 'home',
+    key: 'home'
   },
-    {
+  {
     label: () =>
       h(
         RouterLink,
@@ -43,8 +43,8 @@ const menuOptions = [
         },
         { default: () => 'About' }
       ),
-    key: 'about',
-  },
+    key: 'about'
+  }
 ]
 </script>
 
