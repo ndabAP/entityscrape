@@ -50,7 +50,7 @@ func Test_reduct(t *testing.T) {
 			s := study[any, any]{}
 			got, _ := s.reduct(tc.text, []string{tc.entity})
 			if !bytes.Equal(got, tc.want) {
-				t.Errorf("reduce() = %s, want %s", got, tc.want)
+				t.Errorf("reduct() = %s, want %s", got, tc.want)
 			}
 		})
 	}
