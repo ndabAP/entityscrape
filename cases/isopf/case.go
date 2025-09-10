@@ -47,13 +47,6 @@ var (
 				return true
 			}
 
-			switch token.Lemma {
-			// Ignore possesive noun suffix.
-			case "’s", "'s", "s":
-				return true
-			default:
-			}
-
 			// Ignore non-ASCII characters.
 			r, _ := utf8.DecodeRuneInString(token.Lemma)
 			switch {

@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme="darkTheme">
+  <n-config-provider :theme="darkTheme"  :theme-overrides="themeOverrides">
     <n-layout position="absolute">
       <n-menu
         mode="horizontal"
@@ -46,8 +46,9 @@ const menuOptions = [
     key: 'about'
   }
 ]
+const themeOverrides = {
+  Card: {
+    borderRadius: '16px'
+  }
+}
 </script>
-
-<style>
-
-</style>

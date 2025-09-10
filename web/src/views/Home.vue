@@ -4,17 +4,25 @@
     :wrap="wrap"
   >
     <n-card
-      :bordered="false"
-      title="International sentiment of brands"
+      :bordered="true"
+      :segmented="{
+        content: false,
+        footer: false,
+      }"
+      size="large"
+      title="International sentiment of public figures"
     >
+      <template #header-extra>
+        isopf
+      </template>
       <n-p>
-        At max three direct dependency ancestor token of each brand have
-        been collected. After that, the top ten most common permutations
-        have been aggregated.
+        The direct dependency ancestor or descended token of a public figure
+        in news articles have been collected, while a token must be assigned to
+        either of these part of speeches: Adjective, Noun, Verb. After that, the
+        top ten most common permutations have been aggregated.
       </n-p>
       <n-p>
-        Possesive noun suffixes, non-ASCII characters and multi-token
-        brands have been filtered out.
+        Test subjects are: Donald Trump, Elon Musk, Joe Biden and Vladimir Putin
       </n-p>
       <template #footer>
         <n-flex
@@ -22,33 +30,47 @@
           style="margin-bottom: 24px"
         >
           <n-statistic label="Corpus">
-            8,000
+            33,000
           </n-statistic>
-          <n-statistic label="Brands">
-            3
+          <n-statistic label="Figures">
+            4
           </n-statistic>
           <n-statistic label="Samples">
-            4,000
+            >10,000
+          </n-statistic>
+          <n-statistic label="Sample">
+            100 %
           </n-statistic>
         </n-flex>
-        <n-button block>
+      </template>
+      <template #action>
+        <n-button block round size="large">
           View case study
         </n-button>
       </template>
     </n-card>
 
     <n-card
-      :bordered="false"
+      :bordered="true"
+      :segmented="{
+        content: false,
+        footer: false,
+      }"
+      size="large"
       title="National sentiment of political speeches"
     >
+      <template #header-extra>
+        nsops
+      </template>
       <n-p>
-        The direct dependency ancestor or descended token of a country
-        have been collected. After that, the top ten most common
+        For each mentioning of a country during a political speech in a
+        governmental environment, the countries dependent token has been
+        collected, while a token must be assigned to either of these part of
+        speeches: Adjective, Noun, Verb. After that, the top ten most common
         permutations have been aggregated.
       </n-p>
       <n-p>
-        As for ancestors and descendends, only verbs, nouns and
-        adjectives are included.
+        Test subjects are: Germany, Russia and United States
       </n-p>
       <template #footer>
         <n-flex
@@ -56,34 +78,45 @@
           style="margin-bottom: 24px"
         >
           <n-statistic label="Corpus">
-            8,000
+            9
           </n-statistic>
           <n-statistic label="Countries">
             3
           </n-statistic>
           <n-statistic label="Samples">
-            4,000
+            >10,000
+          </n-statistic>
+          <n-statistic label="Sample">
+            90 %
           </n-statistic>
         </n-flex>
-        <n-button block>
+      </template>
+      <template #action>
+        <n-button block round size="large">
           View case study
         </n-button>
       </template>
     </n-card>
 
     <n-card
-      :bordered="false"
+      :bordered="true"
+      :segmented="{
+        content: false,
+        footer: false,
+      }"
+      size="large"
       title="Root verbs of music genres"
     >
+      <template #header-extra>
+        rvomg
+      </template>
       <n-p>
-        For each of the three music genres, there are ten songs used to
+        For each of the three music genres, twenty song lyrics have been used to
         collect the dependency root verb for every song. After that,
         the top ten most common occurences have been aggregated.
       </n-p>
       <n-p>
-        A verse has been considered as a new sentence and a terminal
-        punctuation has been added. Due to its nature of song lyrics,
-        some dependency trees might have been falsely parsed.
+        Test subjects are: Hip-hop, Rock and Roll, Pop
       </n-p>
       <template #footer>
         <n-flex
@@ -97,10 +130,15 @@
             3
           </n-statistic>
           <n-statistic label="Samples">
-            4,000
+            >100
+          </n-statistic>
+          <n-statistic label="Sample">
+            100 %
           </n-statistic>
         </n-flex>
-        <n-button block>
+      </template>
+      <template #action>
+        <n-button block round size="large">
           View case study
         </n-button>
       </template>
@@ -114,9 +152,9 @@ import { onMounted, ref } from 'vue'
 const wrap = ref(false)
 
 onMounted(() => {
-  wrap.value = window.innerWidth < 768
+  wrap.value = window.innerWidth < 1024
   window.addEventListener('resize', () => {
-    wrap.value = window.innerWidth < 768
+    wrap.value = window.innerWidth < 1024
   })
 })
 </script>
