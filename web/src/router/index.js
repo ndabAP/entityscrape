@@ -14,9 +14,9 @@ const router = createRouter({
       component: () => import('../views/About.vue')
     },
     {
-      path: '/isob',
-      name: 'isob',
-      component: () => import('../views/Isob.vue')
+      path: '/isopf',
+      name: 'isopf',
+      component: () => import('../views/Isopf.vue')
     },
     {
       path: '/nsops',

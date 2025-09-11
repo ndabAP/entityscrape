@@ -1,5 +1,8 @@
 <template>
-  <n-config-provider :theme="darkTheme"  :theme-overrides="themeOverrides">
+  <n-config-provider
+    :theme="darkTheme"
+    :theme-overrides="themeOverrides"
+  >
     <n-layout position="absolute">
       <n-menu
         mode="horizontal"

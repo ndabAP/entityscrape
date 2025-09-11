@@ -44,7 +44,12 @@
         </n-flex>
       </template>
       <template #action>
-        <n-button block round size="large">
+        <n-button
+          block
+          round
+          size="large"
+          @click="() => push('isopf')"
+        >
           View case study
         </n-button>
       </template>
@@ -92,7 +97,11 @@
         </n-flex>
       </template>
       <template #action>
-        <n-button block round size="large">
+        <n-button
+          block
+          round
+          size="large"
+        >
           View case study
         </n-button>
       </template>
@@ -138,7 +147,11 @@
         </n-flex>
       </template>
       <template #action>
-        <n-button block round size="large">
+        <n-button
+          block
+          round
+          size="large"
+        >
           View case study
         </n-button>
       </template>
@@ -148,9 +161,13 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const push = name => router.push({ name })
 
 const wrap = ref(false)
-
 onMounted(() => {
   wrap.value = window.innerWidth < 1024
   window.addEventListener('resize', () => {

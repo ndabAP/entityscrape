@@ -16,9 +16,11 @@ defineProps({
 
 const toggleSankey = () => {
   if (document.body.clientWidth < 768) {
-    config.sankey.height = 800
+    config.sankey.height = 1200
+  } else if (document.body.clientWidth < 470) {
+    config.sankey.height = 1600
   } else {
-    config.sankey.height = 500
+    config.sankey.height = 850
   }
   mermaid.initialize(config)
 }
@@ -30,13 +32,13 @@ const config = {
   useMaxWidth: true,
   themeVariables: {
     fontFamily,
-    fontSize: '16px'
+    fontSize: '24px'
   },
   startOnLoad: false,
   securityLevel: 'loose',
   sankey: {
     width: 1200,
-    height: 500
+    height: 800
   }
 }
 
@@ -58,3 +60,7 @@ onMounted(async () => {
   await mermaid.run()
 })
 </script>
+
+<style>
+.mermaid { display: flex !important; justify-content: center }
+</style>
