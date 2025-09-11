@@ -101,6 +101,7 @@
           block
           round
           size="large"
+          @click="push('nsops')"
         >
           View case study
         </n-button>
@@ -151,6 +152,7 @@
           block
           round
           size="large"
+          @click="push('rvomg')"
         >
           View case study
         </n-button>

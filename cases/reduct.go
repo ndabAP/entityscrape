@@ -51,6 +51,7 @@ func (study study[samples, aggregated]) reduct(text []byte, entity []string) ([]
 
 		// Filters
 		prot = []byte("http")
+		com  = []byte(".com")
 	)
 	for scanner.Scan() {
 		txt := scanner.Bytes()
@@ -58,6 +59,7 @@ func (study study[samples, aggregated]) reduct(text []byte, entity []string) ([]
 		// Entity
 		var n int
 		for _, e := range entity {
+			// Special case: Entity is delimiter
 			if r, _ := utf8.DecodeRuneInString(e); r == delim {
 				n++
 			}
@@ -68,10 +70,14 @@ func (study study[samples, aggregated]) reduct(text []byte, entity []string) ([]
 		if n == 0 {
 			continue
 		}
+
 		// Filters
-		if bytes.Contains(txt, prot) {
+		switch {
+		case bytes.Contains(txt, prot), bytes.Contains(txt, com):
 			continue
+		default:
 		}
+
 		// Size
 		if len(txt) < 3 {
 			continue

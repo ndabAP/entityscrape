@@ -72,7 +72,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			return translator.Translate(w, lang, language.English)
 		}
 		if err := func() error {
-			pref := strings.ToLower(subject)
+			pref := strings.ReplaceAll(strings.ToLower(subject), " ", "_")
 			writer, err := study.store.NewWriter(pref, ext)
 			if err != nil {
 				return err
@@ -168,7 +168,7 @@ func (study study[samples, aggregated]) analysis(
 			return assocentity.Analyses{}, err
 		}
 	}
-	slog.Debug("files parsed", "texts_n", len(texts))
+	slog.Debug("parsed texts", "n", len(texts))
 
 	slog.Debug("creating analyses")
 	src := assocentity.NewSource(entity, texts)

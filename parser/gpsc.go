@@ -9,12 +9,11 @@ import (
 	"golang.org/x/net/html"
 )
 
-var spaceregex = regexp.MustCompile(`\s+`)
-
 // GPSC parses "German Political Speeches Corpus".
 func GPSC(r io.Reader, c chan []byte) chan error {
-	errs := make(chan error, 1)
+	spaceregex := regexp.MustCompile(`\s+`)
 
+	errs := make(chan error, 1)
 	go func() {
 		defer close(errs)
 

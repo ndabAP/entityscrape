@@ -7,8 +7,7 @@ import (
 	"io"
 	"slices"
 	"sort"
-	"unicode"
-	"unicode/utf8"
+	"strings"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
@@ -47,14 +46,6 @@ var (
 				return true
 			}
 
-			// Ignore non-ASCII characters.
-			r, _ := utf8.DecodeRuneInString(token.Lemma)
-			switch {
-			case unicode.IsDigit(r), unicode.IsLetter(r):
-			default:
-				return true
-			}
-
 			return false
 		}
 		return samples{
@@ -66,15 +57,17 @@ var (
 		f := func(samples []*tokenize.Token) []aggregate {
 			aggregates := make([]aggregate, 0)
 			for _, sample := range samples {
+				word := strings.ToLower(sample.Lemma)
+
 				i := slices.IndexFunc(aggregates, func(aggr aggregate) bool {
-					return aggr.Word[0] == sample.Lemma
+					return aggr.Word[0] == word
 				})
 				// Find matches
 				switch i {
 				case -1:
 					n := 1
 					aggregates = append(aggregates, aggregate{
-						Word: [2]string{sample.Lemma},
+						Word: [2]string{word},
 						N:    n,
 					})
 				// Found
