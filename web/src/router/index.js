@@ -6,27 +6,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/Home.vue')
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/',
       name: 'about',
-      component: () => import('../views/About.vue')
+      component: () => import('../views/AboutView.vue')
     },
     {
       path: '/isopf',
       name: 'isopf',
-      component: () => import('../views/Isopf.vue')
+      component: () => import('../views/IsopfView.vue')
     },
     {
       path: '/nsops',
       name: 'nsops',
-      component: () => import('../views/Nsops.vue')
+      component: () => import('../views/NsopsView.vue')
     },
     {
       path: '/rvomg',
       name: 'rvomg',
-      component: () => import('../views/Rvomg.vue')
+      component: () => import('../views/RvomgView.vue')
     }
   ]
 })

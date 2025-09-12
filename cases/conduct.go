@@ -8,6 +8,7 @@ import (
 	"math/rand/v2"
 	"os"
 	"strings"
+	"unicode"
 
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
@@ -72,7 +73,18 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			return translator.Translate(w, lang, language.English)
 		}
 		if err := func() error {
-			pref := strings.ReplaceAll(strings.ToLower(subject), " ", "_")
+			pref := strings.Map(func(r rune) rune {
+				switch {
+				case r >= 'a' && r <= 'z':
+					return r
+				case r >= 'A' && r <= 'Z':
+					return unicode.ToLower(r)
+				case r == ' ':
+					return '_'
+				default:
+					return -1
+				}
+			}, subject)
 			writer, err := study.store.NewWriter(pref, ext)
 			if err != nil {
 				return err
@@ -168,7 +180,7 @@ func (study study[samples, aggregated]) analysis(
 			return assocentity.Analyses{}, err
 		}
 	}
-	slog.Debug("parsed texts", "n", len(texts))
+	slog.Debug("texts sampled and parsed", "n", len(texts))
 
 	slog.Debug("creating analyses")
 	src := assocentity.NewSource(entity, texts)

@@ -9,7 +9,7 @@
         :options="menuOptions"
       />
 
-      <div style="padding: 0 20px;">
+      <div style="padding: 6px 20px;">
         <RouterView />
       </div>
     </n-layout>
