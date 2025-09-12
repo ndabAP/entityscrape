@@ -3,15 +3,21 @@
     :theme="darkTheme"
     :theme-overrides="themeOverrides"
   >
-    <n-layout position="absolute">
+    <n-layout
+      position="absolute"
+      content-style="max-width: 1280px; margin-left: auto; margin-right: auto;"
+    >
       <n-menu
+        style="padding-top: 8px"
         mode="horizontal"
         :options="menuOptions"
       />
 
-      <div style="padding: 6px 20px;">
+      <n-layout-content
+        content-style="padding: 6px 24px;"
+      >
         <RouterView />
-      </div>
+      </n-layout-content>
     </n-layout>
   </n-config-provider>
 </template>
@@ -55,3 +61,9 @@ const themeOverrides = {
   }
 }
 </script>
+
+<style>
+p {
+  text-align: justify;
+}
+</style>

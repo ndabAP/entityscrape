@@ -180,10 +180,6 @@ const router = useRouter()
 .n-card {
   height: 100%;
 }
-
-p {
-  text-align: justify;
-}
 </style>
 
 <style>
