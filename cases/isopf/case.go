@@ -21,7 +21,7 @@ type (
 		ancestors, descendants []*tokenize.Token
 	}
 	aggregate struct {
-		Word [2]string `json:"heads"`
+		Word [2]string `json:"word"`
 		N    int       `json:"n"`
 	}
 	aggregates struct {

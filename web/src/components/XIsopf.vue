@@ -38,20 +38,20 @@ onMounted(async () => {
 
   option.series.data.push({ name: props.label })
   for (const ancestor of report.ancestors) {
-    const value = `${ancestor.heads[0]} (a)`
-    option.series.data.push({ name: value })
+    const word = `${ancestor.word[0]} (a)`
+    option.series.data.push({ name: word })
     option.series.links.push({
-      source: value,
+      source: word,
       target: props.label,
       value: ancestor.n
     })
   }
   for (const descendant of report.descendants) {
-    const value = `${descendant.heads[0]} (d)`
-    option.series.data.push({ name: value })
+    const word = `${descendant.word[0]} (d)`
+    option.series.data.push({ name: word })
     option.series.links.push({
       source: props.label,
-      target: value,
+      target: word,
       value: descendant.n
     })
   }

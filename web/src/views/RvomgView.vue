@@ -19,7 +19,7 @@
       <XRvomg
         label="Hip-hop"
         identifier="hip_hop"
-        text="Hip-hop or hip hop is a popular music genre that emerged in the early 1970s alongside a hip-hop subculture built by the African-American and Latino communities of New York City."
+        text="Hip-hop is a popular music genre that emerged in the early 1970s alongside a hip-hop subculture built by the African-American and Latino communities of New York City."
       />
     </n-tab-pane>
     <n-tab-pane
@@ -39,7 +39,7 @@
       <XRvomg
         label="Pop"
         identifier="pop"
-        text="Pop music, or simply pop, is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom."
+        text="Pop music is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom."
       />
     </n-tab-pane>
   </n-tabs>

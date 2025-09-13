@@ -44,11 +44,11 @@ var (
 			_ tokenize.DependencyEdgeLabel,
 			tree dependency.Tree,
 		) bool {
-			if !slices.Contains(entities, to) {
+			switch {
+			case !slices.Contains(entities, to):
 				return true
-			}
 			// Skip connected entities.
-			if slices.Contains(entities, to) && slices.Contains(entities, from) {
+			case slices.Contains(entities, from):
 				return true
 			}
 
