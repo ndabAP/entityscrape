@@ -47,6 +47,10 @@ var (
 			if !slices.Contains(entities, to) {
 				return true
 			}
+			// Skip connected entities.
+			if slices.Contains(entities, to) && slices.Contains(entities, from) {
+				return true
+			}
 
 			switch from.PartOfSpeech.Tag {
 			case tokenize.PartOfSpeechTagVerb, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagAdj:
@@ -89,7 +93,7 @@ var (
 		}
 
 		// Top n sorted
-		const limit = 10
+		const limit = 15
 		sort.Slice(aggregates, func(i, j int) bool {
 			return aggregates[i].N > aggregates[j].N
 		})

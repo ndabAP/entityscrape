@@ -14,14 +14,16 @@
         :bordered="false"
         title="International sentiment of public figures"
       >
-        <template #header-extra>
-          isopf
-        </template>
+        <!-- <template #header-extra>
+          <small>isopf</small>
+        </template> -->
         <n-p>
           The direct dependency ancestor or descended token of a public figure
           in news articles have been collected, while a token must be assigned to
-          either of these part of speeches: Adjective, Noun, Verb. After that, the
-          top ten most common permutations have been aggregated.
+          either of these part of speeches: Adjective, Noun, Verb.
+        </n-p>
+        <n-p>
+          After that, the top ten most common permutations have been aggregated.
         </n-p>
         <template #footer>
           <n-p depth="3">
@@ -36,11 +38,8 @@
             <n-statistic label="Figures">
               4
             </n-statistic>
-            <n-statistic label="Samples">
+            <n-statistic label="Population">
               >10,000
-            </n-statistic>
-            <n-statistic label="Sample">
-              100 %
             </n-statistic>
           </n-flex>
         </template>
@@ -67,15 +66,17 @@
         :bordered="false"
         title="National sentiment of political speeches"
       >
-        <template #header-extra>
-          nsops
-        </template>
+        <!-- <template #header-extra>
+          <small>nsops</small>
+        </template> -->
         <n-p>
           For each mentioning of a country during a political speech in a
           governmental environment, the countries dependent token has been
           collected, while a token must be assigned to either of these part of
-          speeches: Adjective, Noun, Verb. After that, the top ten most common
-          permutations have been aggregated.
+          speeches: Adjective, Noun, Verb.
+        </n-p>
+        <n-p>
+          After that, the top ten most common permutations have been aggregated.
         </n-p>
         <template #footer>
           <n-p depth="3">
@@ -90,11 +91,8 @@
             <n-statistic label="Countries">
               3
             </n-statistic>
-            <n-statistic label="Samples">
+            <n-statistic label="Population">
               >10,000
-            </n-statistic>
-            <n-statistic label="Sample">
-              90 %
             </n-statistic>
           </n-flex>
         </template>
@@ -121,13 +119,15 @@
         :bordered="false"
         title="Root verbs of music genres"
       >
-        <template #header-extra>
-          rvomg
-        </template>
+        <!-- <template #header-extra>
+          <small>rvomg</small>
+        </template> -->
         <n-p>
           For each of the three music genres, twenty song lyrics have been used to
-          collect the dependency root verb for every song. After that,
-          the top ten most common occurences have been aggregated.
+          collect the dependency root verb for every song.
+        </n-p>
+        <n-p>
+          After that, the top ten most common occurences have been aggregated.
         </n-p>
         <template #footer>
           <n-p depth="3">
@@ -142,11 +142,8 @@
             <n-statistic label="Genres">
               3
             </n-statistic>
-            <n-statistic label="Samples">
+            <n-statistic label="Population">
               >100
-            </n-statistic>
-            <n-statistic label="Sample">
-              100 %
             </n-statistic>
           </n-flex>
         </template>
@@ -179,11 +176,5 @@ const router = useRouter()
 
 .n-card {
   height: 100%;
-}
-</style>
-
-<style>
-.n-statistic .n-statistic-value .n-statistic-value__content {
-  font-size: unset !important;
 }
 </style>

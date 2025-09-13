@@ -79,7 +79,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 					return r
 				case r >= 'A' && r <= 'Z':
 					return unicode.ToLower(r)
-				case r == ' ':
+				case r == ' ', r == '-':
 					return '_'
 				default:
 					return -1

@@ -8,7 +8,6 @@
   >
     <XChart
       :option="option"
-      type="sankey"
     />
   </div>
 </template>
@@ -35,25 +34,25 @@ const option = reactive({
   }
 })
 onMounted(async () => {
-  const response = await fetch(`/isopf/${props.identifier}.json`)
-  const file = await response.json()
+  const report = await fetch(`/isopf/${props.identifier}.json`).then(response => response.json())
+
   option.series.data.push({ name: props.label })
-  for (const row of file.ancestors) {
-    const value = `${row.heads[0]} (a)`
+  for (const ancestor of report.ancestors) {
+    const value = `${ancestor.heads[0]} (a)`
     option.series.data.push({ name: value })
     option.series.links.push({
       source: value,
       target: props.label,
-      value: row.n
+      value: ancestor.n
     })
   }
-  for (const row of file.descendants) {
-    const value = `${row.heads[0]} (d)`
+  for (const descendant of report.descendants) {
+    const value = `${descendant.heads[0]} (d)`
     option.series.data.push({ name: value })
     option.series.links.push({
       source: props.label,
       target: value,
-      value: row.n
+      value: descendant.n
     })
   }
 })

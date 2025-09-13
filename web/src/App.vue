@@ -5,7 +5,7 @@
   >
     <n-layout
       position="absolute"
-      content-style="max-width: 1280px; margin-left: auto; margin-right: auto;"
+      content-style="max-width: 1024px; margin-left: auto; margin-right: auto;"
     >
       <n-menu
         style="padding-top: 8px"
@@ -64,6 +64,10 @@ const themeOverrides = {
 
 <style>
 p {
-  text-align: justify;
+  /* text-align: justify; */
+}
+
+.n-statistic .n-statistic-value .n-statistic-value__content {
+  font-size: unset !important;
 }
 </style>

@@ -58,9 +58,4 @@
 
 <script setup>
 import XIsopf from '@/components/XIsopf.vue'
-import { onMounted } from 'vue'
-
-onMounted(async () => {
-
-})
 </script>
