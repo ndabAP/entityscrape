@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"sync"
 
 	translate "cloud.google.com/go/translate"
 	"golang.org/x/sync/semaphore"
@@ -19,6 +20,7 @@ type (
 )
 
 var (
+	mu    sync.Mutex
 	sema  = semaphore.NewWeighted(5)
 	cache = make(map[[2]language.Tag]map[string]string)
 )
@@ -35,6 +37,8 @@ func NewGoogle(ctx context.Context, creds string) translator {
 }
 
 func ClearCache() {
+	mu.Lock()
+	defer mu.Unlock()
 	clear(cache)
 }
 

@@ -18,15 +18,15 @@ import (
 
 type (
 	samples struct {
-		ancestors, descendants []*tokenize.Token
+		heads, dependents []*tokenize.Token
 	}
 	aggregate struct {
 		Word [2]string `json:"word"`
 		N    int       `json:"n"`
 	}
 	aggregates struct {
-		Ancestors   []aggregate `json:"ancestors"`
-		Descendants []aggregate `json:"descendants"`
+		Heads      []aggregate `json:"heads"`
+		Dependents []aggregate `json:"dependents"`
 	}
 )
 
@@ -35,8 +35,8 @@ var (
 
 	collector = func(analyses assocentity.Analyses) samples {
 		var (
-			ancestors   = analyses.Forest().Ancestors(nil)
-			descendants = analyses.Forest().Descendants(nil)
+			heads      = analyses.Forest().Heads(nil)
+			dependents = analyses.Forest().Dependents(nil)
 		)
 		// Reduce
 		del := func(token *tokenize.Token) bool {
@@ -49,8 +49,8 @@ var (
 			return false
 		}
 		return samples{
-			ancestors:   slices.DeleteFunc(ancestors, del),
-			descendants: slices.DeleteFunc(descendants, del),
+			heads:      slices.DeleteFunc(heads, del),
+			dependents: slices.DeleteFunc(dependents, del),
 		}
 	}
 	aggregator = func(s samples) aggregates {
@@ -88,8 +88,8 @@ var (
 			return aggregates
 		}
 		return aggregates{
-			Ancestors:   f(s.ancestors),
-			Descendants: f(s.descendants),
+			Heads:      f(s.heads),
+			Dependents: f(s.dependents),
 		}
 	}
 	reporter = func(aggrs aggregates, translate cases.Translate, writer io.Writer) error {
@@ -109,8 +109,8 @@ var (
 			}
 			return nil
 		}
-		f(aggrs.Ancestors)
-		f(aggrs.Descendants)
+		f(aggrs.Heads)
+		f(aggrs.Dependents)
 
 		return json.NewEncoder(writer).Encode(&aggrs)
 	}

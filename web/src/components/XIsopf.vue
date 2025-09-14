@@ -37,22 +37,22 @@ onMounted(async () => {
   const report = await fetch(`/isopf/${props.identifier}.json`).then(response => response.json())
 
   option.series.data.push({ name: props.label })
-  for (const ancestor of report.ancestors) {
-    const word = `${ancestor.word[0]} (a)`
+  for (const heads of report.heads) {
+    const word = `${heads.word[0]} (a)`
     option.series.data.push({ name: word })
     option.series.links.push({
       source: word,
       target: props.label,
-      value: ancestor.n
+      value: heads.n
     })
   }
-  for (const descendant of report.descendants) {
-    const word = `${descendant.word[0]} (d)`
+  for (const dependent of report.dependents) {
+    const word = `${dependent.word[0]} (d)`
     option.series.data.push({ name: word })
     option.series.links.push({
       source: props.label,
       target: word,
-      value: descendant.n
+      value: dependent.n
     })
   }
 })
