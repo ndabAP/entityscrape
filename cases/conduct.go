@@ -99,7 +99,6 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 		}(); err != nil {
 			return err
 		}
-
 		slog.Debug("reporting done", "subject", subject)
 	}
 
@@ -110,7 +109,7 @@ func (study study[samples, aggregated]) analysis(
 	ctx context.Context,
 	entity,
 	filenames []string,
-	parse Parser,
+	parser Parser,
 	reduct bool,
 	tokenize tokenize.Tokenizer,
 	feats tokenize.Features,
@@ -161,7 +160,7 @@ func (study study[samples, aggregated]) analysis(
 				errChan <- err
 				return
 			}
-			for err := range parse(file, textChan) {
+			for err := range parser(file, textChan) {
 				if errors.Is(err, bufio.ErrTooLong) {
 					continue
 				}

@@ -50,7 +50,7 @@ func init() {
 			panic(err.Error())
 		}
 		if s > 100 {
-			panic("SAMPLE_RATE must be <= 100, or unset")
+			panic("SAMPLE_RATE must be <= 100 or unset")
 		}
 		cases.SampleRate = s
 	}

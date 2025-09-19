@@ -30,8 +30,6 @@ func NewFile(base string) (*file, error) {
 }
 
 func (s *file) RemoveAll() error {
-	mu.Lock()
-	defer mu.Unlock()
 	return os.RemoveAll(s.base)
 }
 
