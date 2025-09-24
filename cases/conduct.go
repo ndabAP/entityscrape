@@ -111,7 +111,7 @@ func (study study[samples, aggregated]) analysis(
 	filenames []string,
 	parser Parser,
 	reduct bool,
-	tokenize tokenize.Tokenizer,
+	tokenizer tokenize.Tokenizer,
 	feats tokenize.Features,
 ) (
 	assocentity.Analyses,
@@ -183,5 +183,5 @@ func (study study[samples, aggregated]) analysis(
 
 	slog.Debug("creating analyses")
 	src := assocentity.NewSource(entity, texts)
-	return src.Analyses(ctx, tokenize, feats, assocentity.NFKC)
+	return src.Analyses(ctx, tokenizer, feats, assocentity.NFKC)
 }
