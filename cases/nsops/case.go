@@ -19,9 +19,8 @@ import (
 )
 
 type (
-	sample struct {
-		*tokenize.Token
-	}
+	sample *tokenize.Token
+
 	aggregate struct {
 		Word [2]string `json:"word"`
 		PoS  string    `json:"pos"`
@@ -37,32 +36,31 @@ var (
 		var (
 			entities = analyses.Forest().Entities()
 			samples  = make([]sample, 0)
+
+			fn = func(
+				from,
+				to *tokenize.Token,
+				_ tokenize.DependencyEdgeLabel,
+				tree dependency.Tree,
+			) bool {
+				switch {
+				case !slices.Contains(entities, to):
+					return true
+				// Skip connected entities.
+				case slices.Contains(entities, from):
+					return true
+				}
+
+				switch from.PartOfSpeech.Tag {
+				case tokenize.PartOfSpeechTagVerb, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagAdj:
+					samples = append(samples, from)
+				default:
+				}
+
+				return true
+			}
 		)
-		walker := func(
-			from,
-			to *tokenize.Token,
-			_ tokenize.DependencyEdgeLabel,
-			tree dependency.Tree,
-		) bool {
-			switch {
-			case !slices.Contains(entities, to):
-				return true
-			// Skip connected entities.
-			case slices.Contains(entities, from):
-				return true
-			}
-
-			switch from.PartOfSpeech.Tag {
-			case tokenize.PartOfSpeechTagVerb, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagAdj:
-				samples = append(samples, sample{
-					Token: from,
-				})
-			default:
-			}
-
-			return true
-		}
-		analyses.Forest().Dependencies(walker)
+		analyses.Forest().Dependencies(fn)
 
 		return samples
 	}
