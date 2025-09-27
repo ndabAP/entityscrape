@@ -43,10 +43,10 @@ var (
 			switch token.PartOfSpeech.Tag {
 			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
 			default:
-				return true
+				return false
 			}
 
-			return false
+			return true
 		}
 		return samples{
 			heads:      slices.DeleteFunc(heads, del),
@@ -152,7 +152,7 @@ func conduct(ctx context.Context) error {
 	{
 		var (
 			ident  = "Trump"
-			entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump"}
+			entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump", "Trump's"}
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:    entity,
@@ -168,7 +168,7 @@ func conduct(ctx context.Context) error {
 	// {
 	// 	var (
 	// 		ident  = "Musk"
-	// 		entity = []string{ident, "Elon Musk", "Elon Reeve Musk"}
+	// 		entity = []string{ident, "Elon Musk", "Elon Reeve Musk", "Elon R. Musk", "Musk's"}
 	// 	)
 	// 	study.Subjects[ident] = cases.Analyses{
 	// 		Entity:    entity,
@@ -184,7 +184,7 @@ func conduct(ctx context.Context) error {
 	// {
 	// 	var (
 	// 		ident  = "Biden"
-	// 		entity = []string{ident, "Joe Biden", "Joseph Robinette Biden", "Joseph R. Biden", "Joseph Biden"}
+	// 		entity = []string{ident, "Joe Biden", "Joseph Robinette Biden", "Joseph R. Biden", "Joseph Biden", "Biden's"}
 	// 	)
 	// 	study.Subjects[ident] = cases.Analyses{
 	// 		Entity:    entity,
@@ -200,7 +200,7 @@ func conduct(ctx context.Context) error {
 	// {
 	// 	var (
 	// 		ident  = "Putin"
-	// 		entity = []string{ident, "Vladimir Putin", "Vladimir Vladimirovich Putin"}
+	// 		entity = []string{ident, "Vladimir Putin", "Vladimir Vladimirovich Putin", "Putin's"}
 	// 	)
 	// 	study.Subjects[ident] = cases.Analyses{
 	// 		Entity:    entity,

@@ -119,6 +119,9 @@ func (study study[samples, aggregated]) analysis(
 	error,
 ) {
 	slog.Debug("parsing files", "n", len(filenames))
+	if reduct {
+		slog.Debug("entity reduct enabled")
+	}
 
 	var (
 		texts = make([]string, 0, len(filenames))
