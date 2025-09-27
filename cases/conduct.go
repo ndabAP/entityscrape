@@ -89,6 +89,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 			if err != nil {
 				return err
 			}
+			//nolint:errcheck
 			defer writer.Close()
 
 			if err := study.report(aggregated, translator, writer); err != nil {
@@ -166,7 +167,8 @@ func (study study[samples, aggregated]) analysis(
 				}
 				errChan <- err
 			}
-			file.Close()
+			//nolint:errcheck
+			_ = file.Close()
 		}
 	}()
 

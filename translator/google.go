@@ -45,7 +45,9 @@ func ClearCache() {
 func (translator translator) Translate(inputs []string, src, target language.Tag) ([]string, error) {
 	slog.Debug("translating", "n", len(inputs), "src", src, "target", target)
 
-	sema.Acquire(translator.ctx, 1)
+	if err := sema.Acquire(translator.ctx, 1); err != nil {
+		return nil, err
+	}
 	defer sema.Release(1)
 
 	ctx := translator.ctx

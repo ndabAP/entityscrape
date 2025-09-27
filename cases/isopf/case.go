@@ -109,8 +109,12 @@ var (
 			}
 			return nil
 		}
-		f(aggrs.Heads)
-		f(aggrs.Dependents)
+		if err := f(aggrs.Heads); err != nil {
+			return err
+		}
+		if err := f(aggrs.Dependents); err != nil {
+			return err
+		}
 
 		return json.NewEncoder(writer).Encode(&aggrs)
 	}
