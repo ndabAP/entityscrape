@@ -34,24 +34,30 @@ var (
 	ident = "isopf"
 
 	collector = func(analyses assocentity.Analyses) samples {
-		var (
-			heads      = analyses.Forest().Heads(nil)
-			dependents = analyses.Forest().Dependents(nil)
-		)
-		// Reduce
-		del := func(token *tokenize.Token) bool {
-			switch token.PartOfSpeech.Tag {
+		var samples samples
+		samples.dependents = make([]*tokenize.Token, 0)
+		samples.heads = make([]*tokenize.Token, 0)
+
+		samples.heads = analyses.Forest().Heads(func(t *tokenize.Token) bool {
+			switch t.PartOfSpeech.Tag {
 			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
+				samples.heads = append(samples.heads, t)
 			default:
-				return false
 			}
 
 			return true
-		}
-		return samples{
-			heads:      slices.DeleteFunc(heads, del),
-			dependents: slices.DeleteFunc(dependents, del),
-		}
+		})
+		samples.dependents = analyses.Forest().Dependents(func(t *tokenize.Token) bool {
+			switch t.PartOfSpeech.Tag {
+			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
+				samples.dependents = append(samples.dependents, t)
+			default:
+			}
+
+			return true
+		})
+
+		return samples
 	}
 	aggregator = func(s samples) aggregates {
 		f := func(samples []*tokenize.Token) []aggregate {

@@ -38,28 +38,30 @@ var (
 			samples  = make([]sample, 0)
 
 			fn = func(
-				from,
-				to *tokenize.Token,
+				head,
+				dependent *tokenize.Token,
 				_ tokenize.DependencyEdgeLabel,
 				tree dependency.Tree,
 			) bool {
 				switch {
-				case !slices.Contains(entities, to):
+				case !slices.Contains(entities, dependent):
 					return true
+
 				// Skip connected entities.
-				case slices.Contains(entities, from):
+				case slices.Contains(entities, head):
 					return true
 				}
 
-				switch from.PartOfSpeech.Tag {
-				case tokenize.PartOfSpeechTagVerb, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagAdj:
-					samples = append(samples, from)
+				switch head.PartOfSpeech.Tag {
+				case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
+					samples = append(samples, head)
 				default:
 				}
 
 				return true
 			}
 		)
+		// TODO: Can this be simplified?
 		analyses.Forest().Dependencies(fn)
 
 		return samples
