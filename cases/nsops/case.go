@@ -11,7 +11,6 @@ import (
 
 	"cloud.google.com/go/language/apiv1/languagepb"
 	"github.com/ndabAP/assocentity"
-	"github.com/ndabAP/assocentity/dependency"
 	"github.com/ndabAP/assocentity/tokenize"
 	"github.com/ndabAP/entityscrape/cases"
 	"github.com/ndabAP/entityscrape/parser"
@@ -33,36 +32,16 @@ var (
 	ident = "nsops"
 
 	collector = func(analyses assocentity.Analyses) []sample {
-		var (
-			entities = analyses.Forest().Entities()
-			samples  = make([]sample, 0)
-
-			fn = func(
-				head,
-				dependent *tokenize.Token,
-				_ tokenize.DependencyEdgeLabel,
-				tree dependency.Tree,
-			) bool {
-				switch {
-				case !slices.Contains(entities, dependent):
-					return true
-
-				// Skip connected entities.
-				case slices.Contains(entities, head):
-					return true
-				}
-
-				switch head.PartOfSpeech.Tag {
-				case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
-					samples = append(samples, head)
-				default:
-				}
-
-				return true
+		samples := make([]sample, 0)
+		analyses.Forest().Dependents(func(t *tokenize.Token) bool {
+			switch t.PartOfSpeech.Tag {
+			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
+				samples = append(samples, t)
+			default:
 			}
-		)
-		// TODO: Can this be simplified?
-		analyses.Forest().Dependencies(fn)
+
+			return true
+		})
 
 		return samples
 	}
