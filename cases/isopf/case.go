@@ -46,13 +46,13 @@ var (
 				return false
 			}
 		}
-		samples.heads = analyses.Forest().Heads(func(t *tokenize.Token) bool {
+		analyses.Forest().Heads(func(t *tokenize.Token) bool {
 			if f(t.PartOfSpeech.Tag) {
 				samples.heads = append(samples.heads, t)
 			}
 			return true
 		})
-		samples.dependents = analyses.Forest().Dependents(func(t *tokenize.Token) bool {
+		analyses.Forest().Dependents(func(t *tokenize.Token) bool {
 			if f(t.PartOfSpeech.Tag) {
 				samples.dependents = append(samples.dependents, t)
 			}
@@ -160,7 +160,7 @@ func conduct(ctx context.Context) error {
 	{
 		var (
 			ident  = "Trump"
-			entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump", "Trump's"}
+			entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump"}
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:    entity,
@@ -176,7 +176,7 @@ func conduct(ctx context.Context) error {
 	{
 		var (
 			ident  = "Musk"
-			entity = []string{ident, "Elon Musk", "Elon Reeve Musk", "Elon R. Musk", "Musk's"}
+			entity = []string{ident, "Elon Musk", "Elon Reeve Musk", "Elon R. Musk"}
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:    entity,
@@ -192,7 +192,7 @@ func conduct(ctx context.Context) error {
 	{
 		var (
 			ident  = "Biden"
-			entity = []string{ident, "Joe Biden", "Joseph Robinette Biden", "Joseph R. Biden", "Joseph Biden", "Biden's"}
+			entity = []string{ident, "Joe Biden", "Joseph Robinette Biden", "Joseph R. Biden", "Joseph Biden"}
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:    entity,
@@ -208,7 +208,7 @@ func conduct(ctx context.Context) error {
 	{
 		var (
 			ident  = "Putin"
-			entity = []string{ident, "Vladimir Putin", "Vladimir Vladimirovich Putin", "Putin's"}
+			entity = []string{ident, "Vladimir Putin", "Vladimir Vladimirovich Putin"}
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:    entity,
