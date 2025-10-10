@@ -14,7 +14,7 @@
       />
 
       <n-layout-content
-        content-style="padding: 6px 24px;"
+        content-style="padding: 6px 21px;"
       >
         <RouterView />
       </n-layout-content>
@@ -23,9 +23,16 @@
 </template>
 
 <script setup>
-import { darkTheme } from 'naive-ui'
+import {
+  OpenOutline
+} from '@vicons/ionicons5'
+import { darkTheme, NIcon } from 'naive-ui'
 import { h } from 'vue'
 import { RouterLink } from 'vue-router'
+
+function renderIcon (icon) {
+  return () => h(NIcon, null, { default: () => h(icon) })
+}
 
 const menuOptions = [
   {
@@ -53,9 +60,25 @@ const menuOptions = [
         { default: () => 'About' }
       ),
     key: 'about'
+  },
+  {
+    label: () =>
+      h(
+        'a',
+        {
+          href: 'https://github.com/ndabAP/entityscrape',
+          target: '_blank'
+        },
+        'GitHub'
+      ),
+    key: 'github',
+    icon: renderIcon(OpenOutline)
   }
 ]
 const themeOverrides = {
+  Alert: {
+    borderRadius: '16px'
+  },
   Card: {
     borderRadius: '16px'
   }
@@ -63,10 +86,6 @@ const themeOverrides = {
 </script>
 
 <style>
-p {
-  /* text-align: justify; */
-}
-
 .n-statistic .n-statistic-value .n-statistic-value__content {
   font-size: unset !important;
 }

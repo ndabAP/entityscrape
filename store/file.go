@@ -22,7 +22,7 @@ func NewFile(base string) (*file, error) {
 	if err := f.RemoveAll(); err != nil {
 		return nil, err
 	}
-	if err := os.MkdirAll(base, 0o755); err != nil {
+	if err := os.MkdirAll(base, 0o750); err != nil {
 		return nil, err
 	}
 

@@ -14,32 +14,30 @@
         :bordered="false"
         title="International sentiment of public figures"
       >
-        <!-- <template #header-extra>
-          <small>isopf</small>
-        </template> -->
         <n-p>
-          The direct dependency ancestor or descended token of a public figure
-          in news articles have been collected, while a token must be assigned to
-          either of these part of speeches: Adjective, Noun, Verb.
-        </n-p>
-        <n-p>
-          After that, the top ten most common permutations have been aggregated.
+          For each subject, the heads and dependents in international news have
+          been collected, while the token must be assigned to either of these
+          parts of speeches: Adjective, Noun, Verb. After that, the top ten most
+          common occurrences have been aggregated.
         </n-p>
         <template #footer>
-          <n-p depth="3">
+          <n-text strong>
+            Subjects
+          </n-text>
+          <n-p depth="2">
             Donald Trump, Elon Musk, Joe Biden, Vladimir Putin
           </n-p>
           <n-flex
             justify="space-between"
           >
             <n-statistic label="Corpus">
-              33,000
+              39,000
             </n-statistic>
-            <n-statistic label="Figures">
+            <n-statistic label="Subjects">
               4
             </n-statistic>
             <n-statistic label="Population">
-              >10,000
+              9,300
             </n-statistic>
           </n-flex>
         </template>
@@ -66,20 +64,18 @@
         :bordered="false"
         title="National sentiment of political speeches"
       >
-        <!-- <template #header-extra>
-          <small>nsops</small>
-        </template> -->
         <n-p>
           For each mentioning of a country during a political speech in a
           governmental environment, the countries dependent token has been
           collected, while a token must be assigned to either of these part of
-          speeches: Adjective, Noun, Verb.
-        </n-p>
-        <n-p>
-          After that, the top ten most common permutations have been aggregated.
+          speeches: Adjective, Noun, Verb. After that, the top ten most common
+          occurrences have been aggregated.
         </n-p>
         <template #footer>
-          <n-p depth="3">
+          <n-text strong>
+            Subjects
+          </n-text>
+          <n-p depth="2">
             Germany, Russia, United States
           </n-p>
           <n-flex
@@ -88,11 +84,11 @@
             <n-statistic label="Corpus">
               9
             </n-statistic>
-            <n-statistic label="Countries">
+            <n-statistic label="Subjects">
               3
             </n-statistic>
             <n-statistic label="Population">
-              >10,000
+              2728+4207
             </n-statistic>
           </n-flex>
         </template>
@@ -119,18 +115,16 @@
         :bordered="false"
         title="Root verbs of music genres"
       >
-        <!-- <template #header-extra>
-          <small>rvomg</small>
-        </template> -->
         <n-p>
-          For each of the three music genres, twenty song lyrics have been used to
-          collect the dependency root verb for every song.
-        </n-p>
-        <n-p>
-          After that, the top ten most common occurences have been aggregated.
+          For each of the three music genres, twenty song lyrics have been used
+          to collect the dependency root verb for every verse. After that, the
+          top ten most common occurrences have been aggregated.
         </n-p>
         <template #footer>
-          <n-p depth="3">
+          <n-text strong>
+            Subjects
+          </n-text>
+          <n-p depth="2">
             Hip-hop, Rock and Roll, Pop
           </n-p>
           <n-flex
@@ -139,7 +133,7 @@
             <n-statistic label="Corpus">
               30
             </n-statistic>
-            <n-statistic label="Genres">
+            <n-statistic label="Subjects">
               3
             </n-statistic>
             <n-statistic label="Population">

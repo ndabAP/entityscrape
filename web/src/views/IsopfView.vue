@@ -1,26 +1,35 @@
 <template>
   <n-h2>International sentiment of public figures</n-h2>
   <n-p>
-    The direct dependency ancestor or descended token of a public figure in news
-    articles have been collected, while a token must be assigned to either of
-    these part of speeches: Adjective, Noun, Verb. After that, the top ten most
-    common permutations have been aggregated.
+    For each subject, the heads and dependents in international news have
+    been collected, while the token must be assigned to either of these
+    parts of speeches: Adjective, Noun, Verb. After that, the top ten most
+    common occurrences have been aggregated.
   </n-p>
+
+  <n-text strong>
+    Sources
+  </n-text>
+  <n-ul>
+    <n-li>
+      <!-- eslint-disable-next-line -->
+      <n-a href="https://github.com/Webhose/free-news-datasets" target="_blank">Webz.io News Dataset Repository</n-a>, Webz.io LTD B.S.R Tower 4, 7 Mesada st.
+      Bnei Brak, Tel Aviv District, POB 105 ISRAEL 5126112 (January 1st, 2024)
+    </n-li>
+  </n-ul>
 
   <n-tabs
     placement="top"
-    type="bar"
-    size="large"
-    default-value="biden"
+    default-value="musk"
   >
     <n-tab-pane
-      name="biden"
-      tab="Joe Biden"
+      name="musk"
+      tab="Elon Musk"
     >
       <XIsopf
-        label="Joe Biden"
-        text=" Joseph Robinette Biden Jr. is an American politician who served as the 46th president of the United States from 2021 to 2025."
-        identifier="biden"
+        label="Elon Musk"
+        text="Elon Reeve Musk is an international businessman and entrepreneur known for his leadership of Tesla, SpaceX, X, and the Department of Government Efficiency. Musk has been the wealthiest person in the world since 2021."
+        identifier="musk"
       />
     </n-tab-pane>
     <n-tab-pane
@@ -34,13 +43,13 @@
       />
     </n-tab-pane>
     <n-tab-pane
-      name="musk"
-      tab="Elon Musk"
+      name="biden"
+      tab="Joe Biden"
     >
       <XIsopf
-        label="Elon Musk"
-        text="Elon Reeve Musk is an international businessman and entrepreneur known for his leadership of Tesla, SpaceX, X, and the Department of Government Efficiency. Musk has been the wealthiest person in the world since 2021."
-        identifier="musk"
+        label="Joe Biden"
+        text="Joseph Robinette Biden Jr. is an American politician who served as the 46th president of the United States from 2021 to 2025."
+        identifier="biden"
       />
     </n-tab-pane>
     <n-tab-pane
