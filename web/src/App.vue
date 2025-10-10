@@ -10,6 +10,7 @@
       <n-menu
         style="padding-top: 8px"
         mode="horizontal"
+        responsive
         :options="menuOptions"
       />
 

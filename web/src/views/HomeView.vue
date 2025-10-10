@@ -88,7 +88,7 @@
               3
             </n-statistic>
             <n-statistic label="Population">
-              2728+4207
+              26,087
             </n-statistic>
           </n-flex>
         </template>
