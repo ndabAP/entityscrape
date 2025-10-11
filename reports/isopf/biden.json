@@ -1,0 +1,146 @@
+{
+    "heads": [
+        {
+            "word": [
+                "administration",
+                "administration"
+            ],
+            "n": 565
+        },
+        {
+            "word": [
+                "be",
+                "be"
+            ],
+            "n": 61
+        },
+        {
+            "word": [
+                "era",
+                "era"
+            ],
+            "n": 59
+        },
+        {
+            "word": [
+                "harris",
+                "harris"
+            ],
+            "n": 39
+        },
+        {
+            "word": [
+                "obama",
+                "obama"
+            ],
+            "n": 19
+        },
+        {
+            "word": [
+                "sign",
+                "sign"
+            ],
+            "n": 19
+        },
+        {
+            "word": [
+                "predecessor",
+                "predecessor"
+            ],
+            "n": 16
+        },
+        {
+            "word": [
+                "say",
+                "say"
+            ],
+            "n": 16
+        },
+        {
+            "word": [
+                "policy",
+                "policy"
+            ],
+            "n": 16
+        },
+        {
+            "word": [
+                "blame",
+                "blame"
+            ],
+            "n": 14
+        }
+    ],
+    "dependents": [
+        {
+            "word": [
+                "president",
+                "president"
+            ],
+            "n": 477
+        },
+        {
+            "word": [
+                "trump",
+                "trump"
+            ],
+            "n": 11
+        },
+        {
+            "word": [
+                "hunter",
+                "hunter"
+            ],
+            "n": 10
+        },
+        {
+            "word": [
+                "harris",
+                "harris"
+            ],
+            "n": 5
+        },
+        {
+            "word": [
+                "news",
+                "news"
+            ],
+            "n": 5
+        },
+        {
+            "word": [
+                "obama",
+                "obama"
+            ],
+            "n": 5
+        },
+        {
+            "word": [
+                "chairman",
+                "chairman"
+            ],
+            "n": 4
+        },
+        {
+            "word": [
+                "|",
+                "|"
+            ],
+            "n": 4
+        },
+        {
+            "word": [
+                "florida",
+                "florida"
+            ],
+            "n": 4
+        },
+        {
+            "word": [
+                "top",
+                "top"
+            ],
+            "n": 4
+        }
+    ]
+}

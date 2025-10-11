@@ -1,0 +1,146 @@
+{
+    "heads": [
+        {
+            "word": [
+                "say",
+                "say"
+            ],
+            "n": 21
+        },
+        {
+            "word": [
+                "trump",
+                "trump"
+            ],
+            "n": 15
+        },
+        {
+            "word": [
+                "meet",
+                "meet"
+            ],
+            "n": 13
+        },
+        {
+            "word": [
+                "tell",
+                "tell"
+            ],
+            "n": 8
+        },
+        {
+            "word": [
+                "indicate",
+                "indicate"
+            ],
+            "n": 8
+        },
+        {
+            "word": [
+                "warn",
+                "warn"
+            ],
+            "n": 7
+        },
+        {
+            "word": [
+                "war",
+                "war"
+            ],
+            "n": 7
+        },
+        {
+            "word": [
+                "accuse",
+                "accuse"
+            ],
+            "n": 7
+        },
+        {
+            "word": [
+                "agree",
+                "agree"
+            ],
+            "n": 6
+        },
+        {
+            "word": [
+                "jinping",
+                "jinping"
+            ],
+            "n": 5
+        }
+    ],
+    "dependents": [
+        {
+            "word": [
+                "president",
+                "president"
+            ],
+            "n": 140
+        },
+        {
+            "word": [
+                "trump",
+                "trump"
+            ],
+            "n": 13
+        },
+        {
+            "word": [
+                "russia",
+                "russia"
+            ],
+            "n": 11
+        },
+        {
+            "word": [
+                "leader",
+                "leader"
+            ],
+            "n": 6
+        },
+        {
+            "word": [
+                "xi",
+                "xi"
+            ],
+            "n": 4
+        },
+        {
+            "word": [
+                "vladimir",
+                "vladimir"
+            ],
+            "n": 3
+        },
+        {
+            "word": [
+                "jinping",
+                "jinping"
+            ],
+            "n": 2
+        },
+        {
+            "word": [
+                "modi",
+                "modi"
+            ],
+            "n": 2
+        },
+        {
+            "word": [
+                "dictator",
+                "dictator"
+            ],
+            "n": 2
+        },
+        {
+            "word": [
+                "policy",
+                "policy"
+            ],
+            "n": 2
+        }
+    ]
+}

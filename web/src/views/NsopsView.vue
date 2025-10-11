@@ -47,12 +47,12 @@
       />
     </n-tab-pane>
     <n-tab-pane
-      name="united_states"
+      name="usa"
       tab="United States"
     >
       <XNsops
         label="United States"
-        identifier="united_states"
+        identifier="usa"
         text="The U.S. is a country of 50 states covering a vast swath of North America, with Alaska in the northwest and Hawaii extending the nation's presence into the Pacific Ocean."
       />
     </n-tab-pane>

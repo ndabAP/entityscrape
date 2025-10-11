@@ -131,13 +131,13 @@
             justify="space-between"
           >
             <n-statistic label="Corpus">
-              30
+              60
             </n-statistic>
             <n-statistic label="Subjects">
               3
             </n-statistic>
             <n-statistic label="Population">
-              >100
+              60
             </n-statistic>
           </n-flex>
         </template>
