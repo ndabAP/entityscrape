@@ -6,6 +6,35 @@
     the top ten most common occurences have been aggregated.
   </n-p>
 
+  <n-page-header style="margin-bottom: 12px">
+    <n-grid cols="2 400:4 600:6">
+      <n-gi>
+        <n-statistic
+          label="Corpus"
+          value="60"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Subjects"
+          value="3"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Population"
+          value="60"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Range"
+          value="ca. 1950-ca. 2020"
+        />
+      </n-gi>
+    </n-grid>
+  </n-page-header>
+
   <n-tabs
     placement="top"
     type="bar"
@@ -46,6 +75,5 @@
 </template>
 
 <script setup>
-import XRvomg from '@/components/XRvomg.vue'
-
+import XRvomg from '@/components/XRvomg.vue';
 </script>

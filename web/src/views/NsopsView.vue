@@ -7,34 +7,39 @@
     After that, the top ten most common permutations have been aggregated.
   </n-p>
 
-  <n-text strong>
-    Sources
-  </n-text>
-  <n-ul>
-    <n-li>
-      <!-- eslint-disable-next-line -->
-      <n-a href="https://data.stanford.edu/congress_text" target="_blank">Congressional Record for the 43rd-114th Congresses: Parsed Speeches and Phrase Counts</n-a>,
-      Gentzkow, Matthew, Jesse M. Shapiro, and Matt Taddy. Congressional Record for the 43rd-114th Congresses: Parsed
-      Speeches and Phrase Counts. Palo Alto, CA: Stanford Libraries [distributor], 2018-01-16.
-    </n-li>
-    <n-li>
-      <!-- eslint-disable-next-line -->
-      <n-a href="https://politische-reden.eu" target="_blank">German Political Speeches Corpus and Visualization</n-a>,
-      Barbaresi, Adrien (2018). "A corpus of German political speeches from the 21st century", Proceedings of the
-      Eleventh International Conference on Language Resources and Evaluation (LREC 2018), European Language Resources
-      Association (ELRA), pp. 792–797.<br>
-      Adrien Barbaresi. (2019). German Political Speeches Corpus (Version v4.2019) [Data set]. Zenodo
-    </n-li>
-    <n-li>
-      <!-- eslint-disable-next-line -->
-      <n-a href="https://discuss-data.net/dataset/fb52dac2-66e3-47a3-86c5-b2a3dadf41bf/files/" target="_blank">Duma Speeches: A Term Frequency Analysis</n-a>,
-      Daniel Marcus (Oct. 4, 2021). Made available under the Open Data Commons Attribution License (ODC-BY) v1.0.
-    </n-li>
-  </n-ul>
+  <n-page-header style="margin-bottom: 12px">
+    <n-grid cols="2 400:4 600:6">
+      <n-gi>
+        <n-statistic
+          label="Corpus"
+          value="9"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Subjects"
+          value="3"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Population"
+          value="26,000"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Range"
+          value="2002-2021"
+        />
+      </n-gi>
+    </n-grid>
+  </n-page-header>
 
   <n-tabs
     placement="top"
     default-value="germany"
+    style="margin-bottom: 12px"
   >
     <n-tab-pane
       name="germany"
@@ -67,9 +72,33 @@
       />
     </n-tab-pane>
   </n-tabs>
+
+  <n-text strong>
+    Sources
+  </n-text>
+  <n-ul>
+    <n-li>
+      <!-- eslint-disable-next-line -->
+      <n-a href="https://data.stanford.edu/congress_text" target="_blank">Congressional Record for the 43rd-114th Congresses: Parsed Speeches and Phrase Counts</n-a>,
+      Gentzkow, Matthew, Jesse M. Shapiro, and Matt Taddy. Congressional Record for the 43rd-114th Congresses: Parsed
+      Speeches and Phrase Counts. Palo Alto, CA: Stanford Libraries [distributor], 2018-01-16.
+    </n-li>
+    <n-li>
+      <!-- eslint-disable-next-line -->
+      <n-a href="https://politische-reden.eu" target="_blank">German Political Speeches Corpus and Visualization</n-a>,
+      Barbaresi, Adrien (2018). "A corpus of German political speeches from the 21st century", Proceedings of the
+      Eleventh International Conference on Language Resources and Evaluation (LREC 2018), European Language Resources
+      Association (ELRA), pp. 792–797.<br>
+      Adrien Barbaresi. (2019). German Political Speeches Corpus (Version v4.2019) [Data set]. Zenodo
+    </n-li>
+    <n-li>
+      <!-- eslint-disable-next-line -->
+      <n-a href="https://discuss-data.net/dataset/fb52dac2-66e3-47a3-86c5-b2a3dadf41bf/files/" target="_blank">Duma Speeches: A Term Frequency Analysis</n-a>,
+      Daniel Marcus (Oct. 4, 2021). Made available under the Open Data Commons Attribution License (ODC-BY) v1.0.
+    </n-li>
+  </n-ul>
 </template>
 
 <script setup>
 import XNsops from '@/components/XNsops.vue'
-
 </script>

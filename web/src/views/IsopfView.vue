@@ -7,20 +7,39 @@
     common occurrences have been aggregated.
   </n-p>
 
-  <n-text strong>
-    Sources
-  </n-text>
-  <n-ul>
-    <n-li>
-      <!-- eslint-disable-next-line -->
-      <n-a href="https://github.com/Webhose/free-news-datasets" target="_blank">Webz.io News Dataset Repository</n-a>, Webz.io LTD B.S.R Tower 4, 7 Mesada st.
-      Bnei Brak, Tel Aviv District, POB 105 ISRAEL 5126112 (January 1st, 2024)
-    </n-li>
-  </n-ul>
+  <n-page-header style="margin-bottom: 12px">
+    <n-grid cols="2 400:4 600:6">
+      <n-gi>
+        <n-statistic
+          label="Corpus"
+          value="39,000"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Subjects"
+          value="4"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Population"
+          value="9,300"
+        />
+      </n-gi>
+      <n-gi>
+        <n-statistic
+          label="Range"
+          value="2024-2025"
+        />
+      </n-gi>
+    </n-grid>
+  </n-page-header>
 
   <n-tabs
     placement="top"
     default-value="musk"
+    style="margin-bottom: 12px"
   >
     <n-tab-pane
       name="musk"
@@ -63,6 +82,17 @@
       />
     </n-tab-pane>
   </n-tabs>
+
+  <n-text strong>
+    Sources
+  </n-text>
+  <n-ul>
+    <n-li>
+      <!-- eslint-disable-next-line -->
+      <n-a href="https://github.com/Webhose/free-news-datasets" target="_blank">Webz.io News Dataset Repository</n-a>, Webz.io LTD B.S.R Tower 4, 7 Mesada st.
+      Bnei Brak, Tel Aviv District, POB 105 ISRAEL 5126112 (January 1st, 2024)
+    </n-li>
+  </n-ul>
 </template>
 
 <script setup>
