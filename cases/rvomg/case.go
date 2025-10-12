@@ -18,7 +18,7 @@ import (
 )
 
 type (
-	sample    *tokenize.Token
+	sample    = *tokenize.Token
 	aggregate struct {
 		Word [2]string `json:"word"`
 		N    int       `json:"n"`
@@ -30,17 +30,7 @@ var (
 	ident = "rvomg"
 
 	collector = func(analyses assocentity.Analyses) []sample {
-		roots := analyses.Forest().Roots()
-		samples := make([]sample, 0, len(roots))
-		for _, root := range roots {
-			switch root.Lemma {
-			case "s", "′", "wan", "doesn", "gon":
-				continue
-			default:
-			}
-			samples = append(samples, root)
-		}
-
+		samples := slices.Collect(analyses.Forest().Roots())
 		return samples
 	}
 	aggregator = func(samples []sample) aggregates {

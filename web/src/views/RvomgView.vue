@@ -75,5 +75,5 @@
 </template>
 
 <script setup>
-import XRvomg from '@/components/XRvomg.vue';
+import XRvomg from '@/components/XRvomg.vue'
 </script>
