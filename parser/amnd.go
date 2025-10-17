@@ -57,8 +57,22 @@ func AMND(r io.Reader, c chan []byte) chan error {
 		text = bytes.ReplaceAll(text, []byte("\\u"), []byte(" "))
 		text = bytes.ReplaceAll(text, []byte("\\n"), []byte(" "))
 		text = bytes.ReplaceAll(text, []byte("\\"), []byte(" "))
-		text = bytes.ReplaceAll(text, []byte("\n"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte(".\n"), []byte("."))
+		text = bytes.ReplaceAll(text, []byte("\n"), []byte("."))
 		text = bytes.ReplaceAll(text, []byte("\t"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte(" - "), []byte("."))
+		text = bytes.ReplaceAll(text, []byte("|"), []byte("."))
+		text = bytes.ReplaceAll(text, []byte("©"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte("®"), []byte(" "))
+		text = bytes.ReplaceAll(text, []byte("→"), []byte("."))
+		text = bytes.ReplaceAll(text, []byte("➡"), []byte("."))
+		if t, _, ok := bytes.Cut(text, []byte("READ MORE:")); ok {
+			text = t
+		}
+		if t, _, ok := bytes.Cut(text, []byte("TRENDING")); ok {
+			text = t
+		}
+		text = bytes.ReplaceAll(text, []byte("Facebook Twitter WhatsApp"), []byte(" "))
 		text = bytes.TrimPrefix(text, []byte(`"`))
 		text = bytes.TrimSuffix(text, []byte(`"`))
 		text = bytes.Map(func(r rune) rune {

@@ -29,7 +29,7 @@ type (
 var (
 	ident = "rvomg"
 
-	collector = func(analyses assocentity.Analyses) []sample {
+	collector = func(analyses assocentity.Frames) []sample {
 		samples := slices.Collect(analyses.Forest().Roots())
 		return samples
 	}
@@ -125,7 +125,6 @@ func conduct(ctx context.Context) error {
 			Filenames: filenames,
 			Language:  lang,
 			Parser:    parser,
-			Reduct:    true,
 			Ext:       "json",
 		}
 	}
@@ -145,7 +144,6 @@ func conduct(ctx context.Context) error {
 			Filenames: filenames,
 			Language:  lang,
 			Parser:    parser,
-			Reduct:    true,
 			Ext:       "json",
 		}
 	}
@@ -165,7 +163,6 @@ func conduct(ctx context.Context) error {
 			Filenames: filenames,
 			Language:  lang,
 			Parser:    parser,
-			Reduct:    true,
 			Ext:       "json",
 		}
 	}

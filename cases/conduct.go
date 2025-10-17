@@ -2,6 +2,7 @@ package cases
 
 import (
 	"bufio"
+	"bytes"
 	"context"
 	"errors"
 	"log/slog"
@@ -13,6 +14,7 @@ import (
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
 	"github.com/ndabAP/assocentity/tokenize/nlp"
+	"github.com/ndabAP/entityscrape/sbd"
 	"github.com/ndabAP/entityscrape/translator"
 	"golang.org/x/text/language"
 )
@@ -30,23 +32,24 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 
 		slog.Debug("processing analyses", "subject", subject)
 		var (
-			entity    = analyses.Entity
-			ext       = analyses.Ext
-			feats     = analyses.Feats
-			filenames = analyses.Filenames
-			reduct    = analyses.Reduct
-			lang      = analyses.Language
-			parser    = analyses.Parser
+			entity        = analyses.Entity
+			ext           = analyses.Ext
+			feats         = analyses.Feats
+			filenames     = analyses.Filenames
+			fuzzyMatching = analyses.FuzzyMatching
+			lang          = analyses.Language
+			parser        = analyses.Parser
 		)
 		tokenizer := nlp.New(GoogleCloudSvcAccountKey, lang.String())
-		analyses, err := study.analysis(
+		frames, err := study.frames(
 			ctx,
 			entity,
 			filenames,
 			parser,
-			reduct,
+			fuzzyMatching,
 			tokenizer,
 			feats,
+			lang,
 		)
 		if err != nil {
 			return err
@@ -54,7 +57,7 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 		slog.Debug("analysis done")
 
 		slog.Debug("collecting samples")
-		samples := study.collect(analyses)
+		samples := study.collect(frames)
 		slog.Debug("sample collection done")
 
 		slog.Debug("aggregating samples")
@@ -106,21 +109,22 @@ func (study study[samples, aggregated]) Conduct(ctx context.Context) error {
 	return nil
 }
 
-func (study study[samples, aggregated]) analysis(
+func (study study[samples, aggregated]) frames(
 	ctx context.Context,
 	entity,
 	filenames []string,
 	parser Parser,
-	reduct bool,
+	fuzzyMatching bool,
 	tokenizer tokenize.Tokenizer,
 	feats tokenize.Features,
+	lang language.Tag,
 ) (
-	assocentity.Analyses,
+	assocentity.Frames,
 	error,
 ) {
 	slog.Debug("parsing files", "n", len(filenames))
-	if reduct {
-		slog.Debug("entity reduct enabled")
+	if fuzzyMatching {
+		slog.Debug("fuzzy matching enabled")
 	}
 
 	var (
@@ -140,18 +144,33 @@ func (study study[samples, aggregated]) analysis(
 				continue
 			}
 
-			var err error
-			if reduct {
-				text, err = study.reduct(text, entity)
-				if errors.Is(err, errEntityNotFound) {
-					continue
+			t := string(text)
+
+			// Fuzzy matching
+			if fuzzyMatching {
+				var (
+					buf = new(bytes.Buffer)
+
+					c    = make(chan string, 50)
+					done = make(chan struct{}, 1)
+				)
+
+				// Consumer
+				study.fuzzyMatch(c, entity, buf, done)
+				// Producer
+				sbd.Tokenize(lang, t, c)
+				close(c)
+
+				<-done
+				if buf.Len() > 0 {
+					texts = append(texts, buf.String())
 				}
+
+				continue
 			}
-			if err != nil {
-				errChan <- err
-				return
-			}
-			texts = append(texts, string(text))
+
+			// No fuzzy matching.
+			texts = append(texts, t)
 		}
 	}()
 	// Producer
@@ -177,16 +196,16 @@ func (study study[samples, aggregated]) analysis(
 
 	select {
 	case <-ctx.Done():
-		return assocentity.Analyses{}, ctx.Err()
+		return assocentity.Frames{}, ctx.Err()
 
 	case err := <-errChan:
 		if err != nil {
-			return assocentity.Analyses{}, err
+			return assocentity.Frames{}, err
 		}
 	}
 	slog.Debug("texts sampled and parsed", "n", len(texts))
 
-	slog.Debug("creating analyses")
+	slog.Debug("generating frames")
 	src := assocentity.NewSource(entity, texts)
-	return src.Analyses(ctx, tokenizer, feats, assocentity.NFKC)
+	return src.Frames(ctx, tokenizer, feats, assocentity.NFKC)
 }

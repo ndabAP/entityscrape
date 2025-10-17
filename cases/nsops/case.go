@@ -31,7 +31,7 @@ type (
 var (
 	ident = "nsops"
 
-	collector = func(analyses assocentity.Analyses) []sample {
+	collector = func(analyses assocentity.Frames) []sample {
 		samples := make([]sample, 0)
 		analyses.Forest().Dependents(func(t *tokenize.Token) bool {
 			switch t.PartOfSpeech.Tag {
@@ -130,13 +130,13 @@ func conduct(ctx context.Context) error {
 				parser = parser.GPSC
 			)
 			study.Subjects["Germany"] = cases.Analyses{
-				Entity:    entity,
-				Feats:     feats,
-				Filenames: filenames,
-				Language:  lang,
-				Parser:    parser,
-				Reduct:    true,
-				Ext:       "json",
+				Entity:        entity,
+				Feats:         feats,
+				Filenames:     filenames,
+				Language:      lang,
+				Parser:        parser,
+				FuzzyMatching: true,
+				Ext:           "json",
 			}
 		}
 	}
@@ -156,13 +156,13 @@ func conduct(ctx context.Context) error {
 				return err
 			}
 			study.Subjects["Russia"] = cases.Analyses{
-				Entity:    entity,
-				Feats:     feats,
-				Filenames: filenames,
-				Language:  lang,
-				Parser:    parser,
-				Reduct:    true,
-				Ext:       "json",
+				Entity:        entity,
+				Feats:         feats,
+				Filenames:     filenames,
+				Language:      lang,
+				Parser:        parser,
+				FuzzyMatching: true,
+				Ext:           "json",
 			}
 		}
 	}
@@ -182,13 +182,13 @@ func conduct(ctx context.Context) error {
 				return err
 			}
 			study.Subjects["USA"] = cases.Analyses{
-				Entity:    entity,
-				Feats:     feats,
-				Filenames: filenames,
-				Language:  lang,
-				Parser:    parser,
-				Reduct:    true,
-				Ext:       "json",
+				Entity:        entity,
+				Feats:         feats,
+				Filenames:     filenames,
+				Language:      lang,
+				Parser:        parser,
+				FuzzyMatching: true,
+				Ext:           "json",
 			}
 		}
 	}

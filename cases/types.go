@@ -15,9 +15,9 @@ type (
 
 		Language language.Tag
 
-		Feats  tokenize.Features
-		Parser Parser
-		Reduct bool
+		Feats         tokenize.Features
+		Parser        Parser
+		FuzzyMatching bool
 
 		Ext       string
 		Filenames []string
@@ -25,7 +25,7 @@ type (
 
 	Translate func([]string) ([]string, error)
 
-	Collector[samples any]              func(assocentity.Analyses) samples
+	Collector[samples any]              func(assocentity.Frames) samples
 	Aggregator[samples, aggregated any] func(samples) aggregated
 	Reporter[aggregated any]            func(aggregated, Translate, io.Writer) error
 

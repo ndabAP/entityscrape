@@ -13,6 +13,11 @@ require (
 )
 
 require (
+	github.com/neurosnap/sentences v1.1.2 // indirect
+	github.com/sentencizer/sentencizer v0.2.0 // indirect
+)
+
+require (
 	cloud.google.com/go v0.122.0 // indirect
 	cloud.google.com/go/auth v0.16.5 // indirect
 	cloud.google.com/go/auth/oauth2adapt v0.2.8 // indirect
