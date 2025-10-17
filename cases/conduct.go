@@ -163,14 +163,14 @@ func (study study[samples, aggregated]) frames(
 
 				<-done
 				if buf.Len() > 0 {
-					texts = append(texts, buf.String())
+					texts = append(texts, strings.TrimSpace(buf.String()))
 				}
 
 				continue
 			}
 
 			// No fuzzy matching.
-			texts = append(texts, t)
+			texts = append(texts, strings.TrimSpace(t))
 		}
 	}()
 	// Producer

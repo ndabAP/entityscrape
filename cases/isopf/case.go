@@ -33,8 +33,8 @@ type (
 var (
 	ident = "isopf"
 
-	collector = func(analyses assocentity.Frames) samples {
-		var samples = samples{
+	collector = func(frames assocentity.Frames) samples {
+		samples := samples{
 			heads:      make([]*tokenize.Token, 0),
 			dependents: make([]*tokenize.Token, 0),
 		}
@@ -46,13 +46,13 @@ var (
 				return false
 			}
 		}
-		analyses.Forest().Heads(func(t *tokenize.Token) bool {
+		frames.Forest().Heads(func(t *tokenize.Token) bool {
 			if f(t.PartOfSpeech.Tag) {
 				samples.heads = append(samples.heads, t)
 			}
 			return true
 		})
-		analyses.Forest().Dependents(func(t *tokenize.Token) bool {
+		frames.Forest().Dependents(func(t *tokenize.Token) bool {
 			if f(t.PartOfSpeech.Tag) {
 				samples.dependents = append(samples.dependents, t)
 			}

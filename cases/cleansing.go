@@ -31,7 +31,7 @@ func (study study[samples, aggregated]) fuzzyMatch(
 					continue
 				}
 
-				buf.WriteString(strings.TrimSpace(s))
+				buf.WriteString(s)
 				break
 			}
 		}

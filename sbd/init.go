@@ -16,7 +16,7 @@ var tokenizer struct {
 func init() {
 	// German
 	{
-		b, err := os.ReadFile("../third_party/neurosnap/sentences/data/german.json")
+		b, err := os.ReadFile("./third_party/neurosnap/sentences/data/german.json")
 		if err != nil {
 			panic(err.Error())
 		}

@@ -29,8 +29,16 @@ type (
 var (
 	ident = "rvomg"
 
-	collector = func(analyses assocentity.Frames) []sample {
-		samples := slices.Collect(analyses.Forest().Roots())
+	collector = func(frames assocentity.Frames) []sample {
+		samples := slices.Collect(frames.Forest().Roots())
+		samples = slices.DeleteFunc(samples, func(t *tokenize.Token) bool {
+			switch t.Lemma {
+			case "wan", "gon":
+				return true
+			default:
+				return false
+			}
+		})
 		return samples
 	}
 	aggregator = func(samples []sample) aggregates {

@@ -72,6 +72,9 @@ func AMND(r io.Reader, c chan []byte) chan error {
 		if t, _, ok := bytes.Cut(text, []byte("TRENDING")); ok {
 			text = t
 		}
+		if t, _, ok := bytes.Cut(text, []byte("RELATED STORY")); ok {
+			text = t
+		}
 		text = bytes.ReplaceAll(text, []byte("Facebook Twitter WhatsApp"), []byte(" "))
 		text = bytes.TrimPrefix(text, []byte(`"`))
 		text = bytes.TrimSuffix(text, []byte(`"`))

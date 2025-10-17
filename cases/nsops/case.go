@@ -31,9 +31,9 @@ type (
 var (
 	ident = "nsops"
 
-	collector = func(analyses assocentity.Frames) []sample {
+	collector = func(frames assocentity.Frames) []sample {
 		samples := make([]sample, 0)
-		analyses.Forest().Dependents(func(t *tokenize.Token) bool {
+		frames.Forest().Dependents(func(t *tokenize.Token) bool {
 			switch t.PartOfSpeech.Tag {
 			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
 				samples = append(samples, t)
