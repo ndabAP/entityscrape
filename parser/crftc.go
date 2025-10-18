@@ -18,7 +18,13 @@ func CRFTC(r io.Reader, c chan []byte) chan error {
 			if len(spl) < 2 {
 				continue
 			}
-			c <- spl[1]
+
+			text := spl[1]
+
+			// Normalize
+			text = bytes.ReplaceAll(text, []byte(" e "), []byte(" "))
+
+			c <- text
 		}
 		if err := scanner.Err(); err != nil {
 			errs <- err

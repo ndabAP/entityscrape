@@ -12,8 +12,9 @@ import (
 	"cloud.google.com/go/language/apiv1/languagepb"
 	"github.com/ndabAP/assocentity"
 	"github.com/ndabAP/assocentity/tokenize"
-	"github.com/ndabAP/entityscrape/cases"
+	c "github.com/ndabAP/entityscrape/cases"
 	"github.com/ndabAP/entityscrape/parser"
+	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
 
@@ -48,7 +49,7 @@ var (
 	aggregator = func(samples []sample) aggregates {
 		aggregates := make(aggregates, 0, len(samples))
 		for _, sample := range samples {
-			w := sample.Lemma
+			w := cases.Lower(language.Und).String(sample.Lemma)
 			i := slices.IndexFunc(aggregates, func(aggregate aggregate) bool {
 				return w == aggregate.Word[0]
 			})
@@ -82,7 +83,7 @@ var (
 
 		return aggregates
 	}
-	reporter = func(aggregates aggregates, translate cases.Translate, writer io.Writer) error {
+	reporter = func(aggregates aggregates, translate c.Translate, writer io.Writer) error {
 		// Collect words to translate.
 		words := make([]string, 0, len(aggregates))
 		for _, aggregate := range aggregates {
@@ -112,7 +113,7 @@ func Conduct(ctx context.Context) error {
 }
 
 func conduct(ctx context.Context) error {
-	study := cases.NewStudy(ident, collector, aggregator, reporter)
+	study := c.NewStudy(ident, collector, aggregator, reporter)
 
 	feats := tokenize.FeatureSyntax
 
@@ -125,11 +126,11 @@ func conduct(ctx context.Context) error {
 		{
 			var (
 				filenames = []string{
-					filepath.Join(cases.GetCorpusRootDir(), "gpsc", "Bundesregierung.xml"),
+					filepath.Join(c.GetCorpusRootDir(), "gpsc", "Bundesregierung.xml"),
 				}
 				parser = parser.GPSC
 			)
-			study.Subjects["Germany"] = cases.Analyses{
+			study.Subjects["Germany"] = c.Analyses{
 				Entity:        entity,
 				Feats:         feats,
 				Filenames:     filenames,
@@ -149,13 +150,13 @@ func conduct(ctx context.Context) error {
 		{
 			parser := parser.DS
 			filenames := make([]string, 0)
-			if err := cases.WalkCorpus("ds", func(filename string) error {
+			if err := c.WalkCorpus("ds", func(filename string) error {
 				filenames = append(filenames, filename)
 				return nil
 			}); err != nil {
 				return err
 			}
-			study.Subjects["Russia"] = cases.Analyses{
+			study.Subjects["Russia"] = c.Analyses{
 				Entity:        entity,
 				Feats:         feats,
 				Filenames:     filenames,
@@ -169,19 +170,19 @@ func conduct(ctx context.Context) error {
 	// USA
 	{
 		lang := language.English
-		entity := []string{"United States", "USA", "United States of America"}
+		entity := []string{"United States", "USA", "United States of America", "America", "American"}
 
 		// CRFTC
 		{
 			parser := parser.CRFTC
 			filenames := make([]string, 0)
-			if err := cases.WalkCorpus("crftc", func(filename string) error {
+			if err := c.WalkCorpus("crftc", func(filename string) error {
 				filenames = append(filenames, filename)
 				return nil
 			}); err != nil {
 				return err
 			}
-			study.Subjects["USA"] = cases.Analyses{
+			study.Subjects["USA"] = c.Analyses{
 				Entity:        entity,
 				Feats:         feats,
 				Filenames:     filenames,
