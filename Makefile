@@ -2,7 +2,7 @@ GOLANGCILINT_VERSION := v2.5.0
 GO_PATH := $(shell go env GOPATH)/bin
 GOLANGCILINT_BIN := $(GO_PATH)/golangci-lint
 
-.PHONY: lint fmt test
+.PHONY: lint fmt test docs
 
 all: lint fmt test
 
@@ -19,3 +19,6 @@ lint: $(GOLANGCILINT_BIN)
 
 test:
 	go test -v ./... -short
+
+docs:
+	cd web && npm run build

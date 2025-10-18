@@ -5,6 +5,9 @@ import (
 	"strings"
 )
 
+// fuzzyMatch reads sentences from channel c, applies fuzzy matching against
+// entity, and writes matching sentences into buf. When done, it signals
+// completion by closing the done channel.
 func (study study[samples, aggregated]) fuzzyMatch(
 	c chan string,
 	entity []string,
@@ -13,6 +16,7 @@ func (study study[samples, aggregated]) fuzzyMatch(
 ) {
 	go func() {
 		defer close(done)
+
 		for s := range c {
 			// Size
 			if len(s) < 3 {
@@ -31,6 +35,7 @@ func (study study[samples, aggregated]) fuzzyMatch(
 					continue
 				}
 
+				// Concatenate sentence.
 				buf.WriteString(s)
 				break
 			}

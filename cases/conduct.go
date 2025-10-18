@@ -146,7 +146,6 @@ func (study study[samples, aggregated]) frames(
 
 			t := string(text)
 
-			// Fuzzy matching
 			if fuzzyMatching {
 				var (
 					buf = new(bytes.Buffer)

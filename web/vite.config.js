@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
-import eslint from 'vite-plugin-eslint' // 1. Import the plugin
+import eslint from 'vite-plugin-eslint'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
@@ -16,6 +16,10 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/**/*.ts']
     })
   ],
+  build: {
+    emptyOutDir: true,
+    outDir: '../docs'
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

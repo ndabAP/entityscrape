@@ -157,10 +157,26 @@ func conduct(ctx context.Context) error {
 	}
 
 	// Donald Trump
+	// {
+	// 	var (
+	// 		ident  = "Trump"
+	// 		entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump"}
+	// 	)
+	// 	study.Subjects[ident] = cases.Analyses{
+	// 		Entity:        entity,
+	// 		Ext:           ext,
+	// 		Feats:         feats,
+	// 		Filenames:     filenames,
+	// 		FuzzyMatching: true,
+	// 		Language:      lang,
+	// 		Parser:        parser,
+	// 	}
+	// }
+	// Elon Musk
 	{
 		var (
-			ident  = "Trump"
-			entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump"}
+			ident  = "Musk"
+			entity = []string{ident, "Elon Musk", "Elon Reeve Musk", "Elon R. Musk"}
 		)
 		study.Subjects[ident] = cases.Analyses{
 			Entity:        entity,
@@ -172,54 +188,38 @@ func conduct(ctx context.Context) error {
 			Parser:        parser,
 		}
 	}
-	// // Elon Musk
-	// {
-	// 	var (
-	// 		ident  = "Musk"
-	// 		entity = []string{ident, "Elon Musk", "Elon Reeve Musk", "Elon R. Musk"}
-	// 	)
-	// 	study.Subjects[ident] = cases.Analyses{
-	// 		Entity:    entity,
-	// 		Ext:       ext,
-	// 		Feats:     feats,
-	// 		Filenames: filenames,
-	// 		Reduct:    true,
-	// 		Language:  lang,
-	// 		Parser:    parser,
-	// 	}
-	// }
-	// // Joe Biden
-	// {
-	// 	var (
-	// 		ident  = "Biden"
-	// 		entity = []string{ident, "Joe Biden", "Joseph Robinette Biden", "Joseph R. Biden", "Joseph Biden"}
-	// 	)
-	// 	study.Subjects[ident] = cases.Analyses{
-	// 		Entity:    entity,
-	// 		Ext:       ext,
-	// 		Feats:     feats,
-	// 		Filenames: filenames,
-	// 		Reduct:    true,
-	// 		Language:  lang,
-	// 		Parser:    parser,
-	// 	}
-	// }
-	// // Vladimir Putin
-	// {
-	// 	var (
-	// 		ident  = "Putin"
-	// 		entity = []string{ident, "Vladimir Putin", "Vladimir Vladimirovich Putin"}
-	// 	)
-	// 	study.Subjects[ident] = cases.Analyses{
-	// 		Entity:    entity,
-	// 		Ext:       ext,
-	// 		Feats:     feats,
-	// 		Filenames: filenames,
-	// 		Reduct:    true,
-	// 		Language:  lang,
-	// 		Parser:    parser,
-	// 	}
-	// }
+	// Joe Biden
+	{
+		var (
+			ident  = "Biden"
+			entity = []string{ident, "Joe Biden", "Joseph Robinette Biden", "Joseph R. Biden", "Joseph Biden"}
+		)
+		study.Subjects[ident] = cases.Analyses{
+			Entity:        entity,
+			Ext:           ext,
+			Feats:         feats,
+			Filenames:     filenames,
+			FuzzyMatching: true,
+			Language:      lang,
+			Parser:        parser,
+		}
+	}
+	// Vladimir Putin
+	{
+		var (
+			ident  = "Putin"
+			entity = []string{ident, "Vladimir Putin", "Vladimir Vladimirovich Putin"}
+		)
+		study.Subjects[ident] = cases.Analyses{
+			Entity:        entity,
+			Ext:           ext,
+			Feats:         feats,
+			Filenames:     filenames,
+			FuzzyMatching: true,
+			Language:      lang,
+			Parser:        parser,
+		}
+	}
 
 	if err := study.Conduct(ctx); err != nil {
 		return err
