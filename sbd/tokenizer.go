@@ -2,7 +2,8 @@ package sbd
 
 import "golang.org/x/text/language"
 
-// Tokenizer writes tokenized sentences to channel c.
+// Tokenizer writes tokenized sentences to channel c using sentence boundary
+// disambiguation.
 func Tokenize(lang language.Tag, text string, c chan string) {
 	switch lang {
 	case language.German:

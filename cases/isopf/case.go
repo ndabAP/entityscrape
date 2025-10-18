@@ -157,21 +157,21 @@ func conduct(ctx context.Context) error {
 	}
 
 	// Donald Trump
-	// {
-	// 	var (
-	// 		ident  = "Trump"
-	// 		entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump"}
-	// 	)
-	// 	study.Subjects[ident] = cases.Analyses{
-	// 		Entity:        entity,
-	// 		Ext:           ext,
-	// 		Feats:         feats,
-	// 		Filenames:     filenames,
-	// 		FuzzyMatching: true,
-	// 		Language:      lang,
-	// 		Parser:        parser,
-	// 	}
-	// }
+	{
+		var (
+			ident  = "Trump"
+			entity = []string{ident, "Donald Trump", "Donald J. Trump", "Donald John Trump"}
+		)
+		study.Subjects[ident] = cases.Analyses{
+			Entity:        entity,
+			Ext:           ext,
+			Feats:         feats,
+			Filenames:     filenames,
+			FuzzyMatching: true,
+			Language:      lang,
+			Parser:        parser,
+		}
+	}
 	// Elon Musk
 	{
 		var (

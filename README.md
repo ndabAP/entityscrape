@@ -13,7 +13,7 @@ The live demo gives insights to the following questions:
 - Which current topics correlate with celebrities?
 - What are the most common root verbs used in different music genres?
 
-Visit the [demonstration](https://ndabap.github.io/entityscrape/).
+Visit the [live demo](https://ndabap.github.io/entityscrape/).
 
 ## Author
 
