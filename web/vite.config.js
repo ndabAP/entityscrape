@@ -13,10 +13,10 @@ export default defineConfig({
       fix: true,
       cache: false,
       lintOnStart: true,
-      include: ['src/**/*.js', 'src/**/*.vue', 'src/**/*.ts']
+      include: ['src/**/*.js', 'src/**/*.vue']
     })
   ],
-  base: '',
+  base: './',
   build: {
     emptyOutDir: true,
     outDir: '../docs'
