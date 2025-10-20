@@ -16,6 +16,7 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/**/*.ts']
     })
   ],
+  base: '',
   build: {
     emptyOutDir: true,
     outDir: '../docs'
