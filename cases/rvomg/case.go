@@ -1,0 +1,183 @@
+// Root verbs of music genres
+package rvomg
+
+import (
+	"context"
+	"encoding/json"
+	"io"
+	"path/filepath"
+	"slices"
+	"sort"
+	"strings"
+
+	"github.com/ndabAP/entitydebs"
+	"github.com/ndabAP/entitydebs/tokenize"
+	"github.com/ndabAP/entityscrape/cases"
+	"github.com/ndabAP/entityscrape/parser"
+	"golang.org/x/text/language"
+)
+
+type (
+	sample    = *tokenize.Token
+	aggregate struct {
+		Word [2]string `json:"word"`
+		N    int       `json:"n"`
+	}
+	aggregates []aggregate
+)
+
+var (
+	ident = "rvomg"
+
+	collector = func(frames entitydebs.Frames) []sample {
+		samples := slices.Collect(frames.Forest().Roots())
+		samples = slices.DeleteFunc(samples, func(t *tokenize.Token) bool {
+			switch t.Lemma {
+			case "wan", "gon":
+				return true
+			default:
+				return false
+			}
+		})
+		return samples
+	}
+	aggregator = func(samples []sample) aggregates {
+		aggregates := make(aggregates, 0, len(samples))
+		for _, sample := range samples {
+			w := strings.ToLower(sample.Lemma)
+			i := slices.IndexFunc(aggregates, func(aggregate aggregate) bool {
+				return w == aggregate.Word[0]
+			})
+			// Find matches
+			switch i {
+			case -1:
+				var (
+					word = [2]string{w}
+					n    = 1
+				)
+				aggregates = append(aggregates, aggregate{
+					Word: word,
+					N:    n,
+				})
+			// Found
+			default:
+				aggregates[i].N++
+			}
+		}
+
+		// Top n sorted
+		const limit = 10
+		sort.Slice(aggregates, func(i, j int) bool {
+			return aggregates[i].N > aggregates[j].N
+		})
+		if len(aggregates) > limit {
+			aggregates = aggregates[:limit]
+		}
+
+		return aggregates
+	}
+	reporter = func(aggregates aggregates, translate cases.Translate, writer io.Writer) error {
+		// Collect words to translate.
+		words := make([]string, 0, len(aggregates))
+		for _, aggregate := range aggregates {
+			words = append(words, aggregate.Word[0])
+		}
+		w, err := translate(words)
+		if err != nil {
+			return err
+		}
+		// Add translated words back.
+		for i := range aggregates {
+			aggregates[i].Word[1] = w[i]
+		}
+
+		return json.NewEncoder(writer).Encode(&aggregates)
+	}
+)
+
+func Conduct(ctx context.Context) error {
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	return conduct(ctx)
+}
+
+func conduct(ctx context.Context) error {
+	study := cases.NewStudy(ident, collector, aggregator, reporter)
+
+	var (
+		feats  = tokenize.FeatureSyntax
+		lang   = language.English
+		parser = parser.Etc
+
+		// We have no real entity.
+		entity = []string{".", "?", "!"}
+	)
+
+	// Pop
+	{
+		filenames := make([]string, 0)
+		p := filepath.Join("etc", "pop")
+		if err := cases.WalkCorpus(p, func(filename string) error {
+			filenames = append(filenames, filename)
+			return nil
+		}); err != nil {
+			return err
+		}
+		study.Subjects["Pop"] = cases.Analyses{
+			Entity:    entity,
+			Feats:     feats,
+			Filenames: filenames,
+			Language:  lang,
+			Parser:    parser,
+			Ext:       "json",
+		}
+	}
+	// Hip-hop
+	{
+		filenames := make([]string, 0)
+		p := filepath.Join("etc", "hip_hop")
+		if err := cases.WalkCorpus(p, func(filename string) error {
+			filenames = append(filenames, filename)
+			return nil
+		}); err != nil {
+			return err
+		}
+		study.Subjects["Hip-hop"] = cases.Analyses{
+			Entity:    entity,
+			Feats:     feats,
+			Filenames: filenames,
+			Language:  lang,
+			Parser:    parser,
+			Ext:       "json",
+		}
+	}
+	// Rock and roll
+	{
+		filenames := make([]string, 0)
+		p := filepath.Join("etc", "rock_and_roll")
+		if err := cases.WalkCorpus(p, func(filename string) error {
+			filenames = append(filenames, filename)
+			return nil
+		}); err != nil {
+			return err
+		}
+		study.Subjects["Rock and roll"] = cases.Analyses{
+			Entity:    entity,
+			Feats:     feats,
+			Filenames: filenames,
+			Language:  lang,
+			Parser:    parser,
+			Ext:       "json",
+		}
+	}
+
+	if err := study.Conduct(ctx); err != nil {
+		return err
+	}
+
+	return nil
+}

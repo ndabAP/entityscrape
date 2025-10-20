@@ -1,0 +1,122 @@
+[
+    {
+        "word": [
+            "north",
+            "north"
+        ],
+        "pos": "NOUN",
+        "n": 228
+    },
+    {
+        "word": [
+            "african",
+            "african"
+        ],
+        "pos": "ADJ",
+        "n": 188
+    },
+    {
+        "word": [
+            "great",
+            "great"
+        ],
+        "pos": "ADJ",
+        "n": 176
+    },
+    {
+        "word": [
+            "rural",
+            "rural"
+        ],
+        "pos": "ADJ",
+        "n": 136
+    },
+    {
+        "word": [
+            "native",
+            "native"
+        ],
+        "pos": "ADJ",
+        "n": 123
+    },
+    {
+        "word": [
+            "latin",
+            "latin"
+        ],
+        "pos": "NOUN",
+        "n": 116
+    },
+    {
+        "word": [
+            "south",
+            "south"
+        ],
+        "pos": "NOUN",
+        "n": 78
+    },
+    {
+        "word": [
+            "single",
+            "single"
+        ],
+        "pos": "ADJ",
+        "n": 67
+    },
+    {
+        "word": [
+            "build",
+            "build"
+        ],
+        "pos": "NOUN",
+        "n": 66
+    },
+    {
+        "word": [
+            "average",
+            "average"
+        ],
+        "pos": "ADJ",
+        "n": 66
+    },
+    {
+        "word": [
+            "serve",
+            "serve"
+        ],
+        "pos": "NOUN",
+        "n": 63
+    },
+    {
+        "word": [
+            "first",
+            "first"
+        ],
+        "pos": "ADJ",
+        "n": 59
+    },
+    {
+        "word": [
+            "pacific",
+            "pacific"
+        ],
+        "pos": "NOUN",
+        "n": 54
+    },
+    {
+        "word": [
+            "central",
+            "central"
+        ],
+        "pos": "NOUN",
+        "n": 43
+    },
+    {
+        "word": [
+            "continental",
+            "continental"
+        ],
+        "pos": "NOUN",
+        "n": 33
+    }
+]
