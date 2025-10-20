@@ -9,8 +9,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/ndabAP/assocentity"
-	"github.com/ndabAP/assocentity/tokenize"
+	"github.com/ndabAP/entitydebs"
+	"github.com/ndabAP/entitydebs/tokenize"
 	"github.com/ndabAP/entityscrape/cases"
 	"github.com/ndabAP/entityscrape/parser"
 	"golang.org/x/text/language"
@@ -33,7 +33,7 @@ type (
 var (
 	ident = "isopf"
 
-	collector = func(frames assocentity.Frames) samples {
+	collector = func(frames entitydebs.Frames) samples {
 		samples := samples{
 			heads:      make([]*tokenize.Token, 0),
 			dependents: make([]*tokenize.Token, 0),

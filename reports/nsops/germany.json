@@ -9,7 +9,7 @@
     },
     {
         "word": [
-            "Europa",
+            "europa",
             "Europe"
         ],
         "pos": "NOUN",
@@ -17,7 +17,7 @@
     },
     {
         "word": [
-            "Frankreich",
+            "frankreich",
             "France"
         ],
         "pos": "NOUN",
@@ -41,7 +41,7 @@
     },
     {
         "word": [
-            "China",
+            "china",
             "China"
         ],
         "pos": "NOUN",
@@ -65,7 +65,7 @@
     },
     {
         "word": [
-            "Russland",
+            "russland",
             "Russia"
         ],
         "pos": "NOUN",
@@ -81,15 +81,15 @@
     },
     {
         "word": [
-            "Pol",
-            "pole"
+            "neu",
+            "new"
         ],
-        "pos": "NOUN",
+        "pos": "ADJ",
         "n": 8
     },
     {
         "word": [
-            "Italien",
+            "italien",
             "Italy"
         ],
         "pos": "NOUN",
@@ -97,24 +97,24 @@
     },
     {
         "word": [
-            "neu",
-            "new"
+            "pol",
+            "pole"
         ],
-        "pos": "ADJ",
-        "n": 7
+        "pos": "NOUN",
+        "n": 8
     },
     {
         "word": [
-            "Jahr",
-            "Year"
+            "union",
+            "union"
         ],
         "pos": "NOUN",
         "n": 6
     },
     {
         "word": [
-            "Union",
-            "union"
+            "jahr",
+            "year"
         ],
         "pos": "NOUN",
         "n": 6

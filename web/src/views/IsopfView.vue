@@ -4,7 +4,8 @@
     For each subject, the heads and dependents in international news have
     been collected, while the token must be assigned to either of these
     parts of speeches: Adjective, Noun, Verb. After that, the top ten most
-    common occurrences have been aggregated.
+    common occurrences have been aggregated. Disclaimer: Fake news and
+    biased articles were not filtered out.
   </n-p>
 
   <n-page-header style="margin-bottom: 12px">
@@ -12,7 +13,7 @@
       <n-gi>
         <n-statistic
           label="Corpus"
-          value="39,000"
+          value="40,000"
         />
       </n-gi>
       <n-gi>
@@ -24,7 +25,7 @@
       <n-gi>
         <n-statistic
           label="Population"
-          value="9,300"
+          value="~10,000"
         />
       </n-gi>
       <n-gi>

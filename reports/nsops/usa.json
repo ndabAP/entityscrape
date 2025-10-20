@@ -1,75 +1,19 @@
 [
     {
         "word": [
-            "continental",
-            "continental"
-        ],
-        "pos": "ADJ",
-        "n": 42
-    },
-    {
-        "word": [
-            "entire",
-            "entire"
-        ],
-        "pos": "ADJ",
-        "n": 38
-    },
-    {
-        "word": [
-            "Team",
-            "Team"
+            "north",
+            "north"
         ],
         "pos": "NOUN",
-        "n": 25
+        "n": 228
     },
     {
         "word": [
-            "family",
-            "family"
-        ],
-        "pos": "NOUN",
-        "n": 20
-    },
-    {
-        "word": [
-            "Western",
-            "Western"
+            "african",
+            "african"
         ],
         "pos": "ADJ",
-        "n": 18
-    },
-    {
-        "word": [
-            "e",
-            "e"
-        ],
-        "pos": "NOUN",
-        "n": 17
-    },
-    {
-        "word": [
-            "Families",
-            "Families"
-        ],
-        "pos": "NOUN",
-        "n": 16
-    },
-    {
-        "word": [
-            "western",
-            "western"
-        ],
-        "pos": "ADJ",
-        "n": 16
-    },
-    {
-        "word": [
-            "southeastern",
-            "southeastern"
-        ],
-        "pos": "ADJ",
-        "n": 14
+        "n": 188
     },
     {
         "word": [
@@ -77,46 +21,102 @@
             "great"
         ],
         "pos": "ADJ",
-        "n": 11
+        "n": 176
     },
     {
         "word": [
-            "Eastern",
-            "Eastern"
-        ],
-        "pos": "NOUN",
-        "n": 9
-    },
-    {
-        "word": [
-            "Dairies",
-            "Dairies"
-        ],
-        "pos": "NOUN",
-        "n": 9
-    },
-    {
-        "word": [
-            "whole",
-            "whole"
+            "rural",
+            "rural"
         ],
         "pos": "ADJ",
-        "n": 8
+        "n": 136
     },
     {
         "word": [
-            "eastern",
-            "eastern"
+            "native",
+            "native"
         ],
         "pos": "ADJ",
-        "n": 7
+        "n": 123
     },
     {
         "word": [
-            "Family",
-            "Family"
+            "latin",
+            "latin"
         ],
         "pos": "NOUN",
-        "n": 7
+        "n": 116
+    },
+    {
+        "word": [
+            "south",
+            "south"
+        ],
+        "pos": "NOUN",
+        "n": 78
+    },
+    {
+        "word": [
+            "single",
+            "single"
+        ],
+        "pos": "ADJ",
+        "n": 67
+    },
+    {
+        "word": [
+            "build",
+            "build"
+        ],
+        "pos": "NOUN",
+        "n": 66
+    },
+    {
+        "word": [
+            "average",
+            "average"
+        ],
+        "pos": "ADJ",
+        "n": 66
+    },
+    {
+        "word": [
+            "serve",
+            "serve"
+        ],
+        "pos": "NOUN",
+        "n": 63
+    },
+    {
+        "word": [
+            "first",
+            "first"
+        ],
+        "pos": "ADJ",
+        "n": 59
+    },
+    {
+        "word": [
+            "pacific",
+            "pacific"
+        ],
+        "pos": "NOUN",
+        "n": 54
+    },
+    {
+        "word": [
+            "central",
+            "central"
+        ],
+        "pos": "NOUN",
+        "n": 43
+    },
+    {
+        "word": [
+            "continental",
+            "continental"
+        ],
+        "pos": "NOUN",
+        "n": 33
     }
 ]

@@ -10,8 +10,8 @@ import (
 	"sort"
 
 	"cloud.google.com/go/language/apiv1/languagepb"
-	"github.com/ndabAP/assocentity"
-	"github.com/ndabAP/assocentity/tokenize"
+	"github.com/ndabAP/entitydebs"
+	"github.com/ndabAP/entitydebs/tokenize"
 	c "github.com/ndabAP/entityscrape/cases"
 	"github.com/ndabAP/entityscrape/parser"
 	"golang.org/x/text/cases"
@@ -32,11 +32,11 @@ type (
 var (
 	ident = "nsops"
 
-	collector = func(frames assocentity.Frames) []sample {
+	collector = func(frames entitydebs.Frames) []sample {
 		samples := make([]sample, 0)
 		frames.Forest().Dependents(func(t *tokenize.Token) bool {
 			switch t.PartOfSpeech.Tag {
-			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun, tokenize.PartOfSpeechTagVerb:
+			case tokenize.PartOfSpeechTagAdj, tokenize.PartOfSpeechTagNoun:
 				samples = append(samples, t)
 			default:
 			}
@@ -50,6 +50,7 @@ var (
 		aggregates := make(aggregates, 0, len(samples))
 		for _, sample := range samples {
 			w := cases.Lower(language.Und).String(sample.Lemma)
+
 			i := slices.IndexFunc(aggregates, func(aggregate aggregate) bool {
 				return w == aggregate.Word[0]
 			})

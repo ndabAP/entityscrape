@@ -1,1 +1,122 @@
-[{"word":["continental","continental"],"pos":"ADJ","n":45},{"word":["entire","entire"],"pos":"ADJ","n":39},{"word":["Team","Team"],"pos":"NOUN","n":29},{"word":["Western","Western"],"pos":"ADJ","n":20},{"word":["family","family"],"pos":"NOUN","n":20},{"word":["western","western"],"pos":"ADJ","n":17},{"word":["southeastern","southeastern"],"pos":"ADJ","n":16},{"word":["Families","Families"],"pos":"NOUN","n":15},{"word":["e","e"],"pos":"NOUN","n":14},{"word":["great","great"],"pos":"ADJ","n":11},{"word":["eastern","eastern"],"pos":"ADJ","n":9},{"word":["Eastern","Eastern"],"pos":"NOUN","n":8},{"word":["old","old"],"pos":"ADJ","n":8},{"word":["whole","whole"],"pos":"ADJ","n":8},{"word":["Dairies","Dairies"],"pos":"NOUN","n":7}]
+[
+    {
+        "word": [
+            "north",
+            "north"
+        ],
+        "pos": "NOUN",
+        "n": 228
+    },
+    {
+        "word": [
+            "african",
+            "african"
+        ],
+        "pos": "ADJ",
+        "n": 188
+    },
+    {
+        "word": [
+            "great",
+            "great"
+        ],
+        "pos": "ADJ",
+        "n": 176
+    },
+    {
+        "word": [
+            "rural",
+            "rural"
+        ],
+        "pos": "ADJ",
+        "n": 136
+    },
+    {
+        "word": [
+            "native",
+            "native"
+        ],
+        "pos": "ADJ",
+        "n": 123
+    },
+    {
+        "word": [
+            "latin",
+            "latin"
+        ],
+        "pos": "NOUN",
+        "n": 116
+    },
+    {
+        "word": [
+            "south",
+            "south"
+        ],
+        "pos": "NOUN",
+        "n": 78
+    },
+    {
+        "word": [
+            "single",
+            "single"
+        ],
+        "pos": "ADJ",
+        "n": 67
+    },
+    {
+        "word": [
+            "build",
+            "build"
+        ],
+        "pos": "NOUN",
+        "n": 66
+    },
+    {
+        "word": [
+            "average",
+            "average"
+        ],
+        "pos": "ADJ",
+        "n": 66
+    },
+    {
+        "word": [
+            "serve",
+            "serve"
+        ],
+        "pos": "NOUN",
+        "n": 63
+    },
+    {
+        "word": [
+            "first",
+            "first"
+        ],
+        "pos": "ADJ",
+        "n": 59
+    },
+    {
+        "word": [
+            "pacific",
+            "pacific"
+        ],
+        "pos": "NOUN",
+        "n": 54
+    },
+    {
+        "word": [
+            "central",
+            "central"
+        ],
+        "pos": "NOUN",
+        "n": 43
+    },
+    {
+        "word": [
+            "continental",
+            "continental"
+        ],
+        "pos": "NOUN",
+        "n": 33
+    }
+]

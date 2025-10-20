@@ -3,8 +3,8 @@
   <n-p>
     For each mentioning of a country during a political speech in a governmental
     environment, the countries dependent token has been collected, while a token
-    must be assigned to either of these part of speeches: Adjective, Noun, Verb.
-    After that, the top ten most common permutations have been aggregated.
+    must be assigned to either of these part of speeches: Adjective, Noun. After
+    that, the top ten most common permutations have been aggregated.
   </n-p>
 
   <n-page-header style="margin-bottom: 12px">
@@ -24,7 +24,7 @@
       <n-gi>
         <n-statistic
           label="Population"
-          value="26,000"
+          value="~26,000"
         />
       </n-gi>
       <n-gi>

@@ -11,9 +11,9 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/ndabAP/assocentity"
-	"github.com/ndabAP/assocentity/tokenize"
-	"github.com/ndabAP/assocentity/tokenize/nlp"
+	"github.com/ndabAP/entitydebs"
+	"github.com/ndabAP/entitydebs/tokenize"
+	"github.com/ndabAP/entitydebs/tokenize/nlp"
 	"github.com/ndabAP/entityscrape/sbd"
 	"github.com/ndabAP/entityscrape/translator"
 	"golang.org/x/text/language"
@@ -119,7 +119,7 @@ func (study study[samples, aggregated]) frames(
 	feats tokenize.Features,
 	lang language.Tag,
 ) (
-	assocentity.Frames,
+	entitydebs.Frames,
 	error,
 ) {
 	slog.Debug("parsing files", "n", len(filenames))
@@ -195,16 +195,16 @@ func (study study[samples, aggregated]) frames(
 
 	select {
 	case <-ctx.Done():
-		return assocentity.Frames{}, ctx.Err()
+		return entitydebs.Frames{}, ctx.Err()
 
 	case err := <-errChan:
 		if err != nil {
-			return assocentity.Frames{}, err
+			return entitydebs.Frames{}, err
 		}
 	}
 	slog.Debug("texts sampled and parsed", "n", len(texts))
 
 	slog.Debug("generating frames")
-	src := assocentity.NewSource(entity, texts)
-	return src.Frames(ctx, tokenizer, feats, assocentity.NFKC)
+	src := entitydebs.NewSource(entity, texts)
+	return src.Frames(ctx, tokenizer, feats, entitydebs.NFKC)
 }

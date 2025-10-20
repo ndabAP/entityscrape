@@ -1,7 +1,7 @@
 # entityscrape
 
 `entityscrape` is a live demo of the Go module
-[assocentity](https://github.com/ndabAP/assocentity), a social science tool to
+[entitydebs](https://github.com/ndabAP/entitydebs), a social science tool to
 programmatically analyze entities in non-fictional texts. In particular, it's
 well-suited to extract the sentiment for an entity using dependency parsing.
 Tokenization is highly customizable and supports the Google Cloud Natural

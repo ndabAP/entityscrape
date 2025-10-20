@@ -1,1 +1,122 @@
-[{"word":["современный","modern"],"pos":"ADJ","n":44},{"word":["царский","royal"],"pos":"ADJ","n":29},{"word":["Центральный","Central"],"pos":"ADJ","n":23},{"word":["Советский","Soviet"],"pos":"ADJ","n":16},{"word":["Деловой","Business"],"pos":"ADJ","n":16},{"word":["Белоруссия","Belarus"],"pos":"NOUN","n":15},{"word":["страна","country"],"pos":"NOUN","n":12},{"word":["новый","new"],"pos":"ADJ","n":10},{"word":["Казахстан","Kazakhstan"],"pos":"NOUN","n":10},{"word":["Финляндия","Finland"],"pos":"NOUN","n":9},{"word":["Украина","Ukraine"],"pos":"NOUN","n":9},{"word":["советский","Soviet"],"pos":"ADJ","n":8},{"word":["большой","big"],"pos":"ADJ","n":8},{"word":["человечество","humanity"],"pos":"NOUN","n":8},{"word":["Африка","Africa"],"pos":"NOUN","n":7}]
+[
+    {
+        "word": [
+            "современный",
+            "modern"
+        ],
+        "pos": "ADJ",
+        "n": 45
+    },
+    {
+        "word": [
+            "царский",
+            "royal"
+        ],
+        "pos": "ADJ",
+        "n": 40
+    },
+    {
+        "word": [
+            "центральный",
+            "central"
+        ],
+        "pos": "ADJ",
+        "n": 26
+    },
+    {
+        "word": [
+            "советский",
+            "Soviet"
+        ],
+        "pos": "ADJ",
+        "n": 23
+    },
+    {
+        "word": [
+            "белоруссия",
+            "Belarus"
+        ],
+        "pos": "NOUN",
+        "n": 17
+    },
+    {
+        "word": [
+            "страна",
+            "country"
+        ],
+        "pos": "NOUN",
+        "n": 17
+    },
+    {
+        "word": [
+            "деловой",
+            "business"
+        ],
+        "pos": "ADJ",
+        "n": 15
+    },
+    {
+        "word": [
+            "новый",
+            "new"
+        ],
+        "pos": "ADJ",
+        "n": 13
+    },
+    {
+        "word": [
+            "украина",
+            "Ukraine"
+        ],
+        "pos": "NOUN",
+        "n": 11
+    },
+    {
+        "word": [
+            "великий",
+            "great"
+        ],
+        "pos": "ADJ",
+        "n": 10
+    },
+    {
+        "word": [
+            "казахстан",
+            "Kazakhstan"
+        ],
+        "pos": "NOUN",
+        "n": 10
+    },
+    {
+        "word": [
+            "финляндия",
+            "Finland"
+        ],
+        "pos": "NOUN",
+        "n": 9
+    },
+    {
+        "word": [
+            "такой",
+            "such"
+        ],
+        "pos": "ADJ",
+        "n": 8
+    },
+    {
+        "word": [
+            "большой",
+            "big"
+        ],
+        "pos": "ADJ",
+        "n": 8
+    },
+    {
+        "word": [
+            "африка",
+            "Africa"
+        ],
+        "pos": "NOUN",
+        "n": 7
+    }
+]

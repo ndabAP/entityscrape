@@ -3,8 +3,8 @@ package cases
 import (
 	"io"
 
-	"github.com/ndabAP/assocentity"
-	"github.com/ndabAP/assocentity/tokenize"
+	"github.com/ndabAP/entitydebs"
+	"github.com/ndabAP/entitydebs/tokenize"
 	"golang.org/x/text/language"
 )
 
@@ -25,7 +25,7 @@ type (
 
 	Translate func([]string) ([]string, error)
 
-	Collector[samples any]              func(assocentity.Frames) samples
+	Collector[samples any]              func(entitydebs.Frames) samples
 	Aggregator[samples, aggregated any] func(samples) aggregated
 	Reporter[aggregated any]            func(aggregated, Translate, io.Writer) error
 

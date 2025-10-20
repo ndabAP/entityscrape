@@ -10,8 +10,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/ndabAP/assocentity"
-	"github.com/ndabAP/assocentity/tokenize"
+	"github.com/ndabAP/entitydebs"
+	"github.com/ndabAP/entitydebs/tokenize"
 	"github.com/ndabAP/entityscrape/cases"
 	"github.com/ndabAP/entityscrape/parser"
 	"golang.org/x/text/language"
@@ -29,7 +29,7 @@ type (
 var (
 	ident = "rvomg"
 
-	collector = func(frames assocentity.Frames) []sample {
+	collector = func(frames entitydebs.Frames) []sample {
 		samples := slices.Collect(frames.Forest().Roots())
 		samples = slices.DeleteFunc(samples, func(t *tokenize.Token) bool {
 			switch t.Lemma {
