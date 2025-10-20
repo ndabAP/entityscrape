@@ -54,7 +54,7 @@ const error = ref(false)
 
 onMounted(async () => {
   try {
-    const report = await fetch(`/nsops/${props.identifier}.json`).then(response => response.json())
+    const report = await fetch(`/entityscrape/nsops/${props.identifier}.json`).then(response => response.json())
 
     for (const [pos, words] of Object.entries(Object.groupBy(report, ({ pos }) => pos))) {
       option.series.data.push({

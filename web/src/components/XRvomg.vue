@@ -56,7 +56,7 @@ const error = ref(false)
 
 onMounted(async () => {
   try {
-    const report = await fetch(`/rvomg/${props.identifier}.json`).then(response => response.json())
+    const report = await fetch(`/entityscrape/rvomg/${props.identifier}.json`).then(response => response.json())
     for (const { word, n } of report) {
       option.xAxis.data.push(word[0])
       option.series[0].data.push(n)

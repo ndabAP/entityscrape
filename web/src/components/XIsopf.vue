@@ -48,7 +48,7 @@ const error = ref(false)
 
 onMounted(async () => {
   try {
-    const report = await fetch(`/isopf/${props.identifier}.json`).then(response => response.json())
+    const report = await fetch(`/entityscrape/isopf/${props.identifier}.json`).then(response => response.json())
 
     option.series.data.push({ name: props.label })
     for (const heads of report.heads) {
