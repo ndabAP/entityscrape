@@ -16,7 +16,7 @@ export default defineConfig({
       include: ['src/**/*.js', 'src/**/*.vue']
     })
   ],
-  base: './',
+  base: '/entityscrape/',
   build: {
     emptyOutDir: true,
     outDir: '../docs'
