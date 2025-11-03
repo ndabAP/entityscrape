@@ -86,6 +86,10 @@ const themeOverrides = {
 </script>
 
 <style>
+html {
+  background-color: rgb(16, 16, 20);
+}
+
 .n-statistic .n-statistic-value .n-statistic-value__content {
   font-size: unset !important;
 }
