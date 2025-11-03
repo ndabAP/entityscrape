@@ -4,7 +4,6 @@
     :theme-overrides="themeOverrides"
   >
     <n-layout
-      position="absolute"
       content-style="max-width: 1024px; margin-left: auto; margin-right: auto;"
     >
       <n-menu
